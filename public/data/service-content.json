@@ -1,0 +1,68 @@
+{
+  "private-tours": {
+    "image": "/images/services/private-tours.jpg",
+    "fullDescription": "Kişiye özel turlarımız, tamamen sizin istekleriniz ve tercihleriniz doğrultusunda hazırlanır. Seyahat rotanızı, konaklama seçeneklerinizi ve aktivitelerinizi dilediğiniz gibi şekillendirebilirsiniz.\n\nÖzel rehberiniz, sadece size hizmet verecek ve programınız tamamen size özel olarak tasarlanacaktır. Bu sayede kalabalık gruplardan uzak, kendi temponuzda ve ilgi alanlarınıza göre bir seyahat deneyimi yaşayabilirsiniz.\n\nKişiye özel turlarımız, balayı çiftleri, aileler, arkadaş grupları veya yalnız seyahat edenler için idealdir.",
+    "features": [
+      "Size özel profesyonel rehberlik hizmeti",
+      "Esnek program ve zaman çizelgesi",
+      "Lüks veya butik konaklama seçenekleri",
+      "Özel transfer hizmetleri",
+      "Kişisel ilgi alanlarınıza göre aktiviteler"
+    ]
+  },
+  "group-tours": {
+    "image": "/images/services/group-tours.jpg",
+    "fullDescription": "10-12 kişilik küçük gruplarla düzenlediğimiz turlarımız, kalabalık tur otobüslerindeki seyahatlerden sıkılanlar için ideal.\n\nGrup turlarımızda, benzer ilgi alanlarına ve yaşam tarzlarına sahip kişilerle bir araya gelirsiniz. Homojen gruplar oluşturarak herkesin seyahatten maksimum verim almasını sağlıyoruz.\n\nProfesyonel rehberlerimiz eşliğinde, bölgenin en önemli noktalarını keşfederken yeni arkadaşlıklar kurabilir, sosyal bir ortamda seyahat deneyiminizi zenginleştirebilirsiniz.",
+    "features": [
+      "Maksimum 12 kişilik küçük gruplar",
+      "Benzer profillerden oluşan homojen gruplar",
+      "Sosyal etkileşim fırsatları",
+      "Ekonomik fiyat avantajı",
+      "Profesyonel rehberlik hizmeti"
+    ]
+  },
+  "family-tours": {
+    "image": "/images/services/family-tours.jpg",
+    "fullDescription": "Aile turlarımız, çocuklu aileler için özel olarak tasarlanmıştır. Her yaş grubuna hitap eden aktiviteler ve çocuk dostu konaklama seçenekleriyle tüm aile için unutulmaz bir tatil deneyimi sunuyoruz.\n\nÇocuklarınızın hem eğlenip hem de kültürel ve tarihi değerleri öğrenebileceği rotalar belirliyoruz. Yerel lezzetleri tatma, doğayla iç içe olma ve farklı kültürleri tanıma fırsatı sunan aile turlarımızda herkes için bir şeyler var.\n\nÖzel transfer araçları, çocuk menüleri, oyun alanları olan oteller ve aile odaları gibi detayları düşünerek, ailenizin konforunu her zaman ön planda tutuyoruz.",
+    "features": [
+      "Çocuk dostu oteller ve restoranlar",
+      "Her yaş grubuna uygun aktiviteler",
+      "Esneklik içeren günlük programlar",
+      "Çocuklar için özel rehberler",
+      "Aile odaları ve bağlantılı oda seçenekleri"
+    ]
+  },
+  "student-tours": {
+    "image": "/images/services/student-tours.jpg",
+    "fullDescription": "Öğrenciler için özel olarak hazırladığımız ekonomik turlarımız, sınırlı bütçeyle maksimum deneyim yaşamanızı sağlar.\n\nÖğrenci yurtları, hosteller veya ekonomik otellerde konaklama, toplu ulaşım seçenekleri ve uygun fiyatlı restoran önerileriyle bütçenizi zorlamadan unutulmaz bir seyahat deneyimi yaşayabilirsiniz.\n\nAyrıca öğrenci kimliğinizle birçok müze, ören yeri ve aktivitede indirimli fiyatlardan yararlanmanızı sağlıyoruz.",
+    "features": [
+      "Ekonomik konaklama seçenekleri",
+      "Öğrenci indirimleri ve fırsatları",
+      "Sosyalleşme imkanları",
+      "Kültürel ve tarihi yerler",
+      "Bütçe dostu aktivite önerileri"
+    ]
+  },
+  "romantic-tours": {
+    "image": "/images/services/romantic-tours.jpg",
+    "fullDescription": "Balayı, yıldönümü veya romantik bir kaçamak için özel olarak tasarlanmış turlarımız, çiftlere unutulmaz anlar yaşatıyor.\n\nRomantik manzaralara sahip özel oteller, gün batımı manzaralı akşam yemekleri, özel tekne turları ve spa deneyimleri ile sevdiğinizle baş başa kaliteli zaman geçirebileceğiniz bir program hazırlıyoruz.\n\nSevgililer günü, evlilik teklifi, balayı veya sadece romantik bir kaçamak için ideal seçenekler sunuyoruz.",
+    "features": [
+      "Romantik ve lüks konaklama seçenekleri",
+      "Özel akşam yemekleri ve organizasyonlar",
+      "Çiftlere özel spa ve masaj paketleri",
+      "Özel transfer hizmetleri",
+      "Unutulmaz anılar için sürpriz etkinlikler"
+    ]
+  },
+  "adventure-tours": {
+    "image": "/images/services/adventure-tours.jpg",
+    "fullDescription": "Adrenalin tutkunları için hazırladığımız macera turlarımız, doğa sporları ve heyecan verici aktivitelerle dolu bir program sunuyor.\n\nTrekking, rafting, kanyoning, paraşüt, dalış, safari ve daha birçok aktiviteyi içeren turlarımızda, profesyonel eğitmenler eşliğinde güvenli bir şekilde macera dolu anlar yaşayabilirsiniz.\n\nDoğayla iç içe olmak, fiziksel sınırlarınızı zorlamak ve unutulmaz deneyimler yaşamak isteyen herkes için ideal bir seçenek.",
+    "features": [
+      "Profesyonel eğitmenler eşliğinde güvenli aktiviteler",
+      "Tüm ekipmanların dahil olduğu paketler",
+      "Doğa içinde konaklama seçenekleri",
+      "Farklı zorluk seviyelerinde rotalar",
+      "Küçük gruplarla özel deneyimler"
+    ]
+  }
+} 

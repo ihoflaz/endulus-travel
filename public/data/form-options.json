@@ -1,0 +1,49 @@
+  {
+  "destinations": [
+    { "value": "spain", "label": "İspanya" },
+    { "value": "morocco", "label": "Fas" },
+    { "value": "turkey", "label": "Türkiye" },
+    { "value": "portugal", "label": "Portekiz" },
+    { "value": "italy", "label": "İtalya" },
+    { "value": "france", "label": "Fransa" },
+    { "value": "balkans", "label": "Balkanlar" },
+    { "value": "uae", "label": "Birleşik Arap Emirlikleri" },
+    { "value": "jordan", "label": "Ürdün" },
+    { "value": "egypt", "label": "Mısır" },
+    { "value": "other", "label": "Diğer" }
+  ],
+  "preferences": [
+    { "value": "halal_food", "label": "Helal Yemek" },
+    { "value": "prayer_times", "label": "Namaz Vakitlerine Uygun Program" },
+    { "value": "women_guide", "label": "Kadın Rehber" },
+    { "value": "child_friendly", "label": "Çocuk Dostu Aktiviteler" },
+    { "value": "elderly_friendly", "label": "Yaşlı Dostu / Az Yürüyüşlü" },
+    { "value": "disability_access", "label": "Engelli Erişimi" },
+    { "value": "luxury", "label": "Lüks Konaklama" },
+    { "value": "budget", "label": "Ekonomik / Bütçe Dostu" },
+    { "value": "private_tour", "label": "Özel / Kişiye Özel Tur" },
+    { "value": "shopping_focus", "label": "Alışveriş Odaklı" },
+    { "value": "historical", "label": "Tarihi Yerler" },
+    { "value": "cultural", "label": "Kültürel Deneyim" },
+    { "value": "photography", "label": "Fotoğraf Çekimi" },
+    { "value": "culinary", "label": "Yerel Mutfak ve Gastronomi" }
+  ],
+  "durations": [
+    { "value": "3_5", "label": "3-5 gün" },
+    { "value": "6_9", "label": "6-9 gün" },
+    { "value": "10_14", "label": "10-14 gün" },
+    { "value": "15_plus", "label": "15+ gün" }
+  ],
+  "budgetRanges": [
+    { "value": "5000_below", "label": "5.000₺ ve altı" },
+    { "value": "5000_10000", "label": "5.000₺ - 10.000₺" },
+    { "value": "10000_15000", "label": "10.000₺ - 15.000₺" },
+    { "value": "15000_25000", "label": "15.000₺ - 25.000₺" },
+    { "value": "25000_above", "label": "25.000₺ ve üzeri" }
+  ],
+  "contactPreferences": [
+    { "value": "email", "label": "E-posta" },
+    { "value": "phone", "label": "Telefon" },
+    { "value": "whatsapp", "label": "WhatsApp" }
+    ]
+  }

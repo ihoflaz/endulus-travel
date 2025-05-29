@@ -1,0 +1,182 @@
+[
+  {
+    "step": "destination",
+    "title": "Nereye Gitmek İstersiniz?",
+    "description": "Seyahat etmek istediğiniz destinasyonu seçin.",
+    "options": [
+      {
+        "id": "spain",
+        "name": "İspanya",
+        "description": "Endülüs bölgesi, Madrid, Barselona ve daha fazlası",
+        "image": "/images/destinations/spain.jpg"
+      },
+      {
+        "id": "morocco",
+        "name": "Fas",
+        "description": "Marakeş, Kazablanka, Fes ve çöl deneyimi",
+        "image": "/images/destinations/morocco.jpg"
+      },
+      {
+        "id": "turkey",
+        "name": "Türkiye",
+        "description": "İstanbul, Kapadokya, Efes ve daha fazlası",
+        "image": "/images/destinations/turkey.jpg"
+      },
+      {
+        "id": "portugal",
+        "name": "Portekiz",
+        "description": "Lizbon, Porto, Algarve ve kültürel deneyimler",
+        "image": "/images/destinations/portugal.jpg"
+      },
+      {
+        "id": "balkans",
+        "name": "Balkanlar",
+        "description": "Bosna-Hersek, Karadağ, Arnavutluk ve Kuzey Makedonya",
+        "image": "/images/destinations/balkans.jpg"
+      }
+    ]
+  },
+  {
+    "step": "duration",
+    "title": "Ne Kadar Süre?",
+    "description": "Seyahatinizin süresini belirleyin.",
+    "options": [
+      {
+        "id": "short",
+        "name": "Kısa Seyahat",
+        "description": "3-5 gün",
+        "image": "/images/duration/short.jpg"
+      },
+      {
+        "id": "medium",
+        "name": "Orta Uzunlukta",
+        "description": "6-9 gün",
+        "image": "/images/duration/medium.jpg"
+      },
+      {
+        "id": "long",
+        "name": "Uzun Seyahat",
+        "description": "10-14 gün",
+        "image": "/images/duration/long.jpg"
+      },
+      {
+        "id": "extended",
+        "name": "Genişletilmiş",
+        "description": "15+ gün",
+        "image": "/images/duration/extended.jpg"
+      }
+    ]
+  },
+  {
+    "step": "travelers",
+    "title": "Kimlerle Seyahat Ediyorsunuz?",
+    "description": "Seyahat grubunuzu tanımlayın.",
+    "options": [
+      {
+        "id": "solo",
+        "name": "Yalnız",
+        "description": "Bireysel seyahat",
+        "image": "/images/travelers/solo.jpg"
+      },
+      {
+        "id": "couple",
+        "name": "Çift",
+        "description": "Romantik bir seyahat",
+        "image": "/images/travelers/couple.jpg"
+      },
+      {
+        "id": "family",
+        "name": "Aile",
+        "description": "Çocuklarla seyahat",
+        "image": "/images/travelers/family.jpg"
+      },
+      {
+        "id": "friends",
+        "name": "Arkadaş Grubu",
+        "description": "Arkadaşlarla eğlenceli bir seyahat",
+        "image": "/images/travelers/friends.jpg"
+      },
+      {
+        "id": "group",
+        "name": "Büyük Grup",
+        "description": "10+ kişilik grup",
+        "image": "/images/travelers/group.jpg"
+      }
+    ]
+  },
+ {
+    "step": "interests",
+    "title": "İlgi Alanlarınız Neler?",
+    "description": "Seyahatiniz boyunca ilgilendiğiniz deneyimleri seçin.",
+    "options": [
+      {
+        "id": "history",
+        "name": "Tarih & Kültür",
+        "description": "Tarihi yerler, müzeler ve kültürel miras",
+        "image": "/images/interests/history.jpg"
+      },
+      {
+        "id": "culinary",
+        "name": "Gastronomi",
+        "description": "Yerel mutfaklar ve lezzetler",
+        "image": "/images/interests/culinary.jpg"
+      },
+      {
+        "id": "nature",
+        "name": "Doğa & Manzara",
+        "description": "Doğal güzellikler ve manzaralar",
+        "image": "/images/interests/nature.jpg"
+      },
+      {
+        "id": "adventure",
+        "name": "Macera",
+        "description": "Heyecan verici aktiviteler",
+        "image": "/images/interests/adventure.jpg"
+      },
+      {
+        "id": "shopping",
+        "name": "Alışveriş",
+        "description": "Çarşılar, pazarlar ve alışveriş merkezleri",
+        "image": "/images/interests/shopping.jpg"
+      },
+      {
+        "id": "relaxation",
+        "name": "Dinlenme & Rahatlama",
+        "description": "Plajlar, termal tesisler ve spa",
+        "image": "/images/interests/relaxation.jpg"
+      }
+    ],
+    "multiSelect": true
+  }, 
+  {
+    "step": "budget",
+    "title": "Bütçeniz Nedir?",
+    "description": "Kişi başı yaklaşık seyahat bütçenizi belirleyin.",
+    "options": [
+      {
+        "id": "budget_low",
+        "name": "Ekonomik",
+        "description": "5.000₺ - 10.000₺",
+        "image": "/images/budget/low.jpg"
+      },
+      {
+        "id": "budget_medium",
+        "name": "Standart",
+        "description": "10.000₺ - 15.000₺",
+        "image": "/images/budget/medium.jpg"
+      },
+      {
+        "id": "budget_high",
+        "name": "Premium",
+        "description": "15.000₺ - 25.000₺",
+        "image": "/images/budget/high.jpg"
+      },
+      {
+        "id": "budget_luxury",
+        "name": "Lüks",
+        "description": "25.000₺ ve üzeri",
+        "image": "/images/budget/luxury.jpg"
+      }
+    ]
+  }
+] 

@@ -1,0 +1,35 @@
+  {
+  "groupTypes": [
+    { "value": "family", "label": "Aile" },
+    { "value": "family_with_children", "label": "Çocuklu Aile" },
+    { "value": "women_group", "label": "Kadın Grubu" },
+    { "value": "youth_group", "label": "Genç Grubu" },
+    { "value": "couple", "label": "Çift / Balayı" },
+    { "value": "solo", "label": "Bireysel / Tek Kişi" },
+    { "value": "senior", "label": "Yaşlı / 60+ Yaş Grubu" },
+    { "value": "business", "label": "İş / Kurumsal" },
+    { "value": "other", "label": "Diğer" }
+  ],
+  "travelPreferences": [
+    { "value": "cultural", "label": "Kültürel Deneyimler" },
+    { "value": "historical", "label": "Tarihi Yerler" },
+    { "value": "nature", "label": "Doğa ve Manzara" },
+    { "value": "local_cuisine", "label": "Yerel Mutfak" },
+    { "value": "shopping", "label": "Alışveriş" },
+    { "value": "relaxation", "label": "Dinlenme & Rahatlama" },
+    { "value": "adventure", "label": "Macera ve Aktiviteler" },
+    { "value": "photography", "label": "Fotoğraf Çekimi" },
+    { "value": "spiritual", "label": "Manevi Ziyaretler" }
+  ],
+  "otherPreferences": [
+    { "value": "halal_food", "label": "Helal Yemek" },
+    { "value": "prayer_times", "label": "Namaz Vakitlerine Uygun Program" },
+    { "value": "woman_guide", "label": "Kadın Rehber" },
+    { "value": "child_friendly", "label": "Çocuk Dostu Aktiviteler" },
+    { "value": "elderly_friendly", "label": "Yaşlı Dostu / Az Yürüyüşlü" },
+    { "value": "disability_access", "label": "Engelli Erişimi" },
+    { "value": "luxury", "label": "Lüks Konaklama" },
+    { "value": "budget", "label": "Ekonomik / Bütçe Dostu" },
+    { "value": "private_tour", "label": "Özel Tur / Kişiye Özel" }
+]
+}

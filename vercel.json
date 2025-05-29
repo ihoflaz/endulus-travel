@@ -1,0 +1,17 @@
+{
+  "framework": "vite",
+  "routes": [
+    { "src": "/data/(.*)", "dest": "/data/$1" },
+    { "src": "/images/(.*)", "dest": "/images/$1" },
+    { "src": "/locales/(.*)", "dest": "/locales/$1" },
+    { "src": "/(.*)", "dest": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/data/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=3600" }
+      ]
+    }
+  ]
+} 

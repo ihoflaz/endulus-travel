@@ -1,0 +1,55 @@
+{
+  "navigation": {
+    "home": "Home",
+    "tours": "Tours",
+    "tourPlanning": "Tour Planning",
+    "blog": "Blog",
+    "about": "About Us",
+    "contact": "Contact",
+    "budgetRoute": "Routes by Budget",
+    "survey": "Survey",
+    "getOffer": "Get Quote"
+  },
+  "header": {
+    "title": "Endülüs Travel",
+    "subtitle": "Personalized Tour Experience"
+  },
+  "footer": {
+    "description": "Your travel agency offering personalized travel experiences, designing tours suitable for every budget and preference.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "address": "Address: Istanbul, Turkey",
+    "phone": "Phone: +90 (212) 123 45 67",
+    "email": "Email: info@endulustravel.com",
+    "copyright": "© {{year}} Endülüs Travel. All rights reserved."
+  },
+  "home": {
+    "welcome": "Welcome to Endülüs Travel",
+    "heroTitle": "Discover Your Dream Vacation",
+    "heroSubtitle": "We are here for personalized tour experiences that respect your sensitivities.",
+    "planTour": "Plan Tour",
+    "exploreRoutes": "Explore Routes",
+    "getOffer": "Get Quote"
+  },
+  "error": {
+    "404": "Page Not Found",
+    "goHome": "Go to Home Page"
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Our travel recommendations and guides",
+    "readMore": "Read More",
+    "backToBlog": "Back to Blog",
+    "relatedPosts": "Related Posts",
+    "postNotFound": "The blog post you are looking for could not be found"
+  },
+  "about": {
+    "valuesTitle": "Our Values",
+    "teamTitle": "Our Team",
+    "teamMember": "Team Member {{id}}",
+    "teamPosition": "Position {{id}}",
+    "teamBio": "Experienced tourism expert, specialized in personalized tour planning.",
+    "ctaMessage": "Let's plan your custom tour experience together",
+    "ctaButton": "Get a Quote"
+  }
+} 

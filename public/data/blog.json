@@ -1,0 +1,38 @@
+[
+  {
+    "slug": "kadinlar-icin-en-guzel-yerler",
+    "title": "10 Kadın Arkadaşla Gidilebilecek En Güzel Yerler",
+    "summary": "Kadın gruplarına özel huzurlu ve güvenli rotaları derledik.",
+    "coverImage": "/images/blog/women-travel.jpg",
+    "category": "Seyahat Önerileri",
+    "date": "15 Mayıs 2023",
+    "author": "Ayşe Demir"
+  },
+  {
+    "slug": "namaz-saatlerine-uyumlu-5-destinasyon",
+    "title": "Namaz Saatleriyle Uyumlu 5 Destinasyon",
+    "summary": "İbadet düzeninizi bozmadan tatil yapabileceğiniz öneriler.",
+    "coverImage": "/images/blog/prayer-friendly.jpg",
+    "category": "Kültürel Turlar",
+    "date": "3 Haziran 2023",
+    "author": "Mehmet Yılmaz"
+  },
+  {
+    "slug": "bebekle-seyahat",
+    "title": "Bebekle Seyahat Etmenin En Rahat Yolu",
+    "summary": "Aile dostu konaklama ve transfer seçenekleriyle rahat seyahat rehberi.",
+    "coverImage": "/images/blog/baby-travel.jpg",
+    "category": "Aile Tatili",
+    "date": "22 Temmuz 2023",
+    "author": "Zeynep Kaya"
+  },
+  {
+    "slug": "butceyle-uyumlu-balayi",
+    "title": "Bütçeyle Uyumlu Balayı Rotaları",
+    "summary": "Hesaplı ama romantik balayı planları için öneriler.",
+    "coverImage": "/images/blog/budget-honeymoon.jpg",
+    "category": "Balayı",
+    "date": "10 Ağustos 2023",
+    "author": "Ali Aydın"
+  }
+]

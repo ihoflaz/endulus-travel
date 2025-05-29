@@ -1,0 +1,15 @@
+{
+  "address": "Halaskargazi Cad. No:123, Şişli, İstanbul, Türkiye",
+  "phone": "+90 (555) 123 4567",
+  "email": "info@endulustravel.com",
+  "workingHours": "Pazartesi - Cuma: 09:00 - 18:00",
+  "weekendHours": "Cumartesi: 10:00 - 14:00",
+  "social": {
+    "facebook": "https://facebook.com/endulustravel",
+    "twitter": "https://twitter.com/endulustravel",
+    "instagram": "https://instagram.com/endulustravel",
+    "youtube": "https://youtube.com/endulustravel"
+  },
+  "mapLocation": "https://goo.gl/maps/A8tVsEFWn242TjrU6",
+  "mapEmbedCode": "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.8915084564234!2d28.98416907633394!3d41.04185561781651!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab7650656bd63%3A0x7c2c99985c70ac28!2zVGFrc2ltIE1leWRhbsSxLCBHw7xtw7zFn3N1eXUsIDM0NDM1IEJleW_En2x1L8Swc3RhbmJ1bA!5e0!3m2!1str!2str!4v1653394324741!5m2!1str!2str"
+}

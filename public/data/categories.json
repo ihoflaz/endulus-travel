@@ -1,0 +1,58 @@
+[
+    {
+      "key": "private",
+      "label": "Kişiye Özel Turlar",
+      "description": "Tamamen size özel olarak planlanan, grup dışı turlar."
+    },
+    {
+      "key": "group",
+      "label": "Grup Turları",
+      "description": "10-12 kişilik özel gruplar halinde gerçekleştirilen geziler."
+    },
+    {
+      "key": "family",
+      "label": "Aile & Çocuklu Turlar",
+      "description": "Çocuk dostu aktiviteler içeren, ailelere özel programlar."
+    },
+    {
+      "key": "students",
+      "label": "Öğrencilere Özel Rotalar",
+      "description": "Bütçeye ve grup yapısına uygun, gençlere özel ekonomik turlar."
+    },
+    {
+      "key": "romantic",
+      "label": "Romantik Tatiller",
+      "description": "Çiftlere özel kaçamaklar ve balayı konseptli rotalar."
+    },
+    {
+      "key": "adventure",
+      "label": "Ekstrem & Macera Paketleri",
+      "description": "Adrenalin ve macera arayanlara özel doğa ve aktivite turları."
+    },
+    {
+      "key": "women",
+      "label": "Kadın Grupları",
+      "description": "Yalnızca kadın katılımcılardan oluşan güvenli ve özel gruplar."
+    },
+    {
+      "key": "youth",
+      "label": "Gençler",
+      "description": "Enerji dolu ve sosyal genç gruplara yönelik eğlenceli rotalar."
+    },
+    {
+      "key": "luxury",
+      "label": "Lüks Turlar",
+      "description": "Konfor ve ayrıcalığın ön planda olduğu premium turlar."
+    },
+    {
+      "key": "spiritual",
+      "label": "Manevi Turlar",
+      "description": "Namaz saatlerine ve helal yemeğe uygun, iç huzura yönelik rotalar."
+    },
+    {
+      "key": "budget",
+      "label": "Bütçe Dostu",
+      "description": "Ekonomik planlamalarla sunulan uygun fiyatlı turlar."
+    }
+  ]
+  

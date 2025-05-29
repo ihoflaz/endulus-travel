@@ -1,0 +1,79 @@
+{
+  "navigation": {
+    "home": "Ana Sayfa",
+    "tours": "Turlar",
+    "tourPlanning": "Tur Planlama",
+    "blog": "Blog",
+    "about": "Hakkımızda",
+    "contact": "İletişim",
+    "budgetRoute": "Bütçeye Göre Rota",
+    "survey": "Ön Anket",
+    "getOffer": "Teklif Al"
+  },
+  "header": {
+    "title": "Endülüs Travel",
+    "subtitle": "Kişiselleştirilmiş Tur Deneyimi"
+  },
+  "footer": {
+    "description": "Kişiselleştirilmiş seyahat deneyimleri sunan, her bütçeye ve tercihe uygun turlar tasarlayan seyahat acenteniz.",
+    "quickLinks": "Hızlı Bağlantılar",
+    "contact": "İletişim",
+    "address": "Adres: İstanbul, Türkiye",
+    "phone": "Telefon: +90 (212) 123 45 67",
+    "email": "E-posta: info@endulustravel.com",
+    "copyright": "© {{year}} Endülüs Travel. Tüm hakları saklıdır."
+  },
+  "home": {
+    "welcome": "Endülüs Travel'e Hoş Geldiniz",
+    "heroTitle": "Hayalinizdeki Tatili Keşfedin",
+    "heroSubtitle": "Kişiselleştirilmiş, hassasiyetlerinizi gözeten tur deneyimleri için buradayız.",
+    "planTour": "Tur Planla",
+    "exploreRoutes": "Rotaları Keşfet",
+    "getOffer": "Teklif Al",
+    "pageTitle": "Endülüs Travel - Kişiselleştirilmiş Tur Deneyimi",
+    "servicesTitle": "Sunduğumuz Hizmetler",
+    "servicesDescription": "Kişiselleştirilmiş seyahat deneyiminiz için özel olarak tasarlanmış hizmetlerimiz.",
+    "featuredToursTitle": "Öne Çıkan Turlarımız",
+    "featuredToursDescription": "En popüler ve en çok tercih edilen tur paketlerimizi keşfedin.",
+    "ctaTitle": "Hayalinizdeki tatile bir adım daha yaklaşın",
+    "ctaDescription": "Size özel tatil planınız için ön anketi doldurun veya hemen teklif alın."
+  },
+  "error": {
+    "404": "Sayfa Bulunamadı",
+    "goHome": "Ana Sayfaya Dön",
+    "dataLoad": "Veri yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin."
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Seyahat önerilerimiz ve gezi rehberlerimiz",
+    "readMore": "Devamını Oku",
+    "backToBlog": "Blog'a Dön",
+    "relatedPosts": "İlgili Yazılar",
+    "postNotFound": "Aradığınız blog yazısı bulunamadı"
+  },
+  "about": {
+    "valuesTitle": "Değerlerimiz",
+    "teamTitle": "Ekibimiz",
+    "teamMember": "Takım Üyesi {{id}}",
+    "teamPosition": "Pozisyon {{id}}",
+    "teamBio": "Deneyimli turizm uzmanı, kişiselleştirilmiş tur planlaması konusunda uzman.",
+    "ctaMessage": "Özel tur deneyiminizi birlikte planlayalım",
+    "ctaButton": "Teklif Alın"
+  },
+  "buttons": {
+    "fillSurvey": "Ön Anketi Doldur",
+    "getQuote": "Hemen Teklif Al",
+    "details": "Detayları Gör",
+    "allServices": "Tüm Hizmetlerimiz",
+    "allTours": "Tüm Turları Gör"
+  },
+  "accessibility": {
+    "previousSlide": "Önceki slayta git",
+    "nextSlide": "Sonraki slayta git",
+    "goToSlide": "Slayt"
+  },
+  "call-to-action": {
+    "title": "Hayalinizdeki tatile bir adım daha yaklaşın",
+    "description": "Size özel tatil planınız için ön anketi doldurun veya hemen teklif alın. Sizin için en iyisini bulalım."
+  }
+} 

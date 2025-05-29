@@ -1,0 +1,74 @@
+[
+  {
+    "id": 1,
+    "persons": 2,
+    "budget": 30000,
+    "destination": "İspanya (Endülüs)",
+    "days": 7,
+    "departure": "İstanbul",
+    "image": "/images/routes/spain.jpg",
+    "description": "Endülüs'ün İslami mirası, tarihi şehirleri ve eşsiz mimarisiyle dolu 7 günlük lüks bir tur.",
+    "highlights": ["Granada - Elhamra Sarayı", "Kurtuba - Mezquita", "Sevilla - Alkazar", "Malaga - Pikasso Müzesi", "Ronda - Tarihi Köprü"],
+    "price": 14500
+  },
+  {
+    "id": 2,
+    "persons": 4,
+    "budget": 40000,
+    "destination": "Fas",
+    "days": 5,
+    "departure": "İstanbul",
+    "image": "/images/routes/morocco.jpg",
+    "description": "Marakeş'in tarihi sokaklarından Sahra Çölü'nün derinliklerine uzanan 5 günlük kültürel yolculuk.",
+    "highlights": ["Marakeş - Jamaa el Fna Meydanı", "Kazablanka - Hassan II Camii", "Fes - Medina", "Chefchaouen - Mavi Şehir", "Sahra Çölü Kampı"],
+    "price": 9000
+  },
+  {
+    "id": 3,
+    "persons": 2,
+    "budget": 20000,
+    "destination": "Balkanlar Turu",
+    "days": 8,
+    "departure": "İstanbul",
+    "image": "/images/routes/balkans.jpg", 
+    "description": "Osmanlı mirasını keşfedebileceğiniz Balkanlar'ın en güzel şehirlerini kapsayan 8 günlük ekonomik tur.",
+    "highlights": ["Saraybosna - Başçarşı", "Mostar - Köprü", "Üsküp - Çarşı", "Ohrid - Göl", "Tiran - Bunk'Art Müzesi"],
+    "price": 8000
+  },
+  {
+    "id": 4,
+    "persons": 1,
+    "budget": 15000,
+    "destination": "Portekiz",
+    "days": 6,
+    "departure": "Ankara",
+    "image": "/images/routes/portugal.jpg",
+    "description": "Lizbon'un dik yokuşlarından Porto'nun şarap mahzenlerine uzanan 6 günlük solo seyahat deneyimi.",
+    "highlights": ["Lizbon - Belem Kulesi", "Sintra - Pena Sarayı", "Porto - Dom Luis Köprüsü", "Algarve - Plajlar", "Evora - Roma Tapınağı"],
+    "price": 12000
+  },
+  {
+    "id": 5,
+    "persons": 6,
+    "budget": 60000,
+    "destination": "Birleşik Arap Emirlikleri",
+    "days": 5,
+    "departure": "İstanbul",
+    "image": "/images/routes/uae.jpg",
+    "description": "Modern mimari ve lüks alışveriş merkezleriyle dolu 5 günlük Birleşik Arap Emirlikleri turu.",
+    "highlights": ["Dubai - Burj Khalifa", "Abu Dhabi - Sheikh Zayed Camii", "Dubai Çölü - Safari", "Dubai Mall - Alışveriş", "Palm Jumeirah - Atlantis"],
+    "price": 9500
+  },
+  {
+    "id": 6,
+    "persons": 3,
+    "budget": 25000,
+    "destination": "Türkiye (Kapadokya & İstanbul)",
+    "days": 6,
+    "departure": "Antalya",
+    "image": "/images/routes/cappadocia.jpg",
+    "description": "Kapadokya'nın peri bacaları ve İstanbul'un tarihi atmosferini birleştiren 6 günlük aile turu.",
+    "highlights": ["Kapadokya - Balon Turu", "Göreme - Açık Hava Müzesi", "Ürgüp - Şarap Tadımı", "İstanbul - Ayasofya", "İstanbul - Boğaz Turu"],
+    "price": 7500
+  }
+]

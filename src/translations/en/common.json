@@ -1,0 +1,215 @@
+{
+  "navigation": {
+    "home": "Home",
+    "tours": "Tours",
+    "tourPlanning": "Tour Planning",
+    "blog": "Blog",
+    "about": "About Us",
+    "contact": "Contact",
+    "budgetRoute": "Routes by Budget",
+    "survey": "Survey",
+    "getOffer": "Get Quote",
+    "services": "Our Services"
+  },
+  "header": {
+    "title": "Endülüs Travel",
+    "subtitle": "Personalized Tour Experience"
+  },
+  "footer": {
+    "description": "Your travel agency offering personalized travel experiences, designing tours suitable for every budget and preference.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "address": "Address: Istanbul, Turkey",
+    "phone": "Phone: +90 (212) 123 45 67",
+    "email": "Email: info@endulustravel.com",
+    "copyright": "© {{year}} Endülüs Travel. All rights reserved."
+  },
+  "home": {
+    "welcome": "Welcome to Endülüs Travel",
+    "heroTitle": "Discover Your Dream Vacation",
+    "heroSubtitle": "We are here for personalized tour experiences that respect your sensitivities.",
+    "planTour": "Plan Tour",
+    "exploreRoutes": "Explore Routes",
+    "getOffer": "Get Quote",
+    "pageTitle": "Endülüs Travel - Personalized Tour Experience",
+    "servicesTitle": "Our Services",
+    "servicesDescription": "Our specially designed services for your personalized travel experience.",
+    "featuredToursTitle": "Featured Tours",
+    "featuredToursDescription": "Discover our most popular and preferred tour packages.",
+    "ctaTitle": "Get one step closer to your dream vacation",
+    "ctaDescription": "Fill out the preliminary survey or get a quote right away for your custom vacation plan."
+  },
+  "services": {
+    "pageTitle": "Our Services - Endülüs Travel",
+    "title": "Our Services",
+    "description": "Special services we offer for your personalized travel experience at Endülüs Travel",
+    "aboutService": "About This Service",
+    "features": "Service Features",
+    "interestedService": "Interested in this service?",
+    "customizeOffer": "Fill out the form to get a custom quote, and our experts will contact you as soon as possible.",
+    "offerText": "Looking for a service tailored to your specific needs?",
+    "pageDescription": "Explore our range of personalized services designed to make your travel experience unique and memorable.",
+    "servicesHeading": "How Can We Help You?",
+    "allServicesButton": "View All Services",
+    "servicesDescription": "We offer a variety of specialized services to meet your travel needs.",
+    "featuredServices": "Featured Services",
+    "privateToursTitle": "Private Tours",
+    "privateToursDescription": "Completely personalized routes, accommodations, and activities for a custom travel experience.",
+    "groupToursTitle": "Group Tours (10-12 People)",
+    "groupToursDescription": "Specially prepared tours for homogeneous groups with limited participants.",
+    "familyToursTitle": "Family & Children Tours",
+    "familyToursDescription": "Peaceful family vacations with child-friendly destinations, suitable accommodations, and activities.",
+    "studentToursTitle": "Student Routes",
+    "studentToursDescription": "Economical tours that offer maximum experience on a limited budget for young people.",
+    "romanticToursTitle": "Romantic Getaways",
+    "romanticToursDescription": "Romantic routes specially planned for couples, including honeymoon, anniversary, or escape concepts.",
+    "adventureToursTitle": "Adventure Packages",
+    "adventureToursDescription": "Exciting tours featuring nature, sports, and adrenaline-filled activities."
+  },
+  "serviceContent": {
+    "privateTours": {
+      "fullDescription": "Our private tours are prepared entirely according to your wishes and preferences. You can shape your travel route, accommodation options, and activities as you wish.\n\nYour private guide will serve only you, and your program will be designed exclusively for you. This way, you can enjoy a travel experience away from crowded groups, at your own pace, and according to your interests.\n\nOur private tours are ideal for honeymoon couples, families, groups of friends, or solo travelers.",
+      "features": [
+        "Personalized professional guidance service",
+        "Flexible program and timeline",
+        "Luxury or boutique accommodation options",
+        "Private transfer services",
+        "Activities according to your personal interests"
+      ]
+    },
+    "groupTours": {
+      "fullDescription": "Our tours with small groups of 10-12 people are ideal for those tired of traveling in crowded tour buses.\n\nIn our group tours, you meet people with similar interests and lifestyles. We create homogeneous groups to ensure everyone gets the maximum benefit from their travel.\n\nAccompanied by our professional guides, you can discover the most important points of the region while making new friends and enriching your travel experience in a social environment.",
+      "features": [
+        "Small groups of maximum 12 people",
+        "Homogeneous groups of similar profiles",
+        "Social interaction opportunities",
+        "Economic price advantage",
+        "Professional guidance service"
+      ]
+    },
+    "familyTours": {
+      "fullDescription": "Our family tours are specially designed for families with children. We offer an unforgettable holiday experience for the whole family with activities that appeal to all age groups and child-friendly accommodation options.\n\nWe determine routes where your children can both have fun and learn cultural and historical values. Our family tours offer something for everyone, with opportunities to taste local flavors, be in touch with nature, and get to know different cultures.\n\nWe always prioritize your family's comfort by considering details such as special transfer vehicles, children's menus, hotels with play areas, and family rooms.",
+      "features": [
+        "Child-friendly hotels and restaurants",
+        "Activities suitable for all age groups",
+        "Daily programs with flexibility",
+        "Special guides for children",
+        "Family rooms and connected room options"
+      ]
+    },
+    "studentTours": {
+      "fullDescription": "Our economical tours specially prepared for students allow you to have a maximum experience with a limited budget.\n\nYou can have an unforgettable travel experience without straining your budget with accommodation in student dormitories, hostels, or economic hotels, public transportation options, and affordable restaurant recommendations.\n\nWe also help you benefit from discounted prices at many museums, archaeological sites, and activities with your student ID.",
+      "features": [
+        "Economical accommodation options",
+        "Student discounts and opportunities",
+        "Socialization possibilities",
+        "Cultural and historical places",
+        "Budget-friendly activity recommendations"
+      ]
+    },
+    "romanticTours": {
+      "fullDescription": "Our tours specially designed for honeymoon, anniversary, or a romantic getaway offer couples unforgettable moments.\n\nWe prepare a program where you can spend quality time alone with your loved one, with special hotels with romantic views, sunset dinners, private boat tours, and spa experiences.\n\nWe offer ideal options for Valentine's Day, marriage proposals, honeymoons, or just a romantic getaway.",
+      "features": [
+        "Romantic and luxury accommodation options",
+        "Special dinners and organizations",
+        "Spa and massage packages for couples",
+        "Private transfer services",
+        "Surprise activities for unforgettable memories"
+      ]
+    },
+    "adventureTours": {
+      "fullDescription": "Our adventure tours prepared for adrenaline enthusiasts offer a program full of nature sports and exciting activities.\n\nIn our tours including trekking, rafting, canyoning, parachuting, diving, safari, and many more activities, you can safely experience adventurous moments accompanied by professional instructors.\n\nIt is an ideal option for anyone who wants to be in touch with nature, push their physical limits, and have unforgettable experiences.",
+      "features": [
+        "Safe activities accompanied by professional instructors",
+        "Packages including all equipment",
+        "Accommodation options in nature",
+        "Routes of different difficulty levels",
+        "Special experiences with small groups"
+      ]
+    }
+  },
+  "tours": {
+    "detailPageTitle": "Tour Details",
+    "perPerson": "Per Person",
+    "requestOffer": "Request Quote",
+    "aboutTour": "About This Tour",
+    "tourFeatures": "Tour Features",
+    "duration": "Duration",
+    "groupSize": "Group Size",
+    "pricePerPerson": "Price Per Person",
+    "category": "Category",
+    "tourPlan": "Tour Plan",
+    "day": "Day",
+    "sampleDay": "City tour after breakfast. Lunch and free time. Evening hotel accommodation.",
+    "contactUs": "Contact Us",
+    "contactDescription": "Contact us for more information about this tour or to make a reservation.",
+    "takeSurvey": "Take Survey",
+    "relatedTours": "Related Tours",
+    "availableTours": "Our Tour Packages",
+    "allCategories": "All",
+    "noToursFound": "No tours found in this category.",
+    "customTourTitle": "Looking for a Custom Tour?",
+    "customTourDescription": "Contact us for a personalized travel experience. We can create custom tour packages according to your needs and preferences."
+  },
+  "categories": {
+    "women": "Women's Groups",
+    "family": "Families",
+    "youth": "Youth",
+    "budget": "Budget-Friendly",
+    "luxury": "Luxury Tours",
+    "spiritual": "Spiritual Tours",
+    "private": "Private Tours",
+    "group": "Group Tours",
+    "students": "Student Routes",
+    "romantic": "Romantic Getaways",
+    "adventure": "Adventure Packages"
+  },
+  "error": {
+    "404": "Page Not Found",
+    "goHome": "Go to Home Page",
+    "dataLoad": "An error occurred while loading data. Please try again later.",
+    "serviceNotFound": "Service not found",
+    "tryAgain": "Please try viewing another service or return to the home page.",
+    "tourNotFound": "Tour Not Found",
+    "tourNotFoundDescription": "The tour you're looking for could not be found or has been removed."
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Our travel recommendations and guides",
+    "readMore": "Read More",
+    "backToBlog": "Back to Blog",
+    "relatedPosts": "Related Posts",
+    "postNotFound": "The blog post you are looking for could not be found"
+  },
+  "about": {
+    "valuesTitle": "Our Values",
+    "teamTitle": "Our Team",
+    "teamMember": "Team Member {{id}}",
+    "teamPosition": "Position {{id}}",
+    "teamBio": "Experienced tourism expert, specialized in personalized tour planning.",
+    "ctaMessage": "Let's plan your custom tour experience together",
+    "ctaButton": "Get a Quote"
+  },
+  "buttons": {
+    "fillSurvey": "Fill Survey",
+    "getQuote": "Get a Quote Now",
+    "details": "View Details",
+    "allServices": "All Our Services",
+    "allTours": "View All Tours",
+    "getOffer": "Get Quote",
+    "backToServices": "Back to Services"
+  },
+  "common": {
+    "backToTours": "Back to All Tours",
+    "viewDetails": "Details"
+  },
+  "accessibility": {
+    "previousSlide": "Go to previous slide",
+    "nextSlide": "Go to next slide",
+    "goToSlide": "Slide"
+  },
+  "call-to-action": {
+    "title": "Get one step closer to your dream vacation",
+    "description": "Fill out the preliminary survey or get a quote right away for your custom vacation plan. Let us find the best for you."
+  }
+} 

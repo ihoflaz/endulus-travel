@@ -1,0 +1,53 @@
+{
+    "featured": [
+      {
+        "id": "balkanlar-5-gece",
+        "title": "Balkanlar Turu – 5 Gece",
+        "slug": "balkanlar-5-gece",
+        "description": "İstanbul çıkışlı, 5 gece süren kültür ve tarih dolu Balkanlar rotası.",
+        "pricePerPerson": 10000,
+        "groupSize": "3-10",
+        "category": "budget",
+        "image": "/images/tours/balkanlar.jpg"
+      },
+      {
+        "id": "endulus-7-gun",
+        "title": "Endülüs Rüyası – 7 Gün",
+        "slug": "endulus-7-gun",
+        "description": "İspanya’nın kalbinde, tarih ve zarafetin buluştuğu 7 günlük özel tur.",
+        "pricePerPerson": 17500,
+        "groupSize": "2-12",
+        "category": "luxury",
+        "image": "/images/tours/endulus.jpg"
+      },
+      {
+        "id": "dubai-aile-paketi",
+        "title": "Dubai Aile Paketi",
+        "slug": "dubai-aile-paketi",
+        "description": "Çocuk dostu aktivitelerle dolu, alışveriş ve dinlenme odaklı aile turu.",
+        "pricePerPerson": 22000,
+        "groupSize": "4-6",
+        "category": "family",
+        "image": "/images/tours/dubai-family.jpg"
+      },
+      {
+        "id": "kadin-grubu-istanbul",
+        "title": "Kadınlara Özel İstanbul Gezisi",
+        "slug": "kadin-grubu-istanbul",
+        "description": "Hanımlara özel rehberli ve güvenli şehir içi kültürel kaçamak.",
+        "pricePerPerson": 6500,
+        "groupSize": "5-12",
+        "category": "women",
+        "image": "/images/tours/kadin-istanbul.jpg"
+      }
+    ],
+    "categories": [
+      { "key": "women", "label": "Kadın Grupları" },
+      { "key": "family", "label": "Aileler" },
+      { "key": "youth", "label": "Gençler" },
+      { "key": "budget", "label": "Bütçe Dostu" },
+      { "key": "luxury", "label": "Lüks Turlar" },
+      { "key": "spiritual", "label": "Manevi Turlar" }
+    ]
+  }
+  

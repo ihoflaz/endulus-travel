@@ -1,0 +1,215 @@
+{
+  "navigation": {
+    "home": "Ana Sayfa",
+    "tours": "Turlar",
+    "tourPlanning": "Tur Planlama",
+    "blog": "Blog",
+    "about": "Hakkımızda",
+    "contact": "İletişim",
+    "budgetRoute": "Bütçeye Göre Rota",
+    "survey": "Ön Anket",
+    "getOffer": "Teklif Al",
+    "services": "Hizmetlerimiz"
+  },
+  "header": {
+    "title": "Endülüs Travel",
+    "subtitle": "Kişiselleştirilmiş Tur Deneyimi"
+  },
+  "footer": {
+    "description": "Kişiselleştirilmiş seyahat deneyimleri sunan, her bütçeye ve tercihe uygun turlar tasarlayan seyahat acenteniz.",
+    "quickLinks": "Hızlı Bağlantılar",
+    "contact": "İletişim",
+    "address": "Adres: İstanbul, Türkiye",
+    "phone": "Telefon: +90 (212) 123 45 67",
+    "email": "E-posta: info@endulustravel.com",
+    "copyright": "© {{year}} Endülüs Travel. Tüm hakları saklıdır."
+  },
+  "home": {
+    "welcome": "Endülüs Travel'e Hoş Geldiniz",
+    "heroTitle": "Hayalinizdeki Tatili Keşfedin",
+    "heroSubtitle": "Kişiselleştirilmiş, hassasiyetlerinizi gözeten tur deneyimleri için buradayız.",
+    "planTour": "Tur Planla",
+    "exploreRoutes": "Rotaları Keşfet",
+    "getOffer": "Teklif Al",
+    "pageTitle": "Endülüs Travel - Kişiselleştirilmiş Tur Deneyimi",
+    "servicesTitle": "Sunduğumuz Hizmetler",
+    "servicesDescription": "Kişiselleştirilmiş seyahat deneyiminiz için özel olarak tasarlanmış hizmetlerimiz.",
+    "featuredToursTitle": "Öne Çıkan Turlarımız",
+    "featuredToursDescription": "En popüler ve en çok tercih edilen tur paketlerimizi keşfedin.",
+    "ctaTitle": "Hayalinizdeki tatile bir adım daha yaklaşın",
+    "ctaDescription": "Size özel tatil planınız için ön anketi doldurun veya hemen teklif alın."
+  },
+  "services": {
+    "pageTitle": "Hizmetlerimiz - Endülüs Travel",
+    "title": "Hizmetlerimiz",
+    "description": "Endülüs Travel olarak kişiselleştirilmiş seyahat deneyiminiz için sunduğumuz özel hizmetlerimiz",
+    "aboutService": "Hizmet Hakkında",
+    "features": "Hizmet Özellikleri",
+    "interestedService": "Bu hizmetle mi ilgileniyorsunuz?",
+    "customizeOffer": "Size özel bir teklif almak için formu doldurun, uzmanlarımız en kısa sürede sizinle iletişime geçsin.",
+    "offerText": "Özel ihtiyaçlarınıza uygun bir hizmet mi arıyorsunuz?",
+    "pageDescription": "Seyahat deneyiminizi benzersiz ve unutulmaz kılmak için tasarlanmış kişiselleştirilmiş hizmet yelpazemizi keşfedin.",
+    "servicesHeading": "Size Nasıl Yardımcı Olabiliriz?",
+    "allServicesButton": "Tüm Hizmetlerimizi Görüntüle",
+    "servicesDescription": "Seyahat ihtiyaçlarınızı karşılamak için çeşitli özelleştirilmiş hizmetler sunuyoruz.",
+    "featuredServices": "Öne Çıkan Hizmetlerimiz",
+    "privateToursTitle": "Kişiye Özel Turlar",
+    "privateToursDescription": "Tamamen size özel olarak planlanan rotalar, konaklama ve aktivitelerle kişisel seyahat deneyimi.",
+    "groupToursTitle": "Grup Turları (10-12 Kişi)",
+    "groupToursDescription": "Sınırlı katılımcıyla, homojen gruplar için özel hazırlanmış turlar.",
+    "familyToursTitle": "Aile & Çocuklu Turlar",
+    "familyToursDescription": "Çocuk dostu destinasyonlar, uygun konaklama ve aktivite seçenekleriyle ailece huzurlu tatil.",
+    "studentToursTitle": "Öğrencilere Özel Rotalar",
+    "studentToursDescription": "Kısıtlı bütçeyle maksimum deneyim sunan, gençlere özel ekonomik turlar.",
+    "romanticToursTitle": "Romantik Tatiller",
+    "romanticToursDescription": "Çiftlere özel planlanan balayı, yıldönümü veya kaçamak konseptli romantik rotalar.",
+    "adventureToursTitle": "Ekstrem & Macera Paketleri",
+    "adventureToursDescription": "Doğa, spor ve adrenalin dolu aktiviteleri barındıran heyecan verici turlar."
+  },
+  "serviceContent": {
+    "privateTours": {
+      "fullDescription": "Kişiye özel turlarımız, tamamen sizin istekleriniz ve tercihleriniz doğrultusunda hazırlanır. Seyahat rotanızı, konaklama seçeneklerinizi ve aktivitelerinizi dilediğiniz gibi şekillendirebilirsiniz.\n\nÖzel rehberiniz, sadece size hizmet verecek ve programınız tamamen size özel olarak tasarlanacaktır. Bu sayede kalabalık gruplardan uzak, kendi temponuzda ve ilgi alanlarınıza göre bir seyahat deneyimi yaşayabilirsiniz.\n\nKişiye özel turlarımız, balayı çiftleri, aileler, arkadaş grupları veya yalnız seyahat edenler için idealdir.",
+      "features": [
+        "Size özel profesyonel rehberlik hizmeti",
+        "Esnek program ve zaman çizelgesi",
+        "Lüks veya butik konaklama seçenekleri",
+        "Özel transfer hizmetleri",
+        "Kişisel ilgi alanlarınıza göre aktiviteler"
+      ]
+    },
+    "groupTours": {
+      "fullDescription": "10-12 kişilik küçük gruplarla düzenlediğimiz turlarımız, kalabalık tur otobüslerindeki seyahatlerden sıkılanlar için ideal.\n\nGrup turlarımızda, benzer ilgi alanlarına ve yaşam tarzlarına sahip kişilerle bir araya gelirsiniz. Homojen gruplar oluşturarak herkesin seyahatten maksimum verim almasını sağlıyoruz.\n\nProfesyonel rehberlerimiz eşliğinde, bölgenin en önemli noktalarını keşfederken yeni arkadaşlıklar kurabilir, sosyal bir ortamda seyahat deneyiminizi zenginleştirebilirsiniz.",
+      "features": [
+        "Maksimum 12 kişilik küçük gruplar",
+        "Benzer profillerden oluşan homojen gruplar",
+        "Sosyal etkileşim fırsatları",
+        "Ekonomik fiyat avantajı",
+        "Profesyonel rehberlik hizmeti"
+      ]
+    },
+    "familyTours": {
+      "fullDescription": "Aile turlarımız, çocuklu aileler için özel olarak tasarlanmıştır. Her yaş grubuna hitap eden aktiviteler ve çocuk dostu konaklama seçenekleriyle tüm aile için unutulmaz bir tatil deneyimi sunuyoruz.\n\nÇocuklarınızın hem eğlenip hem de kültürel ve tarihi değerleri öğrenebileceği rotalar belirliyoruz. Yerel lezzetleri tatma, doğayla iç içe olma ve farklı kültürleri tanıma fırsatı sunan aile turlarımızda herkes için bir şeyler var.\n\nÖzel transfer araçları, çocuk menüleri, oyun alanları olan oteller ve aile odaları gibi detayları düşünerek, ailenizin konforunu her zaman ön planda tutuyoruz.",
+      "features": [
+        "Çocuk dostu oteller ve restoranlar",
+        "Her yaş grubuna uygun aktiviteler",
+        "Esneklik içeren günlük programlar",
+        "Çocuklar için özel rehberler",
+        "Aile odaları ve bağlantılı oda seçenekleri"
+      ]
+    },
+    "studentTours": {
+      "fullDescription": "Öğrenciler için özel olarak hazırladığımız ekonomik turlarımız, sınırlı bütçeyle maksimum deneyim yaşamanızı sağlar.\n\nÖğrenci yurtları, hosteller veya ekonomik otellerde konaklama, toplu ulaşım seçenekleri ve uygun fiyatlı restoran önerileriyle bütçenizi zorlamadan unutulmaz bir seyahat deneyimi yaşayabilirsiniz.\n\nAyrıca öğrenci kimliğinizle birçok müze, ören yeri ve aktivitede indirimli fiyatlardan yararlanmanızı sağlıyoruz.",
+      "features": [
+        "Ekonomik konaklama seçenekleri",
+        "Öğrenci indirimleri ve fırsatları",
+        "Sosyalleşme imkanları",
+        "Kültürel ve tarihi yerler",
+        "Bütçe dostu aktivite önerileri"
+      ]
+    },
+    "romanticTours": {
+      "fullDescription": "Balayı, yıldönümü veya romantik bir kaçamak için özel olarak tasarlanmış turlarımız, çiftlere unutulmaz anlar yaşatıyor.\n\nRomantik manzaralara sahip özel oteller, gün batımı manzaralı akşam yemekleri, özel tekne turları ve spa deneyimleri ile sevdiğinizle baş başa kaliteli zaman geçirebileceğiniz bir program hazırlıyoruz.\n\nSevgililer günü, evlilik teklifi, balayı veya sadece romantik bir kaçamak için ideal seçenekler sunuyoruz.",
+      "features": [
+        "Romantik ve lüks konaklama seçenekleri",
+        "Özel akşam yemekleri ve organizasyonlar",
+        "Çiftlere özel spa ve masaj paketleri",
+        "Özel transfer hizmetleri",
+        "Unutulmaz anılar için sürpriz etkinlikler"
+      ]
+    },
+    "adventureTours": {
+      "fullDescription": "Adrenalin tutkunları için hazırladığımız macera turlarımız, doğa sporları ve heyecan verici aktivitelerle dolu bir program sunuyor.\n\nTrekking, rafting, kanyoning, paraşüt, dalış, safari ve daha birçok aktiviteyi içeren turlarımızda, profesyonel eğitmenler eşliğinde güvenli bir şekilde macera dolu anlar yaşayabilirsiniz.\n\nDoğayla iç içe olmak, fiziksel sınırlarınızı zorlamak ve unutulmaz deneyimler yaşamak isteyen herkes için ideal bir seçenek.",
+      "features": [
+        "Profesyonel eğitmenler eşliğinde güvenli aktiviteler",
+        "Tüm ekipmanların dahil olduğu paketler",
+        "Doğa içinde konaklama seçenekleri",
+        "Farklı zorluk seviyelerinde rotalar",
+        "Küçük gruplarla özel deneyimler"
+      ]
+    }
+  },
+  "tours": {
+    "detailPageTitle": "Tur Detayları",
+    "perPerson": "Kişi Başı",
+    "requestOffer": "Teklif Al",
+    "aboutTour": "Tur Hakkında",
+    "tourFeatures": "Tur Özellikleri",
+    "duration": "Süre",
+    "groupSize": "Grup Büyüklüğü",
+    "pricePerPerson": "Kişi Başı",
+    "category": "Kategori",
+    "tourPlan": "Tur Planı",
+    "day": "Gün",
+    "sampleDay": "Sabah kahvaltısı sonrası şehir turu. Öğle yemeği ve serbest zaman. Akşam otel konaklaması.",
+    "contactUs": "İletişime Geçin",
+    "contactDescription": "Bu tur hakkında daha fazla bilgi almak veya rezervasyon yapmak için bizimle iletişime geçin.",
+    "takeSurvey": "Anket Doldur",
+    "relatedTours": "Benzer Turlar",
+    "availableTours": "Tur Paketlerimiz",
+    "allCategories": "Tümü",
+    "noToursFound": "Bu kategoride tur bulunamadı.",
+    "customTourTitle": "Size Özel Tur mu Arıyorsunuz?",
+    "customTourDescription": "Kişiselleştirilmiş bir seyahat deneyimi için bizimle iletişime geçin. İhtiyaçlarınıza ve tercihlerinize göre özel tur paketleri hazırlayabiliriz."
+  },
+  "categories": {
+    "women": "Kadın Grupları",
+    "family": "Aileler",
+    "youth": "Gençler",
+    "budget": "Bütçe Dostu",
+    "luxury": "Lüks Turlar",
+    "spiritual": "Manevi Turlar",
+    "private": "Kişiye Özel Turlar",
+    "group": "Grup Turları",
+    "students": "Öğrencilere Özel Rotalar",
+    "romantic": "Romantik Tatiller",
+    "adventure": "Ekstrem & Macera Paketleri"
+  },
+  "error": {
+    "404": "Sayfa Bulunamadı",
+    "goHome": "Ana Sayfaya Dön",
+    "dataLoad": "Veri yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.",
+    "serviceNotFound": "Hizmet bulunamadı",
+    "tryAgain": "Lütfen başka bir hizmeti görüntülemeyi deneyin veya ana sayfaya dönün.",
+    "tourNotFound": "Tur Bulunamadı",
+    "tourNotFoundDescription": "Aradığınız tur bulunamadı veya kaldırılmış olabilir."
+  },
+  "blog": {
+    "title": "Blog",
+    "subtitle": "Seyahat önerilerimiz ve gezi rehberlerimiz",
+    "readMore": "Devamını Oku",
+    "backToBlog": "Blog'a Dön",
+    "relatedPosts": "İlgili Yazılar",
+    "postNotFound": "Aradığınız blog yazısı bulunamadı"
+  },
+  "about": {
+    "valuesTitle": "Değerlerimiz",
+    "teamTitle": "Ekibimiz",
+    "teamMember": "Takım Üyesi {{id}}",
+    "teamPosition": "Pozisyon {{id}}",
+    "teamBio": "Deneyimli turizm uzmanı, kişiselleştirilmiş tur planlaması konusunda uzman.",
+    "ctaMessage": "Özel tur deneyiminizi birlikte planlayalım",
+    "ctaButton": "Teklif Alın"
+  },
+  "buttons": {
+    "fillSurvey": "Ön Anketi Doldur",
+    "getQuote": "Hemen Teklif Al",
+    "details": "Detayları Gör",
+    "allServices": "Tüm Hizmetlerimiz",
+    "allTours": "Tüm Turları Gör",
+    "getOffer": "Teklif Al",
+    "backToServices": "Hizmetlere Dön"
+  },
+  "common": {
+    "backToTours": "Tüm Turlara Dön",
+    "viewDetails": "Detaylar"
+  },
+  "accessibility": {
+    "previousSlide": "Önceki slayta git",
+    "nextSlide": "Sonraki slayta git",
+    "goToSlide": "Slayt"
+  },
+  "call-to-action": {
+    "title": "Hayalinizdeki tatile bir adım daha yaklaşın",
+    "description": "Size özel tatil planınız için ön anketi doldurun veya hemen teklif alın. Sizin için en iyisini bulalım."
+  }
+} 

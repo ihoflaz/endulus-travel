@@ -1,0 +1,38 @@
+{
+    "slides": [
+      {
+        "image": "/images/hero/dubai.jpg",
+        "alt": "Dubai şehir manzarası"
+      },
+      {
+        "image": "/images/hero/andalusia.jpg",
+        "alt": "Endülüs mimarisi ve bahçeler"
+      },
+      {
+        "image": "/images/hero/tropical.jpg",
+        "alt": "Tropik ada ve turkuaz deniz"
+      }
+    ],
+    "slogan": "Her yolculuk bir niyetle başlar, biz sizi niyetinize uygun yerlere götürürüz.",
+    "buttons": [
+      {
+        "label": "Tur Talebi Oluştur",
+        "labelKey": "home.planTour",
+        "href": "/teklif-al",
+        "style": "primary"
+      },
+      {
+        "label": "Ön Anketi Doldur",
+        "labelKey": "navigation.survey",
+        "href": "/on-anket",
+        "style": "secondary"
+      },
+      {
+        "label": "Bütçene Uygun Rota Al",
+        "labelKey": "navigation.budgetRoute",
+        "href": "/butceye-gore-rota",
+        "style": "hero-light"
+      }
+    ]
+  }
+  
