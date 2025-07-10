@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSearchParams } from 'react-router-dom';
+import { WhatsAppButton } from '../components/ui';
+import { formatTourPrice, getPriceLabel, getNumericPrice } from '../utils/priceUtils';
 
 // Premium ToursPage bileşeni - Modern tasarım sistemi ile
 const ToursPage = () => {
@@ -65,10 +67,16 @@ const ToursPage = () => {
       
       // Fiyat filtresi
       if (priceMin) {
-        filtered = filtered.filter(tour => tour.pricePerPerson >= Number(priceMin));
+        filtered = filtered.filter(tour => {
+          const numericPrice = getNumericPrice(tour);
+          return numericPrice && numericPrice >= Number(priceMin);
+        });
       }
       if (priceMax) {
-        filtered = filtered.filter(tour => tour.pricePerPerson <= Number(priceMax));
+        filtered = filtered.filter(tour => {
+          const numericPrice = getNumericPrice(tour);
+          return numericPrice && numericPrice <= Number(priceMax);
+        });
       }
       
       setFilteredTours(filtered);
@@ -129,8 +137,15 @@ const ToursPage = () => {
     <div className="page-transition">
       {/* Premium Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[color-primary] via-blue-600 to-[color-primary]"></div>
-        <div className="absolute inset-0 bg-black/20"></div>
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: 'url(/images/tours/tours-page-bg.jpg)' }}
+        ></div>
+        {/* Dark Overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/40"></div>
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[color-primary]/30 via-blue-600/20 to-[color-primary]/30"></div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-32 -translate-y-32"></div>
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color-secondary]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
         
@@ -193,12 +208,6 @@ const ToursPage = () => {
         </div>
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
-          {/* Premium Breadcrumb */}
-          <div className="inline-flex items-center px-4 py-2 bg-white/60 backdrop-blur-sm rounded-full border border-blue-200/50 mb-8 animate-fade-in">
-            <Link to="/" className="text-[color-primary] hover:text-blue-600 transition-colors">Ana Sayfa</Link>
-            <span className="mx-2 text-gray-400">›</span>
-            <span className="text-gray-600 font-medium">Tur Paketlerimiz</span>
-          </div>
           
           {/* Premium Section Header */}
           <div className="text-center mb-16">
@@ -216,7 +225,7 @@ const ToursPage = () => {
       </section>
 
       {/* Premium Category Filters */}
-      <section className="py-8 relative">
+      <section className="relative">
         <div className="max-w-7xl mx-auto px-4 md:px-8">
           <div className="flex flex-wrap justify-center gap-3 animate-fade-in" style={{ animationDelay: '0.3s' }}>
             <button 
@@ -292,7 +301,7 @@ const ToursPage = () => {
                     {/* Premium Price Badge */}
                     <div className="absolute top-4 right-4">
                       <div className="bg-[color-secondary]/90 backdrop-blur-sm text-[color-primary] font-bold px-3 py-1 rounded-full border border-[color-secondary]">
-                        {tour.pricePerPerson.toLocaleString('tr-TR')} ₺
+                        {formatTourPrice(tour)}
                       </div>
                     </div>
                     
@@ -422,15 +431,23 @@ const ToursPage = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                       </svg>
                     </Link>
+
+                    <WhatsAppButton
+                      message="Turlarınız hakkında bilgi almak istiyorum."
+                      size="lg"
+                      className="bg-green-500 hover:bg-green-600 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105"
+                    >
+                      WhatsApp İletişim
+                    </WhatsAppButton>
                   </div>
                   
                   {/* Contact Info */}
                   <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mt-8 pt-6 border-t border-white/20">
-                    <a href="tel:+905551234567" className="flex items-center text-white/80 hover:text-white transition-colors group">
+                    <a href="tel:+905079384508" className="flex items-center text-white/80 hover:text-white transition-colors group">
                       <svg className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
-                      +90 (555) 123 4567
+                      +90 (507) 938 4508
                     </a>
                     <a href="mailto:info@endulustravel.com" className="flex items-center text-white/80 hover:text-white transition-colors group">
                       <svg className="w-4 h-4 mr-2 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

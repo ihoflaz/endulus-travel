@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { 
   HeroSection, 
   ServicesSection, 
+  SpecialOffer,
   FeaturedTours, 
   CallToAction 
 } from '../components/home';
@@ -23,8 +24,13 @@ const HomePage = () => {
         <HeroSection />
       </div>
       
+      {/* Özel Fırsat - Mısır Turu */}
+      <div className="animate-fade-in pt-16" style={{ animationDelay: '0.1s' }}>
+        <SpecialOffer />
+      </div>
+      
       {/* Hizmetler Bölümü */}
-      <div className="animate-fade-in pt-16" style={{ animationDelay: '0.2s' }}>
+      <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
         <ServicesSection />
       </div>
       

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "women-cultural-tours",
+    "title": "Kültürel Keşif Turları",
+    "description": "Tarihi şehirler, müzeler ve kültürel mirasın derinlemesine keşfedildiği kadın dostu turlar.",
+    "icon": "/images/icons/cultural-tour.svg"
+  },
+  {
+    "id": "women-wellness-tours", 
+    "title": "Sağlık & Wellness",
+    "description": "Spa, yoga, meditasyon ve doğal terapi merkezlerinde huzur dolu deneyimler.",
+    "icon": "/images/icons/wellness-tour.svg"
+  },
+  {
+    "id": "women-shopping-tours",
+    "title": "Alışveriş & Moda Turları",
+    "description": "Yerel pazarlar, butik mağazalar ve özel tasarım atölyelerinde alışveriş deneyimi.",
+    "icon": "/images/icons/shopping-tour.svg"
+  },
+  {
+    "id": "women-culinary-tours",
+    "title": "Gastronomi & Mutfak",
+    "description": "Yerel lezzetler, aşçılık kursları ve geleneksel mutfak deneyimleri.",
+    "icon": "/images/icons/culinary-tour.svg"
+  },
+  {
+    "id": "women-nature-tours",
+    "title": "Doğa & Huzur Turları", 
+    "description": "Doğanın kucağında rahatlatıcı yürüyüşler ve manzara keşifleri.",
+    "icon": "/images/icons/nature-tour.svg"
+  },
+  {
+    "id": "women-art-tours",
+    "title": "Sanat & El Sanatları",
+    "description": "Sanat galerileri, atölyeler ve yerel el sanatları deneyimleri.",
+    "icon": "/images/icons/art-tour.svg"
+  }
+]

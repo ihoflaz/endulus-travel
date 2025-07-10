@@ -1,19 +1,10 @@
 import { useTranslation } from 'react-i18next';
 import { Card, Button } from '../ui';
+import { formatTourPrice, getPriceLabel } from '../../utils/priceUtils';
 
 // TourCard bileşeni - Tur listesinde her bir turu gösteren kart
 const TourCard = ({ tour, getCategoryLabel }) => {
   const { t } = useTranslation();
-
-  // Fiyat formatı
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('tr-TR', {
-      style: 'currency',
-      currency: 'TRY',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(price);
-  };
 
   return (
     <Card
@@ -44,7 +35,7 @@ const TourCard = ({ tour, getCategoryLabel }) => {
           {/* Fiyat ve Grup Boyutu */}
           <div className="flex justify-between items-center mb-4">
             <span className="text-lg font-bold text-blue-600">
-              {formatPrice(tour.pricePerPerson)}
+              {formatTourPrice(tour)}
               <span className="text-sm font-normal text-gray-500"> / {t('tours.perPerson', 'kişi başı')}</span>
             </span>
             <span className="text-sm text-gray-500">

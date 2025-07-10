@@ -57,17 +57,14 @@ const Navbar = () => {
     <>
       {/* Premium Navbar */}
       <nav 
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out w-full ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out w-full bg-white ${
           isScrolled 
-            ? 'backdrop-blur-xl bg-white/90 shadow-2xl border-b border-white/20' 
-            : 'backdrop-blur-lg bg-white/80 shadow-lg border-b border-white/10'
+            ? 'shadow-2xl border-b border-gray-200' 
+            : 'shadow-lg border-b border-gray-100'
         }`}
         role="navigation"
         aria-label="Ana navigasyon"
       >
-        {/* Premium Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-50/30 to-white/30"></div>
-        <div className="absolute top-0 right-0 w-64 h-16 bg-gradient-to-bl from-blue-100/20 to-transparent"></div>
         
         <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8">
           <div className="max-w-7xl mx-auto">
@@ -81,7 +78,7 @@ const Navbar = () => {
                 {/* Simple Logo Container */}
                 <div className="relative">
                   <img 
-                    src="/favicon/favicon.svg" 
+                    src="/favicon/favicon2.svg" 
                     alt="Endülüs Travel Logo"
                     className="w-10 h-10 group-hover:scale-110 transition-transform duration-300 ease-out"
                   />
@@ -89,7 +86,7 @@ const Navbar = () => {
 
                 {/* Brand Text */}
                 <div className="hidden sm:block">
-                  <h1 className="text-2xl font-bold text-[color-primary] group-hover:text-blue-600 transition-colors duration-300 ease-out">
+                  <h1 className="text-2xl font-bold group-hover:text-blue-600 transition-colors duration-300 ease-out" style={{ color: 'rgb(23, 49, 80)' }}>
                     Endülüs Travel
                   </h1>
                   <p className="text-xs font-medium text-gray-600 group-hover:text-gray-700 transition-colors duration-300 ease-out tracking-wide">
@@ -99,7 +96,7 @@ const Navbar = () => {
 
                 {/* Mobile Logo Text */}
                 <div className="sm:hidden">
-                  <span className="text-lg font-bold text-[color-primary] group-hover:text-blue-600 transition-colors duration-300 ease-out">
+                  <span className="text-lg font-bold group-hover:text-blue-600 transition-colors duration-300 ease-out" style={{ color: 'rgb(23, 49, 80)' }}>
                     Endülüs
                   </span>
                 </div>
@@ -121,10 +118,14 @@ const Navbar = () => {
                     to={item.path} 
                     className={`relative px-4 py-2 rounded-xl font-medium transition-all duration-300 ease-out hover:scale-105 hover:translate-y-[-2px] group ${
                       isActive(item.path) 
-                        ? 'text-white bg-gradient-to-r from-[color-primary] to-blue-600 shadow-lg' 
-                        : 'text-gray-700 hover:bg-white/60 hover:backdrop-blur-sm hover:text-[color-primary] hover:shadow-md'
+                        ? 'text-white shadow-lg' 
+                        : 'text-gray-700 hover:bg-white/60 hover:backdrop-blur-sm hover:shadow-md'
                     }`}
-                    style={{ animationDelay: `${index * 0.05}s` }}
+                    style={{ 
+                      animationDelay: `${index * 0.05}s`,
+                      backgroundColor: isActive(item.path) ? 'rgb(23, 49, 80)' : undefined,
+                      color: isActive(item.path) ? 'white' : !isActive(item.path) ? 'rgb(23, 49, 80)' : undefined
+                    }}
                   >
                     <span className="relative z-10">{t(item.key)}</span>
                     {!isActive(item.path) && (

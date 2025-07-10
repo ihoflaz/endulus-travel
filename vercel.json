@@ -4,14 +4,14 @@
     { "source": "/data/:path*", "destination": "/data/:path*" },
     { "source": "/images/:path*", "destination": "/images/:path*" },
     { "source": "/locales/:path*", "destination": "/locales/:path*" },
-    { "source": "/:path*", "destination": "/index.html" }
+    { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [
     {
-      "source": "/data/:path*",
+      "source": "/data/(.*)",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=3600" }
       ]
     }
   ]
-}
+} 

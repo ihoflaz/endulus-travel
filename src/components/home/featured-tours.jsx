@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { formatTourPrice, getPriceLabel } from '../../utils/priceUtils';
 
 // Premium FeaturedTours bileşeni - Modern tasarım sistemi ile
 const FeaturedTours = () => {
@@ -27,16 +28,6 @@ const FeaturedTours = () => {
 
     fetchTours();
   }, []);
-
-  // Fiyat formatı
-  const formatPrice = (price) => {
-    return new Intl.NumberFormat('tr-TR', {
-      style: 'currency',
-      currency: 'TRY',
-      minimumFractionDigits: 0,
-      maximumFractionDigits: 0,
-    }).format(price);
-  };
 
   if (loading) {
     return (
@@ -111,22 +102,40 @@ const FeaturedTours = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
                 
+                {/* Special Offer Badge */}
+                {tour.specialOffer && (
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-red-600 text-white px-3 py-1 rounded-full text-xs font-bold animate-pulse flex items-center">
+                      <svg className="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                        <path fillRule="evenodd" d="M12.395 2.553a1 1 0 00-1.45-.385c-.345.23-.614.558-.822.88-.214.33-.403.713-.57 1.116-.334.804-.614 1.768-.84 2.734a31.365 31.365 0 00-.613 3.58 2.64 2.64 0 01-.945-1.067c-.328-.68-.398-1.534-.398-2.654A1 1 0 005.05 6.05 6.981 6.981 0 003 11a7 7 0 1011.95-4.95c-.592-.591-.98-.985-1.348-1.467-.363-.476-.724-1.063-1.207-2.03zM12.12 15.12A3 3 0 017 13s.879.5 2.5.5c0-1 .5-4 1.25-4.5.5 1 .786 1.293 1.371 1.879A2.99 2.99 0 0113 13a2.99 2.99 0 01-.879 2.121z" clipRule="evenodd" />
+                      </svg>
+                      ÖZEL FIRSAT
+                    </span>
+                  </div>
+                )}
+                
                 {/* Category Badge */}
-                <div className="absolute top-4 left-4">
-                  <span className="bg-[color-secondary] text-[color-primary] px-3 py-1 rounded-full text-xs font-semibold">
-                    {tour.category === 'family' ? 'Aile Turları' : 
-                     tour.category === 'romantic' ? 'Romantik' :
-                     tour.category === 'adventure' ? 'Macera' : 'Özel'}
-                  </span>
-                </div>
+                {!tour.specialOffer && (
+                  <div className="absolute top-4 left-4">
+                    <span className="bg-[color-secondary] text-[color-primary] px-3 py-1 rounded-full text-xs font-semibold">
+                      {tour.category === 'family' ? 'Aile Turları' : 
+                       tour.category === 'romantic' ? 'Romantik' :
+                       tour.category === 'adventure' ? 'Macera' :
+                       tour.category === 'luxury' ? 'Lüks' :
+                       tour.category === 'spiritual' ? 'Manevi' : 'Özel'}
+                    </span>
+                  </div>
+                )}
                 
                 {/* Price Badge */}
                 <div className="absolute bottom-4 right-4">
                   <div className="bg-white/20 backdrop-blur-sm rounded-lg px-3 py-2 border border-white/30">
-                    <div className="text-white font-bold text-lg">
-                      {formatPrice(tour.pricePerPerson)}
+                    <div>
+                      <div className="text-yellow-400 font-bold text-lg">
+                        {formatTourPrice(tour)}
+                      </div>
+                      <div className="text-white/80 text-xs">kişi başı</div>
                     </div>
-                    <div className="text-white/80 text-xs">kişi başı</div>
                   </div>
                 </div>
               </div>
@@ -139,6 +148,18 @@ const FeaturedTours = () => {
                 <p className="text-[color-text-light] mb-4 line-clamp-2">
                   {tour.description}
                 </p>
+                
+                {/* Special Offer Dates */}
+                {tour.specialOffer && tour.dates && (
+                  <div className="mb-4 p-3 bg-red-50 rounded-lg border border-red-200">
+                    <div className="flex items-center text-red-600">
+                      <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                      <span className="text-sm font-semibold">{tour.dates}</span>
+                    </div>
+                  </div>
+                )}
                 
                 {/* Tour Info */}
                 <div className="flex items-center justify-between mb-6 text-sm text-[color-text-light]">

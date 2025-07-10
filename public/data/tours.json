@@ -1,44 +1,174 @@
 {
-    "featured": [
+  "featured": [
+    {
+      "id": "fas-turu",
+      "title": "FAS TURU",
+      "slug": "fas-turu",
+      "description": "Renklerin ülkesi fas büyüleyici güzelliğiyle sizleri bekliyor.",
+      "pricePerPerson": null,
+      "priceStatus": "Beklemede Kalın",
+      "groupSize": "8-15",
+      "category": "luxury",
+      "image": "/images/tours/fas.jpg",
+      "gallery": [
+        "/images/tours/fas1.jpg",
+        "/images/tours/fas2.jpg",
+        "/images/tours/fas3.jpg",
+        "/images/tours/fas4.jpg",
+        "/images/tours/fas5.jpg"
+      ]
+    },
+    {
+      "id": "dubai-turu",
+      "title": "DUBAİ TURU",
+      "slug": "dubai-turu",
+      "description": "Çölün kalbinde ihtişamlı bir serüvene hazır olun. Dubai sizi bekliyor.",
+      "pricePerPerson": null,
+      "priceStatus": "Beklemede Kalın",
+      "groupSize": "8-15",
+      "category": "luxury",
+      "image": "/images/tours/dubai.jpg",
+      "gallery": [
+        "/images/tours/dubai1.jpg",
+        "/images/tours/dubai2.jpg",
+        "/images/tours/dubai3.jpg",
+        "/images/tours/dubai4.jpg",
+        "/images/tours/dubai5.jpg"
+      ]
+    },
+    {
+      "id": "umre-turu",
+      "title": "Umre Turları",
+      "slug": "umre-turu",
+      "description": "Bu seferki yolculuk kalbine, Gideceğiniz en güzel yolculuk, ulaşacağınız en mukaddes menzildir Umre.",
+      "pricePerPerson": null,
+      "priceStatus": "Beklemede Kalın",
+      "groupSize": "15-25",
+      "category": "spiritual",
+      "image": "/images/tours/umre.jpg",
+      "gallery": [
+        "/images/tours/umre1.jpg",
+        "/images/tours/umre2.jpg",
+        "/images/tours/umre3.jpg",
+        "/images/tours/umre4.jpg",
+        "/images/tours/umre5.jpg"
+      ]
+    },
       {
-        "id": "balkanlar-5-gece",
-        "title": "Balkanlar Turu – 5 Gece",
-        "slug": "balkanlar-5-gece",
-        "description": "İstanbul çıkışlı, 5 gece süren kültür ve tarih dolu Balkanlar rotası.",
-        "pricePerPerson": 10000,
-        "groupSize": "3-10",
-        "category": "budget",
-        "image": "/images/tours/balkanlar.jpg"
-      },
-      {
-        "id": "endulus-7-gun",
-        "title": "Endülüs Rüyası – 7 Gün",
-        "slug": "endulus-7-gun",
-        "description": "İspanya’nın kalbinde, tarih ve zarafetin buluştuğu 7 günlük özel tur.",
-        "pricePerPerson": 17500,
-        "groupSize": "2-12",
+        "id": "misir-turu-ozel",
+        "title": "Her Şey Dahil Mısır Turu",
+        "slug": "misir-turu-ozel",
+        "description": "29 Ağustos-5 Eylül tarihleri arasında Nil'de tekne turu, safari turu ve Kızıldeniz'de dalış dahil özel Mısır deneyimi. VIP kalitesinde ekonomik fiyatlarla!",
+        "pricePerPerson": 35000,
+        "originalPrice": 1199,
+        "currency": "USD",
+        "groupSize": "14 kişi",
         "category": "luxury",
-        "image": "/images/tours/endulus.jpg"
-      },
-      {
-        "id": "dubai-aile-paketi",
-        "title": "Dubai Aile Paketi",
-        "slug": "dubai-aile-paketi",
-        "description": "Çocuk dostu aktivitelerle dolu, alışveriş ve dinlenme odaklı aile turu.",
-        "pricePerPerson": 22000,
-        "groupSize": "4-6",
-        "category": "family",
-        "image": "/images/tours/dubai-family.jpg"
-      },
-      {
-        "id": "kadin-grubu-istanbul",
-        "title": "Kadınlara Özel İstanbul Gezisi",
-        "slug": "kadin-grubu-istanbul",
-        "description": "Hanımlara özel rehberli ve güvenli şehir içi kültürel kaçamak.",
-        "pricePerPerson": 6500,
-        "groupSize": "5-12",
-        "category": "women",
-        "image": "/images/tours/kadin-istanbul.jpg"
+        "image": "/images/tours/egypt-special.jpg",
+        "gallery": [
+          "/images/tours/egypt-special1.jpg",
+          "/images/tours/egypt-special2.jpg",
+          "/images/tours/egypt-special3.jpg",
+          "/images/tours/egypt-special4.jpg",
+          "/images/tours/egypt-special5.jpg"
+        ],
+        "specialOffer": true,
+        "dates": "29 Ağustos - 5 Eylül",
+        "duration": "7 gün / 6 gece",
+        "highlights": [
+          "Şarm el Şeyh'de 4 gece her şey dahil 4 yıldızlı otel konaklaması",
+          "ATV safari turu ve bedevi gecesi",
+          "Ras Muhammed Beyaz Ada Tekne Turu & Tüplü Dalış",
+          "Kahire'de 3 gece kahvaltı dahil konaklama",
+          "Giza Piramitleri ve Sfenks turu (Fayton Turu Dahil)",
+          "Baron Empire Palas & Mısır Müzesi turu",
+          "Nil nehrinde akşam yemekli tekne turu",
+          "Namaz saatlerine göre düzenlenmiş program",
+          "Ekstra hiçbir ücret yok - Her şey dahil!"
+        ],
+        "included": [
+          "Uçak biletleri – AJET ile direkt uçuş (Şarm el şeyh gidişli, Kahire dönüşlü)",
+          "Şarm El Şeyh 4 yıldızlı otellerde her şey dahil 4 gece konaklama",
+          "Kahire kahvaltı dahil 3 gece konaklama (akşam yemekleri restoranlarda)",
+          "Şehir içi ve şehirlerarası tüm transferler",
+          "Tüm müze, ören yeri ve tapınak giriş ücretleri",
+          "Tüm kahvaltılar ve akşam yemekleri",
+          "ATV safari turu ve bedevi gecesi",
+          "Ras Muhammed Beyaz Ada Tekne Turu (Tüm gün öğle yemekli)",
+          "Şarm el Şeyh Şehir turu",
+          "Kahire Şehir turu", 
+          "Giza Piramitleri ve Sfenks & Mısır müzesi turu",
+          "Baron Empire Palas turu",
+          "Nil nehrinde tekne turu (akşam yemekli)",
+          "Seyahat Sigortası",
+          "Kapıda vize"
+        ],
+        "notIncluded": [
+          "Yurtdışı çıkış harcı (Havalimanında ödenebilir 710 TL)",
+          "Tüm şahsi harcamalar",
+          "Kahire'de öğle yemekleri",
+          "Kahire'de akşam yemeklerinde alınacak ekstralar ve içecekler",
+          "Yerel bahşişler (Ortalama 10 dolar)"
+        ],
+        "itinerary": [
+          {
+            "day": "1. Gün",
+            "date": "29-30 Ağustos (Cuma-Cumartesi)",
+            "title": "Uçuş ve Varış",
+            "description": "20:00'de İstanbul Sabiha Gökçen Havalimanı'nda buluşma. 23:35 uçuşu ile 02:00'da Şarm el Şeyh'e varış. Otele transfer ve dinlenme.",
+            "activities": ["Havalimanı buluşma", "Uçuş", "Otele transfer"]
+          },
+          {
+            "day": "2. Gün", 
+            "date": "30 Ağustos (Cumartesi)",
+            "title": "Şarm el Şeyh - Safari ve Bedevi Gecesi",
+            "description": "Otel kahvaltısı ve Kızıldeniz keyfinin ardından ATV Safari Turu ve geleneksel Bedevi Gecesi.",
+            "activities": ["Otel kahvaltısı", "Kızıldeniz plajı", "Öğle yemeği otelde", "ATV Safari Turu", "Bedevi Gecesi (akşam yemekli)"]
+          },
+          {
+            "day": "3. Gün",
+            "date": "31 Ağustos (Pazar)", 
+            "title": "Ras Muhammed & Beyaz Ada",
+            "description": "Tam günlük tekne turu ile Ras Muhammed ve Beyaz Ada keşfi, şnorkelle dalış ve tüplü dalış.",
+            "activities": ["Otel kahvaltısı", "Ras Muhammed & Beyaz Ada Tekne Turu", "Öğle yemeği teknede", "Mercan Resiflerine Şnorkelle Dalış", "Tüplü Dalış", "Akşam yemeği otelde"]
+          },
+          {
+            "day": "4. Gün",
+            "date": "1 Eylül (Pazartesi)",
+            "title": "Şarm El Şeyh Şehir Turu", 
+            "description": "Şehrin güzelliklerini keşfederek Sahabe Cami, Soho Meydanı ve ünlü Farsha Café gezisi.",
+            "activities": ["Otel kahvaltısı", "Öğle yemeği otelde", "Sahabe Cami", "Soho Meydanı", "Old Bazaar gezinti", "Farsha Café", "Akşam yemeği otelde"]
+          },
+          {
+            "day": "5. Gün",
+            "date": "2 Eylül (Salı)",
+            "title": "Kahire'ye Transfer",
+            "description": "Sabah erken Kahire yolculuğu, Baron Empire Palas gezisi ve Nil'de akşam yemekli tekne turu.",
+            "activities": ["05:00 otelden hareket", "Kahvaltı kumanya", "Kahire'ye varış", "Baron Empire Palas gezisi", "Nil Nehrinde Tekne Turu (akşam yemekli)"]
+          },
+          {
+            "day": "6. Gün", 
+            "date": "3 Eylül (Çarşamba)",
+            "title": "Antik Mısır Keşfi",
+            "description": "Giza Piramitleri, Sfenks, fayton turu ve müze gezileri ile antik Mısır'ın büyüleyici dünyası.",
+            "activities": ["Otel kahvaltısı", "Giza Piramitleri ve alanda Fayton Turu", "Papirus Kağıt Müzesi", "Mısır Müzesi", "Nil Nehri kenarında restoranda akşam yemeği"]
+          },
+          {
+            "day": "7. Gün",
+            "date": "4 Eylül (Perşembe)", 
+            "title": "Tarihi Kahire",
+            "description": "Salahaddin Kalesi, tarihi camiler ve Han El Halili Çarşısı ile Kahire'nin tarihine yolculuk.",
+            "activities": ["Otel kahvaltısı", "Salahaddin Eyyubi Kalesi", "Sultan Kalavun ve Tolunoğlu Ahmet Camii", "İmam Şafii Kabri", "El-Ezher Camii ve Külliyesi", "Hz. Hüseyin Camii", "Han El Halili Çarşısı", "Çarşıda restoranda akşam yemeği"]
+          },
+          {
+            "day": "8. Gün",
+            "date": "5 Eylül (Cuma)",
+            "title": "Dönüş Uçuşu",
+            "description": "Kahire'den İstanbul'a dönüş uçuşu ve yurda varış.",
+            "activities": ["00:00 otelimizden ayrılış", "04:30 Kahire-Sabiha Gökçen uçuşu", "06:40 İstanbul'a iniş"]
+          }
+        ],
+        "whatsappMessage": "Merhaba! 29 Ağustos - 5 Eylül tarihleri arasındaki Her Şey Dahil Mısır Turu (1199 USD) hakkında detaylı bilgi almak istiyorum."
       }
     ],
     "categories": [

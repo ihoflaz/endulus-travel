@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Navbar from '../components/layout/navbar';
 import Footer from '../components/layout/footer';
-import { ScrollToTop } from '../components/ui';
+import { ScrollToTop, WhatsAppButton } from '../components/ui';
 
 // MainLayout bileşeni - Tüm sayfalar için ortak düzeni sağlar
 // Navbar ve Footer gibi ortak bileşenleri içerir
@@ -58,6 +58,12 @@ const MainLayout = () => {
 
       {/* Scroll to Top Butonu */}
       <ScrollToTop />
+
+      {/* WhatsApp Sabit Butonu */}
+      <WhatsAppButton 
+        variant="fixed"
+        message="Merhaba, turlarınız hakkında bilgi almak istiyorum."
+      />
     </div>
   );
 };

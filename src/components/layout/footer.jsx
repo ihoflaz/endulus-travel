@@ -29,9 +29,9 @@ const Footer = () => {
             
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               <span className="bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
-                Endülüs Travel ile
+                Kadim sokaklardan ihtişamlı saraylara
               </span>
-              <span className="block text-[color-secondary] mt-2">Hayallerinizi Gerçeğe Dönüştürün</span>
+              <span className="block text-[color-secondary] mt-2">sıcak çöllerden derin okyanuslara</span>
             </h2>
           </div>
           
@@ -184,9 +184,11 @@ const Footer = () => {
                   <p className="text-gray-300 text-sm mb-2">
                     © {currentYear} <span className="font-semibold text-white">Endülüs Travel</span>. Tüm hakları saklıdır.
                   </p>
-                  <p className="text-xs text-gray-400">
-                    Hassasiyet odaklı seyahat deneyimleri ile hayalinizdeki tatili gerçekleştiriyoruz.
-                  </p>
+                  <div className="text-xs text-gray-400 space-y-1">
+                    <p>TURSAB No: <span className="text-[color-secondary] font-medium">6739</span></p>
+                    <p>ROTA ATLAS TURİZM SEYAHAT ACENTASI</p>
+                    <p>Osmanağa mah. Çilek sok. Akel İşhanı No:1 Kat:2 İç kapı no:42 Kadıköy / İstanbul</p>
+                  </div>
                 </div>
                 <div className="flex flex-wrap justify-center md:justify-end space-x-6 text-sm">
                   {[

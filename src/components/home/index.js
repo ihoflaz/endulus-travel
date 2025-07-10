@@ -2,4 +2,5 @@
 export { default as HeroSection } from './hero-section';
 export { default as ServicesSection } from './services-section';
 export { default as FeaturedTours } from './featured-tours';
-export { default as CallToAction } from './call-to-action'; 
+export { default as CallToAction } from './call-to-action';
+export { default as SpecialOffer } from './special-offer'; 

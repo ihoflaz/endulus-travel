@@ -1,93 +1,8 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useTourDetail } from '../hooks';
 import { WhatsAppButton } from '../components/ui';
 import { formatTourPrice, getPriceLabel } from '../utils/priceUtils';
-
-// Basit Fotoğraf Galerisi Bileşeni
-const PhotoGallery = ({ images, title }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-
-  if (!images || images.length === 0) return null;
-
-  return (
-    <div className="grid grid-cols-4 gap-3 animate-fade-in">
-      {/* Ana Öne Çıkan Fotoğraf (2x2 grid alanı) */}
-      <div className="col-span-2 row-span-2 relative group">
-        <div className="aspect-square relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
-          <img 
-            src={images[currentIndex]} 
-            alt={`${title} - Ana fotoğraf`}
-            className="w-full h-full object-cover transition-all duration-700"
-            loading="lazy"
-          />
-
-          {/* Navigasyon okları */}
-          <button 
-            onClick={prevSlide}
-            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-md hover:bg-white/40 text-white p-2 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-          <button 
-            onClick={nextSlide}
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-md hover:bg-white/40 text-white p-2 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
-
-          {/* Fotoğraf sayacı */}
-          <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-md text-white px-2 py-1 rounded-lg text-xs font-medium">
-            {currentIndex + 1}/{images.length}
-          </div>
-        </div>
-      </div>
-
-      {/* Küçük Fotoğraf Seti (Kalan alan için 2x2 grid) */}
-      {images.slice(1, 5).map((image, index) => (
-        <div key={index + 1} className="aspect-square relative group">
-          <div className="h-full relative overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
-            <img 
-              src={image} 
-              alt={`${title} - Fotoğraf ${index + 2}`}
-              className="w-full h-full object-cover cursor-pointer transition-all duration-500 hover:scale-105"
-              onClick={() => setCurrentIndex(index + 1)}
-              loading="lazy"
-            />
-          </div>
-        </div>
-      ))}
-
-      {/* 5'ten fazla fotoğraf varsa "daha fazla" butonu */}
-      {images.length > 5 && (
-        <div className="aspect-square relative group bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center">
-          <div className="text-center text-gray-600 group-hover:text-gray-800">
-            <svg className="w-6 h-6 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <p className="text-xs font-medium">+{images.length - 5}</p>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-};
 
 // Premium TourDetailPage bileşeni - Modern tasarım sistemi ile
 const TourDetailPage = () => {
@@ -219,30 +134,6 @@ const TourDetailPage = () => {
         </div>
       </div>
 
-      {/* Modern Photo Gallery Section - Hero'dan hemen sonra */}
-      {tour.gallery && tour.gallery.length > 0 && (
-        <section className="py-12 bg-white">
-          <div className="max-w-6xl mx-auto px-4 md:px-8">
-            {/* Compact Header */}
-            <div className="flex items-center justify-between mb-8">
-              <div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Tur Galerisi</h3>
-                <p className="text-gray-600">Bu eşsiz deneyimden kareler</p>
-              </div>
-              <div className="text-sm text-gray-500 flex items-center">
-                <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                </svg>
-                {tour.gallery.length} fotoğraf
-              </div>
-            </div>
-
-            {/* Compact PhotoGallery Component */}
-            <PhotoGallery images={tour.gallery} title={tour.title} />
-          </div>
-        </section>
-      )}
-
       {/* Premium Content Section */}
       <section className="py-16 relative overflow-hidden">
         {/* Light Background Effects */}
@@ -310,10 +201,13 @@ const TourDetailPage = () => {
                     </div>
                     <div>
                       <div className="font-semibold text-[color-text-dark]">
-                        {getPriceLabel(tour)}
+                        {tour.pricePerPerson ? 'Kişi Başı Fiyat' : 'Durum'}
                       </div>
                       <div className="text-[color-text-light]">
-                        {formatTourPrice(tour)}
+                        {tour.pricePerPerson 
+                          ? `${tour.pricePerPerson.toLocaleString('tr-TR')} ₺`
+                          : (tour.priceStatus || 'Beklemede Kalın')
+                        }
                       </div>
                     </div>
                   </div>
@@ -497,10 +391,13 @@ const TourDetailPage = () => {
                   )}
                   <div className="flex items-center justify-between border-t pt-4">
                     <span className="text-[color-text-light]">
-                      {getPriceLabel(tour)}:
+                      {tour.pricePerPerson ? 'Kişi Başı:' : 'Durum:'}
                     </span>
                     <span className="font-bold text-lg text-[color-primary]">
-                      {formatTourPrice(tour)}
+                      {tour.pricePerPerson 
+                        ? `${tour.pricePerPerson.toLocaleString('tr-TR')} ₺`
+                        : (tour.priceStatus || 'Beklemede Kalın')
+                      }
                     </span>
                   </div>
                 </div>
@@ -527,7 +424,10 @@ const TourDetailPage = () => {
                       </Link>
                       <div className="absolute top-4 right-4">
                         <div className="bg-[color-secondary]/90 backdrop-blur-sm text-[color-primary] font-bold px-3 py-1 rounded-full border border-[color-secondary]">
-                          {formatTourPrice(relatedTour)}
+                          {relatedTour.pricePerPerson 
+                            ? `${relatedTour.pricePerPerson.toLocaleString('tr-TR')} ₺`
+                            : (relatedTour.priceStatus || 'Beklemede Kalın')
+                          }
                         </div>
                       </div>
                     </div>
