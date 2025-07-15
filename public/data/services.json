@@ -2,13 +2,13 @@
     {
       "id": "private-tours",
       "title": "Kişiye Özel Turlar",
-      "description": "Tamamen size özel olarak planlanan rotalar, konaklama ve aktivitelerle kişisel seyahat deneyimi.",
+      "description": "Tamamen size özel olarak planlanan bütçenize göre rota, konaklama ve aktivitelerle kişisel seyahat deneyimi.",
       "icon": "/images/icons/private-tour.svg"
     },
     {
       "id": "group-tours",
-      "title": "Grup Turları (10-12 Kişi)",
-      "description": "Sınırlı katılımcıyla, homojen gruplar için özel hazırlanmış turlar.",
+      "title": "Grup Turları (10-15 Kişi)",
+      "description": "Sınırlı katılımcıyla butik gruplar için özel hazırlanmış turlar.",
       "icon": "/images/icons/group-tour.svg"
     },
     {
@@ -24,15 +24,15 @@
       "icon": "/images/icons/student-tour.svg"
     },
     {
-      "id": "romantic-tours",
-      "title": "Romantik Tatiller",
-      "description": "Çiftlere özel planlanan balayı, yıldönümü veya kaçamak konseptli romantik rotalar.",
-      "icon": "/images/icons/romantic-tour.svg"
+      "id": "women-groups",
+      "title": "Kadın Grupları",
+      "description": "Sadece kadınlara özel gruplarla güvenli konforlu ve keyifli yolculuklar.",
+      "icon": "/images/icons/women-groups.svg"
     },
     {
       "id": "adventure-tours",
       "title": "Ekstrem & Macera Paketleri",
-      "description": "Doğa, spor ve adrenalin dolu aktiviteleri barındıran heyecan verici turlar.",
+      "description": "Doğa, spor ve adrenalin dolu aktiviteleri içeren heyecan verici turlar.",
       "icon": "/images/icons/adventure-tour.svg"
     }
   ]

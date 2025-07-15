@@ -1,14 +1,10 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { useSearchParams } from 'react-router-dom';
 import { WhatsAppButton } from '../components/ui';
 import { formatTourPrice, getPriceLabel, getNumericPrice } from '../utils/priceUtils';
 
-// Premium ToursPage bileşeni - Modern tasarım sistemi ile
-const ToursPage = () => {
-  const [searchParams] = useSearchParams();
-  
-  // State tanımları
+// Yurt Dışı Turlar sayfası
+const InternationalToursPage = () => {
   const [toursData, setToursData] = useState({
     tours: [],
     categories: []
@@ -16,28 +12,30 @@ const ToursPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [filteredTours, setFilteredTours] = useState([]);
-  const [selectedCategory, setSelectedCategory] = useState('all');
 
   // Sayfa başlığını ayarla
   useEffect(() => {
-    document.title = 'Tur Paketlerimiz - Endülüs Travel';
+    document.title = 'Yurt Dışı Turlar - Endülüs Travel';
   }, []);
 
-  // Tur verilerini ve kategorileri yükle
+  // Tur verilerini yükle
   useEffect(() => {
-    const fetchToursAndCategories = async () => {
+    const fetchTours = async () => {
       try {
-        // Turları yükle
         const toursResponse = await fetch('data/tours.json');
         if (!toursResponse.ok) {
           throw new Error('Tur verileri yüklenemedi');
         }
         const toursData = await toursResponse.json();
+        
+        // Sadece yurt dışı turları filtrele
+        const internationalTours = toursData.featured.filter(tour => tour.type === 'international');
+        
         setToursData({
-          tours: toursData.featured || [],
+          tours: internationalTours,
           categories: toursData.categories || []
         });
-        
+        setFilteredTours(internationalTours);
         setLoading(false);
       } catch (error) {
         console.error('Veri yüklenirken hata:', error);
@@ -46,54 +44,9 @@ const ToursPage = () => {
       }
     };
 
-    fetchToursAndCategories();
+    fetchTours();
   }, []);
 
-  // Filtreleri uygula
-  useEffect(() => {
-    if (!loading && !error && toursData.tours.length > 0) {
-      let filtered = [...toursData.tours];
-      
-      // URL parametrelerinden filtreleri uygula
-      const category = searchParams.get('category');
-      const priceMin = searchParams.get('priceMin');
-      const priceMax = searchParams.get('priceMax');
-      
-      // Kategori filtresi
-      if (category && category !== 'all') {
-        filtered = filtered.filter(tour => tour.category === category);
-        setSelectedCategory(category);
-      }
-      
-      // Fiyat filtresi
-      if (priceMin) {
-        filtered = filtered.filter(tour => {
-          const numericPrice = getNumericPrice(tour);
-          return numericPrice && numericPrice >= Number(priceMin);
-        });
-      }
-      if (priceMax) {
-        filtered = filtered.filter(tour => {
-          const numericPrice = getNumericPrice(tour);
-          return numericPrice && numericPrice <= Number(priceMax);
-        });
-      }
-      
-      setFilteredTours(filtered);
-    }
-  }, [searchParams, loading, error, toursData]);
-  
-  // Kategori değiştirme işlevi
-  const handleCategoryChange = (categoryKey) => {
-    setSelectedCategory(categoryKey);
-    
-    let filtered = [...toursData.tours];
-    if (categoryKey !== 'all') {
-      filtered = filtered.filter(tour => tour.category === categoryKey);
-    }
-    setFilteredTours(filtered);
-  };
-  
   // Yükleme durumunda
   if (loading) {
     return (
@@ -114,7 +67,7 @@ const ToursPage = () => {
       </div>
     );
   }
-  
+
   // Hata durumunda
   if (error) {
     return (
@@ -140,7 +93,7 @@ const ToursPage = () => {
         {/* Background Image */}
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: 'url(/images/tours/tours-page-bg.jpg)' }}
+          style={{ backgroundImage: 'url(/images/destinations/spain.jpg)' }}
         ></div>
         {/* Dark Overlay for better text readability */}
         <div className="absolute inset-0 bg-black/40"></div>
@@ -157,7 +110,7 @@ const ToursPage = () => {
                 Ana Sayfa
               </Link>
               <span className="text-white/60 mx-2">&gt;</span>
-              <span className="text-[color-secondary]">Turlar</span>
+              <span className="text-[color-secondary]">Yurt Dışı Turlar</span>
             </div>
 
             {/* Hero Content */}
@@ -167,30 +120,21 @@ const ToursPage = () => {
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M3 4a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  Benzersiz Deneyimler
+                  Dünya'nın En Güzel Destinasyonları
                 </span>
               </div>
               
               <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-2xl animate-fade-in" style={{ animationDelay: '0.1s' }}>
-                Tur Paketlerimiz
+                Yurt Dışı Turlar
               </h1>
               
               <p className="text-xl md:text-2xl mb-10 opacity-90 leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                Klasik turlardan farklı olarak, size ve grubunuza özel, özenle planlanmış seyahat deneyimleri sunuyoruz. Her turumuzu 10-15 kişilik küçük gruplarla, samimi ve keyifli bir ortamda gerçekleştiriyoruz.
+                Dünya'nın en güzel destinasyonlarını keşfedin. Endülüs'ten Fas'a, Balkanlar'dan Portekiz'e kadar hassasiyetlerinizi gözeten özel tur deneyimleri sunuyoruz.
               </p>
             </div>
           </div>
         </div>
       </div>
-
-      {/* Premium Page Header */}
-      <section className="relative py-8 md:py-8 overflow-hidden">
-        {/* Premium Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-gray-100">
-          <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-200/30 to-transparent rounded-full transform translate-x-48 -translate-y-48"></div>
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-[color-secondary]/20 to-transparent rounded-full transform -translate-x-40 translate-y-40"></div>
-        </div>
-      </section>
 
       {/* Premium Tours Grid */}
       <section className="py-16 relative overflow-hidden">
@@ -208,8 +152,8 @@ const ToursPage = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-600 mb-4">Bu kategoride tur bulunamadı</h3>
-                <p className="text-gray-500">Farklı bir kategori seçerek tekrar deneyebilirsiniz</p>
+                <h3 className="text-2xl font-bold text-gray-600 mb-4">Henüz tur bulunamadı</h3>
+                <p className="text-gray-500">Yakında yeni turlar eklenecek</p>
               </div>
             </div>
           ) : (
@@ -227,7 +171,7 @@ const ToursPage = () => {
                         src={tour.image || 'images/tours/default.jpg'} 
                         alt={tour.title} 
                         className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
-            />
+                      />
                     </Link>
                     
                     {/* Premium Category Badge */}
@@ -311,10 +255,10 @@ const ToursPage = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link 
                     to="/teklif-al" 
-                    className="group/cta bg-white border-2 border-[color-primary] text-[color-primary] hover:bg-[color-primary] hover:text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center justify-center space-x-2"
+                    className="group bg-white border-2 border-[color-primary] text-[color-primary] hover:bg-[color-primary] hover:text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center justify-center space-x-2"
                   >
                     <span>Özel Teklif Al</span>
-                    <svg className="w-5 h-5 group-hover/cta:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </Link>
@@ -336,4 +280,4 @@ const ToursPage = () => {
   );
 };
 
-export default ToursPage; 
+export default InternationalToursPage;

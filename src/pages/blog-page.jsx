@@ -11,8 +11,15 @@ const BlogPage = () => {
     <div className="page-transition">
       {/* Premium Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[color-primary] via-blue-600 to-[color-primary]"></div>
-        <div className="absolute inset-0 bg-black/20"></div>
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: 'url(/images/tours/blog-bg.jpg)' }}
+        ></div>
+        {/* Dark Overlay for better text readability */}
+        <div className="absolute inset-0 bg-black/40"></div>
+        {/* Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[color-primary]/30 via-blue-600/20 to-[color-primary]/30"></div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-32 -translate-y-32"></div>
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color-secondary]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
         

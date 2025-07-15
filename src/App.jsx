@@ -3,6 +3,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MainLayout from './layouts/main-layout';
 import HomePage from './pages/home-page';
 import ToursPage from './pages/tours-page';
+import DomesticToursPage from './pages/domestic-tours-page';
+import InternationalToursPage from './pages/international-tours-page';
 import TourDetailPage from './pages/tour-detail-page';
 import ContactPage from './pages/contact-page';
 import SurveyPage from './pages/survey-page';
@@ -27,6 +29,8 @@ function App() {
           
           {/* Diğer Sayfalar */}
           <Route path="/turlar" element={<ToursPage />} />
+          <Route path="/yurt-ici-turlar" element={<DomesticToursPage />} />
+          <Route path="/yurt-disi-turlar" element={<InternationalToursPage />} />
           <Route path="/turlar/:slug" element={<TourDetailPage />} />
           <Route path="/tur-planlama" element={<TourPlanningPage />} />
           <Route path="/blog" element={<BlogPage />} />

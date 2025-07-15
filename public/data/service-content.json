@@ -1,10 +1,10 @@
 {
   "private-tours": {
     "image": "/images/services/private-tours.jpg",
-    "fullDescription": "Kişiye özel turlarımız, tamamen sizin istekleriniz ve tercihleriniz doğrultusunda hazırlanır. Seyahat rotanızı, konaklama seçeneklerinizi ve aktivitelerinizi dilediğiniz gibi şekillendirebilirsiniz.\n\nÖzel rehberiniz, sadece size hizmet verecek ve programınız tamamen size özel olarak tasarlanacaktır. Bu sayede kalabalık gruplardan uzak, kendi temponuzda ve ilgi alanlarınıza göre bir seyahat deneyimi yaşayabilirsiniz.\n\nKişiye özel turlarımız, balayı çiftleri, aileler, arkadaş grupları veya yalnız seyahat edenler için idealdir.",
+    "fullDescription": "Kişiye özel turlarımız, tamamen sizin istekleriniz ve tercihleriniz doğrultusunda, bütçenize göre hazırlanır. Seyahat rotanızı, konaklama seçeneklerinizi ve aktivitelerinizi dilediğiniz gibi şekillendirebilirsiniz.\n\nÖzel rehberiniz, sadece size hizmet verecek ve programınız tamamen size özel olarak tasarlanacaktır. Bu sayede kalabalık gruplardan uzak, kendi temponuzda ve ilgi alanlarınıza göre bir seyahat deneyimi yaşayabilirsiniz.\n\nKişiye özel turlarımız, balayı çiftleri, aileler, arkadaş grupları veya yalnız seyahat edenler için idealdir.",
     "features": [
       "Size özel profesyonel rehberlik hizmeti",
-      "Esnek program ve zaman çizelgesi",
+      "Bütçenize göre esnek program ve zaman çizelgesi",
       "Lüks veya butik konaklama seçenekleri",
       "Özel transfer hizmetleri",
       "Kişisel ilgi alanlarınıza göre aktiviteler"
@@ -12,9 +12,9 @@
   },
   "group-tours": {
     "image": "/images/services/group-tours.jpg",
-    "fullDescription": "10-12 kişilik küçük gruplarla düzenlediğimiz turlarımız, kalabalık tur otobüslerindeki seyahatlerden sıkılanlar için ideal.\n\nGrup turlarımızda, benzer ilgi alanlarına ve yaşam tarzlarına sahip kişilerle bir araya gelirsiniz. Homojen gruplar oluşturarak herkesin seyahatten maksimum verim almasını sağlıyoruz.\n\nProfesyonel rehberlerimiz eşliğinde, bölgenin en önemli noktalarını keşfederken yeni arkadaşlıklar kurabilir, sosyal bir ortamda seyahat deneyiminizi zenginleştirebilirsiniz.",
+    "fullDescription": "10-15 kişilik küçük gruplarla düzenlediğimiz butik turlarımız, kalabalık tur otobüslerindeki seyahatlerden sıkılanlar için ideal.\n\nGrup turlarımızda, benzer ilgi alanlarına ve yaşam tarzlarına sahip kişilerle bir araya gelirsiniz. Butik gruplar oluşturarak herkesin seyahatten maksimum verim almasını sağlıyoruz.\n\nProfesyonel rehberlerimiz eşliğinde, bölgenin en önemli noktalarını keşfederken yeni arkadaşlıklar kurabilir, sosyal bir ortamda seyahat deneyiminizi zenginleştirebilirsiniz.",
     "features": [
-      "Maksimum 12 kişilik küçük gruplar",
+      "Maksimum 10-15 kişilik butik gruplar",
       "Benzer profillerden oluşan homojen gruplar",
       "Sosyal etkileşim fırsatları",
       "Ekonomik fiyat avantajı",
@@ -43,15 +43,15 @@
       "Bütçe dostu aktivite önerileri"
     ]
   },
-  "romantic-tours": {
-    "image": "/images/services/romantic-tours.jpg",
-    "fullDescription": "Balayı, yıldönümü veya romantik bir kaçamak için özel olarak tasarlanmış turlarımız, çiftlere unutulmaz anlar yaşatıyor.\n\nRomantik manzaralara sahip özel oteller, gün batımı manzaralı akşam yemekleri, özel tekne turları ve spa deneyimleri ile sevdiğinizle baş başa kaliteli zaman geçirebileceğiniz bir program hazırlıyoruz.\n\nSevgililer günü, evlilik teklifi, balayı veya sadece romantik bir kaçamak için ideal seçenekler sunuyoruz.",
+  "women-groups": {
+    "image": "/images/services/women-groups.jpg",
+    "fullDescription": "Sadece kadınlara özel gruplarla güvenli, konforlu ve keyifli yolculuklar deneyimleyin.\n\nKadın dostu rehberlerimiz eşliğinde, kadınlara özel aktiviteler, alışveriş turları, spa deneyimleri ve kültürel geziler düzenliyoruz. Kadınların rahat ve güvenli hissedeceği ortamlarda seyahat etmeleri için tüm detayları düşünüyoruz.\n\nKadın gruplarımızda sosyalleşme imkanları, yeni arkadaşlıklar kurma fırsatları ve kadınlara özel deneyimler yaşayabilirsiniz.",
     "features": [
-      "Romantik ve lüks konaklama seçenekleri",
-      "Özel akşam yemekleri ve organizasyonlar",
-      "Çiftlere özel spa ve masaj paketleri",
-      "Özel transfer hizmetleri",
-      "Unutulmaz anılar için sürpriz etkinlikler"
+      "Sadece kadınlardan oluşan güvenli gruplar",
+      "Kadın rehberler eşliğinde geziler",
+      "Kadınlara özel aktiviteler ve deneyimler",
+      "Güvenli ve konforlu konaklama seçenekleri",
+      "Sosyalleşme ve arkadaşlık imkanları"
     ]
   },
   "adventure-tours": {

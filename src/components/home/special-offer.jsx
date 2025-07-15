@@ -6,21 +6,21 @@ const SpecialOffer = () => {
     <section className="relative py-16 md:py-24 overflow-hidden">
       {/* Premium Background with Egypt Theme */}
       <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-900 via-yellow-800 to-orange-900"></div>
-        <div className="absolute inset-0 bg-[url('/images/tours/egypt-bg.jpg')] bg-cover bg-center opacity-20"></div>
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-[url('/images/tours/egypt-bg.jpg')] bg-cover bg-center"></div>
+        <div className="absolute inset-0 bg-black/50"></div>
         
         {/* Decorative Elements */}
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-yellow-400/20 to-transparent rounded-full transform translate-x-32 -translate-y-32"></div>
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-amber-500/20 to-transparent rounded-full transform -translate-x-40 translate-y-40"></div>
-        
-        {/* Egyptian Patterns */}
-        <div className="absolute top-10 left-10 w-20 h-20 border-2 border-yellow-400/30 rotate-45"></div>
-        <div className="absolute bottom-20 right-20 w-16 h-16 border-2 border-amber-400/30 rotate-12"></div>
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-amber-400/20 to-transparent rounded-full transform translate-x-32 -translate-y-32"></div>
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-orange-500/20 to-transparent rounded-full transform -translate-x-40 translate-y-40"></div>
       </div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-12">
+          {/* Section Title */}
+          <h2 className="text-3xl md:text-5xl font-bold text-white mb-8">
+            Yaklaşan Turlarımız
+          </h2>
+          
           {/* Special Badge */}
           <div className="inline-flex items-center px-6 py-3 bg-red-600 text-white font-bold rounded-full mb-6 animate-pulse">
             <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -29,17 +29,16 @@ const SpecialOffer = () => {
             <span>ÖZEL FIRSAT!</span>
           </div>
           
-          <h2 className="text-3xl md:text-5xl font-bold text-white mb-4">
-            Her Şey Dahil
-            <span className="block text-yellow-400 mt-2">Mısır Turu</span>
-          </h2>
+          <h3 className="text-2xl md:text-4xl font-bold text-yellow-400 mb-4">
+            Her Şey Dahil Mısır Turu
+          </h3>
           
           <div className="flex items-center justify-center gap-4 mb-6">
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg px-6 py-3 border border-white/20">
+            <div className="bg-amber-800/80 backdrop-blur-sm rounded-lg px-6 py-3 border border-amber-600/50">
               <div className="text-yellow-400 font-bold text-2xl">1199 USD</div>
               <div className="text-white/80 text-sm">Kişi Başı</div>
             </div>
-            <div className="bg-red-600 rounded-lg px-6 py-3">
+            <div className="bg-red-600/90 rounded-lg px-6 py-3 border border-red-500/50">
               <div className="text-white font-bold text-lg">29 Ağustos - 5 Eylül</div>
               <div className="text-white/90 text-sm">Sadece 14 Kişi</div>
             </div>
@@ -47,85 +46,62 @@ const SpecialOffer = () => {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Left Side - Tour Highlights */}
+          {/* Left Side - Tour Details */}
           <div className="space-y-6">
-            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 border border-white/20">
-              <h3 className="text-2xl font-bold text-yellow-400 mb-6">✨ Tur Özellikleri</h3>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div className="flex items-center bg-white/5 rounded-lg p-3">
-                  <div className="w-10 h-10 bg-blue-500 rounded-full flex items-center justify-center mr-3">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.4 4.4 0 003 15z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="text-white font-semibold text-sm">Nil'de</div>
-                    <div className="text-white/80 text-xs">Tekne Turu</div>
-                  </div>
-                </div>
-                
-                <div className="flex items-center bg-white/5 rounded-lg p-3">
-                  <div className="w-10 h-10 bg-orange-500 rounded-full flex items-center justify-center mr-3">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="text-white font-semibold text-sm">Safari</div>
-                    <div className="text-white/80 text-xs">Turu</div>
-                  </div>
-                </div>
-                
-                <div className="flex items-center bg-white/5 rounded-lg p-3">
-                  <div className="w-10 h-10 bg-teal-500 rounded-full flex items-center justify-center mr-3">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="text-white font-semibold text-sm">Kızıldeniz'de</div>
-                    <div className="text-white/80 text-xs">Dalış</div>
-                  </div>
-                </div>
-                
-                <div className="flex items-center bg-white/5 rounded-lg p-3">
-                  <div className="w-10 h-10 bg-yellow-500 rounded-full flex items-center justify-center mr-3">
-                    <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>
-                  </div>
-                  <div>
-                    <div className="text-white font-semibold text-sm">Giza</div>
-                    <div className="text-white/80 text-xs">Piramitleri</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Special Features */}
-            <div className="bg-gradient-to-r from-green-600/20 to-emerald-600/20 backdrop-blur-sm rounded-xl p-6 border border-green-400/30">
-              <div className="flex items-center mb-4">
-                <svg className="w-6 h-6 text-green-400 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div className="bg-amber-800/80 backdrop-blur-sm rounded-2xl p-6 border border-amber-600/50">
+              <h3 className="text-2xl font-bold text-yellow-400 mb-6 flex items-center">
+                <svg className="w-6 h-6 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
-                <h4 className="text-white font-bold text-lg">VIP Kalitesinde Tur</h4>
+                Tur Programı
+              </h3>
+              
+              <div className="space-y-3 text-white/90">
+                <div className="flex items-start">
+                  <span className="text-yellow-400 mr-2">•</span>
+                  <span>Şarm el Şeyh'de 4 gece her şey dahil 4 yıldızlı otel konaklaması</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-yellow-400 mr-2">•</span>
+                  <span>Atv safari turu ve bedevi gecesi</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-yellow-400 mr-2">•</span>
+                  <span>Ras Muhammed Beyaz Ada Tekne Turu & Tüplü Dalış (Tüm gün öğle yemekli)</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-yellow-400 mr-2">•</span>
+                  <span>Şarm el Şeyh Şehir Turu ve Farsha cafe gezisi</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-yellow-400 mr-2">•</span>
+                  <span>Kahire'de 3 gece kahvaltı dahil konaklama (Akşam yemekleri restoranlarda fiyata dahil alınacaktır)</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-yellow-400 mr-2">•</span>
+                  <span>Kahire Şehir turu</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-yellow-400 mr-2">•</span>
+                  <span>Giza Piramitleri ve Sfenks turu (Fayton Turu Dahil)</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-yellow-400 mr-2">•</span>
+                  <span>Baron Empire Palas & Mısır Müzesi & Papirus Kağıt Müzesi turu ve giriş biletleri</span>
+                </div>
+                <div className="flex items-start">
+                  <span className="text-yellow-400 mr-2">•</span>
+                  <span>Nil nehrinde tekne turu (akşam yemekli)</span>
+                </div>
               </div>
-              <ul className="text-white/90 space-y-2 text-sm">
-                <li>• Namaz saatlerine göre düzenlenmiş program</li>
-                <li>• Şarm el Şeyh'de 4 gece her şey dahil konaklama</li>
-                <li>• Kahire'de 3 gece kahvaltı dahil konaklama</li>
-                <li>• Tüm aktivite ve akşam yemekleri dahil</li>
-                <li>• Ekstra ücret yok!</li>
-              </ul>
             </div>
           </div>
 
           {/* Right Side - CTA */}
           <div className="text-center lg:text-left">
-            <div className="bg-white/15 backdrop-blur-sm rounded-2xl p-8 border border-white/30">
+            <div className="bg-amber-800/80 backdrop-blur-sm rounded-2xl p-8 border border-amber-600/50">
               <div className="mb-6">
-                <div className="inline-flex items-center px-4 py-2 bg-amber-500/20 rounded-full border border-amber-400/30 mb-4">
+                <div className="inline-flex items-center px-4 py-2 bg-amber-500/30 rounded-full border border-amber-400/50 mb-4">
                   <svg className="w-4 h-4 text-amber-400 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
                   </svg>
@@ -164,7 +140,7 @@ const SpecialOffer = () => {
                 </WhatsAppButton>
               </div>
               
-              <div className="mt-6 p-4 bg-white/10 rounded-lg border border-white/20">
+              <div className="mt-6 p-4 bg-amber-700/60 rounded-lg border border-amber-500/40">
                 <p className="text-white/80 text-sm text-center">
                   <svg className="w-4 h-4 inline mr-1 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />

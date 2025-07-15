@@ -4,8 +4,7 @@ import {
   HeroSection, 
   ServicesSection, 
   SpecialOffer,
-  FeaturedTours, 
-  CallToAction 
+  FeaturedTours
 } from '../components/home';
 
 // HomePage bileşeni - Ana sayfa
@@ -37,11 +36,6 @@ const HomePage = () => {
       {/* Öne Çıkan Turlar */}
       <div className="animate-fade-in" style={{ animationDelay: '0.4s' }}>
         <FeaturedTours />
-      </div>
-      
-      {/* Çağrı Aksiyonu */}
-      <div className="animate-fade-in" style={{ animationDelay: '0.6s' }}>
-        <CallToAction />
       </div>
     </div>
   );

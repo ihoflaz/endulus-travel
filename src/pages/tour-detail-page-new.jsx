@@ -286,7 +286,7 @@ const TourDetailPage = () => {
                       />
                       <Link 
                         to="/teklif-al" 
-                        className="bg-white/50 hover:bg-white text-[color-primary] font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 border border-[color-primary]/20"
+                        className="bg-white/50 hover:bg-white text-[color-primary] hover:text-[color-primary] font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 border border-[color-primary]/20"
                       >
                         Özel Teklif Al
                       </Link>
@@ -364,7 +364,7 @@ const TourDetailPage = () => {
                   
                   <Link 
                     to="/teklif-al" 
-                    className="w-full bg-[color-primary] hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center"
+                    className="w-full bg-[color-primary] hover:bg-blue-600 text-white hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center"
                   >
                     Özel Teklif Al
                   </Link>
