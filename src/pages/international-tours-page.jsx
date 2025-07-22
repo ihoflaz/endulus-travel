@@ -129,7 +129,7 @@ const InternationalToursPage = () => {
               </h1>
               
               <p className="text-xl md:text-2xl mb-10 opacity-90 leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                Dünya'nın en güzel destinasyonlarını keşfedin. Endülüs'ten Fas'a, Balkanlar'dan Portekiz'e kadar hassasiyetlerinizi gözeten özel tur deneyimleri sunuyoruz.
+                Ufkunuzu genişletecek yolculuklara adım atın. Dünyanın renklerini, seslerini ve hikâyelerini yerinde keşfedin.
               </p>
             </div>
           </div>

@@ -63,8 +63,13 @@ const ServiceDetailPage = () => {
     <div className="page-transition">
       {/* Premium Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[color-primary] via-blue-600 to-[color-primary]"></div>
-        <div className="absolute inset-0 bg-black/20"></div>
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${serviceContent?.image || '/images/services/default.jpg'})` }}
+        ></div>
+        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[color-primary]/40 via-blue-600/30 to-[color-primary]/40"></div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-32 -translate-y-32"></div>
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color-secondary]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
         
@@ -126,24 +131,6 @@ const ServiceDetailPage = () => {
         </div>
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 md:px-8">
-          {/* Premium Service Image */}
-          <div className="mb-12 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-            <div className="relative overflow-hidden rounded-2xl shadow-2xl group">
-              <img 
-                src={serviceContent.image || 'images/services/default.jpg'} 
-                alt={service.title}
-                className="w-full h-80 md:h-96 object-cover transition-transform duration-700 group-hover:scale-105"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
-              <div className="absolute bottom-6 left-6">
-                <div className="bg-white/20 backdrop-blur-sm rounded-xl p-4 border border-white/30">
-                  <h3 className="text-white font-bold text-lg">{service.title}</h3>
-                  <p className="text-white/80 text-sm">Premium Hizmet</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          
           {/* Content Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
             {/* Service Description */}

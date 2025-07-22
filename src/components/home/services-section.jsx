@@ -104,8 +104,7 @@ const ServicesSection = () => {
             Hizmetlerimiz
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Her zeyişler planına uygun hassasiyet odaklı hizmetler sunarak ve müşterilerimize özel çıkılan 
-            tasarlanmış hizmetler sunuyoruz.
+            Profesyonel yaklaşımımızla, her yolculuğa güvenle başla; her rota senin için özel.
           </p>
         </div>
 

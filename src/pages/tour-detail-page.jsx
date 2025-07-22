@@ -154,8 +154,8 @@ const TourDetailPage = () => {
         {/* Background Image */}
         <div className="absolute inset-0">
           <img 
-            src="/images/tours-page-bg.jpg" 
-            alt="Tour Background"
+            src={tour?.image || "/images/tours-page-bg.jpg"} 
+            alt={tour?.title || "Tour Background"}
             className="w-full h-full object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-br from-[color-primary]/80 via-blue-600/80 to-[color-primary]/80"></div>

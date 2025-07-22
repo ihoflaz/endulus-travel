@@ -71,7 +71,9 @@ const DomesticToursPage = () => {
               </h1>
               
               <p className="text-xl md:text-2xl mb-10 opacity-90 leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                Türkiye'nin eşsiz güzelliklerini keşfedin. Kapadokya'dan Pamukkale'ye, İstanbul'dan Antalya'ya kadar her köşesinde tarih, doğa ve kültürün buluştuğu unutulmaz yolculuklar.
+                Her adımda bir keşif, her durakta bir anı...
+                <br />
+                Türkiye'nin zengin mirasını ve doğal güzelliklerini keşfe çıkın.
               </p>
             </div>
           </div>
