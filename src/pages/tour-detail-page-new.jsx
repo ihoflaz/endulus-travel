@@ -2,7 +2,93 @@ import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useTourDetail } from '../hooks';
 import { WhatsAppButton } from '../components/ui';
-import { formatTourPrice, getPriceLabel } from '../utils/priceUtils';
+import { formatTourPrice, getPriceLabel, formatTourPriceWithDiscount } from '../utils/priceUtils';
+import { useState } from 'react';
+
+// Basit Fotoğraf Galerisi Bileşeni
+const PhotoGallery = ({ images, title }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextSlide = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === images.length - 1 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
+  if (!images || images.length === 0) return null;
+
+  return (
+    <div className="grid grid-cols-4 gap-3 animate-fade-in">
+      {/* Ana Öne Çıkan Fotoğraf (2x2 grid alanı) */}
+      <div className="col-span-2 row-span-2 relative group">
+        <div className="aspect-square relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
+          <img 
+            src={images[currentIndex]} 
+            alt={`${title} - Ana fotoğraf`}
+            className="w-full h-full object-cover transition-all duration-700"
+            loading="lazy"
+          />
+
+          {/* Navigasyon okları */}
+          <button 
+            onClick={prevSlide}
+            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-md hover:bg-white/40 text-white p-2 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button 
+            onClick={nextSlide}
+            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-md hover:bg-white/40 text-white p-2 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+
+          {/* Fotoğraf sayacı */}
+          <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-md text-white px-2 py-1 rounded-lg text-xs font-medium">
+            {currentIndex + 1}/{images.length}
+          </div>
+        </div>
+      </div>
+
+      {/* Küçük Fotoğraf Seti (Kalan alan için 2x2 grid) */}
+      {images.slice(1, 5).map((image, index) => (
+        <div key={index + 1} className="aspect-square relative group">
+          <div className="h-full relative overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+            <img 
+              src={image} 
+              alt={`${title} - Fotoğraf ${index + 2}`}
+              className="w-full h-full object-cover cursor-pointer transition-all duration-500 hover:scale-105"
+              onClick={() => setCurrentIndex(index + 1)}
+              loading="lazy"
+            />
+          </div>
+        </div>
+      ))}
+
+      {/* 5'ten fazla fotoğraf varsa "daha fazla" butonu */}
+      {images.length > 5 && (
+        <div className="aspect-square relative group bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center">
+          <div className="text-center text-gray-600 group-hover:text-gray-800">
+            <svg className="w-6 h-6 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+            </svg>
+            <p className="text-xs font-medium">+{images.length - 5}</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 // Premium TourDetailPage bileşeni - Modern tasarım sistemi ile
 const TourDetailPage = () => {
@@ -94,6 +180,14 @@ const TourDetailPage = () => {
             {/* Hero Content */}
             <div className="text-center text-white max-w-4xl mx-auto">
               <div className="mb-6 animate-fade-in">
+                {tour.specialOffer ? (
+                  <span className="inline-flex items-center px-4 py-2 bg-red-500/90 backdrop-blur-sm text-white text-sm font-semibold rounded-full border border-red-400/30 mr-3">
+                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                      <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                    </svg>
+                    ÖZEİ KAMPANYA
+                  </span>
+                ) : null}
                 <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color-secondary] text-sm font-semibold rounded-full border border-white/30">
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
@@ -117,10 +211,24 @@ const TourDetailPage = () => {
                   <p className="text-white/90">Kişi</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-2xl font-bold text-[color-secondary] mb-2">
-                    {formatTourPrice(tour)}
-                  </h3>
-                  <p className="text-white/90">
+                  <div className="text-center">
+                    {(() => {
+                      const priceInfo = formatTourPriceWithDiscount(tour);
+                      return (
+                        <>
+                          {priceInfo.hasDiscount && (
+                            <div className="text-lg text-red-300 line-through mb-1">
+                              {priceInfo.originalPrice}
+                            </div>
+                          )}
+                          <h3 className="text-2xl font-bold text-[color-secondary] mb-2">
+                            {priceInfo.currentPrice}
+                          </h3>
+                        </>
+                      );
+                    })()}
+                  </div>
+                  <p className="text-white/90 text-center">
                     {getPriceLabel(tour)}
                   </p>
                 </div>
@@ -157,6 +265,21 @@ const TourDetailPage = () => {
                 </h2>
                 <p className="text-[color-text-light] leading-relaxed text-lg">{tour.description}</p>
               </div>
+
+              {/* Photo Gallery */}
+              {tour.gallery && tour.gallery.length > 0 && (
+                <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.45s' }}>
+                  <h3 className="text-xl font-bold mb-6 text-[color-text-dark] flex items-center">
+                    <div className="w-6 h-6 bg-purple-500 rounded-lg flex items-center justify-center mr-3">
+                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                      </svg>
+                    </div>
+                    Fotoğraf Galerisi
+                  </h3>
+                  <PhotoGallery images={tour.gallery} title={tour.title} />
+                </div>
+              )}
 
               {/* Tour Features */}
               <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.5s' }}>
@@ -201,13 +324,10 @@ const TourDetailPage = () => {
                     </div>
                     <div>
                       <div className="font-semibold text-[color-text-dark]">
-                        {tour.pricePerPerson ? 'Kişi Başı Fiyat' : 'Durum'}
+                        {getPriceLabel(tour)}
                       </div>
                       <div className="text-[color-text-light]">
-                        {tour.pricePerPerson 
-                          ? `${tour.pricePerPerson.toLocaleString('tr-TR')} ₺`
-                          : (tour.priceStatus || 'Beklemede Kalın')
-                        }
+                        {formatTourPrice(tour)}
                       </div>
                     </div>
                   </div>
@@ -225,9 +345,33 @@ const TourDetailPage = () => {
                   </div>
                 </div>
               </div>
+
+              {/* Highlights - Öne Çıkan Özellikler */}
+              {tour.highlights && (
+                <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.55s' }}>
+                  <h3 className="text-xl font-bold mb-6 text-[color-text-dark] flex items-center">
+                    <div className="w-6 h-6 bg-yellow-500 rounded-lg flex items-center justify-center mr-3">
+                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                      </svg>
+                    </div>
+                    Öne Çıkan Özellikler
+                  </h3>
+                  <ul className="space-y-3">
+                    {tour.highlights.map((highlight, index) => (
+                      <li key={index} className="flex items-start">
+                        <svg className="w-5 h-5 text-yellow-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                        </svg>
+                        <span className="text-[color-text-light]">{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
               
-              {/* Tur Planı - Sadece Mısır Turu için detaylar */}
-              {tour.slug === 'misir-turu-ozel' && tour.itinerary ? (
+              {/* Tur Planı - Detaylı itinerary varsa göster */}
+              {tour.itinerary ? (
                 <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.6s' }}>
                   <h3 className="text-xl font-bold mb-6 text-[color-text-dark] flex items-center">
                     <div className="w-6 h-6 bg-[color-primary] rounded-lg flex items-center justify-center mr-3">
@@ -295,8 +439,8 @@ const TourDetailPage = () => {
                 </div>
               )}
               
-              {/* Dahil Olan/Olmayan Hizmetler - Sadece Mısır Turu için */}
-              {tour.slug === 'misir-turu-ozel' && (tour.included || tour.notIncluded) && (
+              {/* Dahil Olan/Olmayan Hizmetler - Detaylı turlar için */}
+              {(tour.included || tour.notIncluded) && (
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {/* Dahil Olan Hizmetler */}
                   {tour.included && (
@@ -391,13 +535,10 @@ const TourDetailPage = () => {
                   )}
                   <div className="flex items-center justify-between border-t pt-4">
                     <span className="text-[color-text-light]">
-                      {tour.pricePerPerson ? 'Kişi Başı:' : 'Durum:'}
+                      {getPriceLabel(tour)}:
                     </span>
                     <span className="font-bold text-lg text-[color-primary]">
-                      {tour.pricePerPerson 
-                        ? `${tour.pricePerPerson.toLocaleString('tr-TR')} ₺`
-                        : (tour.priceStatus || 'Beklemede Kalın')
-                      }
+                      {formatTourPrice(tour)}
                     </span>
                   </div>
                 </div>
@@ -424,10 +565,7 @@ const TourDetailPage = () => {
                       </Link>
                       <div className="absolute top-4 right-4">
                         <div className="bg-[color-secondary]/90 backdrop-blur-sm text-[color-primary] font-bold px-3 py-1 rounded-full border border-[color-secondary]">
-                          {relatedTour.pricePerPerson 
-                            ? `${relatedTour.pricePerPerson.toLocaleString('tr-TR')} ₺`
-                            : (relatedTour.priceStatus || 'Beklemede Kalın')
-                          }
+                          {formatTourPrice(relatedTour)}
                         </div>
                       </div>
                     </div>

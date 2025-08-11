@@ -5,7 +5,7 @@ import HomePage from './pages/home-page';
 import ToursPage from './pages/tours-page';
 import DomesticToursPage from './pages/domestic-tours-page';
 import InternationalToursPage from './pages/international-tours-page';
-import TourDetailPage from './pages/tour-detail-page';
+import TourDetailPage from './pages/tour-detail-page-new';
 import ContactPage from './pages/contact-page';
 import SurveyPage from './pages/survey-page';
 import RequestOfferPage from './pages/request-offer-page';

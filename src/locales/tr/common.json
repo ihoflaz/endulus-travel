@@ -35,6 +35,9 @@
     "servicesDescription": "Kişiselleştirilmiş seyahat deneyiminiz için özel olarak tasarlanmış hizmetlerimiz.",
     "featuredToursTitle": "Öne Çıkan Turlarımız",
     "featuredToursDescription": "En popüler ve en çok tercih edilen tur paketlerimizi keşfedin.",
+    "upcoming_tours": "Yaklaşan Turlarımız",
+    "upcoming_tours_description": "Özel indirimli turlarımızı kaçırmayın! Sınırlı süre ve kontenjanla.",
+    "limited_time_offers": "⏰ Sınırlı süre teklifleri - Acele edin!",
     "ctaTitle": "Hayalinizdeki tatile bir adım daha yaklaşın",
     "ctaDescription": "Size özel tatil planınız için ön anketi doldurun veya hemen teklif alın."
   },
@@ -66,6 +69,14 @@
     "details": "Detayları Gör",
     "allServices": "Tüm Hizmetlerimiz",
     "allTours": "Tüm Turları Gör"
+  },
+  "common": {
+    "view_details": "Detayları Gör",
+    "view_all_tours": "Tüm Turları Gör"
+  },
+  "tours": {
+    "special_offer": "Özel Teklif",
+    "highlights": "Öne Çıkanlar"
   },
   "accessibility": {
     "previousSlide": "Önceki slayta git",

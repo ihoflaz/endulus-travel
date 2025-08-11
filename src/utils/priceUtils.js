@@ -3,7 +3,7 @@
  */
 
 // Para birimi tercihi (varsayılan: orijinal para birimi)
-const CURRENCY_PREFERENCE = 'original'; // 'original', 'tl', 'usd' seçenekleri
+let CURRENCY_PREFERENCE = 'original'; // 'original', 'tl', 'usd' seçenekleri
 
 // Güncel döviz kurları (örnek)
 const EXCHANGE_RATES = {
@@ -141,4 +141,38 @@ export const getNumericPrice = (tour) => {
   }
 
   return null;
+};
+
+/**
+ * Tur fiyatını kampanya ile birlikte formatlayarak görüntüler
+ * @param {Object} tour - Tur bilgileri
+ * @returns {Object} Formatlanmış fiyat bilgileri (currentPrice, originalPrice, hasDiscount)
+ */
+export const formatTourPriceWithDiscount = (tour) => {
+  const result = {
+    currentPrice: null,
+    originalPrice: null,
+    hasDiscount: false,
+    currency: null
+  };
+
+  // Kampanya fiyatı kontrolü
+  if (tour.specialOffer && tour.pricePerPerson && tour.originalPrice && tour.currency) {
+    result.currentPrice = `${tour.pricePerPerson} ${tour.currency}`;
+    result.originalPrice = `${tour.originalPrice} ${tour.currency}`;
+    result.hasDiscount = true;
+    result.currency = tour.currency;
+  } else if (tour.originalPrice && tour.currency) {
+    result.currentPrice = `${tour.originalPrice} ${tour.currency}`;
+    result.currency = tour.currency;
+  } else if (tour.pricePerPerson) {
+    result.currentPrice = `${tour.pricePerPerson.toLocaleString('tr-TR')} ₺`;
+    result.currency = 'TRY';
+  } else if (tour.priceStatus) {
+    result.currentPrice = tour.priceStatus;
+  } else {
+    result.currentPrice = 'Fiyat Bilgisi Yok';
+  }
+
+  return result;
 };

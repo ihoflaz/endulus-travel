@@ -29,7 +29,10 @@
     "heroSubtitle": "We are here for personalized tour experiences that respect your sensitivities.",
     "planTour": "Plan Tour",
     "exploreRoutes": "Explore Routes",
-    "getOffer": "Get Quote"
+    "getOffer": "Get Quote",
+    "upcoming_tours": "Our Upcoming Tours",
+    "upcoming_tours_description": "Don't miss our special discounted tours! Limited time and capacity.",
+    "limited_time_offers": "⏰ Limited time offers - Hurry up!"
   },
   "error": {
     "404": "Page Not Found",
@@ -51,5 +54,13 @@
     "teamBio": "Experienced tourism expert, specialized in personalized tour planning.",
     "ctaMessage": "Let's plan your custom tour experience together",
     "ctaButton": "Get a Quote"
+  },
+  "common": {
+    "view_details": "View Details",
+    "view_all_tours": "View All Tours"
+  },
+  "tours": {
+    "special_offer": "Special Offer",
+    "highlights": "Highlights"
   }
 } 

@@ -5,8 +5,8 @@
       "title": "Her Şey Dahil Mısır Turu",
       "slug": "misir-turu-ozel",
       "description": "29 Ağustos-5 Eylül tarihleri arasında Nil'de tekne turu, safari turu ve Kızıldeniz'de dalış dahil özel Mısır deneyimi. VIP kalitesinde ekonomik fiyatlarla!",
-      "pricePerPerson": 35000,
-      "originalPrice": 1199,
+      "pricePerPerson": 1199,
+      "originalPrice": 1299,
       "currency": "USD",
       "groupSize": "14 kişi",
       "category": "luxury",
@@ -138,12 +138,13 @@
     },
     {
       "id": "dubai-turu",
-      "title": "DUBAİ TURU",
+      "title": "5 Gün 4 Gece Butik Dubai Tur Programı",
       "slug": "dubai-turu",
-      "description": "Çölün kalbinde ihtişamlı bir serüvene hazır olun. Dubai sizi bekliyor.",
-      "pricePerPerson": null,
-      "priceStatus": "Beklemede Kalın",
-      "groupSize": "8-15",
+      "description": "10-15 kişilik butik gruplarla Dubai'nin ihtişamını keşfedin. Çöl safari, Burj Khalifa, Gelecek Müzesi ve daha fazlası ile unutulmaz bir deneyim yaşayın.",
+      "pricePerPerson": 999,
+      "originalPrice": 1199,
+      "currency": "EUR",
+      "groupSize": "10-15 kişi",
       "category": "luxury",
       "type": "international",
       "image": "/images/tours/dubai.jpg",
@@ -153,7 +154,129 @@
         "/images/tours/dubai3.jpg",
         "/images/tours/dubai4.jpg",
         "/images/tours/dubai5.jpg"
-      ]
+      ],
+      "specialOffer": true,
+      "dates": "13-19 Aralık 2025",
+      "duration": "5 gün / 4 gece",
+      "highlights": [
+        "Hampton by Hilton Dubai 3* otel konaklaması (kahvaltı dahil)",
+        "Sheikh Zayed Camii ve Abu Dabi şehir turu",
+        "Qasr Al Watan ve Louvre Abu Dhabi girişleri",
+        "Çöl Safari turu ve geleneksel akşam yemeği",
+        "Dubai Gelecek Müzesi girişi",
+        "Burj Khalifa 123. kat çıkışı",
+        "Marina'da akşam yemekli tekne turu",
+        "Global Village ve Miracle Garden ziyaretleri",
+        "Türkçe rehberlik hizmeti",
+        "Tüm transferler ve vize işlemleri dahil"
+      ],
+      "included": [
+        "Gidiş-dönüş uçak biletleri (İstanbul - Abu Dabi/Sharjah)",
+        "4 gece Hampton by Hilton Dubai 3* otel konaklaması (kahvaltı dahil)",
+        "Abu Dabi şehir turu (Sheikh Zayed Camii, Qasr Al Watan, Louvre Abu Dhabi, Corniche)",
+        "Tüm şehir içi ve şehirlerarası transferler",
+        "Çöl Safari turu (4x4 araçlar, deve turu, geleneksel gösteriler)",
+        "Çöl kampında akşam yemeği",
+        "Dubai Frame dış çekim",
+        "Gelecek Müzesi girişi",
+        "Eski Dubai çarşıları ziyareti",
+        "Palm Jumeirah ve Atlantis dış çekim",
+        "Madinat Jumeirah turu",
+        "Marina'da akşam yemekli tekne turu",
+        "Dubai Mall gezisi",
+        "Burj Khalifa 123. kat çıkışı",
+        "Miracle Garden girişi",
+        "Global Village girişi",
+        "Dubai Mall su ve ışık gösterisi",
+        "Dubai Outlet Mall gezisi",
+        "Türkçe rehberlik hizmeti",
+        "Vize işlemleri"
+      ],
+      "notIncluded": [
+        "Şahsi harcamalar",
+        "Öğle yemekleri",
+        "İçecekler (çöl safari ve tekne turu dışında)",
+        "Ekstra aktiviteler",
+        "Bahşişler",
+        "Seyahat sigortası (isteğe bağlı)"
+      ],
+      "itinerary": [
+        {
+          "day": "1. Gün",
+          "date": "13 Aralık (Cuma)",
+          "title": "Abu Dabi Varış ve Şehir Turu",
+          "description": "Abu Dabi Havalimanı'nda karşılama ve şehir turu. Ardından Dubai'ye transfer.",
+          "activities": [
+            "Abu Dabi Havalimanı'nda karşılama",
+            "Sheikh Zayed Camii ziyareti",
+            "Qasr Al Watan sarayı girişi",
+            "Louvre Abu Dhabi müzesi girişi",
+            "Corniche Sahili gezisi",
+            "Dubai'ye transfer",
+            "Otele yerleşme ve serbest zaman"
+          ]
+        },
+        {
+          "day": "2. Gün",
+          "date": "14 Aralık (Cumartesi)",
+          "title": "Serbest Zaman & Çöl Safari",
+          "description": "Sabah serbest zaman. Öğleden sonra çöl safari turu ve geleneksel akşam yemeği.",
+          "activities": [
+            "Otel kahvaltısı",
+            "15:00'e kadar serbest zaman",
+            "Çöl Safari turu (4x4 araçlarla)",
+            "Deve turu deneyimi",
+            "Geleneksel gösteriler",
+            "Çöl kampında akşam yemeği",
+            "Otele dönüş"
+          ]
+        },
+        {
+          "day": "3. Gün",
+          "date": "15 Aralık (Pazar)",
+          "title": "Tam Gün Dubai Turu",
+          "description": "Dubai'nin en önemli yerlerini keşfedecek tam gün şehir turu.",
+          "activities": [
+            "Otel kahvaltısı",
+            "Dubai Frame dış çekim",
+            "Gelecek Müzesi girişi",
+            "Eski Dubai çarşıları ziyareti",
+            "Palm Jumeirah ve Atlantis dış çekim",
+            "Madinat Jumeirah turu",
+            "Marina'da akşam yemekli tekne turu",
+            "Otele dönüş"
+          ]
+        },
+        {
+          "day": "4. Gün",
+          "date": "16 Aralık (Pazartesi)",
+          "title": "Dubai Mall, Burj Khalifa, Global Village",
+          "description": "Dubai'nin modern yüzü ile tanışma günü.",
+          "activities": [
+            "Otel kahvaltısı",
+            "Dubai Mall gezisi",
+            "Burj Khalifa 123. kat çıkışı",
+            "Miracle Garden ziyareti",
+            "Global Village ziyareti",
+            "Dubai Mall'da su ve ışık gösterisi",
+            "Otele dönüş"
+          ]
+        },
+        {
+          "day": "5. Gün",
+          "date": "17 Aralık (Salı)",
+          "title": "Serbest Zaman & Dönüş",
+          "description": "Son alışveriş ve İstanbul'a dönüş.",
+          "activities": [
+            "Otel kahvaltısı",
+            "Dubai Outlet Mall gezisi",
+            "Alışveriş için serbest zaman",
+            "Akşam saatlerinde havalimanına transfer",
+            "Abu Dabi/Sharjah'tan İstanbul'a dönüş uçuşu"
+          ]
+        }
+      ],
+      "whatsappMessage": "Merhaba! 13-19 Aralık 2025 tarihleri arasındaki 5 Gün 4 Gece Butik Dubai Turu (999 EUR) hakkında detaylı bilgi almak istiyorum."
     },
     {
       "id": "umre-turu",
