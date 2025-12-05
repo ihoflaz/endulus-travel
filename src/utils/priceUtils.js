@@ -64,9 +64,25 @@ export const formatTourPrice = (tour, locale = 'tr-TR', preferredCurrency = 'ori
     }
   }
 
-  // Eğer pricePerPerson varsa TL olarak göster
+  // Eğer pricePerPerson varsa
   if (tour.pricePerPerson) {
-    if (preferredCurrency === 'usd' && tour.currency !== 'USD') {
+    // Önce currency kontrolü yap
+    if (tour.currency) {
+      if (preferredCurrency === 'original' || preferredCurrency === tour.currency.toLowerCase()) {
+        if (tour.currency === 'USD') {
+          return `${tour.pricePerPerson.toLocaleString(locale)} USD`;
+        } else if (tour.currency === 'EUR') {
+          return `${tour.pricePerPerson.toLocaleString(locale)} €`;
+        }
+      } else if (preferredCurrency === 'tl') {
+        // Para birimini TL'ye çevir
+        const convertedAmount = convertCurrency(tour.pricePerPerson, tour.currency, 'TRY');
+        return `${convertedAmount.toLocaleString(locale)} ₺`;
+      }
+    }
+    
+    // Currency yoksa TL kabul et
+    if (preferredCurrency === 'usd') {
       // TL'yi USD'ye çevir
       const convertedAmount = convertCurrency(tour.pricePerPerson, 'TRY', 'USD');
       return `${convertedAmount} USD`;

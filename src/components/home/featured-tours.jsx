@@ -150,7 +150,7 @@ const FeaturedTours = () => {
                     {currentTour.campaignPrice && currentTour.originalPrice && (
                       <div className="flex items-center gap-2">
                         <span className="text-gray-500 line-through text-lg">
-                          {formatTourPrice ? formatTourPrice(currentTour.originalPrice) : `${currentTour.originalPrice}₺`}
+                          {currentTour.originalPrice.toLocaleString('tr-TR')} {currentTour.currency === 'EUR' ? '€' : currentTour.currency === 'USD' ? '$' : '₺'}
                         </span>
                         <span className="bg-red-100 text-red-700 px-2 py-1 rounded text-sm font-bold">
                           %{Math.round(((currentTour.originalPrice - currentTour.campaignPrice) / currentTour.originalPrice) * 100)} İndirim
@@ -158,10 +158,7 @@ const FeaturedTours = () => {
                       </div>
                     )}
                     <div className="text-3xl font-bold text-primary-600">
-                      {formatTourPrice 
-                        ? formatTourPrice(currentTour.campaignPrice || currentTour.price)
-                        : `${currentTour.campaignPrice || currentTour.price}₺`
-                      }
+                      {formatTourPrice(currentTour)}
                     </div>
                     <div className="text-sm text-gray-500">Kişi başı</div>
                   </div>
