@@ -174,12 +174,19 @@ export const formatTourPriceWithDiscount = (tour) => {
 
   // Kampanya fiyatı kontrolü
   if (tour.specialOffer && tour.pricePerPerson && tour.originalPrice && tour.currency) {
-    result.currentPrice = `${tour.pricePerPerson} ${tour.currency}`;
-    result.originalPrice = `${tour.originalPrice} ${tour.currency}`;
+    const currencySymbol = tour.currency === 'EUR' ? '€' : tour.currency === 'USD' ? '$' : '₺';
+    result.currentPrice = `${tour.pricePerPerson.toLocaleString('tr-TR')} ${currencySymbol}`;
+    result.originalPrice = `${tour.originalPrice.toLocaleString('tr-TR')} ${currencySymbol}`;
     result.hasDiscount = true;
     result.currency = tour.currency;
+  } else if (tour.pricePerPerson && tour.currency) {
+    // pricePerPerson + currency varsa
+    const currencySymbol = tour.currency === 'EUR' ? '€' : tour.currency === 'USD' ? '$' : '₺';
+    result.currentPrice = `${tour.pricePerPerson.toLocaleString('tr-TR')} ${currencySymbol}`;
+    result.currency = tour.currency;
   } else if (tour.originalPrice && tour.currency) {
-    result.currentPrice = `${tour.originalPrice} ${tour.currency}`;
+    const currencySymbol = tour.currency === 'EUR' ? '€' : tour.currency === 'USD' ? '$' : '₺';
+    result.currentPrice = `${tour.originalPrice.toLocaleString('tr-TR')} ${currencySymbol}`;
     result.currency = tour.currency;
   } else if (tour.pricePerPerson) {
     result.currentPrice = `${tour.pricePerPerson.toLocaleString('tr-TR')} ₺`;
