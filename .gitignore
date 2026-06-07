@@ -12,6 +12,17 @@ dist
 dist-ssr
 *.local
 
+# Secrets / env
+.env
+.env.local
+.env.*.local
+server/.env
+server/.env.local
+
+# Backend uploads (runtime, kept in Docker volume in prod)
+server/uploads/*
+!server/uploads/.gitkeep
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

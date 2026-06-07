@@ -1,0 +1,166 @@
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "5"
+
+x-restart: &default-restart
+  restart: unless-stopped
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    <<: *default-restart
+    logging: *default-logging
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-endulus}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?POSTGRES_PASSWORD must be set}
+      POSTGRES_DB: ${POSTGRES_DB:-endulus}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    # Loopback-only by default. In prod, services reach Postgres via the
+    # internal app_net and there is no need to publish the port at all.
+    # Set POSTGRES_BIND= (empty) and remove the host:container mapping to
+    # fully un-expose it.
+    ports:
+      - "${POSTGRES_BIND:-127.0.0.1}:${POSTGRES_PORT:-5432}:5432"
+    networks:
+      - app_net
+    mem_limit: 512m
+    pids_limit: 200
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "${POSTGRES_USER:-endulus}", "-d", "${POSTGRES_DB:-endulus}"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+  backend:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    image: endulus-travel-backend:latest
+    <<: *default-restart
+    logging: *default-logging
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      NODE_ENV: ${NODE_ENV:-production}
+      PORT: 4000
+      DATABASE_URL: postgresql://${POSTGRES_USER:-endulus}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB:-endulus}?schema=public
+      CORS_ORIGIN: ${CORS_ORIGIN:-http://localhost:8080}
+      JWT_ACCESS_SECRET: ${JWT_ACCESS_SECRET:?JWT_ACCESS_SECRET must be set (>=32 chars)}
+      JWT_REFRESH_SECRET: ${JWT_REFRESH_SECRET:?JWT_REFRESH_SECRET must be set (>=32 chars)}
+      JWT_ACCESS_TTL: ${JWT_ACCESS_TTL:-900}
+      JWT_REFRESH_TTL: ${JWT_REFRESH_TTL:-2592000}
+      # COOKIE_SECRET is optional; backend falls back to JWT_ACCESS_SECRET.
+      COOKIE_SECRET: ${COOKIE_SECRET:-}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:?ADMIN_EMAIL must be set}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?ADMIN_PASSWORD must be set}
+      ADMIN_NAME: ${ADMIN_NAME:-Admin}
+      BCRYPT_ROUNDS: ${BCRYPT_ROUNDS:-12}
+      TRUST_PROXY: ${TRUST_PROXY:-1}
+      # Default true so cold-boot creates the admin user. Disable AFTER first
+      # successful boot (set RUN_SEED=false in .env) to avoid restoring rows
+      # an admin intentionally deleted.
+      RUN_SEED: ${RUN_SEED:-true}
+      EXPOSE_ERRORS: ${EXPOSE_ERRORS:-false}
+      UPLOAD_DIR: /app/uploads
+      PUBLIC_UPLOAD_BASE: /uploads
+      MAX_UPLOAD_BYTES: ${MAX_UPLOAD_BYTES:-10485760}
+    volumes:
+      - uploads_data:/app/uploads
+      # Optional seed source. Only needed on first boot OR when RUN_SEED=true.
+      # In a pull-only deploy (image without repo), remove this mount and set
+      # RUN_SEED=false.
+      - ./public/data:/seed-data:ro
+    ports:
+      - "${BACKEND_BIND:-127.0.0.1}:${BACKEND_PORT:-4000}:4000"
+    networks:
+      - app_net
+    mem_limit: 512m
+    pids_limit: 200
+    healthcheck:
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:4000/api/health/full"]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 90s
+
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_API_BASE_URL: ${VITE_API_BASE_URL:-/api}
+    image: endulus-travel-frontend:latest
+    <<: *default-restart
+    logging: *default-logging
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "${FRONTEND_BIND:-127.0.0.1}:${FRONTEND_PORT:-8080}:8080"
+    networks:
+      - app_net
+    mem_limit: 128m
+    pids_limit: 100
+    healthcheck:
+      # Hits /api/health via the nginx → backend proxy so a backend outage
+      # flips the frontend container unhealthy too.
+      test: ["CMD", "wget", "-q", "--spider", "http://127.0.0.1:8080/api/health"]
+      interval: 15s
+      timeout: 5s
+      retries: 4
+      start_period: 30s
+
+  # Periodic Postgres backup. Activate via `--profile backup`.
+  postgres-backup:
+    image: postgres:16-alpine
+    <<: *default-restart
+    logging: *default-logging
+    profiles: ["backup"]
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PGUSER: ${POSTGRES_USER:-endulus}
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+      PGHOST: postgres
+      PGDATABASE: ${POSTGRES_DB:-endulus}
+      RETENTION_DAYS: ${BACKUP_RETENTION:-14}
+    volumes:
+      - backup_data:/backups
+    networks:
+      - app_net
+    mem_limit: 256m
+    entrypoint:
+      - /bin/sh
+      - -c
+      - |
+        echo "[backup] starting daily loop, retention=$${RETENTION_DAYS}d"
+        while true; do
+          ts=$$(date +%Y%m%d-%H%M%S)
+          out="/backups/endulus-$$ts.dump"
+          echo "[backup] dumping (custom format) to $$out"
+          # -Fc enables parallel restore via `pg_restore -d endulus -j 4 $$out`
+          pg_dump --no-owner --no-privileges -Fc -f "$$out" \
+            && echo "[backup] OK $$(du -h "$$out" | cut -f1)" \
+            || echo "[backup] FAILED"
+          find /backups -name 'endulus-*.dump' -mtime +$${RETENTION_DAYS} -delete
+          sleep 86400
+        done
+
+networks:
+  app_net:
+    driver: bridge
+    # We rely on per-service `ports:` bindings (loopback by default) for the
+    # external surface; this network only carries inter-service traffic.
+
+volumes:
+  postgres_data:
+    name: endulus_postgres_data
+  uploads_data:
+    name: endulus_uploads_data
+  backup_data:
+    name: endulus_backup_data

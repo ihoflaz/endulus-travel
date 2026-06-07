@@ -1,0 +1,35 @@
+# Dev overlay: hot-reload backend, mount sources, expose Vite dev server.
+# Run: docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+
+services:
+  backend:
+    build:
+      target: deps-all
+    environment:
+      NODE_ENV: development
+      EXPOSE_ERRORS: "true"
+    # Regenerate Prisma client after bind-mounting source (image's client gets
+    # shadowed by the host volume), then apply migrations, optionally seed,
+    # and start with --watch for HMR.
+    command: sh -c "./node_modules/.bin/prisma generate && ./node_modules/.bin/prisma migrate deploy && ( [ \"$$RUN_SEED\" = \"false\" ] || node prisma/seed.js ) && node --watch src/index.js"
+    volumes:
+      - ./server/src:/app/src
+      - ./server/prisma:/app/prisma
+      - ./server/scripts:/app/scripts
+      - uploads_data:/app/uploads
+      - ./public/data:/seed-data:ro
+
+  frontend:
+    image: node:22-alpine
+    working_dir: /app
+    environment:
+      NODE_ENV: development
+      VITE_API_BASE_URL: http://localhost:4000/api
+    command: sh -c "npm install --no-audit --no-fund && npm run dev -- --host 0.0.0.0"
+    volumes:
+      - ./:/app
+      - /app/node_modules
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
