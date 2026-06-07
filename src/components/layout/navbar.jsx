@@ -124,7 +124,7 @@ const Navbar = () => {
                   >
                     <span className="relative z-10">{t(item.key)}</span>
                     {!isActive(item.path) && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-[color-primary]/10 to-blue-600/10 rounded-xl scale-0 group-hover:scale-100 transition-transform duration-300 ease-out"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-[color:var(--color-primary)]/10 to-blue-600/10 rounded-xl scale-0 group-hover:scale-100 transition-transform duration-300 ease-out"></div>
                     )}
                   </Link>
                 ))}
@@ -156,7 +156,7 @@ const Navbar = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
                     {!(isActive('/turlar') || isActive('/yurt-ici-turlar') || isActive('/yurt-disi-turlar')) && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-[color-primary]/10 to-blue-600/10 rounded-xl scale-0 group-hover:scale-100 transition-transform duration-300 ease-out"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-[color:var(--color-primary)]/10 to-blue-600/10 rounded-xl scale-0 group-hover:scale-100 transition-transform duration-300 ease-out"></div>
                     )}
                   </button>
 
@@ -171,9 +171,9 @@ const Navbar = () => {
                     <div className="py-2">
                       <Link
                         to="/yurt-disi-turlar"
-                        className="flex items-center px-4 py-3 text-gray-700 hover:bg-[color-primary]/10 hover:text-[color-primary] transition-all duration-200 group"
+                        className="flex items-center px-4 py-3 text-gray-700 hover:bg-[color:var(--color-primary)]/10 hover:text-[color:var(--color-primary)] transition-all duration-200 group"
                       >
-                        <svg className="w-5 h-5 mr-3 text-[color-primary]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5 mr-3 text-[color:var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <div>
@@ -186,9 +186,9 @@ const Navbar = () => {
                       </Link>
                       <Link
                         to="/yurt-ici-turlar"
-                        className="flex items-center px-4 py-3 text-gray-700 hover:bg-[color-primary]/10 hover:text-[color-primary] transition-all duration-200 group"
+                        className="flex items-center px-4 py-3 text-gray-700 hover:bg-[color:var(--color-primary)]/10 hover:text-[color:var(--color-primary)] transition-all duration-200 group"
                       >
-                        <svg className="w-5 h-5 mr-3 text-[color-primary]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <svg className="w-5 h-5 mr-3 text-[color:var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
@@ -225,7 +225,7 @@ const Navbar = () => {
                   >
                     <span className="relative z-10">{t(item.key)}</span>
                     {!isActive(item.path) && (
-                      <div className="absolute inset-0 bg-gradient-to-r from-[color-primary]/10 to-blue-600/10 rounded-xl scale-0 group-hover:scale-100 transition-transform duration-300 ease-out"></div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-[color:var(--color-primary)]/10 to-blue-600/10 rounded-xl scale-0 group-hover:scale-100 transition-transform duration-300 ease-out"></div>
                     )}
             </Link>
                 ))}
@@ -237,8 +237,8 @@ const Navbar = () => {
                 onClick={() => changeLanguage('tr')}
                       className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 ease-out hover:scale-105 ${
                         i18n.language === 'tr' 
-                          ? 'bg-gradient-to-r from-[color-primary] to-blue-600 text-white shadow-lg' 
-                          : 'text-gray-600 hover:text-[color-primary] hover:bg-white/80'
+                          ? 'bg-gradient-to-r from-[color:var(--color-primary)] to-blue-600 text-white shadow-lg' 
+                          : 'text-gray-600 hover:text-[color:var(--color-primary)] hover:bg-white/80'
                       }`}
                       aria-label="Türkçe dil seçeneği"
               >
@@ -248,8 +248,8 @@ const Navbar = () => {
                 onClick={() => changeLanguage('en')}
                       className={`px-4 py-2 rounded-lg text-sm font-semibold transition-all duration-300 ease-out hover:scale-105 ${
                         i18n.language === 'en' 
-                          ? 'bg-gradient-to-r from-[color-primary] to-blue-600 text-white shadow-lg' 
-                          : 'text-gray-600 hover:text-[color-primary] hover:bg-white/80'
+                          ? 'bg-gradient-to-r from-[color:var(--color-primary)] to-blue-600 text-white shadow-lg' 
+                          : 'text-gray-600 hover:text-[color:var(--color-primary)] hover:bg-white/80'
                       }`}
                       aria-label="English language option"
               >
@@ -267,8 +267,8 @@ const Navbar = () => {
                 onClick={() => changeLanguage('tr')}
                     className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-200 hover:scale-105 ${
                       i18n.language === 'tr' 
-                        ? 'bg-gradient-to-r from-[color-primary] to-blue-600 text-white shadow-md' 
-                        : 'text-gray-600 hover:text-[color-primary]'
+                        ? 'bg-gradient-to-r from-[color:var(--color-primary)] to-blue-600 text-white shadow-md' 
+                        : 'text-gray-600 hover:text-[color:var(--color-primary)]'
                     }`}
               >
                 TR
@@ -277,8 +277,8 @@ const Navbar = () => {
                 onClick={() => changeLanguage('en')}
                     className={`px-3 py-1.5 rounded-md text-xs font-semibold transition-all duration-200 hover:scale-105 ${
                       i18n.language === 'en' 
-                        ? 'bg-gradient-to-r from-[color-primary] to-blue-600 text-white shadow-md' 
-                        : 'text-gray-600 hover:text-[color-primary]'
+                        ? 'bg-gradient-to-r from-[color:var(--color-primary)] to-blue-600 text-white shadow-md' 
+                        : 'text-gray-600 hover:text-[color:var(--color-primary)]'
                     }`}
               >
                 EN
@@ -288,7 +288,7 @@ const Navbar = () => {
                 {/* Premium Hamburger Button */}
                 <button 
                   onClick={toggleMobileMenu} 
-                  className="relative p-3 rounded-xl bg-white/60 backdrop-blur-sm border border-white/30 text-gray-700 hover:text-[color-primary] hover:bg-white/80 focus:outline-none focus:ring-2 focus:ring-[color-primary]/50 transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg group"
+                  className="relative p-3 rounded-xl bg-white/60 backdrop-blur-sm border border-white/30 text-gray-700 hover:text-[color:var(--color-primary)] hover:bg-white/80 focus:outline-none focus:ring-2 focus:ring-[color:var(--color-primary)]/50 transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg group"
                   aria-expanded={mobileMenuOpen}
                   aria-controls="mobile-menu"
                   aria-label="Menüyü aç/kapat"
@@ -308,7 +308,7 @@ const Navbar = () => {
                     />
                   </svg>
                   {/* Button glow effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-[color-primary]/10 to-blue-600/10 rounded-xl scale-0 group-hover:scale-100 transition-transform duration-300 ease-out -z-10"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-[color:var(--color-primary)]/10 to-blue-600/10 rounded-xl scale-0 group-hover:scale-100 transition-transform duration-300 ease-out -z-10"></div>
                 </button>
               </div>
             </div>
@@ -327,7 +327,7 @@ const Navbar = () => {
           <div className="relative backdrop-blur-xl bg-white/95 border-t border-white/20 shadow-2xl">
             {/* Mobile menu background effects */}
             <div className="absolute inset-0 bg-gradient-to-b from-blue-50/30 to-white/30"></div>
-            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[color-primary] to-blue-600"></div>
+            <div className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-[color:var(--color-primary)] to-blue-600"></div>
             
             <div className="relative z-10 px-4 sm:px-6 lg:px-8">
               <div className="max-w-7xl mx-auto">
@@ -340,8 +340,8 @@ const Navbar = () => {
                       to={item.path} 
                       className={`block px-6 py-4 rounded-xl font-medium transition-all duration-300 ease-out hover:scale-[1.02] hover:translate-x-2 group relative ${
                         isActive(item.path)
-                          ? 'bg-gradient-to-r from-[color-primary] to-blue-600 text-white shadow-lg'
-                          : 'text-gray-700 hover:bg-white/80 hover:text-[color-primary] hover:shadow-md'
+                          ? 'bg-gradient-to-r from-[color:var(--color-primary)] to-blue-600 text-white shadow-lg'
+                          : 'text-gray-700 hover:bg-white/80 hover:text-[color:var(--color-primary)] hover:shadow-md'
                       }`}
                       style={{ animationDelay: `${index * 0.05}s` }}
                       onClick={handleMobileLinkClick}
@@ -353,7 +353,7 @@ const Navbar = () => {
                         </svg>
                       </span>
                       {!isActive(item.path) && (
-                        <div className="absolute inset-0 bg-gradient-to-r from-[color-primary]/10 to-blue-600/10 rounded-xl scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-[color:var(--color-primary)]/10 to-blue-600/10 rounded-xl scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></div>
                       )}
                     </Link>
                   ))}
@@ -364,11 +364,11 @@ const Navbar = () => {
                     <div className="ml-4 space-y-2">
                       <Link
                         to="/yurt-disi-turlar"
-                        className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-white/80 hover:text-[color-primary] transition-all duration-200 group"
+                        className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-white/80 hover:text-[color:var(--color-primary)] transition-all duration-200 group"
                         onClick={handleMobileLinkClick}
                       >
                         <span className="flex items-center">
-                          <svg className="w-4 h-4 mr-2 text-[color-primary]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 mr-2 text-[color:var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
                           Yurt Dışı Turlar
@@ -379,11 +379,11 @@ const Navbar = () => {
                       </Link>
                       <Link
                         to="/yurt-ici-turlar"
-                        className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-white/80 hover:text-[color-primary] transition-all duration-200 group"
+                        className="block px-4 py-3 rounded-lg text-gray-700 hover:bg-white/80 hover:text-[color:var(--color-primary)] transition-all duration-200 group"
                         onClick={handleMobileLinkClick}
                       >
                         <span className="flex items-center">
-                          <svg className="w-4 h-4 mr-2 text-[color-primary]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg className="w-4 h-4 mr-2 text-[color:var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                           </svg>
@@ -406,8 +406,8 @@ const Navbar = () => {
                       to={item.path} 
                       className={`block px-6 py-4 rounded-xl font-medium transition-all duration-300 ease-out hover:scale-[1.02] hover:translate-x-2 group relative ${
                         isActive(item.path)
-                          ? 'bg-gradient-to-r from-[color-primary] to-blue-600 text-white shadow-lg'
-                          : 'text-gray-700 hover:bg-white/80 hover:text-[color-primary] hover:shadow-md'
+                          ? 'bg-gradient-to-r from-[color:var(--color-primary)] to-blue-600 text-white shadow-lg'
+                          : 'text-gray-700 hover:bg-white/80 hover:text-[color:var(--color-primary)] hover:shadow-md'
                       }`}
                       style={{ animationDelay: `${(index + 5) * 0.05}s` }}
                       onClick={handleMobileLinkClick}
@@ -419,7 +419,7 @@ const Navbar = () => {
                         </svg>
                       </span>
                       {!isActive(item.path) && (
-                        <div className="absolute inset-0 bg-gradient-to-r from-[color-primary]/10 to-blue-600/10 rounded-xl scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-[color:var(--color-primary)]/10 to-blue-600/10 rounded-xl scale-x-0 group-hover:scale-x-100 transition-transform duration-300 ease-out origin-left"></div>
                       )}
                     </Link>
                   ))}

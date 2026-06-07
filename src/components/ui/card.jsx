@@ -38,8 +38,8 @@ const Card = ({
 
   // Temel sınıflar
   const cardClasses = `
-    bg-[color-background] 
-    ${bordered ? 'border border-[color-border]' : ''} 
+    bg-[color:var(--color-background)] 
+    ${bordered ? 'border border-[color:var(--color-border)]' : ''} 
     ${shadowClasses[shadow] || shadowClasses.md} 
     ${roundedClasses[rounded] || roundedClasses.md}
     overflow-hidden
@@ -67,10 +67,10 @@ const Card = ({
         {(title || subtitle) && (
           <div className="mb-3">
             {title && (
-              <h3 className="text-lg font-semibold text-[color-text-dark]">{title}</h3>
+              <h3 className="text-lg font-semibold text-[color:var(--color-text-dark)]">{title}</h3>
             )}
             {subtitle && (
-              <p className="text-sm text-[color-text-light] mt-1">{subtitle}</p>
+              <p className="text-sm text-[color:var(--color-text-light)] mt-1">{subtitle}</p>
             )}
           </div>
         )}
@@ -81,7 +81,7 @@ const Card = ({
       
       {/* Kart Alt Bölümü (Footer) */}
       {footer && (
-        <div className="px-4 py-3 bg-[color-background-alt] border-t border-[color-border]">
+        <div className="px-4 py-3 bg-[color:var(--color-background-alt)] border-t border-[color:var(--color-border)]">
           {footer}
         </div>
       )}
@@ -119,7 +119,7 @@ const Card = ({
 
 // Alt bileşenler
 Card.Header = ({ children, className = '', ...props }) => (
-  <div className={`p-4 border-b border-[color-border] ${className}`} {...props}>
+  <div className={`p-4 border-b border-[color:var(--color-border)] ${className}`} {...props}>
     {children}
   </div>
 );
@@ -131,7 +131,7 @@ Card.Body = ({ children, className = '', ...props }) => (
 );
 
 Card.Footer = ({ children, className = '', ...props }) => (
-  <div className={`px-4 py-3 bg-[color-background-alt] border-t border-[color-border] ${className}`} {...props}>
+  <div className={`px-4 py-3 bg-[color:var(--color-background-alt)] border-t border-[color:var(--color-border)] ${className}`} {...props}>
     {children}
   </div>
 );

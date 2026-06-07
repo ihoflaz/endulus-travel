@@ -40,9 +40,9 @@ const DomesticToursPage = () => {
         {/* Dark Overlay for better text readability */}
         <div className="absolute inset-0 bg-black/40"></div>
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[color-primary]/30 via-blue-600/20 to-[color-primary]/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-primary)]/30 via-blue-600/20 to-[color:var(--color-primary)]/30"></div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-32 -translate-y-32"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color-secondary]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color:var(--color-secondary)]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
         
         <div className="relative z-10 py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -52,13 +52,13 @@ const DomesticToursPage = () => {
                 Ana Sayfa
               </Link>
               <span className="text-white/60 mx-2">&gt;</span>
-              <span className="text-[color-secondary]">Yurt İçi Turlar</span>
+              <span className="text-[color:var(--color-secondary)]">Yurt İçi Turlar</span>
             </div>
 
             {/* Hero Content */}
             <div className="text-center text-white max-w-5xl mx-auto">
               <div className="mb-6 animate-fade-in">
-                <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color-secondary] text-sm font-semibold rounded-full border border-white/30">
+                <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color:var(--color-secondary)] text-sm font-semibold rounded-full border border-white/30">
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M3 4a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
@@ -90,43 +90,43 @@ const DomesticToursPage = () => {
         <div className="relative z-10 max-w-7xl mx-auto px-4 md:px-8">
           <div className="text-center py-16 animate-fade-in">
             <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-12 border border-white/60 inline-block max-w-2xl mx-auto">
-              <div className="w-24 h-24 bg-gradient-to-br from-[color-primary] to-blue-600 rounded-full flex items-center justify-center mx-auto mb-8 animate-pulse">
+              <div className="w-24 h-24 bg-gradient-to-br from-[color:var(--color-primary)] to-blue-600 rounded-full flex items-center justify-center mx-auto mb-8 animate-pulse">
                 <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
               </div>
-              <h2 className="text-3xl md:text-4xl font-bold text-[color-text-dark] mb-6">
+              <h2 className="text-3xl md:text-4xl font-bold text-[color:var(--color-text-dark)] mb-6">
                 Yurt İçi Turlarımız Yakında!
               </h2>
-              <p className="text-xl text-[color-text-light] mb-8 leading-relaxed">
+              <p className="text-xl text-[color:var(--color-text-light)] mb-8 leading-relaxed">
                 Türkiye'nin en güzel destinasyonlarını kapsayan özel tur paketlerimizi hazırlıyoruz. Kapadokya'nın büyülü vadilerinden Pamukkale'nin beyaz teraslarına, İstanbul'un tarihi dokusundan Akdeniz'in masmavi kıyılarına kadar birbirinden güzel rotalar sizi bekliyor.
               </p>
-              <div className="bg-gradient-to-r from-[color-primary]/10 to-blue-600/10 rounded-xl p-6 mb-8">
-                <h3 className="text-lg font-semibold text-[color-primary] mb-3">Planlanan Destinasyonlar:</h3>
+              <div className="bg-gradient-to-r from-[color:var(--color-primary)]/10 to-blue-600/10 rounded-xl p-6 mb-8">
+                <h3 className="text-lg font-semibold text-[color:var(--color-primary)] mb-3">Planlanan Destinasyonlar:</h3>
                 <div className="grid grid-cols-2 gap-2 text-sm text-gray-600">
                   <div className="flex items-center">
-                    <span className="w-2 h-2 bg-[color-secondary] rounded-full mr-2"></span>
+                    <span className="w-2 h-2 bg-[color:var(--color-secondary)] rounded-full mr-2"></span>
                     Kapadokya
                   </div>
                   <div className="flex items-center">
-                    <span className="w-2 h-2 bg-[color-secondary] rounded-full mr-2"></span>
+                    <span className="w-2 h-2 bg-[color:var(--color-secondary)] rounded-full mr-2"></span>
                     Pamukkale
                   </div>
                   <div className="flex items-center">
-                    <span className="w-2 h-2 bg-[color-secondary] rounded-full mr-2"></span>
+                    <span className="w-2 h-2 bg-[color:var(--color-secondary)] rounded-full mr-2"></span>
                     Antalya
                   </div>
                   <div className="flex items-center">
-                    <span className="w-2 h-2 bg-[color-secondary] rounded-full mr-2"></span>
+                    <span className="w-2 h-2 bg-[color:var(--color-secondary)] rounded-full mr-2"></span>
                     İstanbul
                   </div>
                   <div className="flex items-center">
-                    <span className="w-2 h-2 bg-[color-secondary] rounded-full mr-2"></span>
+                    <span className="w-2 h-2 bg-[color:var(--color-secondary)] rounded-full mr-2"></span>
                     Trabzon
                   </div>
                   <div className="flex items-center">
-                    <span className="w-2 h-2 bg-[color-secondary] rounded-full mr-2"></span>
+                    <span className="w-2 h-2 bg-[color:var(--color-secondary)] rounded-full mr-2"></span>
                     Rize
                   </div>
                 </div>
@@ -142,17 +142,17 @@ const DomesticToursPage = () => {
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/60 shadow-xl">
               <div className="max-w-3xl mx-auto">
                 {/* Başlık */}
-                <h2 className="text-3xl md:text-4xl font-bold text-[color-text-dark] mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-[color:var(--color-text-dark)] mb-4">
                   Size Özel Yurt İçi Tur Planlaması
                 </h2>
                 
                 {/* Alt Başlık */}
-                <p className="text-xl text-[color-text-light] mb-6">
+                <p className="text-xl text-[color:var(--color-text-light)] mb-6">
                   İhtiyacınıza Özel Çözümler
                 </p>
                 
                 {/* Açıklama */}
-                <p className="text-lg text-[color-text-light] mb-8 leading-relaxed">
+                <p className="text-lg text-[color:var(--color-text-light)] mb-8 leading-relaxed">
                   Türkiye'nin hangi güzelliklerini keşfetmek istediğinizi belirtin, gelin birlikte mükemmel rotayı planlayalım
                 </p>
                 
@@ -160,7 +160,7 @@ const DomesticToursPage = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link 
                     to="/teklif-al" 
-                    className="group bg-white border-2 border-[color-primary] text-[color-primary] hover:bg-[color-primary] hover:text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center justify-center space-x-2"
+                    className="group bg-white border-2 border-[color:var(--color-primary)] text-[color:var(--color-primary)] hover:bg-[color:var(--color-primary)] hover:text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center justify-center space-x-2"
                   >
                     <span>Özel Teklif Al</span>
                     <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

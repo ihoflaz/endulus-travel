@@ -33,9 +33,9 @@ const Input = forwardRef(({
   };
   
   const variantClasses = {
-    outline: 'border-[color-border] focus:border-[color-primary] bg-[color-background]',
-    filled: 'border-transparent bg-[color-background-alt] focus:bg-[color-background] focus:border-[color-primary]',
-    flushed: 'border-t-0 border-l-0 border-r-0 rounded-none border-b-2 focus:border-[color-primary] px-0',
+    outline: 'border-[color:var(--color-border)] focus:border-[color:var(--color-primary)] bg-[color:var(--color-background)]',
+    filled: 'border-transparent bg-[color:var(--color-background-alt)] focus:bg-[color:var(--color-background)] focus:border-[color:var(--color-primary)]',
+    flushed: 'border-t-0 border-l-0 border-r-0 rounded-none border-b-2 focus:border-[color:var(--color-primary)] px-0',
   };
   
   // Temel sınıflar
@@ -53,10 +53,10 @@ const Input = forwardRef(({
     transition-medium
     focus:outline-none
     focus:ring-2
-    focus:ring-[color-primary]
+    focus:ring-[color:var(--color-primary)]
     focus:ring-opacity-50
-    ${disabled ? 'opacity-60 cursor-not-allowed bg-[color-background-alt]' : ''}
-    ${error ? 'border-[color-error] focus:border-[color-error] focus:ring-[color-error]' : ''}
+    ${disabled ? 'opacity-60 cursor-not-allowed bg-[color:var(--color-background-alt)]' : ''}
+    ${error ? 'border-[color:var(--color-error)] focus:border-[color:var(--color-error)] focus:ring-[color:var(--color-error)]' : ''}
     ${icon && iconPosition === 'left' ? 'pl-10' : ''}
     ${icon && iconPosition === 'right' ? 'pr-10' : ''}
     ${sizeClasses[size] || sizeClasses.md}
@@ -70,11 +70,11 @@ const Input = forwardRef(({
         <label
           htmlFor={id || name}
           className={`block text-sm font-medium mb-1 ${
-            error ? 'text-[color-error]' : 'text-[color-text-dark]'
+            error ? 'text-[color:var(--color-error)]' : 'text-[color:var(--color-text-dark)]'
           }`}
         >
           {label}
-          {required && <span className="text-[color-error] ml-1">*</span>}
+          {required && <span className="text-[color:var(--color-error)] ml-1">*</span>}
         </label>
       )}
       
@@ -82,7 +82,7 @@ const Input = forwardRef(({
       <div className="relative">
         {/* Sol İkon */}
         {icon && iconPosition === 'left' && (
-          <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[color-text-light]">
+          <div className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[color:var(--color-text-light)]">
             {icon}
           </div>
         )}
@@ -111,7 +111,7 @@ const Input = forwardRef(({
         
         {/* Sağ İkon */}
         {icon && iconPosition === 'right' && (
-          <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[color-text-light]">
+          <div className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[color:var(--color-text-light)]">
             {icon}
           </div>
         )}
@@ -121,7 +121,7 @@ const Input = forwardRef(({
       {(error || helperText) && (
         <div
           id={`${id || name}-helper-text`}
-          className={`mt-1 text-sm ${error ? 'text-[color-error]' : 'text-[color-text-light]'}`}
+          className={`mt-1 text-sm ${error ? 'text-[color:var(--color-error)]' : 'text-[color:var(--color-text-light)]'}`}
         >
           {error || helperText}
         </div>

@@ -110,8 +110,8 @@ const BudgetRoutesPage = () => {
     return (
       <div className="flex justify-center items-center min-h-[60vh]">
         <div className="relative">
-          <div className="w-16 h-16 border-4 border-[color-primary]/30 border-t-[color-primary] rounded-full animate-spin"></div>
-          <div className="absolute inset-0 w-16 h-16 border-4 border-transparent border-t-[color-secondary] rounded-full animate-ping"></div>
+          <div className="w-16 h-16 border-4 border-[color:var(--color-primary)]/30 border-t-[color:var(--color-primary)] rounded-full animate-spin"></div>
+          <div className="absolute inset-0 w-16 h-16 border-4 border-transparent border-t-[color:var(--color-secondary)] rounded-full animate-ping"></div>
         </div>
       </div>
     );
@@ -141,10 +141,10 @@ const BudgetRoutesPage = () => {
     <div className="page-transition">
       {/* Premium Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[color-primary] via-blue-600 to-[color-primary]"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-primary)] via-blue-600 to-[color:var(--color-primary)]"></div>
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-32 -translate-y-32"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color-secondary]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color:var(--color-secondary)]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
         
         <div className="relative z-10 py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -154,13 +154,13 @@ const BudgetRoutesPage = () => {
                 {t('navigation.home', 'Ana Sayfa')}
               </Link>
               <span className="text-white/60 mx-2">&gt;</span>
-              <span className="text-[color-secondary]">{t('budgetRoutes.title', 'Bütçeye Göre Rotalar')}</span>
+              <span className="text-[color:var(--color-secondary)]">{t('budgetRoutes.title', 'Bütçeye Göre Rotalar')}</span>
             </div>
 
             {/* Hero Content */}
             <div className="text-center text-white max-w-4xl mx-auto">
               <div className="mb-6 animate-fade-in">
-                <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color-secondary] text-sm font-semibold rounded-full border border-white/30">
+                <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color:var(--color-secondary)] text-sm font-semibold rounded-full border border-white/30">
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                   </svg>
@@ -178,15 +178,15 @@ const BudgetRoutesPage = () => {
               {/* Stats Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-2xl font-bold text-[color-secondary] mb-2">500+</h3>
+                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">500+</h3>
                   <p className="text-white/90">Hazır Rota</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-2xl font-bold text-[color-secondary] mb-2">50+</h3>
+                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">50+</h3>
                   <p className="text-white/90">Destinasyon</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-2xl font-bold text-[color-secondary] mb-2">1000+</h3>
+                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">1000+</h3>
                   <p className="text-white/90">Mutlu Müşteri</p>
                 </div>
               </div>
@@ -204,7 +204,7 @@ const BudgetRoutesPage = () => {
             <div className="absolute top-0 right-0 w-64 h-32 bg-gradient-to-bl from-blue-100/50 to-transparent"></div>
             <div className="relative z-10 p-8">
               <div className="flex items-center mb-6">
-                <div className="w-12 h-12 bg-gradient-to-br from-[color-primary] to-blue-600 rounded-full flex items-center justify-center mr-4">
+                <div className="w-12 h-12 bg-gradient-to-br from-[color:var(--color-primary)] to-blue-600 rounded-full flex items-center justify-center mr-4">
                   <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.707A1 1 0 013 7V4z" />
                   </svg>
@@ -225,7 +225,7 @@ const BudgetRoutesPage = () => {
                     name="budget"
                     value={filters.budget}
                     onChange={handleFilterChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[color-primary] focus:border-transparent outline-none transition-all duration-300 hover:border-[color-primary]/50"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[color:var(--color-primary)] focus:border-transparent outline-none transition-all duration-300 hover:border-[color:var(--color-primary)]/50"
                   >
                     <option value="">{t('budgetRoutes.filters.any', 'Tümü')}</option>
                     <option value="10000">10.000₺</option>
@@ -247,7 +247,7 @@ const BudgetRoutesPage = () => {
                     name="persons"
                     value={filters.persons}
                     onChange={handleFilterChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[color-primary] focus:border-transparent outline-none transition-all duration-300 hover:border-[color-primary]/50"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[color:var(--color-primary)] focus:border-transparent outline-none transition-all duration-300 hover:border-[color:var(--color-primary)]/50"
                   >
                     <option value="">{t('budgetRoutes.filters.any', 'Tümü')}</option>
                     <option value="1">1 Kişi</option>
@@ -268,7 +268,7 @@ const BudgetRoutesPage = () => {
                     name="days"
                     value={filters.days}
                     onChange={handleFilterChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[color-primary] focus:border-transparent outline-none transition-all duration-300 hover:border-[color-primary]/50"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[color:var(--color-primary)] focus:border-transparent outline-none transition-all duration-300 hover:border-[color:var(--color-primary)]/50"
                   >
                     <option value="">{t('budgetRoutes.filters.any', 'Tümü')}</option>
                     <option value="5">5 Gün</option>
@@ -290,7 +290,7 @@ const BudgetRoutesPage = () => {
                     value={filters.departure}
                     onChange={handleFilterChange}
                     placeholder={t('budgetRoutes.filters.enterDeparture', 'Kalkış şehri yazın')}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[color-primary] focus:border-transparent outline-none transition-all duration-300 hover:border-[color-primary]/50"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[color:var(--color-primary)] focus:border-transparent outline-none transition-all duration-300 hover:border-[color:var(--color-primary)]/50"
                   />
                 </div>
               </div>
@@ -333,7 +333,7 @@ const BudgetRoutesPage = () => {
                     
                     {/* Background Effects */}
                     <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-blue-100/30 to-transparent rounded-full transform translate-x-8 -translate-y-8"></div>
-                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-[color-primary]/10 to-transparent rounded-full transform -translate-x-6 translate-y-6"></div>
+                    <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-[color:var(--color-primary)]/10 to-transparent rounded-full transform -translate-x-6 translate-y-6"></div>
 
                     {/* Image Container */}
                     <div className="relative overflow-hidden h-56">
@@ -346,7 +346,7 @@ const BudgetRoutesPage = () => {
                       
                       {/* Price Badge */}
                       <div className="absolute top-4 right-4">
-                        <span className="inline-flex items-center px-3 py-2 bg-[color-secondary] text-[color-primary] text-sm font-bold rounded-full shadow-lg">
+                        <span className="inline-flex items-center px-3 py-2 bg-[color:var(--color-secondary)] text-[color:var(--color-primary)] text-sm font-bold rounded-full shadow-lg">
                           {route.budget.toLocaleString('tr-TR')}₺
                         </span>
                       </div>
@@ -361,7 +361,7 @@ const BudgetRoutesPage = () => {
 
                     {/* Content */}
                     <div className="relative z-10 p-6">
-                      <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-[color-primary] transition-colors duration-300">
+                      <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-[color:var(--color-primary)] transition-colors duration-300">
                         {route.destination}
                       </h3>
                       <p className="text-gray-600 mb-4 line-clamp-2 leading-relaxed">
@@ -371,19 +371,19 @@ const BudgetRoutesPage = () => {
                       {/* Info Grid */}
                       <div className="grid grid-cols-2 gap-3 mb-4">
                         <div className="flex items-center">
-                          <svg className="w-4 h-4 text-[color-primary] mr-2" fill="currentColor" viewBox="0 0 20 20">
+                          <svg className="w-4 h-4 text-[color:var(--color-primary)] mr-2" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z" />
                           </svg>
                           <span className="text-gray-700 text-sm font-medium">{route.persons} Kişi</span>
                         </div>
                         <div className="flex items-center">
-                          <svg className="w-4 h-4 text-[color-primary] mr-2" fill="currentColor" viewBox="0 0 20 20">
+                          <svg className="w-4 h-4 text-[color:var(--color-primary)] mr-2" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                           </svg>
                           <span className="text-gray-700 text-sm font-medium">{route.departure}</span>
                         </div>
                         <div className="flex items-center col-span-2">
-                          <svg className="w-4 h-4 text-[color-primary] mr-2" fill="currentColor" viewBox="0 0 20 20">
+                          <svg className="w-4 h-4 text-[color:var(--color-primary)] mr-2" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                           </svg>
                           <span className="text-gray-700 text-sm font-medium">Kişi başı: {route.price.toLocaleString('tr-TR')}₺</span>
@@ -400,7 +400,7 @@ const BudgetRoutesPage = () => {
                             {route.highlights.slice(0, 3).map((highlight, idx) => (
                               <span 
                                 key={idx} 
-                                className="inline-block bg-gradient-to-r from-[color-primary]/10 to-blue-600/10 text-[color-primary] text-xs px-3 py-1 rounded-full font-medium"
+                                className="inline-block bg-gradient-to-r from-[color:var(--color-primary)]/10 to-blue-600/10 text-[color:var(--color-primary)] text-xs px-3 py-1 rounded-full font-medium"
                               >
                                 {highlight}
                               </span>
@@ -417,7 +417,7 @@ const BudgetRoutesPage = () => {
                       {/* Action Button */}
                       <button
                         onClick={() => handleRequestOffer(route)}
-                        className="group w-full bg-gradient-to-r from-[color-primary] to-blue-600 hover:from-blue-600 hover:to-[color-primary] text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl inline-flex items-center justify-center space-x-2"
+                        className="group w-full bg-gradient-to-r from-[color:var(--color-primary)] to-blue-600 hover:from-blue-600 hover:to-[color:var(--color-primary)] text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl inline-flex items-center justify-center space-x-2"
                       >
                         <span>{t('budgetRoutes.card.requestOffer', 'Teklif Al')}</span>
                         <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -427,7 +427,7 @@ const BudgetRoutesPage = () => {
                     </div>
 
                     {/* Hover Effect Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-[color-primary]/5 to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-primary)]/5 to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   </div>
                 </div>
               ))}
@@ -450,7 +450,7 @@ const BudgetRoutesPage = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <button
                     onClick={resetFilters}
-                    className="group bg-[color-primary] hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center space-x-2"
+                    className="group bg-[color:var(--color-primary)] hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center space-x-2"
                   >
                     <span>{t('budgetRoutes.filters.reset', 'Filtreleri Sıfırla')}</span>
                   </button>
@@ -464,7 +464,7 @@ const BudgetRoutesPage = () => {
             <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-gray-900 to-blue-900">
               <div className="absolute inset-0 bg-black/20"></div>
               <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-16 -translate-y-16"></div>
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-[color-secondary]/20 to-transparent rounded-full transform -translate-x-12 translate-y-12"></div>
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-[color:var(--color-secondary)]/20 to-transparent rounded-full transform -translate-x-12 translate-y-12"></div>
               
               <div className="relative z-10 p-8 md:p-12 text-center">
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
@@ -476,7 +476,7 @@ const BudgetRoutesPage = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link 
                     to="/teklif-al"
-                    className="group bg-[color-secondary] hover:bg-yellow-500 text-[color-primary] font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center justify-center space-x-2"
+                    className="group bg-[color:var(--color-secondary)] hover:bg-yellow-500 text-[color:var(--color-primary)] font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center justify-center space-x-2"
                   >
                     <span>{t('budgetRoutes.contact.requestButton', 'Teklif İste')}</span>
                     <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

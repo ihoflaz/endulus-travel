@@ -17,9 +17,9 @@ const AboutPage = () => {
         {/* Dark Overlay for better text readability */}
         <div className="absolute inset-0 bg-black/40"></div>
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[color-primary]/30 via-blue-600/20 to-[color-primary]/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-primary)]/30 via-blue-600/20 to-[color:var(--color-primary)]/30"></div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-32 -translate-y-32"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color-secondary]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color:var(--color-secondary)]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
         
         <div className="relative z-10 py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -29,13 +29,13 @@ const AboutPage = () => {
                 {t('navigation.home')}
               </Link>
               <span className="text-white/60 mx-2">&gt;</span>
-              <span className="text-[color-secondary]">{t('navigation.about')}</span>
+              <span className="text-[color:var(--color-secondary)]">{t('navigation.about')}</span>
             </div>
 
             {/* Hero Content */}
             <div className="text-center text-white max-w-4xl mx-auto">
               <div className="mb-6 animate-fade-in">
-                <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color-secondary] text-sm font-semibold rounded-full border border-white/30">
+                <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color:var(--color-secondary)] text-sm font-semibold rounded-full border border-white/30">
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                   </svg>
@@ -54,15 +54,15 @@ const AboutPage = () => {
               {/* Feature Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-2xl font-bold text-[color-secondary] mb-2">2024</h3>
+                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">2024</h3>
                   <p className="text-white/90">Kuruluş Yılı</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-2xl font-bold text-[color-secondary] mb-2">Güven</h3>
+                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">Güven</h3>
                   <p className="text-white/90">Odaklı Hizmet</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-2xl font-bold text-[color-secondary] mb-2">Yenilik</h3>
+                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">Yenilik</h3>
                   <p className="text-white/90">& İnovasyon</p>
                 </div>
               </div>
@@ -76,10 +76,10 @@ const AboutPage = () => {
         {/* Açılış Misyonu */}
         <section className="mb-16">
           <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-8 md:p-12 hover-float animate-fade-in">
-            <p className="text-lg text-[color-text-dark] leading-relaxed mb-6">
+            <p className="text-lg text-[color:var(--color-text-dark)] leading-relaxed mb-6">
               Endülüs Travel, <strong>2024 yılında kurulan genç ve dinamik bir turizm markasıdır.</strong> Klasik tur anlayışının ötesinde, <strong>kişiye ve gruba özel, hassasiyet odaklı seyahat deneyimleri</strong> sunan yenilikçi yaklaşımımızla sektörde fark yaratıyoruz.
             </p>
-            <p className="text-lg text-[color-text-dark] leading-relaxed">
+            <p className="text-lg text-[color:var(--color-text-dark)] leading-relaxed">
               Yeni nesil seyahat anlayışıyla, modern teknoloji ve geleneksel değerleri harmanlayarak, <strong>her müşterimize eşsiz ve unutulmaz deneyimler</strong> yaşatmayı hedefliyoruz.
             </p>
       </div>
@@ -96,28 +96,28 @@ const AboutPage = () => {
             <div className="relative z-10 p-8 md:p-12 hover-float animate-fade-in rounded-2xl">
               {/* Başlık Bölümü */}
               <div className="text-center mb-12">
-                <div className="inline-flex items-center px-4 py-2 bg-[color-primary]/10 backdrop-blur-sm rounded-full border border-[color-primary]/20 mb-6">
-                  <svg className="w-5 h-5 mr-2 text-[color-primary]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="inline-flex items-center px-4 py-2 bg-[color:var(--color-primary)]/10 backdrop-blur-sm rounded-full border border-[color:var(--color-primary)]/20 mb-6">
+                  <svg className="w-5 h-5 mr-2 text-[color:var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                   </svg>
-                  <span className="text-[color-primary] font-semibold">Değerlerinizle Uyumlu Seyahat</span>
+                  <span className="text-[color:var(--color-primary)] font-semibold">Değerlerinizle Uyumlu Seyahat</span>
                 </div>
                 
-                <h2 className="text-3xl md:text-5xl font-bold mb-6 text-[color-text-dark]">
+                <h2 className="text-3xl md:text-5xl font-bold mb-6 text-[color:var(--color-text-dark)]">
                   TURLARIMIZ 
-                  <span className="block text-[color-primary] mt-2">HAKKINDA</span>
+                  <span className="block text-[color:var(--color-primary)] mt-2">HAKKINDA</span>
                 </h2>
                 
-                <div className="w-24 h-1 bg-gradient-to-r from-[color-primary] to-[color-secondary] mx-auto rounded-full"></div>
+                <div className="w-24 h-1 bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-secondary)] mx-auto rounded-full"></div>
               </div>
               
               {/* Ana İçerik */}
               <div className="max-w-5xl mx-auto">
                 {/* Giriş Metni */}
                 <div className="bg-white/60 backdrop-blur-sm rounded-xl p-8 mb-8 border border-white/40">
-                  <p className="text-xl text-[color-text-dark] leading-relaxed text-center">
+                  <p className="text-xl text-[color:var(--color-text-dark)] leading-relaxed text-center">
                     Endülüs Travel olarak, seyahat etmeyi sadece gezmekten ibaret görmüyor; 
-                    <span className="text-[color-primary] font-semibold"> huzurla, inanç değerleriyle uyumlu, konforlu ve unutulmaz bir deneyime</span> dönüştürüyoruz.
+                    <span className="text-[color:var(--color-primary)] font-semibold"> huzurla, inanç değerleriyle uyumlu, konforlu ve unutulmaz bir deneyime</span> dönüştürüyoruz.
                   </p>
                 </div>
                 
@@ -126,14 +126,14 @@ const AboutPage = () => {
                   {/* Hassasiyet Odaklı Hizmet */}
                   <div className="bg-white/70 backdrop-blur-sm rounded-xl p-6 border border-white/50 hover:shadow-lg transition-all duration-300">
                     <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-[color-primary] to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                      <div className="w-12 h-12 bg-gradient-to-br from-[color:var(--color-primary)] to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
                         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold mb-2 text-[color-text-dark]">Hassasiyetlerinize Özel</h3>
-                        <p className="text-[color-text-light] leading-relaxed">
+                        <h3 className="text-lg font-bold mb-2 text-[color:var(--color-text-dark)]">Hassasiyetlerinize Özel</h3>
+                        <p className="text-[color:var(--color-text-light)] leading-relaxed">
                           Muhafazakâr misafirlerimizin hassasiyetlerini ön planda tutarak, 
                           <strong> namaz vakitlerine uygun programlar, helal yemek hassasiyeti ve mahremiyete önem veren özel grup turları</strong> sunuyoruz.
                         </p>
@@ -144,14 +144,14 @@ const AboutPage = () => {
                   {/* Her Şey Dahil */}
                   <div className="bg-white/70 backdrop-blur-sm rounded-xl p-6 border border-white/50 hover:shadow-lg transition-all duration-300">
                     <div className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-[color-secondary] to-yellow-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
+                      <div className="w-12 h-12 bg-gradient-to-br from-[color:var(--color-secondary)] to-yellow-500 rounded-xl flex items-center justify-center flex-shrink-0 shadow-lg">
                         <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold mb-2 text-[color-text-dark]">Her Şey Dahil Anlayışı</h3>
-                        <p className="text-[color-text-light] leading-relaxed">
+                        <h3 className="text-lg font-bold mb-2 text-[color:var(--color-text-dark)]">Her Şey Dahil Anlayışı</h3>
+                        <p className="text-[color:var(--color-text-light)] leading-relaxed">
                           Tüm turlarımızda <strong>her şey dahil</strong> anlayışıyla hareket ediyor, 
                           ekstra ücret sürprizlerine yer vermiyoruz. Şeffaf fiyatlandırma garantisi.
                         </p>
@@ -168,10 +168,10 @@ const AboutPage = () => {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold mb-2 text-[color-text-dark]">Her Bütçeye Uygun</h3>
-                        <p className="text-[color-text-light] leading-relaxed">
-                          Yurt içi ve yurt dışı turlarımızda hem <span className="text-[color-primary] font-semibold">uygun fiyatlı</span> 
-                          hem de isteğe bağlı <span className="text-[color-secondary] font-semibold">VIP seçenekler</span> sunuyoruz.
+                        <h3 className="text-lg font-bold mb-2 text-[color:var(--color-text-dark)]">Her Bütçeye Uygun</h3>
+                        <p className="text-[color:var(--color-text-light)] leading-relaxed">
+                          Yurt içi ve yurt dışı turlarımızda hem <span className="text-[color:var(--color-primary)] font-semibold">uygun fiyatlı</span> 
+                          hem de isteğe bağlı <span className="text-[color:var(--color-secondary)] font-semibold">VIP seçenekler</span> sunuyoruz.
                         </p>
                       </div>
                     </div>
@@ -186,8 +186,8 @@ const AboutPage = () => {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold mb-2 text-[color-text-dark]">Kişisel Deneyim</h3>
-                        <p className="text-[color-text-light] leading-relaxed">
+                        <h3 className="text-lg font-bold mb-2 text-[color:var(--color-text-dark)]">Kişisel Deneyim</h3>
+                        <p className="text-[color:var(--color-text-light)] leading-relaxed">
                           Amacımız, seyahatinizi sizin değerlerinize uygun şekilde planlamak ve 
                           <strong> her anının unutulmaz</strong> olmasını sağlamak.
                         </p>
@@ -197,15 +197,15 @@ const AboutPage = () => {
                 </div>
                 
                 {/* Vurgu Kutusu */}
-                <div className="relative overflow-hidden bg-gradient-to-r from-[color-primary] via-blue-600 to-indigo-700 rounded-xl p-8 text-white text-center">
+                <div className="relative overflow-hidden bg-gradient-to-r from-[color:var(--color-primary)] via-blue-600 to-indigo-700 rounded-xl p-8 text-white text-center">
                   {/* Arka plan efektleri - daha güçlü overlay */}
                   <div className="absolute inset-0 bg-black/30"></div>
                   <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-white/20 to-transparent rounded-full transform translate-x-16 -translate-y-16"></div>
-                  <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-[color-secondary]/30 to-transparent rounded-full transform -translate-x-12 translate-y-12"></div>
+                  <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-[color:var(--color-secondary)]/30 to-transparent rounded-full transform -translate-x-12 translate-y-12"></div>
                   
                   <div className="relative z-10 max-w-3xl mx-auto">
                     <div className="w-16 h-16 bg-white/30 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-4 border border-white/20 shadow-lg">
-                      <svg className="w-8 h-8 text-[color-secondary] drop-shadow-lg" fill="currentColor" viewBox="0 0 20 20">
+                      <svg className="w-8 h-8 text-[color:var(--color-secondary)] drop-shadow-lg" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clipRule="evenodd" />
                       </svg>
                     </div>
@@ -224,90 +224,90 @@ const AboutPage = () => {
         <section className="mb-16">
           <div className="relative overflow-hidden rounded-2xl">
             {/* Arka Plan Efektleri */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[color-primary] via-blue-600 to-indigo-700"></div>
+            <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-primary)] via-blue-600 to-indigo-700"></div>
             <div className="absolute inset-0 bg-black/10"></div>
             <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-48 -translate-y-48"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color-secondary]/20 to-transparent rounded-full transform -translate-x-32 translate-y-32"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color:var(--color-secondary)]/20 to-transparent rounded-full transform -translate-x-32 translate-y-32"></div>
             
             <div className="relative z-10 p-8 md:p-12 text-white hover-float animate-fade-in">
               {/* Başlık Bölümü */}
               <div className="text-center mb-12">
                 <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6">
-                  <svg className="w-5 h-5 mr-2 text-[color-secondary]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5 mr-2 text-[color:var(--color-secondary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <span className="text-[color-secondary] font-semibold">İletişim & Lokasyon</span>
+                  <span className="text-[color:var(--color-secondary)] font-semibold">İletişim & Lokasyon</span>
                 </div>
                 
                 <h2 className="text-3xl md:text-5xl font-bold mb-4">
                   BİRLİKTE YOLA ÇIKALIM
                 </h2>
-                <h3 className="text-2xl md:text-3xl font-semibold text-[color-secondary] mb-6">
+                <h3 className="text-2xl md:text-3xl font-semibold text-[color:var(--color-secondary)] mb-6">
                   ENDÜLÜS TRAVEL
                 </h3>
                 
-                <div className="w-24 h-1 bg-[color-secondary] mx-auto rounded-full"></div>
+                <div className="w-24 h-1 bg-[color:var(--color-secondary)] mx-auto rounded-full"></div>
               </div>
               
               <div className="max-w-6xl mx-auto">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   {/* İletişim Detayları */}
                   <div className="space-y-6">
-                    <h4 className="text-xl font-bold mb-6 text-[color-secondary]">İletişim Bilgileri</h4>
+                    <h4 className="text-xl font-bold mb-6 text-[color:var(--color-secondary)]">İletişim Bilgileri</h4>
                     
                     <div className="space-y-4">
                       <div className="flex items-center space-x-4 bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/15 transition-all duration-300">
-                        <div className="w-12 h-12 bg-[color-secondary] rounded-xl flex items-center justify-center flex-shrink-0">
+                        <div className="w-12 h-12 bg-[color:var(--color-secondary)] rounded-xl flex items-center justify-center flex-shrink-0">
                           <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                           </svg>
                         </div>
                         <div>
                           <p className="font-semibold text-white">İletişim Numarası</p>
-                          <a href="tel:+905079384508" className="text-[color-secondary] hover:text-yellow-200 transition-colors text-lg font-medium">
+                          <a href="tel:+905079384508" className="text-[color:var(--color-secondary)] hover:text-yellow-200 transition-colors text-lg font-medium">
                             5079384508
                           </a>
                         </div>
                       </div>
                       
                       <div className="flex items-center space-x-4 bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/15 transition-all duration-300">
-                        <div className="w-12 h-12 bg-[color-secondary] rounded-xl flex items-center justify-center flex-shrink-0">
+                        <div className="w-12 h-12 bg-[color:var(--color-secondary)] rounded-xl flex items-center justify-center flex-shrink-0">
                           <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                           </svg>
                         </div>
                         <div>
                           <p className="font-semibold text-white">Mail Adresi</p>
-                          <a href="mailto:info@endulustravel.com" className="text-[color-secondary] hover:text-yellow-200 transition-colors font-medium">
+                          <a href="mailto:info@endulustravel.com" className="text-[color:var(--color-secondary)] hover:text-yellow-200 transition-colors font-medium">
                             info@endulustravel.com
                           </a>
                         </div>
                       </div>
                       
                       <div className="flex items-center space-x-4 bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/15 transition-all duration-300">
-                        <div className="w-12 h-12 bg-[color-secondary] rounded-xl flex items-center justify-center flex-shrink-0">
+                        <div className="w-12 h-12 bg-[color:var(--color-secondary)] rounded-xl flex items-center justify-center flex-shrink-0">
                           <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
                           </svg>
                         </div>
                         <div>
                           <p className="font-semibold text-white">Website</p>
-                          <a href="https://www.endulustravel.com" className="text-[color-secondary] hover:text-yellow-200 transition-colors font-medium">
+                          <a href="https://www.endulustravel.com" className="text-[color:var(--color-secondary)] hover:text-yellow-200 transition-colors font-medium">
                             www.endulustravel.com
                           </a>
                         </div>
                       </div>
                       
                       <div className="flex items-center space-x-4 bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/15 transition-all duration-300">
-                        <div className="w-12 h-12 bg-[color-secondary] rounded-xl flex items-center justify-center flex-shrink-0">
+                        <div className="w-12 h-12 bg-[color:var(--color-secondary)] rounded-xl flex items-center justify-center flex-shrink-0">
                           <svg className="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
                           </svg>
                         </div>
                         <div>
                           <p className="font-semibold text-white">Instagram</p>
-                          <a href="https://www.instagram.com/endulustravell/" target="_blank" rel="noopener noreferrer" className="text-[color-secondary] hover:text-yellow-200 transition-colors font-medium">
+                          <a href="https://www.instagram.com/endulustravell/" target="_blank" rel="noopener noreferrer" className="text-[color:var(--color-secondary)] hover:text-yellow-200 transition-colors font-medium">
                             @endulustravell
                           </a>
                         </div>
@@ -317,7 +317,7 @@ const AboutPage = () => {
                   
                   {/* Adres Bilgisi */}
                   <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                    <h4 className="text-xl font-bold mb-6 text-[color-secondary] flex items-center">
+                    <h4 className="text-xl font-bold mb-6 text-[color:var(--color-secondary)] flex items-center">
                       <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4m0 0v-4a1 1 0 011-1h2a1 1 0 011 1v4M7 7h10M7 11h10m-5 4h2" />
                       </svg>
@@ -326,7 +326,7 @@ const AboutPage = () => {
                     
                     <div className="space-y-4">
                       <div className="flex items-start space-x-3">
-                        <div className="w-8 h-8 bg-[color-secondary] rounded-full flex items-center justify-center mt-1 flex-shrink-0">
+                        <div className="w-8 h-8 bg-[color:var(--color-secondary)] rounded-full flex items-center justify-center mt-1 flex-shrink-0">
                           <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -338,7 +338,7 @@ const AboutPage = () => {
                             Osmanağa mah. Çilek sok. Akel İşhanı<br />
                             No:1 Kat:2 İç kapı no:42 
                             <br />
-                            <span className="font-semibold text-[color-secondary]">Kadıköy / İstanbul</span>
+                            <span className="font-semibold text-[color:var(--color-secondary)]">Kadıköy / İstanbul</span>
                           </p>
                         </div>
                       </div>
@@ -362,18 +362,18 @@ const AboutPage = () => {
 
         {/* Güçlü CTA Alanı */}
         <section className="mb-16">
-          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[color-primary] via-blue-600 to-[color-primary] text-white">
+          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[color:var(--color-primary)] via-blue-600 to-[color:var(--color-primary)] text-white">
             {/* Arka plan efektleri */}
             <div className="absolute inset-0 bg-black/20"></div>
             <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-32 -translate-y-32"></div>
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color-secondary]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
+            <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color:var(--color-secondary)]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
             
             <div className="relative z-10 p-8 md:p-16 text-center">
               <div className="max-w-4xl mx-auto">
                 {/* Ana Başlık */}
                 <h2 className="text-3xl md:text-5xl font-bold mb-6 animate-fade-in">
                   Hayalinizdeki tatili
-                  <span className="block text-[color-secondary] mt-2">birlikte planlayalım!</span>
+                  <span className="block text-[color:var(--color-secondary)] mt-2">birlikte planlayalım!</span>
                 </h2>
                 
                 {/* Alt başlık */}
@@ -384,7 +384,7 @@ const AboutPage = () => {
                 {/* Özellikler */}
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 animate-fade-in" style={{ animationDelay: '0.4s' }}>
                   <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                    <div className="w-12 h-12 bg-[color-secondary] rounded-full flex items-center justify-center mx-auto mb-3">
+                    <div className="w-12 h-12 bg-[color:var(--color-secondary)] rounded-full flex items-center justify-center mx-auto mb-3">
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
@@ -394,7 +394,7 @@ const AboutPage = () => {
                   </div>
                   
                   <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                    <div className="w-12 h-12 bg-[color-secondary] rounded-full flex items-center justify-center mx-auto mb-3">
+                    <div className="w-12 h-12 bg-[color:var(--color-secondary)] rounded-full flex items-center justify-center mx-auto mb-3">
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
@@ -404,7 +404,7 @@ const AboutPage = () => {
                   </div>
                   
                   <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                    <div className="w-12 h-12 bg-[color-secondary] rounded-full flex items-center justify-center mx-auto mb-3">
+                    <div className="w-12 h-12 bg-[color:var(--color-secondary)] rounded-full flex items-center justify-center mx-auto mb-3">
                       <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                       </svg>
@@ -418,7 +418,7 @@ const AboutPage = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: '0.6s' }}>
                   <Link 
                     to="/teklif-al" 
-                    className="group bg-[color-secondary] hover:bg-yellow-500 text-[color-primary] font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center space-x-2"
+                    className="group bg-[color:var(--color-secondary)] hover:bg-yellow-500 text-[color:var(--color-primary)] font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center space-x-2"
                   >
                     <span>Hemen Teklif Alın</span>
                     <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -439,7 +439,7 @@ const AboutPage = () => {
                 
                 {/* Alt bilgi */}
                 <p className="text-sm opacity-70 mt-6 animate-fade-in" style={{ animationDelay: '0.8s' }}>
-                  📞 Hemen aramak isterseniz: <a href="tel:+905551234567" className="underline hover:text-[color-secondary] transition-colors">+90 555 123 4567</a>
+                  📞 Hemen aramak isterseniz: <a href="tel:+905551234567" className="underline hover:text-[color:var(--color-secondary)] transition-colors">+90 555 123 4567</a>
                 </p>
               </div>
             </div>

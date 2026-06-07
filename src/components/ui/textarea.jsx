@@ -29,9 +29,9 @@ const Textarea = forwardRef(({
   };
   
   const variantClasses = {
-    outline: 'border-[color-border] focus:border-[color-primary] bg-[color-background]',
-    filled: 'border-transparent bg-[color-background-alt] focus:bg-[color-background] focus:border-[color-primary]',
-    flushed: 'border-t-0 border-l-0 border-r-0 rounded-none border-b-2 focus:border-[color-primary] px-0',
+    outline: 'border-[color:var(--color-border)] focus:border-[color:var(--color-primary)] bg-[color:var(--color-background)]',
+    filled: 'border-transparent bg-[color:var(--color-background-alt)] focus:bg-[color:var(--color-background)] focus:border-[color:var(--color-primary)]',
+    flushed: 'border-t-0 border-l-0 border-r-0 rounded-none border-b-2 focus:border-[color:var(--color-primary)] px-0',
   };
   
   // Temel sınıflar
@@ -49,11 +49,11 @@ const Textarea = forwardRef(({
     transition-medium
     focus:outline-none
     focus:ring-2
-    focus:ring-[color-primary]
+    focus:ring-[color:var(--color-primary)]
     focus:ring-opacity-50
     resize-y
-    ${disabled ? 'opacity-60 cursor-not-allowed bg-[color-background-alt]' : ''}
-    ${error ? 'border-[color-error] focus:border-[color-error] focus:ring-[color-error]' : ''}
+    ${disabled ? 'opacity-60 cursor-not-allowed bg-[color:var(--color-background-alt)]' : ''}
+    ${error ? 'border-[color:var(--color-error)] focus:border-[color:var(--color-error)] focus:ring-[color:var(--color-error)]' : ''}
     ${sizeClasses[size] || sizeClasses.md}
     ${variantClasses[variant] || variantClasses.outline}
   `;
@@ -65,11 +65,11 @@ const Textarea = forwardRef(({
         <label
           htmlFor={id || name}
           className={`block text-sm font-medium mb-1 ${
-            error ? 'text-[color-error]' : 'text-[color-text-dark]'
+            error ? 'text-[color:var(--color-error)]' : 'text-[color:var(--color-text-dark)]'
           }`}
         >
           {label}
-          {required && <span className="text-[color-error] ml-1">*</span>}
+          {required && <span className="text-[color:var(--color-error)] ml-1">*</span>}
         </label>
       )}
       
@@ -96,7 +96,7 @@ const Textarea = forwardRef(({
       
       {/* Karakter Sayacı */}
       {maxLength && value && (
-        <div className="mt-1 text-xs text-[color-text-light] text-right">
+        <div className="mt-1 text-xs text-[color:var(--color-text-light)] text-right">
           {value.length} / {maxLength}
         </div>
       )}
@@ -105,7 +105,7 @@ const Textarea = forwardRef(({
       {(error || helperText) && (
         <div
           id={`${id || name}-helper-text`}
-          className={`mt-1 text-sm ${error ? 'text-[color-error]' : 'text-[color-text-light]'}`}
+          className={`mt-1 text-sm ${error ? 'text-[color:var(--color-error)]' : 'text-[color:var(--color-text-light)]'}`}
         >
           {error || helperText}
         </div>

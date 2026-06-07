@@ -48,7 +48,7 @@ const ServiceDetailPage = () => {
               <p className="text-gray-600 mb-8">Lütfen tekrar deneyiniz</p>
               <button 
                 onClick={() => navigate('/hizmetler')}
-                className="bg-[color-primary] hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105"
+                className="bg-[color:var(--color-primary)] hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105"
               >
                 Hizmetlere Geri Dön
               </button>
@@ -69,9 +69,9 @@ const ServiceDetailPage = () => {
           style={{ backgroundImage: `url(${serviceContent?.image || '/images/services/default.jpg'})` }}
         ></div>
         <div className="absolute inset-0 bg-black/50"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-[color-primary]/40 via-blue-600/30 to-[color-primary]/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-primary)]/40 via-blue-600/30 to-[color:var(--color-primary)]/40"></div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-32 -translate-y-32"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color-secondary]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color:var(--color-secondary)]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
         
         <div className="relative z-10 py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -81,13 +81,13 @@ const ServiceDetailPage = () => {
               <span className="text-white/60 mx-2">&gt;</span>
               <Link to="/hizmetler" className="text-white/80 hover:text-white transition-colors">Hizmetler</Link>
               <span className="text-white/60 mx-2">&gt;</span>
-              <span className="text-[color-secondary]">{service?.title || 'Hizmet Detayı'}</span>
+              <span className="text-[color:var(--color-secondary)]">{service?.title || 'Hizmet Detayı'}</span>
             </div>
 
             {/* Hero Content */}
             <div className="text-center text-white max-w-4xl mx-auto">
               <div className="mb-6 animate-fade-in">
-                <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color-secondary] text-sm font-semibold rounded-full border border-white/30">
+                <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color:var(--color-secondary)] text-sm font-semibold rounded-full border border-white/30">
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
@@ -106,15 +106,15 @@ const ServiceDetailPage = () => {
               {/* Feature Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-2xl font-bold text-[color-secondary] mb-2">%100</h3>
+                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">%100</h3>
                   <p className="text-white/90">Profesyonel</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-2xl font-bold text-[color-secondary] mb-2">24/7</h3>
+                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">24/7</h3>
                   <p className="text-white/90">Destek</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-2xl font-bold text-[color-secondary] mb-2">Özel</h3>
+                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">Özel</h3>
                   <p className="text-white/90">Yaklaşım</p>
                 </div>
               </div>
@@ -136,8 +136,8 @@ const ServiceDetailPage = () => {
             {/* Service Description */}
             <div className="lg:col-span-2">
               <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                <h2 className="text-2xl font-bold mb-6 text-[color-text-dark] flex items-center">
-                  <div className="w-8 h-8 bg-[color-primary] rounded-lg flex items-center justify-center mr-3">
+                <h2 className="text-2xl font-bold mb-6 text-[color:var(--color-text-dark)] flex items-center">
+                  <div className="w-8 h-8 bg-[color:var(--color-primary)] rounded-lg flex items-center justify-center mr-3">
                     <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
@@ -146,7 +146,7 @@ const ServiceDetailPage = () => {
                 </h2>
                 <div className="prose max-w-none">
                   {serviceContent.fullDescription.split('\n').map((paragraph, index) => (
-                    <p key={index} className="mb-4 text-[color-text-light] leading-relaxed">
+                    <p key={index} className="mb-4 text-[color:var(--color-text-light)] leading-relaxed">
                       {paragraph.trim()}
                     </p>
                   ))}
@@ -157,9 +157,9 @@ const ServiceDetailPage = () => {
             {/* Service Features */}
             <div className="lg:col-span-1">
               <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-white/60 hover-float animate-fade-in h-full" style={{ animationDelay: '0.5s' }}>
-                <h3 className="text-xl font-bold mb-6 text-[color-text-dark] flex items-center">
-                  <div className="w-6 h-6 bg-[color-secondary] rounded-lg flex items-center justify-center mr-3">
-                    <svg className="w-3 h-3 text-[color-primary]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <h3 className="text-xl font-bold mb-6 text-[color:var(--color-text-dark)] flex items-center">
+                  <div className="w-6 h-6 bg-[color:var(--color-secondary)] rounded-lg flex items-center justify-center mr-3">
+                    <svg className="w-3 h-3 text-[color:var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
@@ -168,8 +168,8 @@ const ServiceDetailPage = () => {
                 <ul className="space-y-3">
                   {serviceContent.features.map((feature, index) => (
                     <li key={index} className="flex items-start group">
-                      <span className="w-2 h-2 bg-[color-primary] rounded-full mr-3 mt-2 group-hover:scale-125 transition-transform flex-shrink-0"></span>
-                      <span className="text-[color-text-light] group-hover:text-[color-text-dark] transition-colors">{feature}</span>
+                      <span className="w-2 h-2 bg-[color:var(--color-primary)] rounded-full mr-3 mt-2 group-hover:scale-125 transition-transform flex-shrink-0"></span>
+                      <span className="text-[color:var(--color-text-light)] group-hover:text-[color:var(--color-text-dark)] transition-colors">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -179,17 +179,17 @@ const ServiceDetailPage = () => {
           
           {/* Premium CTA Section */}
           <div className="animate-fade-in" style={{ animationDelay: '0.6s' }}>
-            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[color-primary] via-blue-600 to-[color-primary] text-white">
+            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[color:var(--color-primary)] via-blue-600 to-[color:var(--color-primary)] text-white">
               {/* Background Effects */}
               <div className="absolute inset-0 bg-black/20"></div>
               <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-20 -translate-y-20"></div>
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-[color-secondary]/20 to-transparent rounded-full transform -translate-x-12 translate-y-12"></div>
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-[color:var(--color-secondary)]/20 to-transparent rounded-full transform -translate-x-12 translate-y-12"></div>
               
               <div className="relative z-10 p-8 md:p-12 text-center">
                 <div className="max-w-2xl mx-auto">
                   {/* Badge */}
                   <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6">
-                    <span className="text-[color-secondary] font-semibold mr-2">🚀</span>
+                    <span className="text-[color:var(--color-secondary)] font-semibold mr-2">🚀</span>
                     <span className="text-sm font-medium">Bu Hizmetten Yararlanın</span>
                   </div>
                   
@@ -197,7 +197,7 @@ const ServiceDetailPage = () => {
                   <h2 className="text-3xl md:text-4xl font-bold mb-4">
                     Bu Hizmetle İlgileniyorum
                   </h2>
-                  <p className="text-[color-secondary] text-xl font-semibold mb-6">
+                  <p className="text-[color:var(--color-secondary)] text-xl font-semibold mb-6">
                     Size Özel Teklif Hazırlayalım
                   </p>
                   
@@ -210,7 +210,7 @@ const ServiceDetailPage = () => {
                   {/* Features Grid */}
                   <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
                     <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                      <div className="w-10 h-10 bg-[color-secondary] rounded-full flex items-center justify-center mx-auto mb-2">
+                      <div className="w-10 h-10 bg-[color:var(--color-secondary)] rounded-full flex items-center justify-center mx-auto mb-2">
                         <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
@@ -219,7 +219,7 @@ const ServiceDetailPage = () => {
                     </div>
                     
                     <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                      <div className="w-10 h-10 bg-[color-secondary] rounded-full flex items-center justify-center mx-auto mb-2">
+                      <div className="w-10 h-10 bg-[color:var(--color-secondary)] rounded-full flex items-center justify-center mx-auto mb-2">
                         <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
@@ -228,7 +228,7 @@ const ServiceDetailPage = () => {
                     </div>
                     
                     <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                      <div className="w-10 h-10 bg-[color-secondary] rounded-full flex items-center justify-center mx-auto mb-2">
+                      <div className="w-10 h-10 bg-[color:var(--color-secondary)] rounded-full flex items-center justify-center mx-auto mb-2">
                         <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
@@ -241,7 +241,7 @@ const ServiceDetailPage = () => {
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Link 
                       to={`/teklif-al?service=${service.id}`} 
-                      className="group bg-[color-secondary] hover:bg-yellow-500 text-[color-primary] font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center space-x-2"
+                      className="group bg-[color:var(--color-secondary)] hover:bg-yellow-500 text-[color:var(--color-primary)] font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center space-x-2"
                     >
                       <span>Özel Teklif Al</span>
                       <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -268,7 +268,7 @@ const ServiceDetailPage = () => {
           <div className="text-center mt-12 animate-fade-in" style={{ animationDelay: '0.7s' }}>
             <Link 
               to="/hizmetler"
-              className="inline-flex items-center px-6 py-3 bg-white/80 hover:bg-white text-[color-primary] font-semibold rounded-xl border border-[color-primary]/30 hover:border-[color-primary] transition-all duration-300 transform hover:scale-105 space-x-2"
+              className="inline-flex items-center px-6 py-3 bg-white/80 hover:bg-white text-[color:var(--color-primary)] font-semibold rounded-xl border border-[color:var(--color-primary)]/30 hover:border-[color:var(--color-primary)] transition-all duration-300 transform hover:scale-105 space-x-2"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />

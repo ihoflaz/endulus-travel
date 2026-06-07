@@ -5,24 +5,24 @@ const CallToAction = () => {
   return (
     <section className="py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[color-primary] via-blue-600 to-[color-primary] text-white">
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-[color:var(--color-primary)] via-blue-600 to-[color:var(--color-primary)] text-white">
           {/* Background Effects */}
           <div className="absolute inset-0 bg-black/20"></div>
           <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-32 -translate-y-32"></div>
-          <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color-secondary]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color:var(--color-secondary)]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
           
           <div className="relative z-10 p-8 md:p-16 text-center">
             <div className="max-w-4xl mx-auto">
               {/* Hero Badge */}
               <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-8 animate-fade-in">
-                <span className="text-[color-secondary] font-semibold mr-2">🚀</span>
+                <span className="text-[color:var(--color-secondary)] font-semibold mr-2">🚀</span>
                 <span className="text-sm font-medium">Hayalleriniz Gerçek Oluyor</span>
               </div>
               
               {/* Main Heading */}
               <h2 className="text-3xl md:text-5xl font-bold mb-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
                 Hayalinizdeki tatile
-                <span className="block text-[color-secondary] mt-2">bir adım daha yaklaşın!</span>
+                <span className="block text-[color:var(--color-secondary)] mt-2">bir adım daha yaklaşın!</span>
           </h2>
               
               {/* Subtitle */}
@@ -33,7 +33,7 @@ const CallToAction = () => {
               {/* Features */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-10 animate-fade-in" style={{ animationDelay: '0.6s' }}>
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                  <div className="w-12 h-12 bg-[color-secondary] rounded-full flex items-center justify-center mx-auto mb-3">
+                  <div className="w-12 h-12 bg-[color:var(--color-secondary)] rounded-full flex items-center justify-center mx-auto mb-3">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>
@@ -43,7 +43,7 @@ const CallToAction = () => {
                 </div>
                 
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                  <div className="w-12 h-12 bg-[color-secondary] rounded-full flex items-center justify-center mx-auto mb-3">
+                  <div className="w-12 h-12 bg-[color:var(--color-secondary)] rounded-full flex items-center justify-center mx-auto mb-3">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
@@ -53,7 +53,7 @@ const CallToAction = () => {
                 </div>
                 
                 <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
-                  <div className="w-12 h-12 bg-[color-secondary] rounded-full flex items-center justify-center mx-auto mb-3">
+                  <div className="w-12 h-12 bg-[color:var(--color-secondary)] rounded-full flex items-center justify-center mx-auto mb-3">
                     <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                     </svg>
@@ -67,7 +67,7 @@ const CallToAction = () => {
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in" style={{ animationDelay: '0.8s' }}>
                 <Link 
               to="/on-anket"
-                  className="group bg-[color-secondary] hover:bg-yellow-500 text-[color-primary] font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center space-x-2"
+                  className="group bg-[color:var(--color-secondary)] hover:bg-yellow-500 text-[color:var(--color-primary)] font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center space-x-2"
             >
                   <span>Ön Anketi Doldur</span>
                   <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -117,7 +117,7 @@ const CallToAction = () => {
               
               {/* Contact Info */}
               <p className="text-sm opacity-70 mt-6 animate-fade-in" style={{ animationDelay: '1.2s' }}>
-                📞 Hemen aramak isterseniz: <a href="tel:+905551234567" className="underline hover:text-[color-secondary] transition-colors">+90 555 123 4567</a>
+                📞 Hemen aramak isterseniz: <a href="tel:+905551234567" className="underline hover:text-[color:var(--color-secondary)] transition-colors">+90 555 123 4567</a>
               </p>
             </div>
           </div>

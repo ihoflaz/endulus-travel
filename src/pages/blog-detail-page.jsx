@@ -23,8 +23,8 @@ const BlogDetailPage = () => {
     return (
       <div className="flex justify-center items-center min-h-[60vh]">
         <div className="relative">
-          <div className="w-16 h-16 border-4 border-[color-primary]/30 border-t-[color-primary] rounded-full animate-spin"></div>
-          <div className="absolute inset-0 w-16 h-16 border-4 border-transparent border-t-[color-secondary] rounded-full animate-ping"></div>
+          <div className="w-16 h-16 border-4 border-[color:var(--color-primary)]/30 border-t-[color:var(--color-primary)] rounded-full animate-spin"></div>
+          <div className="absolute inset-0 w-16 h-16 border-4 border-transparent border-t-[color:var(--color-secondary)] rounded-full animate-ping"></div>
         </div>
       </div>
     );
@@ -73,7 +73,7 @@ const BlogDetailPage = () => {
                 <p className="text-gray-600 mb-8 text-lg">{t('blog.postNotFound')}</p>
                 <Link 
                   to="/blog" 
-                  className="group bg-gradient-to-r from-[color-primary] to-blue-600 hover:from-blue-600 hover:to-[color-primary] text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center space-x-2"
+                  className="group bg-gradient-to-r from-[color:var(--color-primary)] to-blue-600 hover:from-blue-600 hover:to-[color:var(--color-primary)] text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center space-x-2"
                 >
                   <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -115,10 +115,10 @@ const BlogDetailPage = () => {
     <div className="page-transition">
       {/* Premium Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[color-primary] via-blue-600 to-[color-primary]"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-primary)] via-blue-600 to-[color:var(--color-primary)]"></div>
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-32 -translate-y-32"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color-secondary]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color:var(--color-secondary)]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
         
         <div className="relative z-10 py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -132,13 +132,13 @@ const BlogDetailPage = () => {
                 {t('navigation.blog')}
               </Link>
               <span className="text-white/60 mx-2">&gt;</span>
-              <span className="text-[color-secondary]">{blogPost.title}</span>
+              <span className="text-[color:var(--color-secondary)]">{blogPost.title}</span>
             </div>
 
             {/* Hero Content */}
             <div className="text-center text-white max-w-4xl mx-auto">
               <div className="mb-6 animate-fade-in">
-                <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color-secondary] text-sm font-semibold rounded-full border border-white/30">
+                <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color:var(--color-secondary)] text-sm font-semibold rounded-full border border-white/30">
                   {blogPost.category || t('blog.defaultCategory', 'Seyahat')}
                 </span>
               </div>
@@ -178,7 +178,7 @@ const BlogDetailPage = () => {
           {/* Back Link */}
           <Link 
             to="/blog" 
-            className="group inline-flex items-center space-x-2 text-[color-primary] hover:text-blue-600 font-medium mb-8 transition-colors animate-fade-in"
+            className="group inline-flex items-center space-x-2 text-[color:var(--color-primary)] hover:text-blue-600 font-medium mb-8 transition-colors animate-fade-in"
           >
             <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -215,7 +215,7 @@ const BlogDetailPage = () => {
                   {['Seyahat', 'Tur', 'Tatil', 'Keşif', 'Kültür'].map((tag) => (
                     <span 
                       key={tag}
-                      className="inline-flex items-center px-3 py-1 bg-gradient-to-r from-[color-primary]/10 to-blue-600/10 text-[color-primary] text-sm font-medium rounded-full hover:from-[color-primary]/20 hover:to-blue-600/20 transition-colors cursor-pointer"
+                      className="inline-flex items-center px-3 py-1 bg-gradient-to-r from-[color:var(--color-primary)]/10 to-blue-600/10 text-[color:var(--color-primary)] text-sm font-medium rounded-full hover:from-[color:var(--color-primary)]/20 hover:to-blue-600/20 transition-colors cursor-pointer"
                     >
                       #{tag}
                     </span>
@@ -230,7 +230,7 @@ const BlogDetailPage = () => {
             <div className="relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-sm border border-white/50 shadow-xl p-8">
               <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-blue-100/30 to-transparent rounded-full transform translate-x-8 -translate-y-8"></div>
               <div className="relative z-10 flex items-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-[color-primary] to-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mr-6 flex-shrink-0">
+                <div className="w-16 h-16 bg-gradient-to-br from-[color:var(--color-primary)] to-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mr-6 flex-shrink-0">
                   {blogPost.author ? blogPost.author.charAt(0) : 'A'}
                 </div>
                 <div>
@@ -254,7 +254,7 @@ const BlogDetailPage = () => {
                 <h2 className="text-3xl font-bold text-gray-800 mb-4">
                   {t('blog.relatedPosts')}
                 </h2>
-                <div className="w-20 h-1 bg-gradient-to-r from-[color-primary] to-blue-600 rounded-full mx-auto"></div>
+                <div className="w-20 h-1 bg-gradient-to-r from-[color:var(--color-primary)] to-blue-600 rounded-full mx-auto"></div>
               </div>
 
               {/* Related Posts Grid */}
@@ -283,7 +283,7 @@ const BlogDetailPage = () => {
                         
                         {/* Category Badge */}
                         <div className="absolute top-3 left-3">
-                          <span className="inline-flex items-center px-2 py-1 bg-white/90 backdrop-blur-sm text-[color-primary] text-xs font-semibold rounded-full">
+                          <span className="inline-flex items-center px-2 py-1 bg-white/90 backdrop-blur-sm text-[color:var(--color-primary)] text-xs font-semibold rounded-full">
                             {post.category}
                           </span>
                         </div>
@@ -298,7 +298,7 @@ const BlogDetailPage = () => {
                           <span>{post.date}</span>
                         </div>
                         
-                        <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-[color-primary] transition-colors duration-300 line-clamp-2">
+                        <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-[color:var(--color-primary)] transition-colors duration-300 line-clamp-2">
                           {post.title}
                         </h3>
                         
@@ -307,7 +307,7 @@ const BlogDetailPage = () => {
                         </p>
 
                         {/* Read More */}
-                        <div className="flex items-center text-[color-primary] font-semibold group-hover:text-blue-600 transition-colors">
+                        <div className="flex items-center text-[color:var(--color-primary)] font-semibold group-hover:text-blue-600 transition-colors">
                           <span className="text-sm">{t('blog.readMore')}</span>
                           <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -316,7 +316,7 @@ const BlogDetailPage = () => {
                       </div>
 
                       {/* Hover Effect Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-[color-primary]/5 to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                      <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-primary)]/5 to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                   </Link>
                 ))}
@@ -329,7 +329,7 @@ const BlogDetailPage = () => {
             <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-gray-900 to-blue-900">
               <div className="absolute inset-0 bg-black/20"></div>
               <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-16 -translate-y-16"></div>
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-[color-secondary]/20 to-transparent rounded-full transform -translate-x-12 translate-y-12"></div>
+              <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-[color:var(--color-secondary)]/20 to-transparent rounded-full transform -translate-x-12 translate-y-12"></div>
               
               <div className="relative z-10 p-8 md:p-12 text-center">
                 <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
@@ -340,7 +340,7 @@ const BlogDetailPage = () => {
                 </p>
                 <Link 
                   to="/blog"
-                  className="group bg-[color-secondary] hover:bg-yellow-500 text-[color-primary] font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center space-x-2"
+                  className="group bg-[color:var(--color-secondary)] hover:bg-yellow-500 text-[color:var(--color-primary)] font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center space-x-2"
                 >
                   <span>{t('blog.cta.viewAllPosts', 'Tüm Yazıları Görüntüle')}</span>
                   <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

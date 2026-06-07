@@ -145,9 +145,9 @@ const ToursPage = () => {
         {/* Dark Overlay for better text readability */}
         <div className="absolute inset-0 bg-black/40"></div>
         {/* Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-[color-primary]/30 via-blue-600/20 to-[color-primary]/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-primary)]/30 via-blue-600/20 to-[color:var(--color-primary)]/30"></div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-32 -translate-y-32"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color-secondary]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color:var(--color-secondary)]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
         
         <div className="relative z-10 py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -157,13 +157,13 @@ const ToursPage = () => {
                 Ana Sayfa
               </Link>
               <span className="text-white/60 mx-2">&gt;</span>
-              <span className="text-[color-secondary]">Turlar</span>
+              <span className="text-[color:var(--color-secondary)]">Turlar</span>
             </div>
 
             {/* Hero Content */}
             <div className="text-center text-white max-w-5xl mx-auto">
               <div className="mb-6 animate-fade-in">
-                <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color-secondary] text-sm font-semibold rounded-full border border-white/30">
+                <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color:var(--color-secondary)] text-sm font-semibold rounded-full border border-white/30">
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M3 4a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
@@ -188,7 +188,7 @@ const ToursPage = () => {
         {/* Premium Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-gray-100">
           <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-blue-200/30 to-transparent rounded-full transform translate-x-48 -translate-y-48"></div>
-          <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-[color-secondary]/20 to-transparent rounded-full transform -translate-x-40 translate-y-40"></div>
+          <div className="absolute bottom-0 left-0 w-80 h-80 bg-gradient-to-tr from-[color:var(--color-secondary)]/20 to-transparent rounded-full transform -translate-x-40 translate-y-40"></div>
         </div>
       </section>
 
@@ -217,7 +217,7 @@ const ToursPage = () => {
               {filteredTours.map((tour, index) => (
                 <div 
                   key={tour.id} 
-                  className="group bg-white/70 backdrop-blur-sm rounded-2xl border border-white/60 overflow-hidden hover-float animate-fade-in transition-all duration-500 hover:bg-white/90 hover:shadow-2xl hover:border-[color-primary]/20"
+                  className="group bg-white/70 backdrop-blur-sm rounded-2xl border border-white/60 overflow-hidden hover-float animate-fade-in transition-all duration-500 hover:bg-white/90 hover:shadow-2xl hover:border-[color:var(--color-primary)]/20"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   {/* Premium Image Container */}
@@ -239,7 +239,7 @@ const ToursPage = () => {
           
                     {/* Premium Price Badge */}
                     <div className="absolute top-4 right-4">
-                      <div className="bg-[color-secondary]/90 backdrop-blur-sm text-[color-primary] font-bold px-3 py-1 rounded-full border border-[color-secondary]">
+                      <div className="bg-[color:var(--color-secondary)]/90 backdrop-blur-sm text-[color:var(--color-primary)] font-bold px-3 py-1 rounded-full border border-[color:var(--color-secondary)]">
                         {formatTourPrice(tour)}
                       </div>
                     </div>
@@ -251,20 +251,20 @@ const ToursPage = () => {
                   {/* Premium Card Content */}
                   <div className="p-6">
                     <Link to={`/turlar/${tour.slug}`}>
-                      <h3 className="text-xl font-bold mb-3 text-[color-text-dark] group-hover:text-[color-primary] transition-colors duration-300 line-clamp-2">
+                      <h3 className="text-xl font-bold mb-3 text-[color:var(--color-text-dark)] group-hover:text-[color:var(--color-primary)] transition-colors duration-300 line-clamp-2">
                         {tour.title}
                       </h3>
                     </Link>
                     
-                    <p className="text-[color-text-light] mb-6 leading-relaxed line-clamp-3">
+                    <p className="text-[color:var(--color-text-light)] mb-6 leading-relaxed line-clamp-3">
                       {tour.description}
                     </p>
                     
                     {/* Tour Info */}
                     <div className="flex items-center justify-between mb-6">
-                      <div className="flex items-center text-sm text-[color-text-light]">
-                        <div className="w-8 h-8 bg-[color-primary]/10 rounded-full flex items-center justify-center mr-2 group-hover:bg-[color-primary]/20 transition-colors">
-                          <svg className="w-4 h-4 text-[color-primary]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <div className="flex items-center text-sm text-[color:var(--color-text-light)]">
+                        <div className="w-8 h-8 bg-[color:var(--color-primary)]/10 rounded-full flex items-center justify-center mr-2 group-hover:bg-[color:var(--color-primary)]/20 transition-colors">
+                          <svg className="w-4 h-4 text-[color:var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                           </svg>
                         </div>
@@ -275,7 +275,7 @@ const ToursPage = () => {
                     {/* Premium CTA Button */}
                     <Link 
                       to={`/turlar/${tour.slug}`} 
-                      className="group/btn w-full bg-gradient-to-r from-[color-primary] to-blue-600 hover:from-blue-600 hover:to-[color-primary] text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg inline-flex items-center justify-center space-x-2"
+                      className="group/btn w-full bg-gradient-to-r from-[color:var(--color-primary)] to-blue-600 hover:from-blue-600 hover:to-[color:var(--color-primary)] text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg inline-flex items-center justify-center space-x-2"
                     >
                       <span>Detayları Gör</span>
                       <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -293,17 +293,17 @@ const ToursPage = () => {
             <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-white/60 shadow-xl">
               <div className="max-w-3xl mx-auto">
                 {/* Başlık */}
-                <h2 className="text-3xl md:text-4xl font-bold text-[color-text-dark] mb-4">
+                <h2 className="text-3xl md:text-4xl font-bold text-[color:var(--color-text-dark)] mb-4">
                   Size Özel Tur Paketleri Mi Arıyorsunuz?
                 </h2>
                 
                 {/* Alt Başlık */}
-                <p className="text-xl text-[color-text-light] mb-6">
+                <p className="text-xl text-[color:var(--color-text-light)] mb-6">
                   İhtiyacınıza Özel Çözümler
                 </p>
                 
                 {/* Açıklama */}
-                <p className="text-lg text-[color-text-light] mb-8 leading-relaxed">
+                <p className="text-lg text-[color:var(--color-text-light)] mb-8 leading-relaxed">
                   Siz hayal edin biz planlayalım, gelin birlikte yola çıkalım
                 </p>
                 
@@ -311,7 +311,7 @@ const ToursPage = () => {
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
                   <Link 
                     to="/teklif-al" 
-                    className="group/cta bg-white border-2 border-[color-primary] text-[color-primary] hover:bg-[color-primary] hover:text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center justify-center space-x-2"
+                    className="group/cta bg-white border-2 border-[color:var(--color-primary)] text-[color:var(--color-primary)] hover:bg-[color:var(--color-primary)] hover:text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center justify-center space-x-2"
                   >
                     <span>Özel Teklif Al</span>
                     <svg className="w-5 h-5 group-hover/cta:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">

@@ -28,8 +28,8 @@ const Select = forwardRef(({
   };
   
   const variantClasses = {
-    outline: 'border-[color-border] focus:border-[color-primary] bg-[color-background]',
-    filled: 'border-transparent bg-[color-background-alt] focus:bg-[color-background] focus:border-[color-primary]',
+    outline: 'border-[color:var(--color-border)] focus:border-[color:var(--color-primary)] bg-[color:var(--color-background)]',
+    filled: 'border-transparent bg-[color:var(--color-background-alt)] focus:bg-[color:var(--color-background)] focus:border-[color:var(--color-primary)]',
   };
   
   // Temel sınıflar
@@ -48,11 +48,11 @@ const Select = forwardRef(({
     transition-medium
     focus:outline-none
     focus:ring-2
-    focus:ring-[color-primary]
+    focus:ring-[color:var(--color-primary)]
     focus:ring-opacity-50
     pr-10
-    ${disabled ? 'opacity-60 cursor-not-allowed bg-[color-background-alt]' : ''}
-    ${error ? 'border-[color-error] focus:border-[color-error] focus:ring-[color-error]' : ''}
+    ${disabled ? 'opacity-60 cursor-not-allowed bg-[color:var(--color-background-alt)]' : ''}
+    ${error ? 'border-[color:var(--color-error)] focus:border-[color:var(--color-error)] focus:ring-[color:var(--color-error)]' : ''}
     ${sizeClasses[size] || sizeClasses.md}
     ${variantClasses[variant] || variantClasses.outline}
   `;
@@ -64,11 +64,11 @@ const Select = forwardRef(({
         <label
           htmlFor={id || name}
           className={`block text-sm font-medium mb-1 ${
-            error ? 'text-[color-error]' : 'text-[color-text-dark]'
+            error ? 'text-[color:var(--color-error)]' : 'text-[color:var(--color-text-dark)]'
           }`}
         >
           {label}
-          {required && <span className="text-[color-error] ml-1">*</span>}
+          {required && <span className="text-[color:var(--color-error)] ml-1">*</span>}
         </label>
       )}
       
@@ -106,7 +106,7 @@ const Select = forwardRef(({
         {/* Select Ok İşareti */}
         <div className="absolute inset-y-0 right-0 flex items-center px-2 pointer-events-none">
           <svg
-            className="w-5 h-5 text-[color-text-light]"
+            className="w-5 h-5 text-[color:var(--color-text-light)]"
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 20 20"
             fill="currentColor"
@@ -125,7 +125,7 @@ const Select = forwardRef(({
       {(error || helperText) && (
         <div
           id={`${id || name}-helper-text`}
-          className={`mt-1 text-sm ${error ? 'text-[color-error]' : 'text-[color-text-light]'}`}
+          className={`mt-1 text-sm ${error ? 'text-[color:var(--color-error)]' : 'text-[color:var(--color-text-light)]'}`}
         >
           {error || helperText}
         </div>

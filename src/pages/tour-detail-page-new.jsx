@@ -137,7 +137,7 @@ const TourDetailPage = () => {
               </p>
               <Link 
                 to="/turlar" 
-                className="inline-block bg-[color-primary] hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105"
+                className="inline-block bg-[color:var(--color-primary)] hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105"
               >
                 Turlara Geri Dön
               </Link>
@@ -159,12 +159,12 @@ const TourDetailPage = () => {
             alt={tour?.title || "Tour Background"}
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-[color-primary]/80 via-blue-600/80 to-[color-primary]/80"></div>
+          <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-primary)]/80 via-blue-600/80 to-[color:var(--color-primary)]/80"></div>
           <div className="absolute inset-0 bg-black/20"></div>
         </div>
         
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-32 -translate-y-32"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color-secondary]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color:var(--color-secondary)]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
         
         <div className="relative z-10 py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -174,7 +174,7 @@ const TourDetailPage = () => {
               <span className="text-white/60 mx-2">&gt;</span>
               <Link to="/turlar" className="text-white/80 hover:text-white transition-colors">Turlar</Link>
               <span className="text-white/60 mx-2">&gt;</span>
-              <span className="text-[color-secondary]">{tour?.title || 'Tur Detayı'}</span>
+              <span className="text-[color:var(--color-secondary)]">{tour?.title || 'Tur Detayı'}</span>
             </div>
 
             {/* Hero Content */}
@@ -188,7 +188,7 @@ const TourDetailPage = () => {
                     ÖZEİ KAMPANYA
                   </span>
                 ) : null}
-                <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color-secondary] text-sm font-semibold rounded-full border border-white/30">
+                <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color:var(--color-secondary)] text-sm font-semibold rounded-full border border-white/30">
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
@@ -207,7 +207,7 @@ const TourDetailPage = () => {
               {/* Feature Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-2xl font-bold text-[color-secondary] mb-2">{tour?.groupSize || '10-12'}</h3>
+                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">{tour?.groupSize || '10-12'}</h3>
                   <p className="text-white/90">Kişi</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
@@ -221,7 +221,7 @@ const TourDetailPage = () => {
                               {priceInfo.originalPrice}
                             </div>
                           )}
-                          <h3 className="text-2xl font-bold text-[color-secondary] mb-2">
+                          <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">
                             {priceInfo.currentPrice}
                           </h3>
                         </>
@@ -233,7 +233,7 @@ const TourDetailPage = () => {
                   </p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-2xl font-bold text-[color-secondary] mb-2">{tour?.duration || '5 Gün'}</h3>
+                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">{tour?.duration || '5 Gün'}</h3>
                   <p className="text-white/90">Süre</p>
                 </div>
               </div>
@@ -255,21 +255,21 @@ const TourDetailPage = () => {
             <div className="lg:col-span-2 space-y-8">
               {/* About Tour */}
               <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                <h2 className="text-2xl font-bold mb-6 text-[color-text-dark] flex items-center">
-                  <div className="w-8 h-8 bg-[color-primary] rounded-lg flex items-center justify-center mr-3">
+                <h2 className="text-2xl font-bold mb-6 text-[color:var(--color-text-dark)] flex items-center">
+                  <div className="w-8 h-8 bg-[color:var(--color-primary)] rounded-lg flex items-center justify-center mr-3">
                     <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
                   Tur Hakkında
                 </h2>
-                <p className="text-[color-text-light] leading-relaxed text-lg">{tour.description}</p>
+                <p className="text-[color:var(--color-text-light)] leading-relaxed text-lg">{tour.description}</p>
               </div>
 
               {/* Photo Gallery */}
               {tour.gallery && tour.gallery.length > 0 && (
                 <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.45s' }}>
-                  <h3 className="text-xl font-bold mb-6 text-[color-text-dark] flex items-center">
+                  <h3 className="text-xl font-bold mb-6 text-[color:var(--color-text-dark)] flex items-center">
                     <div className="w-6 h-6 bg-purple-500 rounded-lg flex items-center justify-center mr-3">
                       <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
@@ -283,9 +283,9 @@ const TourDetailPage = () => {
 
               {/* Tour Features */}
               <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.5s' }}>
-                <h3 className="text-xl font-bold mb-6 text-[color-text-dark] flex items-center">
-                  <div className="w-6 h-6 bg-[color-secondary] rounded-lg flex items-center justify-center mr-3">
-                    <svg className="w-3 h-3 text-[color-primary]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <h3 className="text-xl font-bold mb-6 text-[color:var(--color-text-dark)] flex items-center">
+                  <div className="w-6 h-6 bg-[color:var(--color-secondary)] rounded-lg flex items-center justify-center mr-3">
+                    <svg className="w-3 h-3 text-[color:var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
@@ -293,54 +293,54 @@ const TourDetailPage = () => {
                 </h3>
                 <div className="grid grid-cols-2 gap-6">
                   <div className="flex items-center group">
-                    <div className="w-10 h-10 bg-[color-primary]/10 rounded-full flex items-center justify-center mr-3 group-hover:bg-[color-primary]/20 transition-colors">
-                      <svg className="w-5 h-5 text-[color-primary]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-10 h-10 bg-[color:var(--color-primary)]/10 rounded-full flex items-center justify-center mr-3 group-hover:bg-[color:var(--color-primary)]/20 transition-colors">
+                      <svg className="w-5 h-5 text-[color:var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
                       </svg>
                     </div>
                     <div>
-                      <div className="font-semibold text-[color-text-dark]">Süre</div>
-                      <div className="text-[color-text-light]">{tour.duration || '5 Gün'}</div>
+                      <div className="font-semibold text-[color:var(--color-text-dark)]">Süre</div>
+                      <div className="text-[color:var(--color-text-light)]">{tour.duration || '5 Gün'}</div>
                     </div>
                   </div>
                   
                   <div className="flex items-center group">
-                    <div className="w-10 h-10 bg-[color-primary]/10 rounded-full flex items-center justify-center mr-3 group-hover:bg-[color-primary]/20 transition-colors">
-                      <svg className="w-5 h-5 text-[color-primary]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-10 h-10 bg-[color:var(--color-primary)]/10 rounded-full flex items-center justify-center mr-3 group-hover:bg-[color:var(--color-primary)]/20 transition-colors">
+                      <svg className="w-5 h-5 text-[color:var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
                       </svg>
                     </div>
                     <div>
-                      <div className="font-semibold text-[color-text-dark]">Grup Boyutu</div>
-                      <div className="text-[color-text-light]">{tour.groupSize}</div>
+                      <div className="font-semibold text-[color:var(--color-text-dark)]">Grup Boyutu</div>
+                      <div className="text-[color:var(--color-text-light)]">{tour.groupSize}</div>
                     </div>
                   </div>
                   
                   <div className="flex items-center group">
-                    <div className="w-10 h-10 bg-[color-primary]/10 rounded-full flex items-center justify-center mr-3 group-hover:bg-[color-primary]/20 transition-colors">
-                      <svg className="w-5 h-5 text-[color-primary]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-10 h-10 bg-[color:var(--color-primary)]/10 rounded-full flex items-center justify-center mr-3 group-hover:bg-[color:var(--color-primary)]/20 transition-colors">
+                      <svg className="w-5 h-5 text-[color:var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
                       </svg>
                     </div>
                     <div>
-                      <div className="font-semibold text-[color-text-dark]">
+                      <div className="font-semibold text-[color:var(--color-text-dark)]">
                         {getPriceLabel(tour)}
                       </div>
-                      <div className="text-[color-text-light]">
+                      <div className="text-[color:var(--color-text-light)]">
                         {formatTourPrice(tour)}
                       </div>
                     </div>
                   </div>
                   
                   <div className="flex items-center group">
-                    <div className="w-10 h-10 bg-[color-primary]/10 rounded-full flex items-center justify-center mr-3 group-hover:bg-[color-primary]/20 transition-colors">
-                      <svg className="w-5 h-5 text-[color-primary]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-10 h-10 bg-[color:var(--color-primary)]/10 rounded-full flex items-center justify-center mr-3 group-hover:bg-[color:var(--color-primary)]/20 transition-colors">
+                      <svg className="w-5 h-5 text-[color:var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
                       </svg>
                     </div>
                     <div>
-                      <div className="font-semibold text-[color-text-dark]">Kategori</div>
-                      <div className="text-[color-text-light]">{tour.category}</div>
+                      <div className="font-semibold text-[color:var(--color-text-dark)]">Kategori</div>
+                      <div className="text-[color:var(--color-text-light)]">{tour.category}</div>
                     </div>
                   </div>
                 </div>
@@ -349,7 +349,7 @@ const TourDetailPage = () => {
               {/* Highlights - Öne Çıkan Özellikler */}
               {tour.highlights && (
                 <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.55s' }}>
-                  <h3 className="text-xl font-bold mb-6 text-[color-text-dark] flex items-center">
+                  <h3 className="text-xl font-bold mb-6 text-[color:var(--color-text-dark)] flex items-center">
                     <div className="w-6 h-6 bg-yellow-500 rounded-lg flex items-center justify-center mr-3">
                       <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
@@ -363,7 +363,7 @@ const TourDetailPage = () => {
                         <svg className="w-5 h-5 text-yellow-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
                         </svg>
-                        <span className="text-[color-text-light]">{highlight}</span>
+                        <span className="text-[color:var(--color-text-light)]">{highlight}</span>
                       </li>
                     ))}
                   </ul>
@@ -373,8 +373,8 @@ const TourDetailPage = () => {
               {/* Tur Planı - Detaylı itinerary varsa göster */}
               {tour.itinerary ? (
                 <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.6s' }}>
-                  <h3 className="text-xl font-bold mb-6 text-[color-text-dark] flex items-center">
-                    <div className="w-6 h-6 bg-[color-primary] rounded-lg flex items-center justify-center mr-3">
+                  <h3 className="text-xl font-bold mb-6 text-[color:var(--color-text-dark)] flex items-center">
+                    <div className="w-6 h-6 bg-[color:var(--color-primary)] rounded-lg flex items-center justify-center mr-3">
                       <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                       </svg>
@@ -383,15 +383,15 @@ const TourDetailPage = () => {
                   </h3>
                   <div className="space-y-6">
                     {tour.itinerary.map((day, index) => (
-                      <div key={index} className="border-l-2 border-[color-primary] pl-6 ml-3 relative group">
-                        <div className="absolute w-4 h-4 bg-[color-primary] rounded-full -left-[9px] top-0 group-hover:scale-125 transition-transform"></div>
-                        <h4 className="text-lg font-semibold text-[color-text-dark] mb-2">
+                      <div key={index} className="border-l-2 border-[color:var(--color-primary)] pl-6 ml-3 relative group">
+                        <div className="absolute w-4 h-4 bg-[color:var(--color-primary)] rounded-full -left-[9px] top-0 group-hover:scale-125 transition-transform"></div>
+                        <h4 className="text-lg font-semibold text-[color:var(--color-text-dark)] mb-2">
                           {day.day} - {day.date}
                         </h4>
-                        <h5 className="text-md font-medium text-[color-primary] mb-2">{day.title}</h5>
-                        <p className="text-[color-text-light] mb-3">{day.description}</p>
+                        <h5 className="text-md font-medium text-[color:var(--color-primary)] mb-2">{day.title}</h5>
+                        <p className="text-[color:var(--color-text-light)] mb-3">{day.description}</p>
                         {day.activities && (
-                          <ul className="list-disc list-inside text-sm text-[color-text-light] space-y-1">
+                          <ul className="list-disc list-inside text-sm text-[color:var(--color-text-light)] space-y-1">
                             {day.activities.map((activity, actIndex) => (
                               <li key={actIndex}>{activity}</li>
                             ))}
@@ -404,8 +404,8 @@ const TourDetailPage = () => {
               ) : (
                 // Diğer turlar için genel bilgi
                 <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.6s' }}>
-                  <h3 className="text-xl font-bold mb-6 text-[color-text-dark] flex items-center">
-                    <div className="w-6 h-6 bg-[color-primary] rounded-lg flex items-center justify-center mr-3">
+                  <h3 className="text-xl font-bold mb-6 text-[color:var(--color-text-dark)] flex items-center">
+                    <div className="w-6 h-6 bg-[color:var(--color-primary)] rounded-lg flex items-center justify-center mr-3">
                       <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
@@ -413,24 +413,24 @@ const TourDetailPage = () => {
                     Tur Bilgileri
                   </h3>
                   <div className="text-center py-8">
-                    <div className="w-20 h-20 bg-[color-primary]/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                      <svg className="w-10 h-10 text-[color-primary]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div className="w-20 h-20 bg-[color:var(--color-primary)]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+                      <svg className="w-10 h-10 text-[color:var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
-                    <h4 className="text-2xl font-bold text-[color-text-dark] mb-4">Yakında Sizlerle!</h4>
-                    <p className="text-[color-text-light] mb-6 max-w-md mx-auto">
+                    <h4 className="text-2xl font-bold text-[color:var(--color-text-dark)] mb-4">Yakında Sizlerle!</h4>
+                    <p className="text-[color:var(--color-text-light)] mb-6 max-w-md mx-auto">
                       Bu özel tur için detaylı program hazırlığımız devam ediyor. 
                       Bizimle iletişime geçerek ön rezervasyon yaptırabilir ve güncel bilgiler alabilirsiniz.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                       <WhatsAppButton 
                         tour={tour}
-                        className="bg-[color-primary] hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105"
+                        className="bg-[color:var(--color-primary)] hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105"
                       />
                       <Link 
                         to="/teklif-al" 
-                        className="bg-white/50 hover:bg-white text-[color-primary] hover:text-[color-primary] font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 border border-[color-primary]/20"
+                        className="bg-white/50 hover:bg-white text-[color:var(--color-primary)] hover:text-[color:var(--color-primary)] font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 border border-[color:var(--color-primary)]/20"
                       >
                         Özel Teklif Al
                       </Link>
@@ -445,7 +445,7 @@ const TourDetailPage = () => {
                   {/* Dahil Olan Hizmetler */}
                   {tour.included && (
                     <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.7s' }}>
-                      <h3 className="text-xl font-bold mb-6 text-[color-text-dark] flex items-center">
+                      <h3 className="text-xl font-bold mb-6 text-[color:var(--color-text-dark)] flex items-center">
                         <div className="w-6 h-6 bg-green-500 rounded-lg flex items-center justify-center mr-3">
                           <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
@@ -459,7 +459,7 @@ const TourDetailPage = () => {
                             <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                             </svg>
-                            <span className="text-[color-text-light]">{item}</span>
+                            <span className="text-[color:var(--color-text-light)]">{item}</span>
                           </li>
                         ))}
                       </ul>
@@ -469,7 +469,7 @@ const TourDetailPage = () => {
                   {/* Dahil Olmayan Hizmetler */}
                   {tour.notIncluded && (
                     <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.8s' }}>
-                      <h3 className="text-xl font-bold mb-6 text-[color-text-dark] flex items-center">
+                      <h3 className="text-xl font-bold mb-6 text-[color:var(--color-text-dark)] flex items-center">
                         <div className="w-6 h-6 bg-red-500 rounded-lg flex items-center justify-center mr-3">
                           <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -483,7 +483,7 @@ const TourDetailPage = () => {
                             <svg className="w-5 h-5 text-red-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
                             </svg>
-                            <span className="text-[color-text-light]">{item}</span>
+                            <span className="text-[color:var(--color-text-light)]">{item}</span>
                           </li>
                         ))}
                       </ul>
@@ -497,8 +497,8 @@ const TourDetailPage = () => {
             <div className="space-y-6">
               {/* Premium CTA Card */}
               <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-white/60 sticky top-24 hover-float animate-fade-in" style={{ animationDelay: '0.3s' }}>
-                <h3 className="text-xl font-bold mb-4 text-[color-text-dark]">Hemen Rezervasyon Yapın</h3>
-                <p className="text-[color-text-light] mb-6">Size özel fiyat teklifi ve detaylı bilgi için bizimle iletişime geçin.</p>
+                <h3 className="text-xl font-bold mb-4 text-[color:var(--color-text-dark)]">Hemen Rezervasyon Yapın</h3>
+                <p className="text-[color:var(--color-text-light)] mb-6">Size özel fiyat teklifi ve detaylı bilgi için bizimle iletişime geçin.</p>
                 
                 <div className="space-y-4">
                   <WhatsAppButton 
@@ -508,7 +508,7 @@ const TourDetailPage = () => {
                   
                   <Link 
                     to="/teklif-al" 
-                    className="w-full bg-[color-primary] hover:bg-blue-600 text-white hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center"
+                    className="w-full bg-[color:var(--color-primary)] hover:bg-blue-600 text-white hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center"
                   >
                     Özel Teklif Al
                   </Link>
@@ -517,27 +517,27 @@ const TourDetailPage = () => {
 
               {/* Tour Info Card */}
               <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                <h3 className="text-lg font-bold mb-4 text-[color-text-dark]">Tur Bilgileri</h3>
+                <h3 className="text-lg font-bold mb-4 text-[color:var(--color-text-dark)]">Tur Bilgileri</h3>
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">
-                    <span className="text-[color-text-light]">Grup Boyutu:</span>
-                    <span className="font-semibold text-[color-text-dark]">{tour.groupSize}</span>
+                    <span className="text-[color:var(--color-text-light)]">Grup Boyutu:</span>
+                    <span className="font-semibold text-[color:var(--color-text-dark)]">{tour.groupSize}</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-[color-text-light]">Kategori:</span>
-                    <span className="font-semibold text-[color-text-dark]">{tour.category}</span>
+                    <span className="text-[color:var(--color-text-light)]">Kategori:</span>
+                    <span className="font-semibold text-[color:var(--color-text-dark)]">{tour.category}</span>
                   </div>
                   {tour.dates && (
                     <div className="flex items-center justify-between">
-                      <span className="text-[color-text-light]">Tarihler:</span>
-                      <span className="font-semibold text-[color-text-dark]">{tour.dates}</span>
+                      <span className="text-[color:var(--color-text-light)]">Tarihler:</span>
+                      <span className="font-semibold text-[color:var(--color-text-dark)]">{tour.dates}</span>
                     </div>
                   )}
                   <div className="flex items-center justify-between border-t pt-4">
-                    <span className="text-[color-text-light]">
+                    <span className="text-[color:var(--color-text-light)]">
                       {getPriceLabel(tour)}:
                     </span>
-                    <span className="font-bold text-lg text-[color-primary]">
+                    <span className="font-bold text-lg text-[color:var(--color-primary)]">
                       {formatTourPrice(tour)}
                     </span>
                   </div>
@@ -549,12 +549,12 @@ const TourDetailPage = () => {
           {/* Premium Related Tours */}
           {relatedTours.length > 0 && (
             <div className="mt-16 animate-fade-in" style={{ animationDelay: '0.9s' }}>
-              <h2 className="text-3xl font-bold text-center mb-12 text-[color-text-dark]">
+              <h2 className="text-3xl font-bold text-center mb-12 text-[color:var(--color-text-dark)]">
                 Benzer Turlar
               </h2>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {relatedTours.map((relatedTour, index) => (
-                  <div key={relatedTour.id} className="group bg-white/70 backdrop-blur-sm rounded-2xl border border-white/60 overflow-hidden hover-float transition-all duration-500 hover:bg-white/90 hover:shadow-2xl hover:border-[color-primary]/20" style={{ animationDelay: `${(index + 1) * 0.1}s` }}>
+                  <div key={relatedTour.id} className="group bg-white/70 backdrop-blur-sm rounded-2xl border border-white/60 overflow-hidden hover-float transition-all duration-500 hover:bg-white/90 hover:shadow-2xl hover:border-[color:var(--color-primary)]/20" style={{ animationDelay: `${(index + 1) * 0.1}s` }}>
                     <div className="relative overflow-hidden">
                       <Link to={`/turlar/${relatedTour.slug}`}>
                         <img 
@@ -564,23 +564,23 @@ const TourDetailPage = () => {
                         />
                       </Link>
                       <div className="absolute top-4 right-4">
-                        <div className="bg-[color-secondary]/90 backdrop-blur-sm text-[color-primary] font-bold px-3 py-1 rounded-full border border-[color-secondary]">
+                        <div className="bg-[color:var(--color-secondary)]/90 backdrop-blur-sm text-[color:var(--color-primary)] font-bold px-3 py-1 rounded-full border border-[color:var(--color-secondary)]">
                           {formatTourPrice(relatedTour)}
                         </div>
                       </div>
                     </div>
                     <div className="p-6">
                       <Link to={`/turlar/${relatedTour.slug}`}>
-                        <h3 className="text-xl font-bold mb-3 text-[color-text-dark] group-hover:text-[color-primary] transition-colors duration-300 line-clamp-2">
+                        <h3 className="text-xl font-bold mb-3 text-[color:var(--color-text-dark)] group-hover:text-[color:var(--color-primary)] transition-colors duration-300 line-clamp-2">
                           {relatedTour.title}
                         </h3>
                       </Link>
-                      <p className="text-[color-text-light] mb-4 leading-relaxed line-clamp-3">
+                      <p className="text-[color:var(--color-text-light)] mb-4 leading-relaxed line-clamp-3">
                         {relatedTour.description}
                       </p>
                       <Link 
                         to={`/turlar/${relatedTour.slug}`} 
-                        className="w-full bg-gradient-to-r from-[color-primary] to-blue-600 hover:from-blue-600 hover:to-[color-primary] text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg inline-flex items-center justify-center space-x-2"
+                        className="w-full bg-gradient-to-r from-[color:var(--color-primary)] to-blue-600 hover:from-blue-600 hover:to-[color:var(--color-primary)] text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg inline-flex items-center justify-center space-x-2"
                       >
                         <span>Detayları Gör</span>
                         <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
