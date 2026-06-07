@@ -1,0 +1,284 @@
+// Endulus Travel - Prisma schema
+// Postgres data layer for tours, blog, services, hero, settings, users & media.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  EDITOR
+  VIEWER
+}
+
+model User {
+  id            String         @id @default(cuid())
+  email         String         @unique
+  passwordHash  String
+  name          String?
+  role          Role           @default(VIEWER)
+  active        Boolean        @default(true)
+  failedLogins  Int            @default(0)
+  lockedUntil   DateTime?
+  lastLogin     DateTime?
+  lastLoginIp   String?
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  media         MediaFile[]
+  refreshTokens RefreshToken[]
+  auditLogs     AuditLog[]
+}
+
+// Stores only the SHA-256 hash of the refresh token; plain token never persisted.
+model RefreshToken {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique
+  userId    String
+  ip        String?
+  userAgent String?
+  expiresAt DateTime
+  revoked   Boolean  @default(false)
+  // Reuse-detection: when a revoked token is presented, we revoke the whole
+  // family identified by this id (originally created token, kept on rotation).
+  familyId  String
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+  @@index([familyId])
+}
+
+model Tour {
+  id              String   @id @default(cuid())
+  slug            String   @unique
+  title           String
+  description     String?
+  pricePerPerson  Float?
+  originalPrice   Float?
+  campaignPrice   Float?
+  currency        String?
+  priceStatus     String?
+  priceNote       String?
+  groupSize       String?
+  category        String?
+  type            String?
+  destination     String?
+  image           String?
+  gallery         String[]
+  specialOffer    Boolean  @default(false)
+  dates           String?
+  duration        String?
+  highlights      String[]
+  included        String[]
+  notIncluded     String[]
+  itinerary       Json?
+  whatsappMessage String?
+  active          Boolean  @default(true)
+  featured        Boolean  @default(false)
+  order           Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([slug])
+  @@index([type])
+  @@index([category])
+}
+
+model BlogPost {
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  title       String
+  summary     String?
+  content     String?
+  coverImage  String?
+  category    String?
+  date        String?
+  publishedAt DateTime?
+  author      String?
+  active      Boolean   @default(true)
+  order       Int       @default(0)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  @@index([slug])
+  @@index([active, publishedAt])
+  @@index([category])
+}
+
+model Service {
+  id              String   @id @default(cuid())
+  serviceId       String   @unique
+  title           String
+  description     String?
+  icon            String?
+  image           String?
+  fullDescription String?
+  features        String[]
+  isWomenGroup    Boolean  @default(false)
+  order           Int      @default(0)
+  active          Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@index([serviceId])
+  @@index([isWomenGroup])
+}
+
+model HeroSlide {
+  id        String   @id @default(cuid())
+  image     String
+  alt       String?
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model HeroButton {
+  id        String   @id @default(cuid())
+  label     String
+  labelKey  String?
+  href      String
+  style     String?
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Category {
+  id          String   @id @default(cuid())
+  key         String   @unique
+  label       String
+  description String?
+  order       Int      @default(0)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model FormOption {
+  id        String   @id @default(cuid())
+  groupName String
+  value     String
+  label     String
+  order     Int      @default(0)
+  active    Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@unique([groupName, value])
+  @@index([groupName])
+}
+
+model BudgetRoute {
+  id          String   @id @default(cuid())
+  legacyId    Int?     @unique
+  persons     Int
+  budget      Float
+  destination String
+  days        Int
+  departure   String?
+  image       String?
+  description String?
+  highlights  String[]
+  price       Float
+  order       Int      @default(0)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model TourWizardStep {
+  id          String   @id @default(cuid())
+  step        String   @unique
+  title       String
+  description String?
+  options     Json
+  order       Int      @default(0)
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Setting {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  value     Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+enum MessageKind {
+  CONTACT
+  OFFER
+  SURVEY
+}
+
+enum MessageStatus {
+  NEW
+  READ
+  ARCHIVED
+}
+
+model ContactMessage {
+  id        String        @id @default(cuid())
+  kind      MessageKind   @default(CONTACT)
+  name      String
+  email     String
+  phone     String?
+  subject   String?
+  message   String?
+  meta      Json?
+  status    MessageStatus @default(NEW)
+  ip        String?
+  userAgent String?
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@index([kind])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model MediaFile {
+  id           String   @id @default(cuid())
+  filename     String
+  originalName String
+  mimeType     String
+  size         Int
+  path         String
+  width        Int?
+  height       Int?
+  uploadedBy   String?
+  createdAt    DateTime @default(now())
+
+  user         User?    @relation(fields: [uploadedBy], references: [id], onDelete: SetNull)
+
+  @@index([uploadedBy])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  action    String
+  entity    String
+  entityId  String?
+  meta      Json?
+  ip        String?
+  userAgent String?
+  createdAt DateTime @default(now())
+
+  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+  @@index([entity, entityId])
+  @@index([createdAt])
+}
