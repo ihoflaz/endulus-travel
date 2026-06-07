@@ -161,36 +161,46 @@ const RequestOfferPage = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Form gönderimi
-  const handleSubmit = (e) => {
+  // Form submit — POSTs to /api/messages with kind=OFFER
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (validateForm()) {
-      setSubmitStatus('submitting');
-      
-      // API'ye gönderme simülasyonu
-      setTimeout(() => {
-        setSubmitStatus('success');
-        
-        // Formu sıfırla
-        setFormData({
-          fullName: '',
-          email: '',
-          phone: '',
-          destination: '',
-          travelDate: '',
-          returnDate: '',
-          numberOfPeople: '',
-          budget: '',
-          preferences: [],
-          additionalInfo: ''
-        });
-        
-        // 5 saniye sonra başarı mesajını kaldır
-        setTimeout(() => {
-          setSubmitStatus(null);
-        }, 5000);
-      }, 1500);
+    if (!validateForm()) return;
+    setSubmitStatus('submitting');
+    try {
+      const res = await fetch('/api/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+        body: JSON.stringify({
+          kind: 'OFFER',
+          name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone || undefined,
+          subject: `Teklif: ${formData.destination || 'Belirsiz destinasyon'}`,
+          message: formData.additionalInfo || undefined,
+          meta: {
+            destination: formData.destination,
+            travelDate: formData.travelDate,
+            returnDate: formData.returnDate,
+            numberOfPeople: formData.numberOfPeople,
+            budget: formData.budget,
+            preferences: formData.preferences,
+          },
+        }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setSubmitStatus('success');
+      setFormData({
+        fullName: '', email: '', phone: '', destination: '', travelDate: '',
+        returnDate: '', numberOfPeople: '', budget: '', preferences: [],
+        additionalInfo: '',
+      });
+      setTimeout(() => setSubmitStatus(null), 5000);
+    } catch {
+      setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus(null), 4000);
     }
   };
 
@@ -198,8 +208,8 @@ const RequestOfferPage = () => {
     return (
       <div className="flex justify-center items-center min-h-[60vh]">
         <div className="relative">
-          <div className="w-16 h-16 border-4 border-[color-primary]/30 border-t-[color-primary] rounded-full animate-spin"></div>
-          <div className="absolute inset-0 w-16 h-16 border-4 border-transparent border-t-[color-secondary] rounded-full animate-ping"></div>
+          <div className="w-16 h-16 border-4 border-[color:var(--color-primary)]/30 border-t-[color:var(--color-primary)] rounded-full animate-spin"></div>
+          <div className="absolute inset-0 w-16 h-16 border-4 border-transparent border-t-[color:var(--color-secondary)] rounded-full animate-ping"></div>
         </div>
       </div>
     );
@@ -209,10 +219,10 @@ const RequestOfferPage = () => {
     <div className="page-transition">
       {/* Premium Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[color-primary] via-blue-600 to-[color-primary]"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-primary)] via-blue-600 to-[color:var(--color-primary)]"></div>
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-32 -translate-y-32"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color-secondary]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color:var(--color-secondary)]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
         
         <div className="relative z-10 py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -220,13 +230,13 @@ const RequestOfferPage = () => {
             <div className="mb-6 animate-fade-in">
               <Link to="/" className="text-white/80 hover:text-white transition-colors">{t('navigation.home')}</Link>
               <span className="text-white/60 mx-2">&gt;</span>
-              <span className="text-[color-secondary]">{t('offer.title', 'Özel Teklif Alın')}</span>
+              <span className="text-[color:var(--color-secondary)]">{t('offer.title', 'Özel Teklif Alın')}</span>
             </div>
 
             {/* Hero Content */}
             <div className="text-center text-white max-w-4xl mx-auto">
               <div className="mb-6 animate-fade-in">
-                <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color-secondary] text-sm font-semibold rounded-full border border-white/30">
+                <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color:var(--color-secondary)] text-sm font-semibold rounded-full border border-white/30">
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                   </svg>
@@ -245,15 +255,15 @@ const RequestOfferPage = () => {
               {/* Feature Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-2xl font-bold text-[color-secondary] mb-2">24</h3>
+                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">24</h3>
                   <p className="text-white/90">Saat İçinde Yanıt</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-2xl font-bold text-[color-secondary] mb-2">%100</h3>
+                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">%100</h3>
                   <p className="text-white/90">Kişiselleştirme</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-2xl font-bold text-[color-secondary] mb-2">0₺</h3>
+                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">0₺</h3>
                   <p className="text-white/90">Teklif Ücreti</p>
                 </div>
               </div>

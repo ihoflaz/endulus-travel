@@ -1,143 +1,67 @@
+import { useMemo } from 'react';
 import { useData } from './useData';
-import { useCreateUrl } from './useCreateUrl';
-import { useState, useEffect } from 'react';
+
+// The /data/tours.json endpoint returns { featured: [...] }. We unwrap it once
+// here so every consumer can rely on `tours` being an array.
+const useToursRaw = () => useData('data/tours.json');
 
 /**
- * Tüm turları getiren hook
- * @param {Object} filters - [İsteğe bağlı] Turları filtrelemek için parametreler
- * @returns {Object} - { tours, filteredTours, isLoading, error } şeklinde dönüş yapar
+ * @param {Object} [filters] optional filter object passed to filterTours
+ * @returns {{ tours, filteredTours, isLoading, error }}
  */
 export const useTours = (filters = null) => {
-  const { data, isLoading, error } = useData('data/tours.json');
-  
-  // Eğer filtre parametreleri verildiyse, turları filtrele
-  const filteredTours = !isLoading && data && filters 
-    ? filterTours(data, filters) 
-    : data;
-  
-  return {
-    tours: data,
-    filteredTours,
-    isLoading,
-    error
-  };
+  const { data, isLoading, error } = useToursRaw();
+  const tours = data?.featured ?? [];
+  const filteredTours = useMemo(
+    () => (filters ? filterTours(tours, filters) : tours),
+    [tours, filters]
+  );
+  return { tours, filteredTours, isLoading, error };
 };
 
-/**
- * Belirli bir turu slug'a göre getiren hook
- * @param {string} slug - Turun slug değeri
- * @returns {Object} - { tour, isLoading, error, notFound } şeklinde dönüş yapar
- */
 export const useTour = (slug) => {
-  const { data, isLoading, error } = useData('data/tours.json');
-  
-  // Slug parametresi ile eşleşen turu bul
-  const tour = data ? data.find(tour => tour.slug === slug) : null;
-  
-  // Tur bulunamadıysa notFound değerini true olarak ayarla
-  const notFound = !isLoading && !error && !tour;
-  
-  return {
-    tour,
-    isLoading,
-    error,
-    notFound
-  };
+  const { tours, isLoading, error } = useTours();
+  const tour = slug ? tours.find((t) => t.slug === slug) || null : null;
+  const notFound = !isLoading && !error && slug && !tour;
+  return { tour, isLoading, error, notFound };
 };
 
-/**
- * Detay sayfası için belirli bir turu ve ilgili turları getiren hook
- * @param {string} slug - Turun slug değeri
- * @returns {Object} - { tour, relatedTours, isLoading, error, notFound } şeklinde dönüş yapar
- */
 export const useTourDetail = (slug) => {
-  const createUrl = useCreateUrl();
-  const [tour, setTour] = useState(null);
-  const [relatedTours, setRelatedTours] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const [notFound, setNotFound] = useState(false);
-
-  useEffect(() => {
-    const fetchTourDetails = async () => {
-      if (!slug) return;
-      
-      try {
-        setIsLoading(true);
-        
-        // JSON dosyasından veri çekiyoruz (useCreateUrl hook'unu kullanarak)
-        const url = createUrl('data/tours.json');
-        const response = await fetch(url);
-        
-        if (!response.ok) {
-          throw new Error('Tur verileri yüklenemedi');
-        }
-        
-        const data = await response.json();
-        
-        // Slug'a göre turu bul
-        const foundTour = data.featured.find(t => t.slug === slug);
-        
-        if (!foundTour) {
-          setNotFound(true);
-          throw new Error('Tur bulunamadı');
-        }
-        
-        setTour(foundTour);
-        
-        // İlgili turları bul (aynı kategorideki diğer turlar)
-        const tourCategory = foundTour.category;
-        const related = data.featured
-          .filter(t => t.category === tourCategory && t.id !== foundTour.id)
-          .slice(0, 3); // En fazla 3 ilgili tur göster
-        
-        setRelatedTours(related);
-      } catch (err) {
-        console.error('Tur detayı yüklenirken hata:', err);
-        setError(err.message);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-
-    fetchTourDetails();
-  }, [slug, createUrl]);
-
-  return {
-    tour,
-    relatedTours,
-    isLoading,
-    error,
-    notFound
-  };
+  const { tours, isLoading, error } = useTours();
+  const tour = slug ? tours.find((t) => t.slug === slug) || null : null;
+  const notFound = !isLoading && !error && slug && !tour;
+  const relatedTours = useMemo(() => {
+    if (!tour || !tour.category) return [];
+    // Without a category we can't compute "related"; otherwise this matched
+    // every tour because `undefined === undefined`.
+    return tours
+      .filter((t) => t.category === tour.category && t.slug !== tour.slug)
+      .slice(0, 3);
+  }, [tours, tour]);
+  return { tour, relatedTours, isLoading, error, notFound };
 };
 
-/**
- * Turları filtreleme yardımcı fonksiyonu
- * @param {Array} tours - Filtrelenecek turlar dizisi
- * @param {Object} filters - Filtre parametreleri
- * @returns {Array} - Filtrelenmiş turlar dizisi
- */
-const filterTours = (tours, filters) => {
-  return tours.filter(tour => {
-    let match = true;
-    
-    // Kategori filtreleme
+// Filter tours by category / numeric price range / duration. Reads
+// pricePerPerson (number) not the legacy `price` string.
+const filterTours = (tours, filters) =>
+  tours.filter((tour) => {
     if (filters.category && filters.category !== 'all') {
-      match = match && tour.category === filters.category;
+      if (tour.category !== filters.category) return false;
     }
-    
-    // Fiyat aralığı filtreleme
-    if (filters.minPrice !== undefined && filters.maxPrice !== undefined) {
-      const price = parseInt(tour.price);
-      match = match && (price >= filters.minPrice && price <= filters.maxPrice);
+    if (filters.type && filters.type !== 'all') {
+      if (tour.type !== filters.type) return false;
     }
-    
-    // Süre filtreleme
+    if (filters.minPrice != null && filters.maxPrice != null) {
+      const price = tour.pricePerPerson;
+      if (price == null) return false;
+      if (price < filters.minPrice || price > filters.maxPrice) return false;
+    }
     if (filters.duration && filters.duration !== 'all') {
-      match = match && tour.duration === parseInt(filters.duration);
+      // tour.duration is a free-form string like "7 gün / 6 gece" — extract
+      // first integer and compare to filter days.
+      const m = String(tour.duration ?? '').match(/\d+/);
+      const days = m ? Number(m[0]) : null;
+      if (days !== Number(filters.duration)) return false;
     }
-    
-    return match;
+    return true;
   });
-}; 

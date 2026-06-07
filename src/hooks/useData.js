@@ -1,75 +1,70 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+
+// Maps legacy "data/X.json" paths to backend endpoints. The backend's
+// /data/*.json routes return the exact same JSON shape the public site
+// originally consumed, so most callers don't need to change.
+const resolveUrl = (path) => {
+  if (path.startsWith('http')) return path;
+  const clean = path.startsWith('/') ? path.slice(1) : path;
+  if (clean.startsWith('data/')) {
+    return `/${clean}`;
+  }
+  return `/${clean}`;
+};
 
 /**
- * Genel veri çekme hook'u
- * @param {string} path - Veri çekilecek dosya yolu
- * @param {function} transformFn - [İsteğe bağlı] Veriyi dönüştürmek için fonksiyon
- * @returns {Object} - { data, isLoading, error } şeklinde dönüş yapar
+ * Generic data fetcher used by the public hooks.
+ * - Aborts on unmount / dep change to avoid setState on unmounted components.
+ * - Does not retry refresh-on-401 (those endpoints are public).
+ *
+ * @param {string} path  e.g. "data/tours.json"
+ * @param {function} [transformFn]  optional response transformer
+ * @returns {{data, isLoading, error}}
  */
 const useData = (path, transformFn = null) => {
   const [data, setData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
+  // Keep transformFn in a ref so callers can pass inline functions without
+  // triggering a refetch loop.
+  const transformRef = useRef(transformFn);
+  transformRef.current = transformFn;
 
   useEffect(() => {
-    const fetchData = async () => {
+    if (!path) return undefined;
+    const abort = new AbortController();
+    let cancelled = false;
+
+    (async () => {
       try {
         setIsLoading(true);
-        
-        // URL oluşturma - Her durumda çalışacak şekilde ayarlanmış
-        let url;
-        
-        // Tam URL ise direkt kullan
-        if (path.startsWith('http')) {
-          url = path;
-        } else {
-          // Path'in başındaki slash'ı kaldır ve base URL ile birleştir
-          const cleanPath = path.startsWith('/') ? path.slice(1) : path;
-          
-          // Eğer import.meta.env.BASE_URL mevcutsa ve boş değilse kullan
-          const baseUrl = import.meta.env.BASE_URL && import.meta.env.BASE_URL !== '/' 
-            ? (import.meta.env.BASE_URL.endsWith('/') 
-                ? import.meta.env.BASE_URL 
-                : `${import.meta.env.BASE_URL}/`)
-            : './';
-            
-          url = `${baseUrl}${cleanPath}`;
-        }
-        
-        console.log(`Fetching data from: ${url}`); // Debugging için log
-        
-        const response = await fetch(url, {
+        setError(null);
+        const res = await fetch(resolveUrl(path), {
           headers: {
-            'Accept': 'application/json',
+            Accept: 'application/json',
             'Cache-Control': 'no-cache',
-            'Pragma': 'no-cache'
-          }
+          },
+          signal: abort.signal,
         });
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-        
-        const result = await response.json();
-        
-        // Eğer bir dönüştürme fonksiyonu verildiyse, veriyi dönüştür
-        if (transformFn && typeof transformFn === 'function') {
-          setData(transformFn(result));
-        } else {
-          setData(result);
-        }
-      } catch (error) {
-        console.error(`Veri yüklenirken hata: ${path}`, error);
-        setError(`Veri yüklenirken bir hata oluştu: ${error.message}`);
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        const json = await res.json();
+        if (cancelled) return;
+        setData(transformRef.current ? transformRef.current(json) : json);
+      } catch (e) {
+        if (e?.name === 'AbortError' || cancelled) return;
+        setError(`Veri yüklenirken bir hata oluştu: ${e.message}`);
       } finally {
-        setIsLoading(false);
+        if (!cancelled) setIsLoading(false);
       }
-    };
+    })();
 
-    fetchData();
-  }, [path, transformFn]);
+    return () => {
+      cancelled = true;
+      abort.abort();
+    };
+  }, [path]);
 
   return { data, isLoading, error };
 };
 
-export { useData }; 
+export { useData };

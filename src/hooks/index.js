@@ -1,29 +1,29 @@
-// Genel veri çekme hook'u
+// Generic data fetcher
 export { useData } from './useData';
 
-// API istekleri için hook
-export { default as useApi } from './useApi';
-
-// Blog ile ilgili hook'lar
+// Blog hooks
 export { useBlogPosts, useBlogPost, useBlogPostDetail } from './useBlog';
 
-// Hakkımızda sayfası hook'u
+// About hook
 export { default as useAbout } from './useAbout';
 
-// Turlar ile ilgili hook'lar
+// Tours hooks
 export { useTours, useTour, useTourDetail } from './useTours';
 
-// Hizmetler ile ilgili hook'lar
+// Services hooks
 export { useServices, useServiceDetail } from './useServices';
 
-// URL oluşturma yardımcı hook'u
+// URL helper
 export { useCreateUrl } from './useCreateUrl';
 
-// Uygulama geneli veri hook'ları
-export { 
-  useCategories, 
-  useServices as useAppServices, 
-  useHeroData, 
-  useFormOptions, 
-  useContactData 
-} from './useAppData'; 
+// App-wide data hooks
+export {
+  useCategories,
+  useServices as useAppServices,
+  useHeroData,
+  useFormOptions,
+  useContactData,
+} from './useAppData';
+
+// Admin CRUD hook
+export { useCrudResource } from './useCrudResource';

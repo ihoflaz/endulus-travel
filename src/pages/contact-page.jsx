@@ -59,35 +59,39 @@ const ContactPage = () => {
     return newErrors;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validateForm();
-    
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-    
     setSubmitStatus('submitting');
-    
-    // Simulate form submission
-    setTimeout(() => {
-      setSubmitStatus('success');
-      
-      // Reset form
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        subject: '',
-        message: '',
+    try {
+      const res = await fetch('/api/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+        body: JSON.stringify({
+          kind: 'CONTACT',
+          name: formData.name,
+          email: formData.email,
+          phone: formData.phone || undefined,
+          subject: formData.subject || undefined,
+          message: formData.message,
+        }),
       });
-      
-      // Clear success message after 3 seconds
-      setTimeout(() => {
-        setSubmitStatus(null);
-      }, 3000);
-    }, 1500);
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      setTimeout(() => setSubmitStatus(null), 3000);
+    } catch (err) {
+      setSubmitStatus('error');
+      setErrors({ submit: err.message || 'Mesaj gönderilemedi' });
+      setTimeout(() => setSubmitStatus(null), 4000);
+    }
   };
 
   return (

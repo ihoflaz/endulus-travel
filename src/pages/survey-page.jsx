@@ -114,33 +114,42 @@ const SurveyPage = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-  // Form gönderimi
-  const handleSubmit = (e) => {
+  // Form submit — POSTs to /api/messages with kind=SURVEY
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
-    if (validateForm()) {
-      setSubmitStatus('submitting');
-      
-      // API'ye gönderme simülasyonu
-      setTimeout(() => {
-        setSubmitStatus('success');
-        
-        // Formu sıfırla
-        setFormData({
-          fullName: '',
-          email: '',
-          phone: '',
-          groupType: '',
-          travelPreferences: [],
-          otherPreferences: [],
-          specialRequests: ''
-        });
-        
-        // 5 saniye sonra başarı mesajını kaldır
-        setTimeout(() => {
-          setSubmitStatus(null);
-        }, 5000);
-      }, 1500);
+    if (!validateForm()) return;
+    setSubmitStatus('submitting');
+    try {
+      const res = await fetch('/api/messages', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-Requested-With': 'XMLHttpRequest',
+        },
+        body: JSON.stringify({
+          kind: 'SURVEY',
+          name: formData.fullName,
+          email: formData.email,
+          phone: formData.phone || undefined,
+          subject: 'Ön Anket',
+          message: formData.specialRequests || undefined,
+          meta: {
+            groupType: formData.groupType,
+            travelPreferences: formData.travelPreferences,
+            otherPreferences: formData.otherPreferences,
+          },
+        }),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setSubmitStatus('success');
+      setFormData({
+        fullName: '', email: '', phone: '', groupType: '',
+        travelPreferences: [], otherPreferences: [], specialRequests: '',
+      });
+      setTimeout(() => setSubmitStatus(null), 5000);
+    } catch {
+      setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus(null), 4000);
     }
   };
 
@@ -148,8 +157,8 @@ const SurveyPage = () => {
     return (
       <div className="flex justify-center items-center min-h-[60vh]">
         <div className="relative">
-          <div className="w-16 h-16 border-4 border-[color-primary]/30 border-t-[color-primary] rounded-full animate-spin"></div>
-          <div className="absolute inset-0 w-16 h-16 border-4 border-transparent border-t-[color-secondary] rounded-full animate-ping"></div>
+          <div className="w-16 h-16 border-4 border-[color:var(--color-primary)]/30 border-t-[color:var(--color-primary)] rounded-full animate-spin"></div>
+          <div className="absolute inset-0 w-16 h-16 border-4 border-transparent border-t-[color:var(--color-secondary)] rounded-full animate-ping"></div>
         </div>
       </div>
     );
@@ -159,10 +168,10 @@ const SurveyPage = () => {
     <div className="page-transition">
       {/* Premium Hero Section */}
       <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[color-primary] via-blue-600 to-[color-primary]"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-primary)] via-blue-600 to-[color:var(--color-primary)]"></div>
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-32 -translate-y-32"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color-secondary]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color:var(--color-secondary)]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
         
         <div className="relative z-10 py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-4 md:px-8">
@@ -174,11 +183,11 @@ const SurveyPage = () => {
                   {t('navigation.home')}
                 </Link>
                 <span className="text-white/60 mx-2">&gt;</span>
-                <span className="text-[color-secondary]">{t('navigation.survey')}</span>
+                <span className="text-[color:var(--color-secondary)]">{t('navigation.survey')}</span>
               </div>
               
               <div className="mb-6 animate-fade-in">
-                <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color-secondary] text-sm font-semibold rounded-full border border-white/30">
+                <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color:var(--color-secondary)] text-sm font-semibold rounded-full border border-white/30">
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                   </svg>
@@ -197,8 +206,8 @@ const SurveyPage = () => {
               {/* Feature Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <div className="w-12 h-12 bg-[color-secondary] rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-6 h-6 text-[color-primary]" fill="currentColor" viewBox="0 0 20 20">
+                  <div className="w-12 h-12 bg-[color:var(--color-secondary)] rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-6 h-6 text-[color:var(--color-primary)]" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                   </div>
@@ -206,8 +215,8 @@ const SurveyPage = () => {
                   <p className="text-white/90 text-sm">Size özel tur planı</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <div className="w-12 h-12 bg-[color-secondary] rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-6 h-6 text-[color-primary]" fill="currentColor" viewBox="0 0 20 20">
+                  <div className="w-12 h-12 bg-[color:var(--color-secondary)] rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-6 h-6 text-[color:var(--color-primary)]" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                   </div>
@@ -215,8 +224,8 @@ const SurveyPage = () => {
                   <p className="text-white/90 text-sm">2 dakika sürer</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <div className="w-12 h-12 bg-[color-secondary] rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-6 h-6 text-[color-primary]" fill="currentColor" viewBox="0 0 20 20">
+                  <div className="w-12 h-12 bg-[color:var(--color-secondary)] rounded-full flex items-center justify-center mx-auto mb-4">
+                    <svg className="w-6 h-6 text-[color:var(--color-primary)]" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                   </div>
@@ -277,7 +286,7 @@ const SurveyPage = () => {
                   {/* Personal Information Section */}
                   <div className="animate-fade-in" style={{ animationDelay: '0.1s' }}>
                     <div className="flex items-center mb-8">
-                      <div className="w-12 h-12 bg-gradient-to-br from-[color-primary] to-blue-600 rounded-full flex items-center justify-center mr-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-[color:var(--color-primary)] to-blue-600 rounded-full flex items-center justify-center mr-4">
                         <span className="text-xl font-bold text-white">1</span>
                       </div>
                       <div>
@@ -300,8 +309,8 @@ const SurveyPage = () => {
                           name="fullName"
                           value={formData.fullName}
                           onChange={handleInputChange}
-                          className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[color-primary] focus:border-transparent outline-none transition-all duration-300 ${
-                            errors.fullName ? 'border-red-500 bg-red-50' : 'border-gray-300 hover:border-[color-primary]/50'
+                          className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[color:var(--color-primary)] focus:border-transparent outline-none transition-all duration-300 ${
+                            errors.fullName ? 'border-red-500 bg-red-50' : 'border-gray-300 hover:border-[color:var(--color-primary)]/50'
                           }`}
                           placeholder={t('survey.placeholders.fullName', 'Adınız ve soyadınız')}
                         />
@@ -326,8 +335,8 @@ const SurveyPage = () => {
                           name="email"
                           value={formData.email}
                           onChange={handleInputChange}
-                          className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[color-primary] focus:border-transparent outline-none transition-all duration-300 ${
-                            errors.email ? 'border-red-500 bg-red-50' : 'border-gray-300 hover:border-[color-primary]/50'
+                          className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[color:var(--color-primary)] focus:border-transparent outline-none transition-all duration-300 ${
+                            errors.email ? 'border-red-500 bg-red-50' : 'border-gray-300 hover:border-[color:var(--color-primary)]/50'
                           }`}
                           placeholder={t('survey.placeholders.email', 'ornek@email.com')}
                         />
@@ -352,8 +361,8 @@ const SurveyPage = () => {
                           name="phone"
                           value={formData.phone}
                           onChange={handleInputChange}
-                          className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[color-primary] focus:border-transparent outline-none transition-all duration-300 ${
-                            errors.phone ? 'border-red-500 bg-red-50' : 'border-gray-300 hover:border-[color-primary]/50'
+                          className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[color:var(--color-primary)] focus:border-transparent outline-none transition-all duration-300 ${
+                            errors.phone ? 'border-red-500 bg-red-50' : 'border-gray-300 hover:border-[color:var(--color-primary)]/50'
                           }`}
                           placeholder={t('survey.placeholders.phone', '0555 123 4567')}
                         />
@@ -383,8 +392,8 @@ const SurveyPage = () => {
                           name="groupType"
                           value={formData.groupType}
                           onChange={handleInputChange}
-                          className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[color-primary] focus:border-transparent outline-none transition-all duration-300 ${
-                            errors.groupType ? 'border-red-500 bg-red-50' : 'border-gray-300 hover:border-[color-primary]/50'
+                          className={`w-full px-4 py-3 border rounded-xl focus:ring-2 focus:ring-[color:var(--color-primary)] focus:border-transparent outline-none transition-all duration-300 ${
+                            errors.groupType ? 'border-red-500 bg-red-50' : 'border-gray-300 hover:border-[color:var(--color-primary)]/50'
                           }`}
                         >
                           <option value="">
@@ -411,7 +420,7 @@ const SurveyPage = () => {
                   {/* Travel Preferences Section */}
                   <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
                     <div className="flex items-center mb-8">
-                      <div className="w-12 h-12 bg-gradient-to-br from-[color-primary] to-blue-600 rounded-full flex items-center justify-center mr-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-[color:var(--color-primary)] to-blue-600 rounded-full flex items-center justify-center mr-4">
                         <span className="text-xl font-bold text-white">2</span>
                       </div>
                       <div>
@@ -426,7 +435,7 @@ const SurveyPage = () => {
                       {/* Travel Preferences */}
                       <div className="bg-gray-50 rounded-xl p-6">
                         <p className="text-lg font-semibold text-gray-800 mb-6 flex items-center">
-                          <svg className="w-6 h-6 mr-2 text-[color-primary]" fill="currentColor" viewBox="0 0 20 20">
+                          <svg className="w-6 h-6 mr-2 text-[color:var(--color-primary)]" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
                           {t('survey.questions.travelPreferences', 'Seyahatlerinizde öncelikli tercihleriniz nelerdir?')}
@@ -437,8 +446,8 @@ const SurveyPage = () => {
                             <label key={preference.value} className="group cursor-pointer">
                               <div className={`relative p-4 rounded-xl border-2 transition-all duration-300 ${
                                 formData.travelPreferences.includes(preference.value)
-                                  ? 'border-[color-primary] bg-[color-primary]/5 shadow-md'
-                                  : 'border-gray-200 hover:border-[color-primary]/30 hover:shadow-sm'
+                                  ? 'border-[color:var(--color-primary)] bg-[color:var(--color-primary)]/5 shadow-md'
+                                  : 'border-gray-200 hover:border-[color:var(--color-primary)]/30 hover:shadow-sm'
                               }`}>
                                 <div className="flex items-start">
                                   <input
@@ -448,15 +457,15 @@ const SurveyPage = () => {
                                     value={preference.value}
                                     checked={formData.travelPreferences.includes(preference.value)}
                                     onChange={(e) => handleCheckboxChange(e, 'travelPreferences')}
-                                    className="h-5 w-5 text-[color-primary] border-gray-300 rounded mt-0.5 focus:ring-[color-primary]"
+                                    className="h-5 w-5 text-[color:var(--color-primary)] border-gray-300 rounded mt-0.5 focus:ring-[color:var(--color-primary)]"
                                   />
-                                  <span className="ml-3 text-sm font-medium text-gray-700 group-hover:text-[color-primary] transition-colors">
+                                  <span className="ml-3 text-sm font-medium text-gray-700 group-hover:text-[color:var(--color-primary)] transition-colors">
                                     {preference.label}
                                   </span>
                                 </div>
                                 {formData.travelPreferences.includes(preference.value) && (
                                   <div className="absolute top-2 right-2">
-                                    <svg className="w-5 h-5 text-[color-primary]" fill="currentColor" viewBox="0 0 20 20">
+                                    <svg className="w-5 h-5 text-[color:var(--color-primary)]" fill="currentColor" viewBox="0 0 20 20">
                                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                     </svg>
                                   </div>
@@ -470,7 +479,7 @@ const SurveyPage = () => {
                       {/* Other Preferences */}
                       <div className="bg-gray-50 rounded-xl p-6">
                         <p className="text-lg font-semibold text-gray-800 mb-6 flex items-center">
-                          <svg className="w-6 h-6 mr-2 text-[color-primary]" fill="currentColor" viewBox="0 0 20 20">
+                          <svg className="w-6 h-6 mr-2 text-[color:var(--color-primary)]" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                           </svg>
                           {t('survey.questions.otherPreferences', 'Diğer tercihleriniz/hassasiyetleriniz:')}
@@ -481,8 +490,8 @@ const SurveyPage = () => {
                             <label key={preference.value} className="group cursor-pointer">
                               <div className={`relative p-4 rounded-xl border-2 transition-all duration-300 ${
                                 formData.otherPreferences.includes(preference.value)
-                                  ? 'border-[color-primary] bg-[color-primary]/5 shadow-md'
-                                  : 'border-gray-200 hover:border-[color-primary]/30 hover:shadow-sm'
+                                  ? 'border-[color:var(--color-primary)] bg-[color:var(--color-primary)]/5 shadow-md'
+                                  : 'border-gray-200 hover:border-[color:var(--color-primary)]/30 hover:shadow-sm'
                               }`}>
                                 <div className="flex items-start">
                                   <input
@@ -492,15 +501,15 @@ const SurveyPage = () => {
                                     value={preference.value}
                                     checked={formData.otherPreferences.includes(preference.value)}
                                     onChange={(e) => handleCheckboxChange(e, 'otherPreferences')}
-                                    className="h-5 w-5 text-[color-primary] border-gray-300 rounded mt-0.5 focus:ring-[color-primary]"
+                                    className="h-5 w-5 text-[color:var(--color-primary)] border-gray-300 rounded mt-0.5 focus:ring-[color:var(--color-primary)]"
                                   />
-                                  <span className="ml-3 text-sm font-medium text-gray-700 group-hover:text-[color-primary] transition-colors">
+                                  <span className="ml-3 text-sm font-medium text-gray-700 group-hover:text-[color:var(--color-primary)] transition-colors">
                                     {preference.label}
                                   </span>
                                 </div>
                                 {formData.otherPreferences.includes(preference.value) && (
                                   <div className="absolute top-2 right-2">
-                                    <svg className="w-5 h-5 text-[color-primary]" fill="currentColor" viewBox="0 0 20 20">
+                                    <svg className="w-5 h-5 text-[color:var(--color-primary)]" fill="currentColor" viewBox="0 0 20 20">
                                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                                     </svg>
                                   </div>
@@ -516,7 +525,7 @@ const SurveyPage = () => {
                   {/* Special Requests Section */}
                   <div className="animate-fade-in" style={{ animationDelay: '0.3s' }}>
                     <div className="flex items-center mb-8">
-                      <div className="w-12 h-12 bg-gradient-to-br from-[color-primary] to-blue-600 rounded-full flex items-center justify-center mr-4">
+                      <div className="w-12 h-12 bg-gradient-to-br from-[color:var(--color-primary)] to-blue-600 rounded-full flex items-center justify-center mr-4">
                         <span className="text-xl font-bold text-white">3</span>
                       </div>
                       <div>
@@ -537,7 +546,7 @@ const SurveyPage = () => {
                         value={formData.specialRequests}
                         onChange={handleInputChange}
                         rows="5"
-                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[color-primary] focus:border-transparent outline-none transition-all duration-300 hover:border-[color-primary]/50 resize-none"
+                        className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-[color:var(--color-primary)] focus:border-transparent outline-none transition-all duration-300 hover:border-[color:var(--color-primary)]/50 resize-none"
                         placeholder={t('survey.placeholders.specialRequests', 'Ekstra bilgi vermek isterseniz buraya yazabilirsiniz...')}
                       ></textarea>
                     </div>
@@ -547,7 +556,7 @@ const SurveyPage = () => {
                   <div className="animate-fade-in" style={{ animationDelay: '0.4s' }}>
                     <div className="bg-blue-50 p-6 rounded-xl mb-8">
                       <div className="flex items-start">
-                        <svg className="w-6 h-6 text-[color-primary] mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                        <svg className="w-6 h-6 text-[color:var(--color-primary)] mt-0.5 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
                           <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                         </svg>
                         <p className="text-sm text-gray-700 leading-relaxed">
@@ -559,7 +568,7 @@ const SurveyPage = () => {
                     <button
                       type="submit"
                       disabled={submitStatus === 'submitting'}
-                      className={`group w-full bg-gradient-to-r from-[color-primary] to-blue-600 hover:from-blue-600 hover:to-[color-primary] text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center justify-center space-x-3 ${
+                      className={`group w-full bg-gradient-to-r from-[color:var(--color-primary)] to-blue-600 hover:from-blue-600 hover:to-[color:var(--color-primary)] text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center justify-center space-x-3 ${
                         submitStatus === 'submitting' ? 'opacity-70 cursor-not-allowed' : ''
                       }`}
                     >
