@@ -28,7 +28,7 @@ i18n
     // Başlangıç dili
     lng: 'tr',
     // Hata ayıklama modu
-    debug: true,
+    debug: false,
     // Namespace olarak translation kullan (önemli)
     ns: ['translation'],
     defaultNS: 'translation',
@@ -46,17 +46,8 @@ i18n
     },
   });
 
-// Hataları konsola yazdır
 i18n.on('failedLoading', (lng, ns, msg) => {
-  console.error(`i18n yüklemesi başarısız: ${lng}, ${ns}, ${msg}`);
-});
-
-i18n.on('loaded', (loaded) => {
-  console.log('i18n yüklendi:', loaded);
-});
-
-i18n.on('initialized', () => {
-  console.log('i18n başlatıldı');
+  console.error(`i18n load failed: ${lng}, ${ns}, ${msg}`);
 });
 
 export default i18n;

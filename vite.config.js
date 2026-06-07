@@ -13,11 +13,9 @@ export default defineConfig({
         {
           src: 'public/locales/*',
           dest: 'locales'
-        },
-        {
-          src: 'public/data/*',
-          dest: 'data'
         }
+        // Note: public/data is intentionally NOT copied — content is served
+        // dynamically by the backend at /data/*.json (see server/src/routes/legacyData.js)
       ]
     })
   ],
@@ -28,27 +26,28 @@ export default defineConfig({
   },
   // Public klasörü yapılandırması
   publicDir: 'public',
+  // Strip console.* (except .error/.warn) in production builds so leftover
+  // debug logs don't ship to end users.
+  esbuild: {
+    drop: process.env.NODE_ENV === 'production' ? ['debugger'] : [],
+    pure: process.env.NODE_ENV === 'production'
+      ? ['console.log', 'console.info', 'console.debug', 'console.trace']
+      : [],
+  },
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
     rollupOptions: {
       output: {
         manualChunks: {
-          // React chunk
           'react-vendor': ['react', 'react-dom'],
-          // Router chunk
           'router': ['react-router-dom'],
-          // i18n chunk
           'i18n': ['react-i18next', 'i18next'],
-          // Utils chunk (eğer büyük utility kütüphaneleri varsa)
-          // 'utils': ['lodash', 'date-fns', 'axios']
         }
       }
     },
-    // Chunk size warning limitini artır (geçici çözüm)
     chunkSizeWarningLimit: 1000,
-    // Gzip sıkıştırma
-    reportCompressedSize: true
+    reportCompressedSize: true,
   },
   // Geliştirme sunucusu ayarları
   server: {
@@ -57,6 +56,20 @@ export default defineConfig({
     cors: true,
     headers: {
       'Access-Control-Allow-Origin': '*',
-    }
+    },
+    proxy: {
+      '/api': {
+        target: process.env.VITE_PROXY_TARGET || 'http://localhost:4000',
+        changeOrigin: true,
+      },
+      '/uploads': {
+        target: process.env.VITE_PROXY_TARGET || 'http://localhost:4000',
+        changeOrigin: true,
+      },
+      '/data': {
+        target: process.env.VITE_PROXY_TARGET || 'http://localhost:4000',
+        changeOrigin: true,
+      },
+    },
   }
 });
