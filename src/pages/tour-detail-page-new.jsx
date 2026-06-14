@@ -4,6 +4,9 @@ import { useTourDetail } from '../hooks';
 import { WhatsAppButton } from '../components/ui';
 import { formatTourPrice, getPriceLabel, formatTourPriceWithDiscount } from '../utils/priceUtils';
 import { useState } from 'react';
+import Seo from '../components/Seo';
+import TrustStrip from '../components/TrustStrip';
+import { trackViewTour } from '../lib/analytics';
 
 // Basit Fotoğraf Galerisi Bileşeni
 const PhotoGallery = ({ images, title }) => {
@@ -95,12 +98,45 @@ const TourDetailPage = () => {
   const { slug } = useParams();
   const { tour, relatedTours, isLoading, error, notFound } = useTourDetail(slug);
 
-  // Sayfa başlığını ayarla
+  // Fire Meta Pixel `ViewContent` + GA4 `view_tour` once per page entry, so
+  // every visitor to a tour detail becomes part of the retargeting audience.
   useEffect(() => {
-    document.title = tour 
-      ? `${tour.title} - Endülüs Travel`
-      : 'Tur Detayı - Endülüs Travel';
-  }, [tour]);
+    if (tour) trackViewTour(tour);
+  }, [tour?.slug]);
+
+  // Build a TouristTrip JSON-LD payload for richer search results.
+  const tourJsonLd = tour ? {
+    '@context': 'https://schema.org',
+    '@type': 'TouristTrip',
+    name: tour.title,
+    description: tour.description,
+    image: tour.image || tour.gallery?.[0],
+    touristType: tour.category,
+    itinerary: Array.isArray(tour.itinerary)
+      ? tour.itinerary.map((d, i) => ({
+          '@type': 'TouristAttraction',
+          name: d.title || `${i + 1}. Gün`,
+          description: d.description,
+        }))
+      : undefined,
+    offers: tour.pricePerPerson ? {
+      '@type': 'Offer',
+      price: tour.pricePerPerson,
+      priceCurrency: tour.currency || 'TRY',
+      availability: 'https://schema.org/InStock',
+      url: typeof window !== 'undefined' ? window.location.href : undefined,
+    } : undefined,
+    provider: {
+      '@type': 'TravelAgency',
+      name: 'Endülüs Travel',
+      identifier: 'TURSAB-6739',
+    },
+  } : null;
+
+  if (tour) {
+    // Seo + sticky WhatsApp CTA are rendered alongside the normal layout
+    // below; we only short-circuit on loading/error states.
+  }
 
   if (isLoading) {
     return (
@@ -150,6 +186,25 @@ const TourDetailPage = () => {
 
   return (
     <div className="page-transition">
+      <Seo
+        title={`${tour.title} — Endülüs Travel`}
+        description={tour.description}
+        image={tour.image || tour.gallery?.[0]}
+        type="product"
+        jsonLd={tourJsonLd}
+      />
+
+      {/* Mobile sticky CTA — always reachable on small viewports */}
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-amber-200 bg-white/95 px-4 py-3 shadow-2xl backdrop-blur-md sm:hidden">
+        <div className="flex items-center gap-3">
+          <div className="flex-1 text-left">
+            <div className="text-xs text-slate-500">{getPriceLabel(tour)}</div>
+            <div className="font-bold text-slate-900">{formatTourPrice(tour)}</div>
+          </div>
+          <WhatsAppButton tour={tour} size="md">WhatsApp</WhatsAppButton>
+        </div>
+      </div>
+
       {/* Premium Hero Section */}
       <div className="relative overflow-hidden">
         {/* Background Image */}

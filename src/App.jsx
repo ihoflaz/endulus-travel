@@ -20,6 +20,7 @@ import ServicesPage from './pages/services-page';
 import ServiceDetailPage from './pages/service-detail-page';
 import { PrivacyPage, TermsPage, KvkkPage } from './pages/legal-page';
 import ScrollToTop from './components/utils/scroll-to-top';
+import PageViewTracker from './components/utils/PageViewTracker';
 
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute } from './components/admin/ProtectedRoute';
@@ -64,6 +65,7 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <ScrollToTop />
+        <PageViewTracker />
         <Routes>
           {/* --- Admin --- */}
           <Route path="/admin/login" element={<LoginPage />} />

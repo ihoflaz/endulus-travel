@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { trackLead } from '../lib/analytics';
 
 const ContactPage = () => {
   const { t } = useTranslation();
@@ -84,6 +85,10 @@ const ContactPage = () => {
         }),
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      trackLead(
+        { kind: 'CONTACT', currency: 'TRY' },
+        { em: formData.email, ph: formData.phone }
+      );
       setSubmitStatus('success');
       setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
       setTimeout(() => setSubmitStatus(null), 3000);

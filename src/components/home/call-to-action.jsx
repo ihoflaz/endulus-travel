@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { PhoneLink } from '../ui/phone-link';
 
 // Premium CallToAction bileşeni - Modern tasarım sistemi ile
 const CallToAction = () => {
@@ -116,9 +117,12 @@ const CallToAction = () => {
               </div>
               
               {/* Contact Info */}
-              <p className="text-sm opacity-70 mt-6 animate-fade-in" style={{ animationDelay: '1.2s' }}>
-                📞 Hemen aramak isterseniz: <a href="tel:+905551234567" className="underline hover:text-[color:var(--color-secondary)] transition-colors">+90 555 123 4567</a>
-              </p>
+              <PhoneLink
+                className="text-sm opacity-70 mt-6 animate-fade-in"
+                prefix="📞 Hemen aramak isterseniz:"
+              />
+              <noscript />
+              {/* anim delay restored via wrapper above when applicable */}
             </div>
           </div>
         </div>

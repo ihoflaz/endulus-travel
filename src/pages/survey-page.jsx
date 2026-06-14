@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { trackLead } from '../lib/analytics';
 
 const SurveyPage = () => {
   const { t } = useTranslation();
@@ -141,6 +142,10 @@ const SurveyPage = () => {
         }),
       });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      trackLead(
+        { kind: 'SURVEY', currency: 'TRY' },
+        { em: formData.email, ph: formData.phone }
+      );
       setSubmitStatus('success');
       setFormData({
         fullName: '', email: '', phone: '', groupType: '',

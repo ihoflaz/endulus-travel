@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { useHeroData } from '../../hooks/useAppData';
+import TrustStrip from '../TrustStrip';
 
 // Fallback slides used when the API hasn't responded yet (or returns empty).
 const FALLBACK_SLIDES = Array.from({ length: 22 }, (_, i) => ({
@@ -30,12 +31,15 @@ const HeroSection = () => {
     if (currentImageIndex >= slides.length) setCurrentImageIndex(0);
   }, [slides.length, currentImageIndex]);
 
-  const buttonClass = (style) => {
-    if (style === 'primary')
-      return 'bg-white text-slate-900 hover:bg-slate-100';
-    if (style === 'secondary')
-      return 'bg-white/10 backdrop-blur-sm text-white border border-white/30 hover:bg-white/20';
-    return 'bg-amber-500 text-white hover:bg-amber-600'; // accent / default
+  // Visual hierarchy: the FIRST button is always the dominant primary CTA
+  // (large amber pill). Remaining buttons render as quieter secondary links.
+  // This deliberately overrides admin-supplied style values to enforce the
+  // "single primary CTA" rule that the marketing brief requires.
+  const buttonClass = (_style, index) => {
+    if (index === 0) {
+      return 'bg-amber-500 hover:bg-amber-600 text-white text-base sm:text-lg shadow-2xl ring-2 ring-white/20 hover:ring-white/40 px-8 py-4 transform hover:-translate-y-0.5';
+    }
+    return 'bg-white/10 backdrop-blur-sm text-white border border-white/30 hover:bg-white/20 text-sm';
   };
 
   return (
@@ -97,7 +101,7 @@ const HeroSection = () => {
             )}
           </p>
 
-          {/* Admin-managed buttons */}
+          {/* Admin-managed buttons — first one is the visual primary CTA */}
           {buttons.length > 0 && (
             <div
               className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-4 animate-fade-in"
@@ -107,13 +111,23 @@ const HeroSection = () => {
                 <a
                   key={`${b.href}-${i}`}
                   href={b.href}
-                  className={`rounded-lg px-6 py-3 text-sm font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl ${buttonClass(b.style)}`}
+                  className={`rounded-lg font-semibold transition-all duration-200 hover:shadow-xl ${
+                    i === 0 ? '' : 'px-5 py-2.5'
+                  } ${buttonClass(b.style, i)}`}
                 >
                   {b.label}
                 </a>
               ))}
             </div>
           )}
+
+          {/* Trust strip — niche-specific guarantees right under the CTA */}
+          <div
+            className="mt-8 flex justify-center animate-fade-in"
+            style={{ animationDelay: '0.8s' }}
+          >
+            <TrustStrip />
+          </div>
         </div>
       </div>
     </section>

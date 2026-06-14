@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+import { PhoneLink } from '../components/ui/phone-link';
 
 // Hakkımızda sayfası bileşeni
 const AboutPage = () => {
@@ -438,9 +439,8 @@ const AboutPage = () => {
                 </div>
                 
                 {/* Alt bilgi */}
-                <p className="text-sm opacity-70 mt-6 animate-fade-in" style={{ animationDelay: '0.8s' }}>
-                  📞 Hemen aramak isterseniz: <a href="tel:+905551234567" className="underline hover:text-[color:var(--color-secondary)] transition-colors">+90 555 123 4567</a>
-                </p>
+                <PhoneLink className="text-sm opacity-70 mt-6 animate-fade-in" />
+
               </div>
             </div>
           </div>
