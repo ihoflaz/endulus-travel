@@ -19,6 +19,9 @@ dist-ssr
 server/.env
 server/.env.local
 
+# Per-machine Claude Code permissions (local-only)
+.claude/settings.local.json
+
 # Backend uploads (runtime, kept in Docker volume in prod)
 server/uploads/*
 !server/uploads/.gitkeep
