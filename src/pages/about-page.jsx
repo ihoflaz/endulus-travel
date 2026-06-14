@@ -1,10 +1,20 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { PhoneLink } from '../components/ui/phone-link';
+import { useContactData } from '../hooks/useAppData';
 
 // Hakkımızda sayfası bileşeni
 const AboutPage = () => {
   const { t } = useTranslation();
+  const { contactData } = useContactData();
+  // Contact details from /api/settings/contact, production values as fallback.
+  const phone = contactData?.phone || '+90 507 938 45 08';
+  const phoneHref = `tel:${phone.replace(/[^+\d]/g, '')}`;
+  const email = contactData?.email || 'info@endulustravel.com';
+  const igUrl = contactData?.social?.instagram || 'https://www.instagram.com/endulustravell/';
+  const igHandle = '@' + (igUrl.replace(/\/+$/, '').split('/').pop() || 'endulustravell');
+  const address = contactData?.address
+    || 'Osmanağa Mah. Çilek Sok. Akel İşhanı No:1 Kat:2 İç Kapı No:42, Kadıköy / İstanbul';
 
     return (
     <div className="page-transition">
@@ -266,8 +276,8 @@ const AboutPage = () => {
                         </div>
                         <div>
                           <p className="font-semibold text-white">İletişim Numarası</p>
-                          <a href="tel:+905079384508" className="text-[color:var(--color-secondary)] hover:text-yellow-200 transition-colors text-lg font-medium">
-                            +90 507 938 45 08
+                          <a href={phoneHref} className="text-[color:var(--color-secondary)] hover:text-yellow-200 transition-colors text-lg font-medium">
+                            {phone}
                           </a>
                         </div>
                       </div>
@@ -280,8 +290,8 @@ const AboutPage = () => {
                         </div>
                         <div>
                           <p className="font-semibold text-white">Mail Adresi</p>
-                          <a href="mailto:info@endulustravel.com" className="text-[color:var(--color-secondary)] hover:text-yellow-200 transition-colors font-medium">
-                            info@endulustravel.com
+                          <a href={`mailto:${email}`} className="text-[color:var(--color-secondary)] hover:text-yellow-200 transition-colors font-medium">
+                            {email}
                           </a>
                         </div>
                       </div>
@@ -308,8 +318,8 @@ const AboutPage = () => {
                         </div>
                         <div>
                           <p className="font-semibold text-white">Instagram</p>
-                          <a href="https://www.instagram.com/endulustravell/" target="_blank" rel="noopener noreferrer" className="text-[color:var(--color-secondary)] hover:text-yellow-200 transition-colors font-medium">
-                            @endulustravell
+                          <a href={igUrl} target="_blank" rel="noopener noreferrer" className="text-[color:var(--color-secondary)] hover:text-yellow-200 transition-colors font-medium">
+                            {igHandle}
                           </a>
                         </div>
                       </div>
@@ -336,10 +346,7 @@ const AboutPage = () => {
                         <div>
                           <p className="leading-relaxed text-white">
                             <span className="font-semibold">Adres:</span><br />
-                            Osmanağa mah. Çilek sok. Akel İşhanı<br />
-                            No:1 Kat:2 İç kapı no:42 
-                            <br />
-                            <span className="font-semibold text-[color:var(--color-secondary)]">Kadıköy / İstanbul</span>
+                            {address}
                           </p>
                         </div>
                       </div>

@@ -21,6 +21,16 @@ const ContactPage = () => {
   const { value: whatsapp } = useWhatsAppSettings();
   const waNumber = whatsapp?.number || contactData?.phone;
   const waMsg = 'Merhaba, seyahat planları hakkında bilgi almak istiyorum.';
+
+  // Contact details — sourced from /api/settings/contact, with the production
+  // values as fallback so the page never renders blank before the API responds.
+  const phone = contactData?.phone || '+90 507 938 45 08';
+  const phoneHref = `tel:${phone.replace(/[^+\d]/g, '')}`;
+  const email = contactData?.email || 'info@endulustravel.com';
+  const igUrl = contactData?.social?.instagram || 'https://www.instagram.com/endulustravell/';
+  const igHandle = '@' + (igUrl.replace(/\/+$/, '').split('/').pop() || 'endulustravell');
+  const address = contactData?.address
+    || 'Osmanağa Mah. Çilek Sok. Akel İşhanı No:1 Kat:2 İç Kapı No:42, Kadıköy / İstanbul';
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -184,8 +194,8 @@ const ContactPage = () => {
 
               {/* Quick Contact Buttons */}
               <div className="flex flex-wrap gap-4">
-                <a 
-                  href="tel:+905079384508"
+                <a
+                  href={phoneHref}
                   className="group flex items-center space-x-3 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 px-6 py-4 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
                 >
                   <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
@@ -195,7 +205,7 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <div className="text-white font-semibold">Hemen Arayın</div>
-                    <div className="text-green-100 text-sm">+90 507 938 45 08</div>
+                    <div className="text-green-100 text-sm">{phone}</div>
                   </div>
                 </a>
 
@@ -430,11 +440,11 @@ const ContactPage = () => {
               </div>
               <h3 className="text-xl font-bold text-slate-800 mb-4">Telefon İletişimi</h3>
               <p className="text-slate-600 mb-4">Deneyimli ekibimiz ile doğrudan görüşün</p>
-              <a 
-                href="tel:+905079384508" 
+              <a
+                href={phoneHref}
                 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-purple-600 hover:to-blue-600 transition-all duration-300"
               >
-                +90 507 938 45 08
+                {phone}
               </a>
               <p className="text-sm text-slate-500 mt-2">7/24 Destek Hattı</p>
             </div>
@@ -447,11 +457,11 @@ const ContactPage = () => {
               </div>
               <h3 className="text-xl font-bold text-slate-800 mb-4">E-posta</h3>
               <p className="text-slate-600 mb-4">Detaylı bilgi için yazabilirsiniz</p>
-              <a 
-                href="mailto:info@endulustravel.com" 
+              <a
+                href={`mailto:${email}`}
                 className="text-lg font-semibold bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent hover:from-emerald-600 hover:to-green-600 transition-all duration-300"
               >
-                info@endulustravel.com
+                {email}
               </a>
               <p className="text-sm text-slate-500 mt-2">24 saat içinde yanıt</p>
             </div>
@@ -464,13 +474,13 @@ const ContactPage = () => {
               </div>
               <h3 className="text-xl font-bold text-slate-800 mb-4">Sosyal Medya</h3>
               <p className="text-slate-600 mb-4">Güncel içerikler için takip edin</p>
-              <a 
-                href="https://www.instagram.com/endulustravell/" 
-                target="_blank" 
+              <a
+                href={igUrl}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="text-lg font-semibold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent hover:from-pink-600 hover:to-purple-600 transition-all duration-300"
               >
-                @endulustravell
+                {igHandle}
               </a>
               <p className="text-sm text-slate-500 mt-2">Günlük paylaşımlar</p>
             </div>
@@ -502,9 +512,7 @@ const ContactPage = () => {
                     <div>
                       <h4 className="font-bold text-slate-800 mb-2">Adres</h4>
                       <p className="text-slate-600 leading-relaxed">
-                        Osmanağa mah. Çilek sok. Akel İşhanı<br />
-                        No:1 Kat:2 İç kapı no:42<br />
-                        <span className="font-semibold text-blue-600">Kadıköy / İstanbul</span>
+                        {address}
                       </p>
                     </div>
                   </div>
@@ -639,8 +647,8 @@ const ContactPage = () => {
                 <span>WhatsApp ile Yazın</span>
               </a>
               
-              <a 
-                href="https://www.instagram.com/endulustravell/"
+              <a
+                href={igUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center space-x-3"
@@ -654,9 +662,9 @@ const ContactPage = () => {
             
             <div className="mt-8 text-center">
               <p className="text-blue-200 text-sm">
-                📞 Hemen aramak isterseniz: 
-                <a href="tel:+905079384508" className="text-white font-semibold hover:text-blue-300 transition-colors ml-2">
-                  +90 507 938 45 08
+                📞 Hemen aramak isterseniz:
+                <a href={phoneHref} className="text-white font-semibold hover:text-blue-300 transition-colors ml-2">
+                  {phone}
                 </a>
               </p>
             </div>
