@@ -7,6 +7,7 @@ import { validate } from '../middleware/validate.js';
 import { asyncHandler } from '../utils/asyncHandler.js';
 import { audit } from '../utils/audit.js';
 import { notFound } from '../utils/httpError.js';
+import { sendOpsNotification, sendVisitorAck } from '../utils/mailer.js';
 
 const router = Router();
 
@@ -47,6 +48,12 @@ router.post(
       },
       select: { id: true, kind: true, createdAt: true },
     });
+    // Fire-and-forget — both notifications run in parallel and any failures
+    // are logged but never block the 201 response.
+    Promise.allSettled([
+      sendOpsNotification(req.body),
+      sendVisitorAck(req.body),
+    ]).catch(() => {});
     res.status(201).json(m);
   })
 );

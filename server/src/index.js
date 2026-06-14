@@ -29,6 +29,8 @@ import uploadRoutes from './routes/uploads.js';
 import legacyDataRoutes from './routes/legacyData.js';
 import messageRoutes from './routes/messages.js';
 import auditRoutes from './routes/audit.js';
+import metaCapiRoutes from './routes/metaCapi.js';
+import sitemapRoutes from './routes/sitemap.js';
 
 export const buildApp = () => {
   const app = express();
@@ -156,9 +158,13 @@ export const buildApp = () => {
   app.use('/api/uploads', uploadRoutes);
   app.use('/api/messages', messageRoutes);
   app.use('/api/audit', auditRoutes);
+  app.use('/api/meta-capi', metaCapiRoutes);
 
   // Legacy JSON-shape routes for the public frontend.
   app.use('/data', legacyDataRoutes);
+
+  // SEO surfaces — sitemap + robots served at site root through the edge.
+  app.use('/', sitemapRoutes);
 
   // CORS errors → 403 (before the catch-all 500 handler).
   app.use(corsErrorHandler);
