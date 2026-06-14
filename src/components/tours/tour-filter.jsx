@@ -23,7 +23,7 @@ const TourFilter = ({ onFilter, initialFilters = {}, className = '' }) => {
     const fetchCategories = async () => {
       try {
         // Şu an JSON dosyasından veri çekiyoruz, ileride API'dan çekilecek
-        const response = await fetch('data/categories.json');
+        const response = await fetch('/data/categories.json');
         if (!response.ok) {
           throw new Error('Kategori verileri yüklenemedi');
         }

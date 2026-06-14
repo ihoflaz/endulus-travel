@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useTourDetail } from '../hooks';
 import { WhatsAppButton } from '../components/ui';
@@ -104,34 +104,37 @@ const TourDetailPage = () => {
     if (tour) trackViewTour(tour);
   }, [tour?.slug]);
 
-  // Build a TouristTrip JSON-LD payload for richer search results.
-  const tourJsonLd = tour ? {
-    '@context': 'https://schema.org',
-    '@type': 'TouristTrip',
-    name: tour.title,
-    description: tour.description,
-    image: tour.image || tour.gallery?.[0],
-    touristType: tour.category,
-    itinerary: Array.isArray(tour.itinerary)
-      ? tour.itinerary.map((d, i) => ({
-          '@type': 'TouristAttraction',
-          name: d.title || `${i + 1}. Gün`,
-          description: d.description,
-        }))
-      : undefined,
-    offers: tour.pricePerPerson ? {
-      '@type': 'Offer',
-      price: tour.pricePerPerson,
-      priceCurrency: tour.currency || 'TRY',
-      availability: 'https://schema.org/InStock',
-      url: typeof window !== 'undefined' ? window.location.href : undefined,
-    } : undefined,
-    provider: {
-      '@type': 'TravelAgency',
-      name: 'Endülüs Travel',
-      identifier: 'TURSAB-6739',
-    },
-  } : null;
+  // Build a TouristTrip JSON-LD payload for richer search results. Memoized so
+  // <Seo> doesn't tear down/recreate the script tag on every render.
+  const tourJsonLd = useMemo(() => {
+    if (!tour) return null;
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'TouristTrip',
+      name: tour.title,
+      description: tour.description,
+      image: tour.image || tour.gallery?.[0],
+      touristType: tour.category,
+      itinerary: Array.isArray(tour.itinerary)
+        ? tour.itinerary.map((d, i) => ({
+            '@type': 'TouristAttraction',
+            name: d.title || `${i + 1}. Gün`,
+            description: d.description,
+          }))
+        : undefined,
+      offers: tour.pricePerPerson ? {
+        '@type': 'Offer',
+        price: tour.pricePerPerson,
+        priceCurrency: tour.currency || 'TRY',
+        availability: 'https://schema.org/InStock',
+      } : undefined,
+      provider: {
+        '@type': 'TravelAgency',
+        name: 'Endülüs Travel',
+        identifier: 'TURSAB-6739',
+      },
+    };
+  }, [tour]);
 
   if (tour) {
     // Seo + sticky WhatsApp CTA are rendered alongside the normal layout
@@ -240,7 +243,7 @@ const TourDetailPage = () => {
                     <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                       <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
-                    ÖZEİ KAMPANYA
+                    ÖZEL KAMPANYA
                   </span>
                 ) : null}
                 <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color:var(--color-secondary)] text-sm font-semibold rounded-full border border-white/30">

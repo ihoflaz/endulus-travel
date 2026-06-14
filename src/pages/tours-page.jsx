@@ -28,7 +28,7 @@ const ToursPage = () => {
     const fetchToursAndCategories = async () => {
       try {
         // Turları yükle
-        const toursResponse = await fetch('data/tours.json');
+        const toursResponse = await fetch('/data/tours.json');
         if (!toursResponse.ok) {
           throw new Error('Tur verileri yüklenemedi');
         }

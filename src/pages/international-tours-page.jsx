@@ -22,7 +22,7 @@ const InternationalToursPage = () => {
   useEffect(() => {
     const fetchTours = async () => {
       try {
-        const toursResponse = await fetch('data/tours.json');
+        const toursResponse = await fetch('/data/tours.json');
         if (!toursResponse.ok) {
           throw new Error('Tur verileri yüklenemedi');
         }

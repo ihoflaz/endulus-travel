@@ -26,7 +26,7 @@ const BudgetRoutesPage = () => {
   useEffect(() => {
     const fetchRoutes = async () => {
       try {
-        const response = await fetch('data/budget-routes.json');
+        const response = await fetch('/data/budget-routes.json');
         if (!response.ok) {
           throw new Error('Rota verileri yüklenemedi');
         }

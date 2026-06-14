@@ -29,7 +29,7 @@ const TourPlanningPage = () => {
   useEffect(() => {
     const fetchWizardData = async () => {
       try {
-        const response = await fetch('data/tour-wizard.json');
+        const response = await fetch('/data/tour-wizard.json');
         if (!response.ok) {
           throw new Error('Wizard verileri yüklenemedi');
         }

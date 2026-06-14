@@ -4,7 +4,12 @@ import tailwindcss from '@tailwindcss/vite';
 import { viteStaticCopy } from 'vite-plugin-static-copy';
 
 export default defineConfig({
-  base: './', // Relative path - works for both development and production
+  // Absolute base — REQUIRED for an SPA with client-side routing served from
+  // the domain root. With './' (relative), a hard load of a deep link like
+  // /turlar/misir-turu-ozel resolves "./assets/index.js" to
+  // "/turlar/assets/index.js" → nginx SPA fallback returns index.html → the
+  // module script gets a text/html MIME type and the app never boots.
+  base: '/',
   plugins: [
     react(), 
     tailwindcss(),

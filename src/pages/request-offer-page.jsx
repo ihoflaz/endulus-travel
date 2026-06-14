@@ -65,7 +65,7 @@ const RequestOfferPage = () => {
   useEffect(() => {
     const fetchFormOptions = async () => {
       try {
-        const response = await fetch('data/form-options.json');
+        const response = await fetch('/data/form-options.json');
         if (!response.ok) {
           throw new Error('Form seçenekleri yüklenemedi');
         }

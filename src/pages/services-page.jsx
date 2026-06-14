@@ -16,7 +16,7 @@ const ServicesPage = () => {
   useEffect(() => {
     const fetchServices = async () => {
       try {
-        const response = await fetch('data/services.json');
+        const response = await fetch('/data/services.json');
         if (!response.ok) {
           throw new Error('Hizmet verileri yüklenemedi');
         }

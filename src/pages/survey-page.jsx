@@ -28,7 +28,7 @@ const SurveyPage = () => {
   useEffect(() => {
     const fetchQuestions = async () => {
       try {
-        const response = await fetch('data/survey-questions.json');
+        const response = await fetch('/data/survey-questions.json');
         if (!response.ok) {
           throw new Error('Anket soruları yüklenemedi');
         }
