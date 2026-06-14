@@ -38,7 +38,8 @@ const loadPixel = () => {
   }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
   /* eslint-enable */
   window.fbq('init', PIXEL_ID);
-  window.fbq('track', 'PageView');
+  // NOTE: the initial PageView is fired by trackPageView() in PageViewTracker,
+  // NOT here — firing both would double-count the landing PageView.
 };
 
 const loadGtm = () => {

@@ -267,7 +267,7 @@ const AboutPage = () => {
                         <div>
                           <p className="font-semibold text-white">İletişim Numarası</p>
                           <a href="tel:+905079384508" className="text-[color:var(--color-secondary)] hover:text-yellow-200 transition-colors text-lg font-medium">
-                            5079384508
+                            +90 507 938 45 08
                           </a>
                         </div>
                       </div>

@@ -1,10 +1,26 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
-import { trackLead } from '../lib/analytics';
+import { trackLead, trackContact } from '../lib/analytics';
+import { getCampaign } from '../lib/utm';
+import { useContactData, useWhatsAppSettings } from '../hooks/useAppData';
+
+// Builds a wa.me link with the active campaign appended as a ref, sourced from
+// settings (falls back to the production number). Mirrors WhatsAppButton so the
+// custom-styled anchors on this page still carry attribution + fire Contact.
+const buildWa = (number, baseMsg) => {
+  const phone = String(number || '905079384508').replace(/\D/g, '');
+  const campaign = getCampaign();
+  const text = `${baseMsg}${campaign ? ` (ref: ${campaign})` : ''}`;
+  return `https://wa.me/${phone}?text=${encodeURIComponent(text)}`;
+};
 
 const ContactPage = () => {
   const { t } = useTranslation();
+  const { contactData } = useContactData();
+  const { value: whatsapp } = useWhatsAppSettings();
+  const waNumber = whatsapp?.number || contactData?.phone;
+  const waMsg = 'Merhaba, seyahat planları hakkında bilgi almak istiyorum.';
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -179,12 +195,13 @@ const ContactPage = () => {
                   </div>
                   <div>
                     <div className="text-white font-semibold">Hemen Arayın</div>
-                    <div className="text-green-100 text-sm">507 938 4508</div>
+                    <div className="text-green-100 text-sm">+90 507 938 45 08</div>
                   </div>
                 </a>
 
-                <a 
-                  href="https://wa.me/905079384508?text=Merhaba, seyahat planları hakkında bilgi almak istiyorum."
+                <a
+                  href={buildWa(waNumber, waMsg)}
+                  onClick={() => trackContact({ channel: 'whatsapp' })}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group flex items-center space-x-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 px-6 py-4 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl"
@@ -417,7 +434,7 @@ const ContactPage = () => {
                 href="tel:+905079384508" 
                 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent hover:from-purple-600 hover:to-blue-600 transition-all duration-300"
               >
-                507 938 4508
+                +90 507 938 45 08
               </a>
               <p className="text-sm text-slate-500 mt-2">7/24 Destek Hattı</p>
             </div>
@@ -609,8 +626,9 @@ const ContactPage = () => {
                 </svg>
               </Link>
               
-              <a 
-                href="https://wa.me/905079384508?text=Merhaba, seyahat planları hakkında bilgi almak istiyorum."
+              <a
+                href={buildWa(waNumber, waMsg)}
+                onClick={() => trackContact({ channel: 'whatsapp' })}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white font-bold py-4 px-8 rounded-2xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center space-x-3"
@@ -638,7 +656,7 @@ const ContactPage = () => {
               <p className="text-blue-200 text-sm">
                 📞 Hemen aramak isterseniz: 
                 <a href="tel:+905079384508" className="text-white font-semibold hover:text-blue-300 transition-colors ml-2">
-                  +90 507 938 4508
+                  +90 507 938 45 08
                 </a>
               </p>
             </div>

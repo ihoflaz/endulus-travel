@@ -53,7 +53,9 @@ const bodySchema = z.object({
   event_id: z.string().min(1).max(128),
   event_source_url: z.string().url().optional().nullable(),
   user_data: z.object({
-    em: z.string().email().optional(),
+    // Lenient on shape — a malformed email must NOT 4xx the whole conversion
+    // event. normalizeEmail + hash handle whatever comes in.
+    em: z.string().max(254).optional(),
     ph: z.string().max(64).optional(),
     fbp: z.string().max(256).nullable().optional(),
     fbc: z.string().max(256).nullable().optional(),
