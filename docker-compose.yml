@@ -68,6 +68,17 @@ services:
       UPLOAD_DIR: /app/uploads
       PUBLIC_UPLOAD_BASE: /uploads
       MAX_UPLOAD_BYTES: ${MAX_UPLOAD_BYTES:-10485760}
+      SMTP_HOST: ${SMTP_HOST:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SMTP_USER: ${SMTP_USER:-}
+      SMTP_PASS: ${SMTP_PASS:-}
+      SMTP_SECURE: ${SMTP_SECURE:-false}
+      MAIL_FROM: ${MAIL_FROM:-}
+      OPS_EMAIL: ${OPS_EMAIL:-}
+      SITE_URL: ${SITE_URL:-https://endulustravel.com}
+      META_DATASET_ID: ${META_DATASET_ID:-}
+      META_CAPI_ACCESS_TOKEN: ${META_CAPI_ACCESS_TOKEN:-}
+      META_TEST_EVENT_CODE: ${META_TEST_EVENT_CODE:-}
     volumes:
       - uploads_data:/app/uploads
       # Optional seed source. Only needed on first boot OR when RUN_SEED=true.
@@ -93,6 +104,11 @@ services:
       dockerfile: Dockerfile
       args:
         VITE_API_BASE_URL: ${VITE_API_BASE_URL:-/api}
+        VITE_META_PIXEL_ID: ${VITE_META_PIXEL_ID:-}
+        VITE_GTM_ID: ${VITE_GTM_ID:-}
+        VITE_GA4_ID: ${VITE_GA4_ID:-}
+        VITE_META_IG_USERNAME: ${VITE_META_IG_USERNAME:-}
+        VITE_META_CAPI_ENABLED: ${VITE_META_CAPI_ENABLED:-true}
     image: endulus-travel-frontend:latest
     <<: *default-restart
     logging: *default-logging

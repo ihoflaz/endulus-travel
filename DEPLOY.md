@@ -35,6 +35,36 @@ openssl rand -hex 24  # → POSTGRES_PASSWORD (URL-safe — no @ : / # ?)
 
 The backend will refuse to start if any placeholder (`__REQUIRED__…`) is still present.
 
+### Marketing & analytics (optional but recommended)
+
+| Variable | Purpose |
+|---|---|
+| `VITE_META_PIXEL_ID` | Meta Pixel ID — baked into the JS bundle, exposed to browser |
+| `META_DATASET_ID` | Same value as Pixel ID, used server-side for CAPI |
+| `META_CAPI_ACCESS_TOKEN` | Server-only CAPI token (Meta Events Manager → Settings) |
+| `META_TEST_EVENT_CODE` | Set during testing; remove for live traffic |
+| `VITE_GTM_ID` | Google Tag Manager container ID (loads GA4 inside GTM) |
+| `VITE_GA4_ID` | Direct GA4 measurement ID (only when not using GTM) |
+| `VITE_META_IG_USERNAME` | Used by IG DM buttons; e.g. `endulustravell` |
+| `VITE_META_CAPI_ENABLED` | `true` to mirror Pixel events to /api/meta-capi |
+
+When `META_DATASET_ID` + `META_CAPI_ACCESS_TOKEN` are set, `/api/meta-capi`
+forwards events to Meta with SHA-256 hashed email/phone. Both Pixel and CAPI
+fire the same `event_id`, so Meta deduplicates automatically.
+
+### SMTP (form notifications)
+
+| Variable | Purpose |
+|---|---|
+| `SMTP_HOST` | leave empty to disable mailer |
+| `SMTP_PORT` | 587 (STARTTLS) or 465 (TLS) |
+| `SMTP_USER`/`SMTP_PASS` | credentials (no auth if both empty) |
+| `MAIL_FROM` | `Endülüs Travel <info@endulustravel.com>` |
+| `OPS_EMAIL` | where new lead notifications are sent |
+
+When set, every public POST to `/api/messages` triggers two emails: a
+notification to `OPS_EMAIL` and an acknowledgement to the visitor.
+
 ---
 
 ## 2. First boot
