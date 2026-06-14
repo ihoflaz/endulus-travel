@@ -44,6 +44,8 @@ RUN mkdir -p /app/uploads && chown -R app:app /app/uploads
 USER app
 EXPOSE 4000
 ENTRYPOINT ["/sbin/tini", "--"]
-# Apply committed migrations (safe — never drops data unless schema says so)
-# then optionally seed (gated by RUN_SEED env, default true).
-CMD ["sh", "-c", "node_modules/.bin/prisma migrate deploy && ( [ \"$RUN_SEED\" = \"false\" ] || node prisma/seed.js ) && node src/index.js"]
+# Apply committed migrations (safe — never drops data unless schema says so),
+# then optionally seed. Seed is best-effort: `|| true` ensures a seed hiccup
+# (e.g. an unreadable bind-mounted /seed-data file) never blocks the server
+# from booting. Migrations remain a hard gate.
+CMD ["sh", "-c", "node_modules/.bin/prisma migrate deploy && ( [ \"$RUN_SEED\" = \"false\" ] || node prisma/seed.js || echo '[startup] seed failed (non-fatal), continuing' ) && node src/index.js"]
