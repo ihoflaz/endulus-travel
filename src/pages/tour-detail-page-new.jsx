@@ -1,4 +1,4 @@
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useRef } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useTourDetail } from '../hooks';
 import { WhatsAppButton } from '../components/ui';
@@ -98,11 +98,17 @@ const TourDetailPage = () => {
   const { slug } = useParams();
   const { tour, relatedTours, isLoading, error, notFound } = useTourDetail(slug);
 
-  // Fire Meta Pixel `ViewContent` + GA4 `view_tour` once per page entry, so
-  // every visitor to a tour detail becomes part of the retargeting audience.
+  // Fire Meta Pixel `ViewContent` + GA4 `view_tour` once the tour data is
+  // available — on BOTH cold (full-page) loads and SPA route changes. We key on
+  // the resolved `tour` object (not a route signal) because on a cold load
+  // `tour` starts null while the list loads, then becomes defined; the ref
+  // guard ensures exactly one fire per slug.
+  const viewTrackedRef = useRef(null);
   useEffect(() => {
-    if (tour) trackViewTour(tour);
-  }, [tour?.slug]);
+    if (!tour?.slug || viewTrackedRef.current === tour.slug) return;
+    viewTrackedRef.current = tour.slug;
+    trackViewTour(tour);
+  }, [tour]);
 
   // Build a TouristTrip JSON-LD payload for richer search results. Memoized so
   // <Seo> doesn't tear down/recreate the script tag on every render.

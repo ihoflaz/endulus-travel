@@ -88,7 +88,14 @@ const pushDataLayer = (payload) => {
 };
 
 const pixelTrack = (name, params, eventId) => {
-  if (!PIXEL_ID || typeof window === 'undefined' || !window.fbq) return;
+  if (!PIXEL_ID || typeof window === 'undefined') return;
+  // Cold-load hardening: a deep-link can fire an event (e.g. ViewContent on a
+  // tour page) before the root PageViewTracker effect ran loadPixel(). Ensure
+  // the fbq stub is installed first — loadPixel is idempotent and the stub
+  // queues the call until fbevents.js finishes loading, so the beacon is never
+  // silently dropped on a full-page load.
+  if (!window.fbq) loadPixel();
+  if (!window.fbq) return;
   window.fbq('track', name, params, { eventID: eventId });
 };
 
