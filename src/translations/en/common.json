@@ -867,7 +867,15 @@
     "ctaQuoteButton": "Get a Custom Quote",
     "whatsappMessage": "I would like to get information about custom tour packages.",
     "whatsappButton": "Contact on WhatsApp",
-    "metaDescription": "Discover Endülüs Travel's carefully planned small-group tour packages. Browse our culture, nature and city tours, and let us plan your dream trip together."
+    "metaDescription": "Discover Endülüs Travel's carefully planned small-group tour packages. Browse our culture, nature and city tours, and let us plan your dream trip together.",
+    "heroEyebrow": "Egypt · Giza & the Nile",
+    "heroSubtitle": "Tailor-made, carefully planned journeys — aligned with prayer times and halal cuisine.",
+    "filterAll": "All",
+    "specialOffer": "Special Offer",
+    "ctaEyebrow": "Can’t find what you’re looking for?",
+    "ctaBody": "Tell us about your dream trip and we’ll prepare a personalized offer within 24 hours.",
+    "ctaButton": "Get a Quote",
+    "ctaPlan": "Plan a Tour"
   },
   "homeServices": {
     "loadError": "Services could not be loaded",

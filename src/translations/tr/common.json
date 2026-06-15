@@ -867,7 +867,15 @@
     "ctaQuoteButton": "Özel Teklif Al",
     "whatsappMessage": "Size özel tur paketleri hakkında bilgi almak istiyorum.",
     "whatsappButton": "WhatsApp İletişim",
-    "metaDescription": "Endülüs Travel ile küçük gruplara özel, özenle planlanmış tur paketlerini keşfedin. Kültür, doğa ve şehir turlarını inceleyin, hayalinizdeki seyahati birlikte planlayalım."
+    "metaDescription": "Endülüs Travel ile küçük gruplara özel, özenle planlanmış tur paketlerini keşfedin. Kültür, doğa ve şehir turlarını inceleyin, hayalinizdeki seyahati birlikte planlayalım.",
+    "heroEyebrow": "Mısır · Giza & Nil",
+    "heroSubtitle": "Size ve grubunuza özel, özenle planlanmış; namaz vakitlerine ve helal mutfağa uygun seyahat deneyimleri.",
+    "filterAll": "Tümü",
+    "specialOffer": "Özel Fırsat",
+    "ctaEyebrow": "Aradığını bulamadın mı?",
+    "ctaBody": "Hayalinizdeki tatili anlatın, 24 saat içinde kişiye özel teklifinizi hazırlayalım.",
+    "ctaButton": "Teklif Al",
+    "ctaPlan": "Tur Planla"
   },
   "homeServices": {
     "loadError": "Hizmetler yüklenemedi",
