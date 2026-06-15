@@ -79,6 +79,7 @@ services:
       META_DATASET_ID: ${META_DATASET_ID:-}
       META_CAPI_ACCESS_TOKEN: ${META_CAPI_ACCESS_TOKEN:-}
       META_TEST_EVENT_CODE: ${META_TEST_EVENT_CODE:-}
+      META_CAPI_DEBUG: ${META_CAPI_DEBUG:-}
     volumes:
       - uploads_data:/app/uploads
       # Optional seed source. Only needed on first boot OR when RUN_SEED=true.
