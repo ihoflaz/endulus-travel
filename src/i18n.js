@@ -23,10 +23,18 @@ i18n
         translation: enTranslation
       }
     },
-    // Varsayılan dil
+    // Algılama başarısız olursa varsayılan dil
     fallbackLng: 'tr',
-    // Başlangıç dili
-    lng: 'tr',
+    // Dili SABİTLEMİYORUZ. lng: 'tr' verilseydi LanguageDetector'ı ezer ve
+    // kullanıcının EN seçimi sayfa yenilemede TR'ye dönerdi. Bunun yerine
+    // detector localStorage / ?lng / <html lang> sırasıyla belirler; eşleşme
+    // yoksa fallbackLng (tr) kullanılır — yani yeni ziyaretçi yine Türkçe görür.
+    detection: {
+      order: ['querystring', 'localStorage', 'htmlTag'],
+      lookupQuerystring: 'lng',
+      lookupLocalStorage: 'i18nextLng',
+      caches: ['localStorage'],
+    },
     // Hata ayıklama modu
     debug: false,
     // Namespace olarak translation kullan (önemli)
