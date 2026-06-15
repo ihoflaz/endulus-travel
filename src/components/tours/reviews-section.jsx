@@ -13,9 +13,9 @@ const StarRating = ({ rating }) => {
     <div className="flex items-center gap-0.5" aria-label={`${value}/5`}>
       {[1, 2, 3, 4, 5].map((i) =>
         i <= value ? (
-          <StarIcon key={i} className="h-5 w-5 text-amber-400" aria-hidden="true" />
+          <StarIcon key={i} className="h-5 w-5 text-[var(--ds-gold-bright)]" aria-hidden="true" />
         ) : (
-          <StarOutlineIcon key={i} className="h-5 w-5 text-amber-400" aria-hidden="true" />
+          <StarOutlineIcon key={i} className="h-5 w-5 text-[var(--ds-gold-bright)]/50" aria-hidden="true" />
         )
       )}
     </div>
@@ -23,15 +23,15 @@ const StarRating = ({ rating }) => {
 };
 
 const ReviewCard = ({ review }) => (
-  <div className="flex flex-col h-full bg-[color:var(--color-background)] border border-[color:var(--color-border)] rounded-xl shadow-md p-6 hover-float">
+  <div className="ds-glass flex flex-col h-full rounded-2xl p-6">
     <StarRating rating={review.rating} />
-    <p className="mt-4 flex-1 text-[color:var(--color-text-dark)] leading-relaxed">
+    <p className="mt-4 flex-1 text-[var(--ds-text)] leading-relaxed">
       {review.content}
     </p>
-    <div className="mt-5 pt-4 border-t border-[color:var(--color-border)]">
-      <p className="font-semibold text-[color:var(--color-text-dark)]">{review.authorName}</p>
+    <div className="mt-5 pt-4 border-t border-white/10">
+      <p className="font-semibold text-[var(--ds-text)]">{review.authorName}</p>
       {review.location && (
-        <p className="text-sm text-[color:var(--color-text-light)] mt-0.5">{review.location}</p>
+        <p className="text-sm text-[var(--ds-text-muted)] mt-0.5">{review.location}</p>
       )}
     </div>
   </div>
@@ -65,8 +65,8 @@ const ReviewsSection = ({ tourSlug }) => {
   return (
     <section className="py-10">
       <div className="flex items-center gap-2 mb-6">
-        <StarIcon className="h-7 w-7 text-amber-400" aria-hidden="true" />
-        <h2 className="text-2xl font-bold text-[color:var(--color-text-dark)]">
+        <StarIcon className="h-7 w-7 text-[var(--ds-gold-bright)]" aria-hidden="true" />
+        <h2 className="text-2xl font-bold text-[var(--ds-text)]">
           {t('tourDetail.reviewsTitle', 'Müşteri Yorumları')}
         </h2>
       </div>

@@ -653,7 +653,19 @@
     "includedTitle": "Fiyata Dahil Olanlar",
     "notIncludedTitle": "Fiyata Dahil Olmayanlar",
     "faqTitle": "Sıkça Sorulan Sorular",
-    "reviewsTitle": "Müşteri Yorumları"
+    "reviewsTitle": "Müşteri Yorumları",
+    "factDuration": "Süre",
+    "factGroup": "Grup",
+    "factDates": "Tarih",
+    "factPrice": "Fiyat",
+    "heroWhatsapp": "WhatsApp ile Rezervasyon",
+    "heroOffer": "Özel Teklif Al",
+    "gallery": "Galeri",
+    "sidebarWhatsapp": "WhatsApp ile İletişim",
+    "sidebarOffer": "Özel Teklif Al",
+    "related": "Benzer Turlar",
+    "notFound": "Tur Bulunamadı",
+    "defaultWa": "Merhaba, {{title}} turu hakkında bilgi almak istiyorum."
   },
   "servicesPage": {
     "documentTitle": "Hizmetlerimiz - Endülüs Travel",

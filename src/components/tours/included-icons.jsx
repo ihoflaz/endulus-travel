@@ -31,8 +31,8 @@ const iconForIncluded = (text) => {
 };
 
 const Column = ({ title, headerColor, children }) => (
-  <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 sm:p-8 border border-white/60">
-    <h3 className="text-xl font-bold mb-6 text-[color:var(--color-text-dark)] flex items-center">
+  <div className="ds-glass rounded-2xl p-6 sm:p-8">
+    <h3 className="text-xl font-bold mb-6 text-[var(--ds-text)] flex items-center">
       <span className={`w-6 h-6 ${headerColor} rounded-lg flex items-center justify-center mr-3 flex-shrink-0`}>
         {title.icon}
       </span>
@@ -57,7 +57,7 @@ const IncludedIcons = ({ included = [], notIncluded = [] }) => {
     <div className={`grid grid-cols-1 ${single ? '' : 'md:grid-cols-2'} gap-6`}>
       {hasIncluded && (
         <Column
-          headerColor="bg-[color:var(--color-success)]"
+          headerColor="bg-[rgba(47,143,115,0.9)]"
           title={{
             label: t('tourDetail.includedTitle', 'Fiyata Dahil Olanlar'),
             icon: <CheckCircleIcon className="w-4 h-4 text-white" />,
@@ -67,8 +67,8 @@ const IncludedIcons = ({ included = [], notIncluded = [] }) => {
             const ItemIcon = iconForIncluded(item);
             return (
               <li key={index} className="flex items-start gap-3">
-                <ItemIcon className="w-5 h-5 text-[color:var(--color-success)] mt-0.5 flex-shrink-0" />
-                <span className="text-[color:var(--color-text-dark)]">{item}</span>
+                <ItemIcon className="w-5 h-5 text-[rgba(47,143,115,1)] mt-0.5 flex-shrink-0" />
+                <span className="text-[var(--ds-text)]">{item}</span>
               </li>
             );
           })}
@@ -77,7 +77,7 @@ const IncludedIcons = ({ included = [], notIncluded = [] }) => {
 
       {hasNotIncluded && (
         <Column
-          headerColor="bg-[color:var(--color-error)]"
+          headerColor="bg-[rgba(220,90,90,0.85)]"
           title={{
             label: t('tourDetail.notIncludedTitle', 'Fiyata Dahil Olmayanlar'),
             icon: <XCircleIcon className="w-4 h-4 text-white" />,
@@ -85,8 +85,8 @@ const IncludedIcons = ({ included = [], notIncluded = [] }) => {
         >
           {notIncluded.map((item, index) => (
             <li key={index} className="flex items-start gap-3">
-              <XCircleIcon className="w-5 h-5 text-[color:var(--color-error)] mt-0.5 flex-shrink-0" />
-              <span className="text-[color:var(--color-text-light)]">{item}</span>
+              <XCircleIcon className="w-5 h-5 text-[rgba(220,90,90,0.95)] mt-0.5 flex-shrink-0" />
+              <span className="text-[var(--ds-text-muted)]">{item}</span>
             </li>
           ))}
         </Column>

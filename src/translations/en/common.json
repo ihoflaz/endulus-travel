@@ -653,7 +653,19 @@
     "includedTitle": "What's Included",
     "notIncludedTitle": "Not Included",
     "faqTitle": "Frequently Asked Questions",
-    "reviewsTitle": "Customer Reviews"
+    "reviewsTitle": "Customer Reviews",
+    "factDuration": "Duration",
+    "factGroup": "Group",
+    "factDates": "Dates",
+    "factPrice": "Price",
+    "heroWhatsapp": "Reserve via WhatsApp",
+    "heroOffer": "Get a Custom Offer",
+    "gallery": "Gallery",
+    "sidebarWhatsapp": "Contact via WhatsApp",
+    "sidebarOffer": "Get a Custom Offer",
+    "related": "Similar Tours",
+    "notFound": "Tour Not Found",
+    "defaultWa": "Hello, I would like information about the {{title}} tour."
   },
   "servicesPage": {
     "documentTitle": "Our Services - Endülüs Travel",

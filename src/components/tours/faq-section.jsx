@@ -11,10 +11,10 @@ const FaqSection = ({ faq = [] }) => {
   if (!faq || faq.length === 0) return null;
 
   return (
-    <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in">
-      <h3 className="text-xl font-bold mb-6 text-[color:var(--color-text-dark)] flex items-center">
-        <div className="w-6 h-6 bg-[color:var(--color-primary)] rounded-lg flex items-center justify-center mr-3">
-          <QuestionMarkCircleIcon className="w-4 h-4 text-white" />
+    <div className="ds-glass rounded-2xl p-8">
+      <h3 className="text-xl font-bold mb-6 text-[var(--ds-text)] flex items-center">
+        <div className="w-6 h-6 rounded-lg flex items-center justify-center mr-3" style={{ background: 'var(--ds-gold)' }}>
+          <QuestionMarkCircleIcon className="w-4 h-4" style={{ color: 'var(--ds-bg, #0a0a12)' }} />
         </div>
         {t('tourDetail.faqTitle', 'Sıkça Sorulan Sorular')}
       </h3>

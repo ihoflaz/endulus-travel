@@ -15,12 +15,19 @@ const RefundGuarantee = ({ variant = 'card' }) => {
 
   if (variant === 'inline') {
     return (
-      <div className="inline-flex items-center gap-2 rounded-full border border-[color:var(--color-success)]/30 bg-[color:var(--color-success)]/10 px-4 py-2">
+      <div
+        className="inline-flex items-center gap-2 rounded-full px-4 py-2"
+        style={{
+          border: '1px solid rgba(47,143,115,0.4)',
+          backgroundColor: 'rgba(47,143,115,0.12)',
+        }}
+      >
         <ShieldCheckIcon
-          className="h-5 w-5 shrink-0 text-[color:var(--color-success)]"
+          className="h-5 w-5 shrink-0"
+          style={{ color: 'rgba(91,196,163,1)' }}
           aria-hidden="true"
         />
-        <span className="text-sm font-semibold text-[color:var(--color-text-dark)]">
+        <span className="text-sm font-semibold text-[var(--ds-text)]">
           {title}
         </span>
       </div>
@@ -29,18 +36,28 @@ const RefundGuarantee = ({ variant = 'card' }) => {
 
   if (variant === 'banner') {
     return (
-      <div className="flex items-start gap-4 rounded-2xl border border-[color:var(--color-success)]/30 bg-[color:var(--color-success)]/10 px-5 py-4 sm:items-center sm:px-6 sm:py-5">
-        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[color:var(--color-success)]/15">
+      <div
+        className="flex items-start gap-4 rounded-2xl px-5 py-4 sm:items-center sm:px-6 sm:py-5"
+        style={{
+          border: '1px solid rgba(47,143,115,0.4)',
+          backgroundColor: 'rgba(47,143,115,0.12)',
+        }}
+      >
+        <span
+          className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full"
+          style={{ backgroundColor: 'rgba(47,143,115,0.18)' }}
+        >
           <ShieldCheckIcon
-            className="h-6 w-6 text-[color:var(--color-success)]"
+            className="h-6 w-6"
+            style={{ color: 'rgba(91,196,163,1)' }}
             aria-hidden="true"
           />
         </span>
         <div>
-          <h3 className="text-base font-bold text-[color:var(--color-text-dark)] sm:text-lg">
+          <h3 className="text-base font-bold text-[var(--ds-text)] sm:text-lg">
             {title}
           </h3>
-          <p className="mt-1 text-sm text-[color:var(--color-text-light)]">
+          <p className="mt-1 text-sm text-[var(--ds-text-muted)]">
             {description}
           </p>
         </div>
@@ -50,19 +67,23 @@ const RefundGuarantee = ({ variant = 'card' }) => {
 
   // variant === 'card'
   return (
-    <div className="rounded-xl border border-[color:var(--color-border)] bg-white p-4">
+    <div className="ds-glass rounded-xl p-4">
       <div className="flex items-start gap-3">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[color:var(--color-secondary)]/15">
+        <span
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
+          style={{ backgroundColor: 'rgba(47,143,115,0.18)' }}
+        >
           <ShieldCheckIcon
-            className="h-6 w-6 text-[color:var(--color-success)]"
+            className="h-6 w-6"
+            style={{ color: 'rgba(91,196,163,1)' }}
             aria-hidden="true"
           />
         </span>
         <div>
-          <h3 className="text-sm font-bold text-[color:var(--color-text-dark)]">
+          <h3 className="text-sm font-bold text-[var(--ds-text)]">
             {title}
           </h3>
-          <p className="mt-1 text-xs leading-relaxed text-[color:var(--color-text-light)]">
+          <p className="mt-1 text-xs leading-relaxed text-[var(--ds-text-muted)]">
             {description}
           </p>
         </div>

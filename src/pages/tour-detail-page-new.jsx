@@ -1,13 +1,11 @@
-import { useEffect, useMemo, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { LocaleLink as Link } from '../components/LocaleLink';
 import { useTranslation } from 'react-i18next';
+import { LocaleLink as Link } from '../components/LocaleLink';
 import { useTourDetail } from '../hooks';
 import { WhatsAppButton } from '../components/ui';
 import { formatTourPrice, getPriceLabel, formatTourPriceWithDiscount } from '../utils/priceUtils';
-import { useState } from 'react';
 import Seo from '../components/Seo';
-import TrustStrip from '../components/TrustStrip';
 import { trackViewTour } from '../lib/analytics';
 import { localizeTour } from '../utils/localizeTour';
 import { Accordion, AccordionItem } from '../components/ui/accordion';
@@ -15,105 +13,49 @@ import IncludedIcons from '../components/tours/included-icons';
 import RefundGuarantee from '../components/tours/refund-guarantee';
 import FaqSection from '../components/tours/faq-section';
 import ReviewsSection from '../components/tours/reviews-section';
+import TourCardX from '../components/tours/TourCardX';
+import { Reveal, TextReveal } from '../components/motion';
 
-// Basit Fotoğraf Galerisi Bileşeni
+const FALLBACK_IMG = '/uploads/media/egypt.jpg';
+
+// Lightbox-free cinematic gallery (main + thumbs).
 const PhotoGallery = ({ images, title }) => {
   const { t } = useTranslation();
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextSlide = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === images.length - 1 ? 0 : prevIndex + 1
-    );
-  };
-
-  const prevSlide = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-
+  const [idx, setIdx] = useState(0);
   if (!images || images.length === 0) return null;
-
+  const next = () => setIdx((p) => (p === images.length - 1 ? 0 : p + 1));
+  const prev = () => setIdx((p) => (p === 0 ? images.length - 1 : p - 1));
   return (
-    <div className="grid grid-cols-4 gap-3 animate-fade-in">
-      {/* Ana Öne Çıkan Fotoğraf (2x2 grid alanı) */}
-      <div className="col-span-2 row-span-2 relative group">
-        <div className="aspect-square relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500">
-          <img 
-            src={images[currentIndex]} 
-            alt={t('tourDetail.galleryMainAlt', '{{title}} - Ana fotoğraf', { title })}
-            className="w-full h-full object-cover transition-all duration-700"
-            loading="lazy"
-          />
-
-          {/* Navigasyon okları */}
-          <button 
-            onClick={prevSlide}
-            className="absolute left-2 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-md hover:bg-white/40 text-white p-2 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
-            </svg>
+    <div className="grid grid-cols-4 gap-3">
+      <div className="col-span-4 sm:col-span-2 sm:row-span-2 relative group">
+        <div className="aspect-square relative overflow-hidden rounded-2xl">
+          <img src={images[idx]} alt={t('tourDetail.galleryMainAlt', '{{title}} - Ana fotoğraf', { title })} className="w-full h-full object-cover" loading="lazy" />
+          <button onClick={prev} aria-label="prev" className="absolute left-2 top-1/2 -translate-y-1/2 ds-glass p-2 rounded-full text-white opacity-0 group-hover:opacity-100 transition">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" /></svg>
           </button>
-          <button 
-            onClick={nextSlide}
-            className="absolute right-2 top-1/2 transform -translate-y-1/2 bg-white/20 backdrop-blur-md hover:bg-white/40 text-white p-2 rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-            </svg>
+          <button onClick={next} aria-label="next" className="absolute right-2 top-1/2 -translate-y-1/2 ds-glass p-2 rounded-full text-white opacity-0 group-hover:opacity-100 transition">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" /></svg>
           </button>
-
-          {/* Fotoğraf sayacı */}
-          <div className="absolute top-3 right-3 bg-black/60 backdrop-blur-md text-white px-2 py-1 rounded-lg text-xs font-medium">
-            {currentIndex + 1}/{images.length}
-          </div>
+          <div className="absolute top-3 right-3 ds-glass text-white px-2 py-1 rounded-lg text-xs">{idx + 1}/{images.length}</div>
         </div>
       </div>
-
-      {/* Küçük Fotoğraf Seti (Kalan alan için 2x2 grid) */}
-      {images.slice(1, 5).map((image, index) => (
-        <div key={index + 1} className="aspect-square relative group">
-          <div className="h-full relative overflow-hidden rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
-            <img 
-              src={image} 
-              alt={t('tourDetail.galleryThumbAlt', '{{title}} - Fotoğraf {{num}}', { title, num: index + 2 })}
-              className="w-full h-full object-cover cursor-pointer transition-all duration-500 hover:scale-105"
-              onClick={() => setCurrentIndex(index + 1)}
-              loading="lazy"
-            />
+      {images.slice(1, 5).map((image, i) => (
+        <div key={i + 1} className="col-span-2 sm:col-span-1 aspect-square relative">
+          <div className="h-full overflow-hidden rounded-xl">
+            <img src={image} alt={t('tourDetail.galleryThumbAlt', '{{title}} - Fotoğraf {{num}}', { title, num: i + 2 })} className="w-full h-full object-cover cursor-pointer transition-transform duration-500 hover:scale-105" onClick={() => setIdx(i + 1)} loading="lazy" />
           </div>
         </div>
       ))}
-
-      {/* 5'ten fazla fotoğraf varsa "daha fazla" butonu */}
-      {images.length > 5 && (
-        <div className="aspect-square relative group bg-gradient-to-br from-gray-100 to-gray-200 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 flex items-center justify-center">
-          <div className="text-center text-gray-600 group-hover:text-gray-800">
-            <svg className="w-6 h-6 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <p className="text-xs font-medium">+{images.length - 5}</p>
-          </div>
-        </div>
-      )}
     </div>
   );
 };
 
-// Premium TourDetailPage bileşeni - Modern tasarım sistemi ile
 const TourDetailPage = () => {
   const { t, i18n } = useTranslation();
   const { slug } = useParams();
   const { tour: rawTour, relatedTours, isLoading, error, notFound } = useTourDetail(slug);
   const tour = useMemo(() => localizeTour(rawTour, i18n.language), [rawTour, i18n.language]);
 
-  // Fire Meta Pixel `ViewContent` + GA4 `view_tour` once the tour data is
-  // available — on BOTH cold (full-page) loads and SPA route changes. We key on
-  // the resolved `tour` object (not a route signal) because on a cold load
-  // `tour` starts null while the list loads, then becomes defined; the ref
-  // guard ensures exactly one fire per slug.
   const viewTrackedRef = useRef(null);
   useEffect(() => {
     if (!tour?.slug || viewTrackedRef.current === tour.slug) return;
@@ -121,529 +63,200 @@ const TourDetailPage = () => {
     trackViewTour(tour);
   }, [tour]);
 
-  // Build a TouristTrip JSON-LD payload for richer search results. Memoized so
-  // <Seo> doesn't tear down/recreate the script tag on every render.
   const tourJsonLd = useMemo(() => {
     if (!tour) return null;
     return {
-      '@context': 'https://schema.org',
-      '@type': 'TouristTrip',
-      name: tour.title,
-      description: tour.description,
+      '@context': 'https://schema.org', '@type': 'TouristTrip',
+      name: tour.title, description: tour.description,
       image: tour.image || tour.gallery?.[0],
       touristType: tour.category,
       itinerary: Array.isArray(tour.itinerary)
-        ? tour.itinerary.map((d, i) => ({
-            '@type': 'TouristAttraction',
-            name: d.title || `${i + 1}. Gün`,
-            description: d.description,
-          }))
+        ? tour.itinerary.map((d, i) => ({ '@type': 'TouristAttraction', name: d.title || `${i + 1}. Gün`, description: d.description }))
         : undefined,
-      offers: tour.pricePerPerson ? {
-        '@type': 'Offer',
-        price: tour.pricePerPerson,
-        priceCurrency: tour.currency || 'TRY',
-        availability: 'https://schema.org/InStock',
-      } : undefined,
-      provider: {
-        '@type': 'TravelAgency',
-        name: 'Endülüs Travel',
-        identifier: 'TURSAB-6739',
-      },
+      offers: tour.pricePerPerson ? { '@type': 'Offer', price: tour.pricePerPerson, priceCurrency: tour.currency || 'TRY', availability: 'https://schema.org/InStock' } : undefined,
+      provider: { '@type': 'TravelAgency', name: 'Endülüs Travel', identifier: 'TURSAB-6739' },
     };
   }, [tour]);
 
-  if (tour) {
-    // Seo + sticky WhatsApp CTA are rendered alongside the normal layout
-    // below; we only short-circuit on loading/error states.
-  }
-
   if (isLoading) {
     return (
-      <div className="pt-16">
-        <section className="py-16 md:py-24">
-          <div className="max-w-4xl mx-auto px-4 md:px-8">
-            <div className="animate-pulse">
-              <div className="h-12 bg-gray-200 rounded w-3/4 mx-auto mb-8"></div>
-              <div className="h-64 bg-gray-200 rounded-2xl mb-8"></div>
-              <div className="space-y-4">
-                <div className="h-4 bg-gray-200 rounded w-full"></div>
-                <div className="h-4 bg-gray-200 rounded w-5/6"></div>
-                <div className="h-4 bg-gray-200 rounded w-full"></div>
-                <div className="h-4 bg-gray-200 rounded w-4/6"></div>
-              </div>
-            </div>
-          </div>
-        </section>
+      <div className="ds-dark min-h-screen pt-32" style={{ background: 'var(--ds-bg)' }}>
+        <div className="ds-container animate-pulse">
+          <div className="h-10 w-2/3 rounded bg-white/10 mb-6" />
+          <div className="h-72 rounded-2xl bg-white/10 mb-6" />
+          <div className="space-y-3"><div className="h-4 bg-white/10 rounded w-full" /><div className="h-4 bg-white/10 rounded w-5/6" /></div>
+        </div>
       </div>
     );
   }
 
   if (error || notFound || !tour) {
     return (
-      <div className="pt-16">
-        <section className="py-16 md:py-24">
-          <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
-            <div className="bg-red-50 p-8 rounded-2xl">
-              <h1 className="text-2xl font-bold text-red-500 mb-4">
-                {t('tourDetail.notFoundTitle', 'Tur Bulunamadı')}
-              </h1>
-              <p className="text-gray-700 mb-4">
-                {t('tourDetail.notFoundText', 'Aradığınız tur sayfası bulunamadı. Lütfen tur listesinden tekrar seçim yapınız.')}
-              </p>
-              <Link
-                to="/turlar"
-                className="inline-block bg-[color:var(--color-primary)] hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105"
-              >
-                {t('tourDetail.backToTours', 'Turlara Geri Dön')}
-              </Link>
-            </div>
-          </div>
-        </section>
+      <div className="ds-dark min-h-screen grid place-items-center pt-24" style={{ background: 'var(--ds-bg)' }}>
+        <div className="text-center ds-container">
+          <h1 className="ds-display text-3xl text-[var(--ds-gold)] mb-4">{t('tourDetail.notFound', 'Tur Bulunamadı')}</h1>
+          <Link to="/turlar" className="ds-btn-ghost">{t('tourDetail.backToTours', 'Tüm Turlar')}</Link>
+        </div>
       </div>
     );
   }
 
+  const heroImg = tour.image || tour.gallery?.[0] || FALLBACK_IMG;
+  const priceInfo = formatTourPriceWithDiscount(tour);
+  const waMessage = tour.whatsappMessage || t('tourDetail.defaultWa', 'Merhaba, {{title}} turu hakkında bilgi almak istiyorum.', { title: tour.title });
+
   return (
-    <div className="page-transition">
-      <Seo
-        title={`${tour.title} — Endülüs Travel`}
-        description={tour.description}
-        image={tour.image || tour.gallery?.[0]}
-        type="product"
-        jsonLd={tourJsonLd}
-      />
+    <div className="ds-dark" style={{ background: 'var(--ds-bg)' }}>
+      <Seo title={`${tour.title} — Endülüs Travel`} description={tour.description} image={heroImg} type="product" jsonLd={tourJsonLd} />
 
-      {/* Mobile sticky CTA — always reachable on small viewports */}
-      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-amber-200 bg-white/95 px-4 py-3 shadow-2xl backdrop-blur-md sm:hidden">
-        <div className="flex items-center gap-3">
-          <div className="flex-1 text-left">
-            <div className="text-xs text-slate-500">{getPriceLabel(tour)}</div>
-            <div className="font-bold text-slate-900">{formatTourPrice(tour)}</div>
+      {/* ===== Hero (per-tour image) ===== */}
+      <section className="relative w-full overflow-hidden ds-vignette ds-grain" style={{ minHeight: '82svh' }}>
+        <img src={heroImg} alt={tour.title} className="absolute inset-0 w-full h-full object-cover" onError={(e) => { e.currentTarget.src = FALLBACK_IMG; }} />
+        <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(7,10,18,0.6) 0%, rgba(7,10,18,0.2) 40%, rgba(7,10,18,0.95) 100%)' }} />
+        <div className="relative z-10 ds-container flex flex-col justify-end" style={{ minHeight: '82svh', paddingTop: '8rem', paddingBottom: 'clamp(3rem,7vh,5rem)' }}>
+          <nav className="mb-5 flex items-center gap-2 text-sm text-[var(--ds-text-muted)]">
+            <Link to="/" className="hover:text-[var(--ds-gold)]">{t('navigation.home', 'Ana Sayfa')}</Link>
+            <span className="opacity-40">/</span>
+            <Link to="/turlar" className="hover:text-[var(--ds-gold)]">{t('navigation.tours', 'Turlar')}</Link>
+          </nav>
+          {tour.category && <span className="ds-eyebrow mb-4">{t('categories.' + tour.category, tour.destination || '')}</span>}
+          <h1 className="ds-display text-[var(--ds-text)] text-balance" style={{ fontSize: 'clamp(2.4rem,6vw,5rem)', maxWidth: '20ch' }}>
+            <TextReveal text={tour.title} delay={0.3} />
+          </h1>
+          <div className="mt-7 flex flex-wrap items-center gap-x-8 gap-y-3 text-[var(--ds-text-soft)]">
+            {tour.duration && <Fact label={t('tourDetail.factDuration', 'Süre')} value={tour.duration} />}
+            {tour.groupSize && <Fact label={t('tourDetail.factGroup', 'Grup')} value={tour.groupSize} />}
+            {tour.dates && <Fact label={t('tourDetail.factDates', 'Tarih')} value={tour.dates} />}
+            <Fact label={t('tourDetail.factPrice', 'Fiyat')} value={formatTourPrice(tour)} gold />
           </div>
-          <WhatsAppButton tour={tour} size="md">WhatsApp</WhatsAppButton>
-        </div>
-      </div>
-
-      {/* Premium Hero Section */}
-      <div className="relative overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0">
-          <img 
-            src={tour?.image || "/images/tours-page-bg.jpg"} 
-            alt={tour?.title || "Tour Background"}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-primary)]/80 via-blue-600/80 to-[color:var(--color-primary)]/80"></div>
-          <div className="absolute inset-0 bg-black/20"></div>
-        </div>
-        
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-32 -translate-y-32"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color:var(--color-secondary)]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
-        
-        <div className="relative z-10 py-16 md:py-24">
-          <div className="max-w-7xl mx-auto px-4 md:px-8">
-            {/* Breadcrumb */}
-            <div className="mb-6 animate-fade-in">
-              <Link to="/" className="text-white/80 hover:text-white transition-colors">{t('tourDetail.breadcrumbHome', 'Ana Sayfa')}</Link>
-              <span className="text-white/60 mx-2">&gt;</span>
-              <Link to="/turlar" className="text-white/80 hover:text-white transition-colors">{t('tourDetail.breadcrumbTours', 'Turlar')}</Link>
-              <span className="text-white/60 mx-2">&gt;</span>
-              <span className="text-[color:var(--color-secondary)]">{tour?.title || t('tourDetail.tourDetailFallback', 'Tur Detayı')}</span>
-            </div>
-
-            {/* Hero Content */}
-            <div className="text-center text-white max-w-4xl mx-auto">
-              <div className="mb-6 animate-fade-in">
-                {tour.specialOffer ? (
-                  <span className="inline-flex items-center px-4 py-2 bg-red-500/90 backdrop-blur-sm text-white text-sm font-semibold rounded-full border border-red-400/30 mr-3">
-                    <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                      <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                    </svg>
-                    {t('tourDetail.specialCampaign', 'ÖZEL KAMPANYA')}
-                  </span>
-                ) : null}
-                <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color:var(--color-secondary)] text-sm font-semibold rounded-full border border-white/30">
-                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                    <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                  </svg>
-                  {t('tourDetail.privateTourExperience', 'Özel Tur Deneyimi')}
-                </span>
-              </div>
-              
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-2xl animate-fade-in" style={{ animationDelay: '0.1s' }}>
-                {tour?.title || t('tourDetail.tourDetailFallback', 'Tur Detayı')}
-              </h1>
-
-              <p className="text-xl md:text-2xl mb-8 opacity-90 leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                {tour?.description || t('tourDetail.heroDescFallback', 'Bu özel tur deneyimi hakkında detaylı bilgiler ve özellikler.')}
-              </p>
-
-              {/* Feature Cards */}
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">{tour?.groupSize || '10-12'}</h3>
-                  <p className="text-white/90">{t('tourDetail.peopleLabel', 'Kişi')}</p>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <div className="text-center">
-                    {(() => {
-                      const priceInfo = formatTourPriceWithDiscount(tour);
-                      return (
-                        <>
-                          {priceInfo.hasDiscount && (
-                            <div className="text-lg text-red-300 line-through mb-1">
-                              {priceInfo.originalPrice}
-                            </div>
-                          )}
-                          <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">
-                            {priceInfo.currentPrice}
-                          </h3>
-                        </>
-                      );
-                    })()}
-                  </div>
-                  <p className="text-white/90 text-center">
-                    {getPriceLabel(tour)}
-                  </p>
-                </div>
-                <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">{tour?.duration || t('tourDetail.durationFallback', '5 Gün')}</h3>
-                  <p className="text-white/90">{t('tourDetail.durationLabel', 'Süre')}</p>
-                </div>
-              </div>
-
-              {/* Refund guarantee trust pill */}
-              <div className="mt-8 flex justify-center animate-fade-in" style={{ animationDelay: '0.5s' }}>
-                <RefundGuarantee variant="inline" />
-              </div>
-            </div>
+          <div className="mt-9 flex flex-wrap items-center gap-4">
+            <WhatsAppButton tour={tour} size="lg">{t('tourDetail.heroWhatsapp', 'WhatsApp ile Rezervasyon')}</WhatsAppButton>
+            <Link to="/teklif-al" className="ds-btn-ghost">{t('tourDetail.heroOffer', 'Özel Teklif Al')}</Link>
           </div>
+          <div className="mt-6"><RefundGuarantee variant="inline" /></div>
         </div>
-      </div>
+      </section>
 
-      {/* Premium Content Section */}
-      <section className="py-16 relative overflow-hidden">
-        {/* Light Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-b from-gray-50 to-white">
-          <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-gradient-to-l from-blue-100/40 to-transparent rounded-full transform translate-x-32 -translate-y-32"></div>
-        </div>
-        
-        <div className="relative z-10 max-w-6xl mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
-            {/* Sol Sütun - Tur Açıklaması (2/3) */}
-            <div className="lg:col-span-2 space-y-8">
-              {/* About Tour */}
-              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                <h2 className="text-2xl font-bold mb-6 text-[color:var(--color-text-dark)] flex items-center">
-                  <div className="w-8 h-8 bg-[color:var(--color-primary)] rounded-lg flex items-center justify-center mr-3">
-                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  {t('tourDetail.aboutTour', 'Tur Hakkında')}
-                </h2>
-                <p className="text-[color:var(--color-text-light)] leading-relaxed text-lg">{tour.description}</p>
-              </div>
+      {/* ===== Body ===== */}
+      <div className="ds-container py-16 md:py-24 grid lg:grid-cols-12 gap-12">
+        {/* main column */}
+        <div className="lg:col-span-8 space-y-16">
+          {tour.description && (
+            <Reveal>
+              <span className="ds-eyebrow">{t('tourDetail.aboutTour', 'Tur Hakkında')}</span>
+              <p className="ds-lead mt-5 whitespace-pre-line">{tour.description}</p>
+            </Reveal>
+          )}
 
-              {/* Photo Gallery */}
-              {tour.gallery && tour.gallery.length > 0 && (
-                <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.45s' }}>
-                  <h3 className="text-xl font-bold mb-6 text-[color:var(--color-text-dark)] flex items-center">
-                    <div className="w-6 h-6 bg-purple-500 rounded-lg flex items-center justify-center mr-3">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                    </div>
-                    {t('tourDetail.photoGallery', 'Fotoğraf Galerisi')}
-                  </h3>
-                  <PhotoGallery images={tour.gallery} title={tour.title} />
-                </div>
-              )}
+          {Array.isArray(tour.gallery) && tour.gallery.length > 0 && (
+            <Reveal>
+              <h2 className="ds-display text-2xl text-[var(--ds-text)] mb-6">{t('tourDetail.gallery', 'Galeri')}</h2>
+              <PhotoGallery images={tour.gallery} title={tour.title} />
+            </Reveal>
+          )}
 
-              {/* Tour Features */}
-              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.5s' }}>
-                <h3 className="text-xl font-bold mb-6 text-[color:var(--color-text-dark)] flex items-center">
-                  <div className="w-6 h-6 bg-[color:var(--color-secondary)] rounded-lg flex items-center justify-center mr-3">
-                    <svg className="w-3 h-3 text-[color:var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                  </div>
-                  {t('tourDetail.tourFeatures', 'Tur Özellikleri')}
-                </h3>
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="flex items-center group">
-                    <div className="w-10 h-10 bg-[color:var(--color-primary)]/10 rounded-full flex items-center justify-center mr-3 group-hover:bg-[color:var(--color-primary)]/20 transition-colors">
-                      <svg className="w-5 h-5 text-[color:var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                      </svg>
-                    </div>
-                    <div>
-                      <div className="font-semibold text-[color:var(--color-text-dark)]">{t('tourDetail.durationLabel', 'Süre')}</div>
-                      <div className="text-[color:var(--color-text-light)]">{tour.duration || t('tourDetail.durationFallback', '5 Gün')}</div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center group">
-                    <div className="w-10 h-10 bg-[color:var(--color-primary)]/10 rounded-full flex items-center justify-center mr-3 group-hover:bg-[color:var(--color-primary)]/20 transition-colors">
-                      <svg className="w-5 h-5 text-[color:var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
-                      </svg>
-                    </div>
-                    <div>
-                      <div className="font-semibold text-[color:var(--color-text-dark)]">{t('tourDetail.groupSize', 'Grup Boyutu')}</div>
-                      <div className="text-[color:var(--color-text-light)]">{tour.groupSize}</div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center group">
-                    <div className="w-10 h-10 bg-[color:var(--color-primary)]/10 rounded-full flex items-center justify-center mr-3 group-hover:bg-[color:var(--color-primary)]/20 transition-colors">
-                      <svg className="w-5 h-5 text-[color:var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z"></path>
-                      </svg>
-                    </div>
-                    <div>
-                      <div className="font-semibold text-[color:var(--color-text-dark)]">
-                        {getPriceLabel(tour)}
-                      </div>
-                      <div className="text-[color:var(--color-text-light)]">
-                        {formatTourPrice(tour)}
-                      </div>
-                    </div>
-                  </div>
-                  
-                  <div className="flex items-center group">
-                    <div className="w-10 h-10 bg-[color:var(--color-primary)]/10 rounded-full flex items-center justify-center mr-3 group-hover:bg-[color:var(--color-primary)]/20 transition-colors">
-                      <svg className="w-5 h-5 text-[color:var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path>
-                      </svg>
-                    </div>
-                    <div>
-                      <div className="font-semibold text-[color:var(--color-text-dark)]">{t('tourDetail.category', 'Kategori')}</div>
-                      <div className="text-[color:var(--color-text-light)]">{tour.category}</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Highlights - Öne Çıkan Özellikler */}
-              {tour.highlights && (
-                <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.55s' }}>
-                  <h3 className="text-xl font-bold mb-6 text-[color:var(--color-text-dark)] flex items-center">
-                    <div className="w-6 h-6 bg-yellow-500 rounded-lg flex items-center justify-center mr-3">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                      </svg>
-                    </div>
-                    {t('tourDetail.highlights', 'Öne Çıkan Özellikler')}
-                  </h3>
-                  <ul className="space-y-3">
-                    {tour.highlights.map((highlight, index) => (
-                      <li key={index} className="flex items-start">
-                        <svg className="w-5 h-5 text-yellow-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
-                        </svg>
-                        <span className="text-[color:var(--color-text-light)]">{highlight}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-              
-              {/* Tur Planı - Detaylı itinerary varsa göster */}
-              {Array.isArray(tour.itinerary) && tour.itinerary.length > 0 ? (
-                <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.6s' }}>
-                  <h3 className="text-xl font-bold mb-6 text-[color:var(--color-text-dark)] flex items-center">
-                    <div className="w-6 h-6 bg-[color:var(--color-primary)] rounded-lg flex items-center justify-center mr-3">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
-                      </svg>
-                    </div>
-                    {t('tourDetail.itineraryTitle', 'Gün Gün Program')}
-                  </h3>
-                  <Accordion>
-                    {tour.itinerary.map((d, i) => (
-                      <AccordionItem
-                        key={i}
-                        title={[d.day, d.title].filter(Boolean).join(' — ')}
-                        subtitle={d.date}
-                        defaultOpen={i === 0}
-                      >
-                        {d.description && (
-                          <p className="mb-3">{d.description}</p>
-                        )}
-                        {d.activities?.length > 0 && (
-                          <ul className="list-disc list-inside text-sm space-y-1">
-                            {d.activities.map((activity, actIndex) => (
-                              <li key={actIndex}>{activity}</li>
-                            ))}
-                          </ul>
-                        )}
-                      </AccordionItem>
-                    ))}
-                  </Accordion>
-                </div>
-              ) : (
-                // Diğer turlar için genel bilgi
-                <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.6s' }}>
-                  <h3 className="text-xl font-bold mb-6 text-[color:var(--color-text-dark)] flex items-center">
-                    <div className="w-6 h-6 bg-[color:var(--color-primary)] rounded-lg flex items-center justify-center mr-3">
-                      <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    {t('tourDetail.tourInfoHeading', 'Tur Bilgileri')}
-                  </h3>
-                  <div className="text-center py-8">
-                    <div className="w-20 h-20 bg-[color:var(--color-primary)]/10 rounded-full flex items-center justify-center mx-auto mb-6">
-                      <svg className="w-10 h-10 text-[color:var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                    </div>
-                    <h4 className="text-2xl font-bold text-[color:var(--color-text-dark)] mb-4">{t('tourDetail.comingSoon', 'Yakında Sizlerle!')}</h4>
-                    <p className="text-[color:var(--color-text-light)] mb-6 max-w-md mx-auto">
-                      {t('tourDetail.comingSoonText', 'Bu özel tur için detaylı program hazırlığımız devam ediyor. Bizimle iletişime geçerek ön rezervasyon yaptırabilir ve güncel bilgiler alabilirsiniz.')}
-                    </p>
-                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                      <WhatsAppButton 
-                        tour={tour}
-                        className="bg-[color:var(--color-primary)] hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105"
-                      />
-                      <Link 
-                        to="/teklif-al" 
-                        className="bg-white/50 hover:bg-white text-[color:var(--color-primary)] hover:text-[color:var(--color-primary)] font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 border border-[color:var(--color-primary)]/20"
-                      >
-                        {t('tourDetail.getCustomQuote', 'Özel Teklif Al')}
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* SSS */}
-              <FaqSection faq={tour.faq} />
-
-              {/* Dahil Olan/Olmayan Hizmetler - Detaylı turlar için */}
-              {((Array.isArray(tour.included) && tour.included.length > 0) ||
-                (Array.isArray(tour.notIncluded) && tour.notIncluded.length > 0)) && (
-                <IncludedIcons included={tour.included || []} notIncluded={tour.notIncluded || []} />
-              )}
-            </div>
-
-            {/* Sağ Sütun - CTA ve Bilgiler (1/3) */}
-            <div className="space-y-6">
-              {/* Premium CTA Card */}
-              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-white/60 sticky top-24 hover-float animate-fade-in" style={{ animationDelay: '0.3s' }}>
-                <h3 className="text-xl font-bold mb-4 text-[color:var(--color-text-dark)]">{t('tourDetail.bookNow', 'Hemen Rezervasyon Yapın')}</h3>
-                <p className="text-[color:var(--color-text-light)] mb-6">{t('tourDetail.bookNowText', 'Size özel fiyat teklifi ve detaylı bilgi için bizimle iletişime geçin.')}</p>
-                
-                <div className="space-y-4">
-                  <WhatsAppButton 
-                    tour={tour}
-                    className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105"
-                  />
-                  
-                  <Link
-                    to="/teklif-al"
-                    className="w-full bg-[color:var(--color-primary)] hover:bg-blue-600 text-white hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center"
-                  >
-                    {t('tourDetail.getCustomQuote', 'Özel Teklif Al')}
-                  </Link>
-
-                  <RefundGuarantee variant="card" />
-                </div>
-              </div>
-
-              {/* Tour Info Card */}
-              <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.4s' }}>
-                <h3 className="text-lg font-bold mb-4 text-[color:var(--color-text-dark)]">{t('tourDetail.tourInfoHeading', 'Tur Bilgileri')}</h3>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[color:var(--color-text-light)]">{t('tourDetail.groupSizeLabel', 'Grup Boyutu:')}</span>
-                    <span className="font-semibold text-[color:var(--color-text-dark)]">{tour.groupSize}</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[color:var(--color-text-light)]">{t('tourDetail.categoryLabel', 'Kategori:')}</span>
-                    <span className="font-semibold text-[color:var(--color-text-dark)]">{tour.category}</span>
-                  </div>
-                  {tour.dates && (
-                    <div className="flex items-center justify-between">
-                      <span className="text-[color:var(--color-text-light)]">{t('tourDetail.datesLabel', 'Tarihler:')}</span>
-                      <span className="font-semibold text-[color:var(--color-text-dark)]">{tour.dates}</span>
-                    </div>
-                  )}
-                  <div className="flex items-center justify-between border-t pt-4">
-                    <span className="text-[color:var(--color-text-light)]">
-                      {getPriceLabel(tour)}:
-                    </span>
-                    <span className="font-bold text-lg text-[color:var(--color-primary)]">
-                      {formatTourPrice(tour)}
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Refund guarantee banner */}
-          <div className="mb-16 animate-fade-in">
-            <RefundGuarantee variant="banner" />
-          </div>
-
-          {/* Müşteri Yorumları */}
-          <ReviewsSection tourSlug={tour.slug} />
-
-          {/* Premium Related Tours */}
-          {relatedTours.length > 0 && (
-            <div className="mt-16 animate-fade-in" style={{ animationDelay: '0.9s' }}>
-              <h2 className="text-3xl font-bold text-center mb-12 text-[color:var(--color-text-dark)]">
-                {t('tourDetail.relatedTours', 'Benzer Turlar')}
-              </h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {relatedTours.map((relatedTour, index) => (
-                  <div key={relatedTour.id} className="group bg-white/70 backdrop-blur-sm rounded-2xl border border-white/60 overflow-hidden hover-float transition-all duration-500 hover:bg-white/90 hover:shadow-2xl hover:border-[color:var(--color-primary)]/20" style={{ animationDelay: `${(index + 1) * 0.1}s` }}>
-                    <div className="relative overflow-hidden">
-                      <Link to={`/turlar/${relatedTour.slug}`}>
-                        <img 
-                          src={relatedTour.image || 'images/tours/default.jpg'} 
-                          alt={relatedTour.title}
-                          className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
-                        />
-                      </Link>
-                      <div className="absolute top-4 right-4">
-                        <div className="bg-[color:var(--color-secondary)]/90 backdrop-blur-sm text-[color:var(--color-primary)] font-bold px-3 py-1 rounded-full border border-[color:var(--color-secondary)]">
-                          {formatTourPrice(relatedTour)}
-                        </div>
-                      </div>
-                    </div>
-                    <div className="p-6">
-                      <Link to={`/turlar/${relatedTour.slug}`}>
-                        <h3 className="text-xl font-bold mb-3 text-[color:var(--color-text-dark)] group-hover:text-[color:var(--color-primary)] transition-colors duration-300 line-clamp-2">
-                          {relatedTour.title}
-                        </h3>
-                      </Link>
-                      <p className="text-[color:var(--color-text-light)] mb-4 leading-relaxed line-clamp-3">
-                        {relatedTour.description}
-                      </p>
-                      <Link 
-                        to={`/turlar/${relatedTour.slug}`} 
-                        className="w-full bg-gradient-to-r from-[color:var(--color-primary)] to-blue-600 hover:from-blue-600 hover:to-[color:var(--color-primary)] text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg inline-flex items-center justify-center space-x-2"
-                      >
-                        <span>{t('tourDetail.viewDetails', 'Detayları Gör')}</span>
-                        <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-                        </svg>
-                      </Link>
-                    </div>
+          {Array.isArray(tour.highlights) && tour.highlights.length > 0 && (
+            <Reveal>
+              <h2 className="ds-display text-2xl text-[var(--ds-text)] mb-6">{t('tourDetail.highlights', 'Öne Çıkanlar')}</h2>
+              <div className="grid sm:grid-cols-2 gap-3">
+                {tour.highlights.map((h, i) => (
+                  <div key={i} className="flex items-start gap-3 ds-glass rounded-xl p-4">
+                    <svg className="w-5 h-5 text-[var(--ds-gold)] mt-0.5 shrink-0" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.957a1 1 0 00.95.69h4.162c.969 0 1.371 1.24.588 1.81l-3.368 2.447a1 1 0 00-.364 1.118l1.287 3.957c.3.922-.755 1.688-1.539 1.118l-3.367-2.447a1 1 0 00-1.176 0l-3.367 2.447c-.784.57-1.838-.196-1.539-1.118l1.287-3.957a1 1 0 00-.364-1.118L2.075 10.1c-.783-.57-.38-1.81.588-1.81h4.162a1 1 0 00.95-.69l1.286-3.957z" /></svg>
+                    <span className="text-[var(--ds-text-soft)]">{h}</span>
                   </div>
                 ))}
               </div>
-            </div>
+            </Reveal>
           )}
+
+          {Array.isArray(tour.itinerary) && tour.itinerary.length > 0 && (
+            <Reveal>
+              <h2 className="ds-display text-2xl text-[var(--ds-text)] mb-6">{t('tourDetail.itineraryTitle', 'Gün Gün Program')}</h2>
+              <Accordion>
+                {tour.itinerary.map((d, i) => (
+                  <AccordionItem key={i} title={[d.day, d.title].filter(Boolean).join(' — ')} subtitle={d.date} defaultOpen={i === 0}>
+                    {d.description && <p className="mb-3">{d.description}</p>}
+                    {Array.isArray(d.activities) && d.activities.length > 0 && (
+                      <ul className="space-y-1.5">
+                        {d.activities.map((a, j) => (
+                          <li key={j} className="flex items-start gap-2"><span className="text-[var(--ds-gold)] mt-1">•</span><span>{a}</span></li>
+                        ))}
+                      </ul>
+                    )}
+                  </AccordionItem>
+                ))}
+              </Accordion>
+            </Reveal>
+          )}
+
+          {((tour.included && tour.included.length) || (tour.notIncluded && tour.notIncluded.length)) ? (
+            <Reveal><IncludedIcons included={tour.included || []} notIncluded={tour.notIncluded || []} /></Reveal>
+          ) : null}
+
+          <RefundGuarantee variant="banner" />
+
+          <FaqSection faq={tour.faq} />
         </div>
-      </section>
+
+        {/* sticky sidebar */}
+        <aside className="lg:col-span-4">
+          <div className="lg:sticky lg:top-28 space-y-5">
+            <div className="ds-glass rounded-3xl p-7">
+              <div className="flex items-end gap-3">
+                <span className="ds-display text-3xl ds-gold-text">{formatTourPrice(tour)}</span>
+                {priceInfo?.hasDiscount && priceInfo.originalPrice && (
+                  <span className="text-[var(--ds-text-muted)] line-through mb-1">{priceInfo.originalPrice}</span>
+                )}
+              </div>
+              <div className="text-xs text-[var(--ds-text-muted)] mt-1">{getPriceLabel(tour)}</div>
+              {tour.priceNote && <p className="text-xs text-[var(--ds-text-muted)] mt-3 leading-relaxed">{tour.priceNote}</p>}
+              <div className="mt-6 space-y-3">
+                <WhatsAppButton tour={tour} size="md" className="w-full">{t('tourDetail.sidebarWhatsapp', 'WhatsApp ile İletişim')}</WhatsAppButton>
+                <Link to="/teklif-al" className="ds-btn w-full justify-center">{t('tourDetail.sidebarOffer', 'Özel Teklif Al')}</Link>
+              </div>
+            </div>
+            <RefundGuarantee variant="card" />
+            <div className="ds-glass rounded-3xl p-7 space-y-3 text-sm">
+              {tour.groupSize && <InfoRow label={t('tourDetail.factGroup', 'Grup')} value={tour.groupSize} />}
+              {tour.duration && <InfoRow label={t('tourDetail.factDuration', 'Süre')} value={tour.duration} />}
+              {tour.dates && <InfoRow label={t('tourDetail.factDates', 'Tarih')} value={tour.dates} />}
+              {tour.category && <InfoRow label={t('tourDetail.categoryLabel', 'Kategori')} value={t('categories.' + tour.category, tour.destination || tour.category)} />}
+            </div>
+          </div>
+        </aside>
+      </div>
+
+      {/* reviews */}
+      <div className="py-8" style={{ background: 'var(--ds-grad-night)' }}>
+        <ReviewsSection tourSlug={tour.slug} />
+      </div>
+
+      {/* related */}
+      {Array.isArray(relatedTours) && relatedTours.length > 0 && (
+        <section className="py-20" style={{ background: 'var(--ds-bg)' }}>
+          <div className="ds-container">
+            <h2 className="ds-display text-2xl md:text-3xl text-[var(--ds-text)] mb-10">{t('tourDetail.related', 'Benzer Turlar')}</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {relatedTours.slice(0, 3).map((rt, i) => <TourCardX key={rt.slug} tour={rt} delay={i * 0.08} />)}
+            </div>
+          </div>
+        </section>
+      )}
     </div>
   );
 };
+
+const Fact = ({ label, value, gold }) => (
+  <div className="flex flex-col">
+    <span className="text-[0.65rem] uppercase tracking-[0.25em] text-[var(--ds-text-muted)]">{label}</span>
+    <span className={`text-lg font-medium ${gold ? 'text-[var(--ds-gold)]' : 'text-[var(--ds-text)]'}`}>{value}</span>
+  </div>
+);
+const InfoRow = ({ label, value }) => (
+  <div className="flex items-center justify-between gap-4">
+    <span className="text-[var(--ds-text-muted)]">{label}</span>
+    <span className="text-[var(--ds-text)] text-right font-medium">{value}</span>
+  </div>
+);
 
 export default TourDetailPage;
