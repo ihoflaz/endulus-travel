@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import Navbar from '../components/layout/navbar';
 import Footer from '../components/layout/footer';
+import Seo from '../components/Seo';
 import { ScrollToTop, WhatsAppButton } from '../components/ui';
 
 // MainLayout bileşeni - Tüm sayfalar için ortak düzeni sağlar
@@ -45,6 +46,9 @@ const MainLayout = () => {
 
   return (
     <div className="flex flex-col min-h-screen w-full font-['Roboto',sans-serif] bg-white overflow-x-hidden">
+      {/* Per-page canonical + hreflang alternates + og:locale (every page). */}
+      <Seo />
+
       {/* Navbar Bileşeni */}
       <Navbar />
 

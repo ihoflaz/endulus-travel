@@ -82,7 +82,10 @@ const Seo = ({ title, description, image, type = 'website', noindex = false, jso
       ? window.location.origin + window.location.pathname
       : null;
 
-    if (resolvedTitle) document.title = resolvedTitle;
+    // Only override the document title when a page explicitly passes one — the
+    // layout renders a prop-less <Seo> for canonical/hreflang on every page, and
+    // it must not clobber titles that pages set themselves.
+    if (title) document.title = title;
     upsertMeta('name', 'description', resolvedDesc);
     upsertMeta('property', 'og:title', resolvedTitle);
     upsertMeta('property', 'og:description', resolvedDesc);
