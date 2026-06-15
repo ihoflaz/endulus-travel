@@ -810,7 +810,11 @@
     "ctaGetOffer": "Özel Teklif Al",
     "whatsappMessage": "Yurt içi tur paketleri hakkında bilgi almak istiyorum.",
     "whatsappButton": "WhatsApp İletişim",
-    "metaDescription": "Türkiye'nin en güzel rotalarını keşfedin. Kapadokya, Pamukkale, Antalya, İstanbul ve daha fazlası için size özel yurt içi tur paketleri Endülüs Travel'da."
+    "metaDescription": "Türkiye'nin en güzel rotalarını keşfedin. Kapadokya, Pamukkale, Antalya, İstanbul ve daha fazlası için size özel yurt içi tur paketleri Endülüs Travel'da.",
+    "heroEyebrow": "Türkiye · Kapadokya",
+    "heroSubtitle": "Kapadokya’nın peribacalarından İstanbul’un zarafetine; Türkiye’nin en güzel rotaları sizin değerlerinizle.",
+    "emptyTitle": "Henüz tur bulunamadı",
+    "emptyDesc": "Yakında yeni rotalar eklenecek"
   },
   "internationalTours": {
     "pageTitle": "Yurt Dışı Turlar - Endülüs Travel",
@@ -830,7 +834,8 @@
     "ctaDesc": "Siz hayal edin biz planlayalım, gelin birlikte yola çıkalım",
     "ctaCustomQuote": "Özel Teklif Al",
     "whatsappMessage": "Size özel tur paketleri hakkında bilgi almak istiyorum.",
-    "whatsappContact": "WhatsApp İletişim"
+    "whatsappContact": "WhatsApp İletişim",
+    "heroEyebrow": "Fas · Chefchaouen"
   },
   "featuredTours": {
     "heading": "Yaklaşan Turlarımız",

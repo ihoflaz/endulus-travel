@@ -810,7 +810,11 @@
     "ctaGetOffer": "Get a Custom Quote",
     "whatsappMessage": "I would like to get information about domestic tour packages.",
     "whatsappButton": "Contact via WhatsApp",
-    "metaDescription": "Discover Turkey's most beautiful routes. Tailor-made domestic tour packages to Cappadocia, Pamukkale, Antalya, Istanbul and more, all from Endülüs Travel."
+    "metaDescription": "Discover Turkey's most beautiful routes. Tailor-made domestic tour packages to Cappadocia, Pamukkale, Antalya, Istanbul and more, all from Endülüs Travel.",
+    "heroEyebrow": "Türkiye · Cappadocia",
+    "heroSubtitle": "From the fairy chimneys of Cappadocia to the elegance of Istanbul — Türkiye’s finest routes, aligned with your values.",
+    "emptyTitle": "No tours yet",
+    "emptyDesc": "New routes coming soon"
   },
   "internationalTours": {
     "pageTitle": "International Tours - Endülüs Travel",
@@ -830,7 +834,8 @@
     "ctaDesc": "You dream it, we'll plan it - let's set off together",
     "ctaCustomQuote": "Get a Custom Quote",
     "whatsappMessage": "I'd like to get information about tailor-made tour packages.",
-    "whatsappContact": "Contact via WhatsApp"
+    "whatsappContact": "Contact via WhatsApp",
+    "heroEyebrow": "Morocco · Chefchaouen"
   },
   "featuredTours": {
     "heading": "Upcoming Tours",
