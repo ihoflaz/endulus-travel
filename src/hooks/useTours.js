@@ -1,5 +1,7 @@
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useData } from './useData';
+import { localizeTour } from '../utils/localizeTour';
 
 // The /data/tours.json endpoint returns { featured: [...] }. We unwrap it once
 // here so every consumer can rely on `tours` being an array.
@@ -10,8 +12,15 @@ const useToursRaw = () => useData('data/tours.json');
  * @returns {{ tours, filteredTours, isLoading, error }}
  */
 export const useTours = (filters = null) => {
+  const { i18n } = useTranslation();
   const { data, isLoading, error } = useToursRaw();
-  const tours = data?.featured ?? [];
+  const lng = i18n.language;
+  // Localize once at the data layer so every consumer (cards, lists, detail,
+  // related, featured) gets the active-language content with TR fallback.
+  const tours = useMemo(() => {
+    const base = data?.featured ?? [];
+    return lng && lng !== 'tr' ? base.map((t) => localizeTour(t, lng)) : base;
+  }, [data, lng]);
   const filteredTours = useMemo(
     () => (filters ? filterTours(tours, filters) : tours),
     [tours, filters]

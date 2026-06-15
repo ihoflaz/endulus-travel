@@ -59,7 +59,11 @@ const HeroSection = () => {
               src={slide.image}
               alt={slide.alt || `Endülüs Travel Slider ${index + 1}`}
               className="w-full h-full object-cover"
+              width="1920"
+              height="1080"
               loading={index === 0 ? 'eager' : 'lazy'}
+              fetchPriority={index === 0 ? 'high' : 'low'}
+              decoding="async"
             />
           </div>
         ))}

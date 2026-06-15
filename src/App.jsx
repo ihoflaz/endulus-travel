@@ -43,6 +43,7 @@ const AdminContact = lazy(() => import('./pages/admin/contact'));
 const AdminUsers = lazy(() => import('./pages/admin/users'));
 const AdminMedia = lazy(() => import('./pages/admin/media'));
 const AdminMessages = lazy(() => import('./pages/admin/messages'));
+const AdminReviews = lazy(() => import('./pages/admin/reviews'));
 const AdminAudit = lazy(() => import('./pages/admin/audit'));
 const AdminProfile = lazy(() => import('./pages/admin/profile'));
 const AdminSite = lazy(() => import('./pages/admin/site'));
@@ -83,6 +84,7 @@ function App() {
             <Route path="tours" element={<AdminTours />} />
             <Route path="blog" element={<AdminBlog />} />
             <Route path="services" element={<AdminServices />} />
+            <Route path="reviews" element={<AdminReviews />} />
             <Route path="women-groups" element={<AdminWomenGroups />} />
             <Route path="hero" element={<AdminHero />} />
             <Route path="categories" element={<AdminCategories />} />

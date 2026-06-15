@@ -36,9 +36,32 @@ export const tourSchema = z.object({
     )
     .nullable()
     .optional(),
+  faq: z
+    .array(
+      z.object({
+        question: z.string().optional(),
+        answer: z.string().optional(),
+      })
+    )
+    .nullable()
+    .optional(),
+  // Per-locale content overrides (e.g. { en: { title, description, ... } }).
+  // Kept loose on purpose — the admin sends a structured object; the frontend
+  // falls back to the base (Turkish) columns for any missing field/locale.
+  translations: z.record(z.any()).nullable().optional(),
   whatsappMessage: z.string().nullable().optional(),
   active: z.boolean().optional().default(true),
   featured: z.boolean().optional().default(false),
+  order: z.number().int().optional().default(0),
+});
+
+export const reviewSchema = z.object({
+  tourSlug: z.string().nullable().optional(),
+  authorName: z.string().min(1),
+  location: z.string().nullable().optional(),
+  rating: z.number().int().min(1).max(5).optional().default(5),
+  content: z.string().min(1),
+  isPublished: z.boolean().optional().default(false),
   order: z.number().int().optional().default(0),
 });
 

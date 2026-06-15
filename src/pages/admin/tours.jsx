@@ -13,9 +13,10 @@ const emptyTour = {
   priceStatus: '', priceNote: '',
   groupSize: '', duration: '', dates: '',
   image: '', gallery: [],
-  highlights: [], included: [], notIncluded: [], itinerary: [],
+  highlights: [], included: [], notIncluded: [], itinerary: [], faq: [],
   specialOffer: false, whatsappMessage: '',
   active: true, featured: false, order: 0,
+  translations: {},
 };
 
 const ItineraryEditor = ({ value = [], onChange }) => {
@@ -57,6 +58,42 @@ const ItineraryEditor = ({ value = [], onChange }) => {
         </div>
       ))}
       <Button variant="secondary" onClick={add}>+ Gün ekle</Button>
+    </div>
+  );
+};
+
+const FaqEditor = ({ value = [], onChange }) => {
+  const update = (i, patch) => {
+    const next = [...value];
+    next[i] = { ...next[i], ...patch };
+    onChange(next);
+  };
+  const add = () => onChange([...(value || []), { question: '', answer: '' }]);
+  const remove = (i) => onChange(value.filter((_, idx) => idx !== i));
+  const move = (i, d) => {
+    const next = [...value];
+    const j = i + d;
+    if (j < 0 || j >= next.length) return;
+    [next[i], next[j]] = [next[j], next[i]];
+    onChange(next);
+  };
+  return (
+    <div className="space-y-3">
+      {value.map((item, i) => (
+        <div key={i} className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+          <div className="mb-2 flex items-center justify-between text-xs text-slate-500">
+            <span>Soru {i + 1}</span>
+            <div className="flex gap-1">
+              <button type="button" onClick={() => move(i, -1)} className="rounded px-1.5 hover:bg-white" disabled={i === 0}>↑</button>
+              <button type="button" onClick={() => move(i, 1)} className="rounded px-1.5 hover:bg-white" disabled={i === value.length - 1}>↓</button>
+              <button type="button" onClick={() => remove(i)} className="rounded px-1.5 text-red-600 hover:bg-white">Sil</button>
+            </div>
+          </div>
+          <Input label="Soru" value={item.question || ''} onChange={(e) => update(i, { question: e.target.value })} />
+          <Textarea label="Cevap" value={item.answer || ''} onChange={(e) => update(i, { answer: e.target.value })} className="mt-2" rows={2} />
+        </div>
+      ))}
+      <Button variant="secondary" onClick={add}>+ Soru ekle</Button>
     </div>
   );
 };
@@ -120,7 +157,18 @@ const ToursAdminPage = () => {
           </div>
         )},
       ]}
-      renderForm={(editing, setEditing) => (
+      renderForm={(editing, setEditing) => {
+        // Read/write helpers for the nested EN translation bag. Never drop
+        // other locales already stored under editing.translations.
+        const enVal = (k, arr = false) => editing?.translations?.en?.[k] ?? (arr ? [] : '');
+        const setEn = (k, v) => setEditing({
+          ...editing,
+          translations: {
+            ...(editing.translations || {}),
+            en: { ...((editing.translations || {}).en || {}), [k]: v },
+          },
+        });
+        return (
         <>
           <div className="grid gap-3 sm:grid-cols-2">
             <Input label="Başlık" value={editing.title} onChange={(e) => setEditing({ ...editing, title: e.target.value })} required />
@@ -175,6 +223,11 @@ const ToursAdminPage = () => {
             <ItineraryEditor value={editing.itinerary || []} onChange={(itinerary) => setEditing({ ...editing, itinerary })} />
           </div>
 
+          <div>
+            <label className="mb-1 block text-sm font-medium text-slate-700">Sıkça Sorulan Sorular</label>
+            <FaqEditor value={editing.faq || []} onChange={(faq) => setEditing({ ...editing, faq })} />
+          </div>
+
           <Textarea label="WhatsApp mesajı (hazır şablon)" value={editing.whatsappMessage || ''} onChange={(e) => setEditing({ ...editing, whatsappMessage: e.target.value })} rows={2} />
 
           <div className="flex flex-wrap gap-4 pt-2">
@@ -182,8 +235,41 @@ const ToursAdminPage = () => {
             <Checkbox label="Öne çıkar" checked={!!editing.featured} onChange={(e) => setEditing({ ...editing, featured: e.target.checked })} />
             <Checkbox label="Özel Teklif" checked={!!editing.specialOffer} onChange={(e) => setEditing({ ...editing, specialOffer: e.target.checked })} />
           </div>
+
+          <div className="mt-6 rounded-lg border border-slate-200 bg-slate-50 p-4">
+            <h3 className="text-sm font-semibold text-slate-800">İngilizce İçerik (opsiyonel)</h3>
+            <p className="mt-1 text-xs text-slate-500">Boş bırakılan alanlar için Türkçe içerik gösterilir.</p>
+
+            <div className="mt-3 space-y-3">
+              <Input label="Başlık (EN)" value={enVal('title')} onChange={(e) => setEn('title', e.target.value)} />
+              <Textarea label="Kısa açıklama (EN)" value={enVal('description')} onChange={(e) => setEn('description', e.target.value)} />
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                <Input label="Fiyat Notu (EN)" value={enVal('priceNote')} onChange={(e) => setEn('priceNote', e.target.value)} />
+                <Input label="Süre (EN)" value={enVal('duration')} onChange={(e) => setEn('duration', e.target.value)} />
+                <Input label="Tarihler (EN)" value={enVal('dates')} onChange={(e) => setEn('dates', e.target.value)} />
+                <Input label="Grup Boyu (EN)" value={enVal('groupSize')} onChange={(e) => setEn('groupSize', e.target.value)} />
+                <Input label="Hedef / Şehir (EN)" value={enVal('destination')} onChange={(e) => setEn('destination', e.target.value)} />
+              </div>
+
+              <ListEditor label="Öne çıkanlar (EN)" value={enVal('highlights', true)} onChange={(highlights) => setEn('highlights', highlights)} />
+              <ListEditor label="Dahil olanlar (EN)" value={enVal('included', true)} onChange={(included) => setEn('included', included)} />
+              <ListEditor label="Dahil olmayanlar (EN)" value={enVal('notIncluded', true)} onChange={(notIncluded) => setEn('notIncluded', notIncluded)} />
+
+              <div>
+                <label className="mb-1 block text-sm font-medium text-slate-700">Günlük Program (EN)</label>
+                <ItineraryEditor value={enVal('itinerary', true)} onChange={(itinerary) => setEn('itinerary', itinerary)} />
+              </div>
+
+              <div>
+                <label className="mb-1 block text-sm font-medium text-slate-700">Sıkça Sorulan Sorular (EN)</label>
+                <FaqEditor value={enVal('faq', true)} onChange={(faq) => setEn('faq', faq)} />
+              </div>
+            </div>
+          </div>
         </>
-      )}
+        );
+      }}
     />
   );
 };

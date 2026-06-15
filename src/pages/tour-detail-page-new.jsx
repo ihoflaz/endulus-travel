@@ -8,6 +8,12 @@ import { useState } from 'react';
 import Seo from '../components/Seo';
 import TrustStrip from '../components/TrustStrip';
 import { trackViewTour } from '../lib/analytics';
+import { localizeTour } from '../utils/localizeTour';
+import { Accordion, AccordionItem } from '../components/ui/accordion';
+import IncludedIcons from '../components/tours/included-icons';
+import RefundGuarantee from '../components/tours/refund-guarantee';
+import FaqSection from '../components/tours/faq-section';
+import ReviewsSection from '../components/tours/reviews-section';
 
 // Basit Fotoğraf Galerisi Bileşeni
 const PhotoGallery = ({ images, title }) => {
@@ -97,9 +103,10 @@ const PhotoGallery = ({ images, title }) => {
 
 // Premium TourDetailPage bileşeni - Modern tasarım sistemi ile
 const TourDetailPage = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const { slug } = useParams();
-  const { tour, relatedTours, isLoading, error, notFound } = useTourDetail(slug);
+  const { tour: rawTour, relatedTours, isLoading, error, notFound } = useTourDetail(slug);
+  const tour = useMemo(() => localizeTour(rawTour, i18n.language), [rawTour, i18n.language]);
 
   // Fire Meta Pixel `ViewContent` + GA4 `view_tour` once the tour data is
   // available — on BOTH cold (full-page) loads and SPA route changes. We key on
@@ -304,6 +311,11 @@ const TourDetailPage = () => {
                   <p className="text-white/90">{t('tourDetail.durationLabel', 'Süre')}</p>
                 </div>
               </div>
+
+              {/* Refund guarantee trust pill */}
+              <div className="mt-8 flex justify-center animate-fade-in" style={{ animationDelay: '0.5s' }}>
+                <RefundGuarantee variant="inline" />
+              </div>
             </div>
           </div>
         </div>
@@ -438,7 +450,7 @@ const TourDetailPage = () => {
               )}
               
               {/* Tur Planı - Detaylı itinerary varsa göster */}
-              {tour.itinerary ? (
+              {Array.isArray(tour.itinerary) && tour.itinerary.length > 0 ? (
                 <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.6s' }}>
                   <h3 className="text-xl font-bold mb-6 text-[color:var(--color-text-dark)] flex items-center">
                     <div className="w-6 h-6 bg-[color:var(--color-primary)] rounded-lg flex items-center justify-center mr-3">
@@ -446,27 +458,29 @@ const TourDetailPage = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
                       </svg>
                     </div>
-                    {t('tourDetail.itineraryTitle', 'Tur Programı Detayları')}
+                    {t('tourDetail.itineraryTitle', 'Gün Gün Program')}
                   </h3>
-                  <div className="space-y-6">
-                    {tour.itinerary.map((day, index) => (
-                      <div key={index} className="border-l-2 border-[color:var(--color-primary)] pl-6 ml-3 relative group">
-                        <div className="absolute w-4 h-4 bg-[color:var(--color-primary)] rounded-full -left-[9px] top-0 group-hover:scale-125 transition-transform"></div>
-                        <h4 className="text-lg font-semibold text-[color:var(--color-text-dark)] mb-2">
-                          {day.day} - {day.date}
-                        </h4>
-                        <h5 className="text-md font-medium text-[color:var(--color-primary)] mb-2">{day.title}</h5>
-                        <p className="text-[color:var(--color-text-light)] mb-3">{day.description}</p>
-                        {day.activities && (
-                          <ul className="list-disc list-inside text-sm text-[color:var(--color-text-light)] space-y-1">
-                            {day.activities.map((activity, actIndex) => (
+                  <Accordion>
+                    {tour.itinerary.map((d, i) => (
+                      <AccordionItem
+                        key={i}
+                        title={[d.day, d.title].filter(Boolean).join(' — ')}
+                        subtitle={d.date}
+                        defaultOpen={i === 0}
+                      >
+                        {d.description && (
+                          <p className="mb-3">{d.description}</p>
+                        )}
+                        {d.activities?.length > 0 && (
+                          <ul className="list-disc list-inside text-sm space-y-1">
+                            {d.activities.map((activity, actIndex) => (
                               <li key={actIndex}>{activity}</li>
                             ))}
                           </ul>
                         )}
-                      </div>
+                      </AccordionItem>
                     ))}
-                  </div>
+                  </Accordion>
                 </div>
               ) : (
                 // Diğer turlar için genel bilgi
@@ -504,58 +518,14 @@ const TourDetailPage = () => {
                   </div>
                 </div>
               )}
-              
+
+              {/* SSS */}
+              <FaqSection faq={tour.faq} />
+
               {/* Dahil Olan/Olmayan Hizmetler - Detaylı turlar için */}
-              {(tour.included || tour.notIncluded) && (
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {/* Dahil Olan Hizmetler */}
-                  {tour.included && (
-                    <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.7s' }}>
-                      <h3 className="text-xl font-bold mb-6 text-[color:var(--color-text-dark)] flex items-center">
-                        <div className="w-6 h-6 bg-green-500 rounded-lg flex items-center justify-center mr-3">
-                          <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                          </svg>
-                        </div>
-                        {t('tourDetail.included', 'Dahil Olan Hizmetler')}
-                      </h3>
-                      <ul className="space-y-3">
-                        {tour.included.map((item, index) => (
-                          <li key={index} className="flex items-start">
-                            <svg className="w-5 h-5 text-green-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                            </svg>
-                            <span className="text-[color:var(--color-text-light)]">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                  
-                  {/* Dahil Olmayan Hizmetler */}
-                  {tour.notIncluded && (
-                    <div className="bg-white/70 backdrop-blur-sm rounded-2xl p-8 border border-white/60 hover-float animate-fade-in" style={{ animationDelay: '0.8s' }}>
-                      <h3 className="text-xl font-bold mb-6 text-[color:var(--color-text-dark)] flex items-center">
-                        <div className="w-6 h-6 bg-red-500 rounded-lg flex items-center justify-center mr-3">
-                          <svg className="w-3 h-3 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                          </svg>
-                        </div>
-                        {t('tourDetail.notIncluded', 'Dahil Olmayan Hizmetler')}
-                      </h3>
-                      <ul className="space-y-3">
-                        {tour.notIncluded.map((item, index) => (
-                          <li key={index} className="flex items-start">
-                            <svg className="w-5 h-5 text-red-500 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                            <span className="text-[color:var(--color-text-light)]">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
-                </div>
+              {((Array.isArray(tour.included) && tour.included.length > 0) ||
+                (Array.isArray(tour.notIncluded) && tour.notIncluded.length > 0)) && (
+                <IncludedIcons included={tour.included || []} notIncluded={tour.notIncluded || []} />
               )}
             </div>
 
@@ -572,12 +542,14 @@ const TourDetailPage = () => {
                     className="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105"
                   />
                   
-                  <Link 
-                    to="/teklif-al" 
+                  <Link
+                    to="/teklif-al"
                     className="w-full bg-[color:var(--color-primary)] hover:bg-blue-600 text-white hover:text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center"
                   >
                     {t('tourDetail.getCustomQuote', 'Özel Teklif Al')}
                   </Link>
+
+                  <RefundGuarantee variant="card" />
                 </div>
               </div>
 
@@ -611,7 +583,15 @@ const TourDetailPage = () => {
               </div>
             </div>
           </div>
-          
+
+          {/* Refund guarantee banner */}
+          <div className="mb-16 animate-fade-in">
+            <RefundGuarantee variant="banner" />
+          </div>
+
+          {/* Müşteri Yorumları */}
+          <ReviewsSection tourSlug={tour.slug} />
+
           {/* Premium Related Tours */}
           {relatedTours.length > 0 && (
             <div className="mt-16 animate-fade-in" style={{ animationDelay: '0.9s' }}>

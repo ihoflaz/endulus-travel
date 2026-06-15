@@ -44,7 +44,8 @@
     "featuredToursTitle": "Featured Tours",
     "featuredToursDescription": "Discover our most popular and preferred tour packages.",
     "ctaTitle": "Get one step closer to your dream vacation",
-    "ctaDescription": "Fill out the preliminary survey or get a quote right away for your custom vacation plan."
+    "ctaDescription": "Fill out the preliminary survey or get a quote right away for your custom vacation plan.",
+    "metaDescription": "All-inclusive boutique tour experiences that respect your sensitivities and prayer times."
   },
   "services": {
     "pageTitle": "Our Services - Endülüs Travel",
@@ -610,7 +611,11 @@
     "categoryLabel": "Category:",
     "datesLabel": "Dates:",
     "relatedTours": "Similar Tours",
-    "viewDetails": "View Details"
+    "viewDetails": "View Details",
+    "includedTitle": "What's Included",
+    "notIncludedTitle": "Not Included",
+    "faqTitle": "Frequently Asked Questions",
+    "reviewsTitle": "Customer Reviews"
   },
   "servicesPage": {
     "documentTitle": "Our Services - Endülüs Travel",
@@ -840,5 +845,9 @@
     "perPerson": "Per person",
     "viewDetails": "View Details",
     "contactWhatsapp": "Contact via WhatsApp"
+  },
+  "trust": {
+    "refundTitle": "Full Refund on Force Majeure",
+    "refundDesc": "If a tour is cancelled due to force majeure, you receive a full refund."
   }
 }

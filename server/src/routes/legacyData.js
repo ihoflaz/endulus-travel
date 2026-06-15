@@ -46,6 +46,8 @@ router.get(
       included: t.included,
       notIncluded: t.notIncluded,
       itinerary: t.itinerary,
+      faq: t.faq,
+      translations: t.translations,
       whatsappMessage: t.whatsappMessage,
     }));
     res.json({ featured });
@@ -230,6 +232,26 @@ router.get(
       title: s.title,
       description: s.description,
       options: s.options || [],
+    })));
+  })
+);
+
+router.get(
+  '/reviews.json',
+  asyncHandler(async (req, res) => {
+    const where = { isPublished: true };
+    if (req.query.tourSlug) where.tourSlug = String(req.query.tourSlug);
+    const rows = await prisma.review.findMany({
+      where,
+      orderBy: [{ order: 'asc' }, { createdAt: 'desc' }],
+    });
+    res.json(rows.map((r) => ({
+      id: r.id,
+      tourSlug: r.tourSlug,
+      authorName: r.authorName,
+      location: r.location,
+      rating: r.rating,
+      content: r.content,
     })));
   })
 );

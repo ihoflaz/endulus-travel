@@ -17,18 +17,18 @@ enum Role {
 }
 
 model User {
-  id            String         @id @default(cuid())
-  email         String         @unique
-  passwordHash  String
-  name          String?
-  role          Role           @default(VIEWER)
-  active        Boolean        @default(true)
-  failedLogins  Int            @default(0)
-  lockedUntil   DateTime?
-  lastLogin     DateTime?
-  lastLoginIp   String?
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
+  id           String    @id @default(cuid())
+  email        String    @unique
+  passwordHash String
+  name         String?
+  role         Role      @default(VIEWER)
+  active       Boolean   @default(true)
+  failedLogins Int       @default(0)
+  lockedUntil  DateTime?
+  lastLogin    DateTime?
+  lastLoginIp  String?
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 
   media         MediaFile[]
   refreshTokens RefreshToken[]
@@ -49,7 +49,7 @@ model RefreshToken {
   familyId  String
   createdAt DateTime @default(now())
 
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   @@index([userId])
   @@index([familyId])
@@ -79,6 +79,11 @@ model Tour {
   included        String[]
   notIncluded     String[]
   itinerary       Json?
+  faq             Json? // [{ question, answer }]
+  // Per-locale overrides, e.g. { en: { title, description, priceNote, duration,
+  // dates, groupSize, destination, highlights[], included[], notIncluded[],
+  // itinerary[], faq[] } }. Base columns stay Turkish; missing locale -> base.
+  translations    Json?
   whatsappMessage String?
   active          Boolean  @default(true)
   featured        Boolean  @default(false)
@@ -89,6 +94,22 @@ model Tour {
   @@index([slug])
   @@index([type])
   @@index([category])
+}
+
+model Review {
+  id          String   @id @default(cuid())
+  tourSlug    String? // null = site-wide testimonial (shown everywhere)
+  authorName  String
+  location    String? // e.g. "İstanbul" or trip taken
+  rating      Int      @default(5)
+  content     String
+  isPublished Boolean  @default(false)
+  order       Int      @default(0)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@index([tourSlug])
+  @@index([isPublished])
 }
 
 model BlogPost {
@@ -260,7 +281,7 @@ model MediaFile {
   uploadedBy   String?
   createdAt    DateTime @default(now())
 
-  user         User?    @relation(fields: [uploadedBy], references: [id], onDelete: SetNull)
+  user User? @relation(fields: [uploadedBy], references: [id], onDelete: SetNull)
 
   @@index([uploadedBy])
 }
@@ -276,7 +297,7 @@ model AuditLog {
   userAgent String?
   createdAt DateTime @default(now())
 
-  user      User?    @relation(fields: [userId], references: [id], onDelete: SetNull)
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
 
   @@index([userId])
   @@index([entity, entityId])

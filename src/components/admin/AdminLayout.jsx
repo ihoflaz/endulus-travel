@@ -11,6 +11,7 @@ const NAV = [
   { to: '/admin/women-groups', label: 'Kadın Grupları', group: 'icerik' },
   { to: '/admin/budget-routes', label: 'Bütçe Rotaları', group: 'icerik' },
   { to: '/admin/tour-wizard', label: 'Tur Sihirbazı', group: 'icerik' },
+  { to: '/admin/reviews', label: 'Müşteri Yorumları', group: 'icerik' },
   { to: '/admin/hero', label: 'Anasayfa Hero', group: 'sayfalar' },
   { to: '/admin/about', label: 'Hakkımızda', group: 'sayfalar' },
   { to: '/admin/contact', label: 'İletişim', group: 'sayfalar' },

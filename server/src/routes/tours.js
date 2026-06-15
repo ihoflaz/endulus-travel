@@ -28,6 +28,8 @@ const publicTourShape = (t) => ({
   included: t.included,
   notIncluded: t.notIncluded,
   itinerary: t.itinerary,
+  faq: t.faq,
+  translations: t.translations,
   whatsappMessage: t.whatsappMessage,
 });
 

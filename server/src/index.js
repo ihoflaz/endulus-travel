@@ -30,6 +30,7 @@ import legacyDataRoutes from './routes/legacyData.js';
 import messageRoutes from './routes/messages.js';
 import auditRoutes from './routes/audit.js';
 import metaCapiRoutes from './routes/metaCapi.js';
+import reviewRoutes from './routes/reviews.js';
 import sitemapRoutes from './routes/sitemap.js';
 
 export const buildApp = () => {
@@ -160,6 +161,7 @@ export const buildApp = () => {
   app.use('/api/messages', messageRoutes);
   app.use('/api/audit', auditRoutes);
   app.use('/api/meta-capi', metaCapiRoutes);
+  app.use('/api/reviews', reviewRoutes);
 
   // Legacy JSON-shape routes for the public frontend.
   app.use('/data', legacyDataRoutes);

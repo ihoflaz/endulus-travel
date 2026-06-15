@@ -44,7 +44,8 @@
     "featuredToursTitle": "Öne Çıkan Turlarımız",
     "featuredToursDescription": "En popüler ve en çok tercih edilen tur paketlerimizi keşfedin.",
     "ctaTitle": "Hayalinizdeki tatile bir adım daha yaklaşın",
-    "ctaDescription": "Size özel tatil planınız için ön anketi doldurun veya hemen teklif alın."
+    "ctaDescription": "Size özel tatil planınız için ön anketi doldurun veya hemen teklif alın.",
+    "metaDescription": "Hassasiyetlerinizi gözeten, namaz vakitlerine uygun, her şey dahil butik tur deneyimleri."
   },
   "services": {
     "pageTitle": "Hizmetlerimiz - Endülüs Travel",
@@ -610,7 +611,11 @@
     "categoryLabel": "Kategori:",
     "datesLabel": "Tarihler:",
     "relatedTours": "Benzer Turlar",
-    "viewDetails": "Detayları Gör"
+    "viewDetails": "Detayları Gör",
+    "includedTitle": "Fiyata Dahil Olanlar",
+    "notIncludedTitle": "Fiyata Dahil Olmayanlar",
+    "faqTitle": "Sıkça Sorulan Sorular",
+    "reviewsTitle": "Müşteri Yorumları"
   },
   "servicesPage": {
     "documentTitle": "Hizmetlerimiz - Endülüs Travel",
@@ -840,5 +845,9 @@
     "perPerson": "Kişi başı",
     "viewDetails": "Detayları Gör",
     "contactWhatsapp": "WhatsApp ile İletişim"
+  },
+  "trust": {
+    "refundTitle": "Mücbir Sebepte Tam İade",
+    "refundDesc": "Mücbir sebeplerle iptal edilen turlarda ödemenizin tamamı iade edilir."
   }
 }
