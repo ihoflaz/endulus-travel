@@ -29,7 +29,8 @@
     "whatsappContact": "WhatsApp ile İletişim",
     "privacyPolicy": "Gizlilik Politikası",
     "termsOfUse": "Kullanım Koşulları",
-    "kvkk": "KVKK"
+    "kvkk": "KVKK",
+    "exploreTitle": "Keşfet"
   },
   "home": {
     "welcome": "Endülüs Travel'e Hoş Geldiniz",
@@ -45,7 +46,35 @@
     "featuredToursDescription": "En popüler ve en çok tercih edilen tur paketlerimizi keşfedin.",
     "ctaTitle": "Hayalinizdeki tatile bir adım daha yaklaşın",
     "ctaDescription": "Size özel tatil planınız için ön anketi doldurun veya hemen teklif alın.",
-    "metaDescription": "Hassasiyetlerinizi gözeten, namaz vakitlerine uygun, her şey dahil butik tur deneyimleri."
+    "metaDescription": "Hassasiyetlerinizi gözeten, namaz vakitlerine uygun, her şey dahil butik tur deneyimleri.",
+    "heroEyebrow": "Özbekistan · Semerkant",
+    "heroPrimary": "Turları Keşfet",
+    "heroSecondary": "Sana Özel Teklif Al",
+    "introEyebrow": "Biz kimiz",
+    "introTitle": "Seyahat bir ibadet kadar incelikli olabilir.",
+    "introBody": "Endülüs Travel, hassasiyetlerinizi merkeze alan yeni nesil bir seyahat anlayışıdır. Mısır’ın piramitlerinden Fas’ın mavi sokaklarına, Özbekistan’ın çini kubbelerinden Endülüs’ün saraylarına; her rotayı sizin değerlerinizle uyumlu, kişiye özel tasarlıyoruz.",
+    "introCta": "Hikayemiz",
+    "featuredEyebrow": "Seçkin Rotalar",
+    "featuredTitle": "Öne çıkan tur deneyimleri",
+    "featuredAll": "Tüm Turlar",
+    "featuredView": "İncele",
+    "whyEyebrow": "Neden Endülüs",
+    "whyTitle": "Güven veren ayrıntılar",
+    "pillarPrayerTitle": "Namaz Vakitlerine Uygun",
+    "pillarPrayerDesc": "Programlar ibadet saatleriniz gözetilerek planlanır.",
+    "pillarHalalTitle": "Helal Mutfak",
+    "pillarHalalDesc": "Her durakta titizlikle seçilmiş helal lezzetler.",
+    "pillarBoutiqueTitle": "Butik Gruplar",
+    "pillarBoutiqueDesc": "Maksimum 20 kişilik samimi, özenli gruplar.",
+    "pillarRefundDesc": "İçiniz rahat olsun; güvenle rezervasyon yapın.",
+    "statFounded": "Kuruluş",
+    "statDestinations": "Destinasyon",
+    "statTravelers": "Mutlu Gezgin",
+    "statRating": "Memnuniyet",
+    "servicesEyebrow": "Hizmetlerimiz",
+    "ctaEyebrow": "Yolculuk seninle başlar",
+    "ctaBody": "24 saat içinde, sana özel hazırlanmış bir teklifle dönüş yapalım.",
+    "ctaButton": "Rota Pusulasını Başlat"
   },
   "services": {
     "pageTitle": "Hizmetlerimiz - Endülüs Travel",
@@ -816,7 +845,8 @@
     "domesticToursDesc": "Türkiye turları",
     "ariaTurkish": "Türkçe dil seçeneği",
     "ariaToggleMenu": "Menüyü aç/kapat",
-    "toursHeading": "Turlar"
+    "toursHeading": "Turlar",
+    "allTours": "Tüm Turlar"
   },
   "toursPage": {
     "documentTitle": "Tur Paketlerimiz - Endülüs Travel",
@@ -872,5 +902,8 @@
     "termsMetaDescription": "Endülüs Travel kullanım koşulları: Web sitemizi ve hizmetlerimizi kullanırken geçerli olan kurallar, hak ve sorumluluklar hakkında bilgi edinin.",
     "kvkkMetaTitle": "KVKK Aydınlatma Metni - Endülüs Travel",
     "kvkkMetaDescription": "Endülüs Travel KVKK aydınlatma metni: 6698 sayılı Kanun kapsamında kişisel verilerinizin işlenmesi, haklarınız ve başvuru yöntemleri hakkında ayrıntılı bilgi."
+  },
+  "nav": {
+    "getOffer": "Teklif Al"
   }
 }

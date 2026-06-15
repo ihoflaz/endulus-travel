@@ -29,7 +29,8 @@
     "whatsappContact": "Contact via WhatsApp",
     "privacyPolicy": "Privacy Policy",
     "termsOfUse": "Terms of Use",
-    "kvkk": "KVKK"
+    "kvkk": "KVKK",
+    "exploreTitle": "Explore"
   },
   "home": {
     "welcome": "Welcome to Endülüs Travel",
@@ -45,7 +46,35 @@
     "featuredToursDescription": "Discover our most popular and preferred tour packages.",
     "ctaTitle": "Get one step closer to your dream vacation",
     "ctaDescription": "Fill out the preliminary survey or get a quote right away for your custom vacation plan.",
-    "metaDescription": "All-inclusive boutique tour experiences that respect your sensitivities and prayer times."
+    "metaDescription": "All-inclusive boutique tour experiences that respect your sensitivities and prayer times.",
+    "heroEyebrow": "Uzbekistan · Samarkand",
+    "heroPrimary": "Explore Tours",
+    "heroSecondary": "Get a Custom Quote",
+    "introEyebrow": "Who we are",
+    "introTitle": "Travel can be as graceful as devotion.",
+    "introBody": "Endülüs Travel is a new generation of travel that puts your sensitivities first. From the pyramids of Egypt to the blue streets of Morocco, from the tiled domes of Uzbekistan to the palaces of Andalusia — we design every route around your values.",
+    "introCta": "Our Story",
+    "featuredEyebrow": "Curated Routes",
+    "featuredTitle": "Featured tour experiences",
+    "featuredAll": "All Tours",
+    "featuredView": "Discover",
+    "whyEyebrow": "Why Endülüs",
+    "whyTitle": "Details that earn your trust",
+    "pillarPrayerTitle": "Prayer-Time Friendly",
+    "pillarPrayerDesc": "Itineraries are planned around your prayer times.",
+    "pillarHalalTitle": "Halal Cuisine",
+    "pillarHalalDesc": "Carefully selected halal dining at every stop.",
+    "pillarBoutiqueTitle": "Boutique Groups",
+    "pillarBoutiqueDesc": "Intimate, attentive groups of up to 20 guests.",
+    "pillarRefundDesc": "Book with peace of mind and confidence.",
+    "statFounded": "Founded",
+    "statDestinations": "Destinations",
+    "statTravelers": "Happy Travelers",
+    "statRating": "Satisfaction",
+    "servicesEyebrow": "Our Services",
+    "ctaEyebrow": "The journey begins with you",
+    "ctaBody": "We'll get back to you within 24 hours with a tailor-made offer.",
+    "ctaButton": "Start the Route Compass"
   },
   "services": {
     "pageTitle": "Our Services - Endülüs Travel",
@@ -816,7 +845,8 @@
     "domesticToursDesc": "Turkey tours",
     "ariaTurkish": "Turkish language option",
     "ariaToggleMenu": "Open/close menu",
-    "toursHeading": "Tours"
+    "toursHeading": "Tours",
+    "allTours": "All Tours"
   },
   "toursPage": {
     "documentTitle": "Our Tour Packages - Endülüs Travel",
@@ -872,5 +902,8 @@
     "termsMetaDescription": "Endülüs Travel terms of use: learn about the rules, rights and responsibilities that apply when using our website and services.",
     "kvkkMetaTitle": "Data Protection Notice (KVKK) - Endülüs Travel",
     "kvkkMetaDescription": "Endülüs Travel data protection (KVKK) notice: detailed information on the processing of your personal data, your rights and how to apply under Turkish Law No. 6698."
+  },
+  "nav": {
+    "getOffer": "Get a Quote"
   }
 }

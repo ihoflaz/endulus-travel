@@ -11,11 +11,8 @@ import { ScrollToTop, WhatsAppButton } from '../components/ui';
 const MainLayout = () => {
   const { t } = useTranslation('translation');
 
-  // Sayfa yüklendiğinde yapılacak işlemler
+  // Sayfa yüklendiğinde yapılacak işlemler (başlık artık per-page <Seo> ile)
   useEffect(() => {
-    // Sayfa başlığını ayarla
-    document.title = `${t('header.title')} - ${t('header.subtitle')}`;
-    
     // Google Fonts'tan Roboto fontunu yükle
     const link = document.createElement('link');
     link.href = 'https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap';
@@ -53,8 +50,8 @@ const MainLayout = () => {
       {/* Navbar Bileşeni */}
       <Navbar />
 
-      {/* Ana İçerik - React Router'dan gelen sayfa içeriği */}
-      <main className="flex-1 w-full pt-16">
+      {/* Ana İçerik — full-bleed (heroes go under the transparent navbar) */}
+      <main className="flex-1 w-full">
         <Outlet />
       </main>
 

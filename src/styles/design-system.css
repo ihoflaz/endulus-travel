@@ -136,6 +136,24 @@
   }
   .ds-btn-ghost:hover { background: var(--ds-glass); border-color: var(--ds-gold); color: var(--ds-gold-bright); }
 
+  /* ---- Nav pill (cinematic navbar links) ------------------------------- */
+  .nav-pill {
+    position: relative; display: inline-flex; align-items: center; gap: 0.35rem;
+    padding: 0.5rem 0.95rem; border-radius: 999px;
+    font-family: var(--ds-font-sans); font-size: 0.92rem; font-weight: 500;
+    color: var(--ds-text-soft); cursor: pointer; background: transparent; border: 0;
+    transition: color 0.3s var(--ds-ease);
+  }
+  .nav-pill::after {
+    content: ''; position: absolute; left: 0.95rem; right: 0.95rem; bottom: 0.4rem; height: 1.5px;
+    background: var(--ds-grad-gold); transform: scaleX(0); transform-origin: left;
+    transition: transform 0.4s var(--ds-ease);
+  }
+  .nav-pill:hover { color: var(--ds-text); }
+  .nav-pill:hover::after { transform: scaleX(1); }
+  .nav-pill.is-active { color: var(--ds-gold-bright); }
+  .nav-pill.is-active::after { transform: scaleX(1); }
+
   /* ---- Decorative ------------------------------------------------------- */
   .ds-hairline { height: 1px; background: linear-gradient(90deg, transparent, var(--ds-line-strong), transparent); }
   .ds-grain::before {
@@ -153,6 +171,7 @@
 @keyframes ds-shimmer { 0% { background-position: -150% 0; } 100% { background-position: 250% 0; } }
 @keyframes ds-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 @keyframes ds-spin-slow { to { transform: rotate(360deg); } }
+@keyframes ds-scrollcue { 0% { transform: translateY(-100%); } 50% { transform: translateY(0); } 100% { transform: translateY(100%); } }
 
 @layer utilities {
   .ds-container { width: 100%; max-width: var(--ds-maxw); margin-inline: auto; padding-inline: var(--ds-gutter); }
