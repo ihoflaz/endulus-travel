@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { LocaleLink as Link } from '../components/LocaleLink';
 import { useTranslation } from 'react-i18next';
+import Seo from '../components/Seo';
 
 // Premium ServicesPage bileşeni - Modern tasarım sistemi ile
 const ServicesPage = () => {
@@ -8,11 +9,6 @@ const ServicesPage = () => {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
-  // Sayfa başlığını ayarla
-  useEffect(() => {
-    document.title = t('servicesPage.documentTitle', 'Hizmetlerimiz - Endülüs Travel');
-  }, []);
 
   // Hizmet verilerini yükle
   useEffect(() => {
@@ -71,6 +67,10 @@ const ServicesPage = () => {
 
   return (
     <div className="page-transition">
+      <Seo
+        title={t('servicesPage.documentTitle', 'Hizmetlerimiz - Endülüs Travel')}
+        description={t('servicesPage.metaDescription', 'Endülüs Travel ile özel rehberlik, ücretsiz danışmanlık ve kişiye özel seyahat çözümleri. İhtiyacınıza uygun profesyonel hizmetleri keşfedin ve size özel teklif alın.')}
+      />
       {/* Premium Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-primary)] via-blue-600 to-[color:var(--color-primary)]"></div>

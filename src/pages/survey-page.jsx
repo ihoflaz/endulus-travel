@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LocaleLink as Link } from '../components/LocaleLink';
 import { trackLead } from '../lib/analytics';
+import Seo from '../components/Seo';
 
 const SurveyPage = () => {
   const { t } = useTranslation();
@@ -18,11 +19,6 @@ const SurveyPage = () => {
   const [submitStatus, setSubmitStatus] = useState(null);
   const [questions, setQuestions] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  // Sayfa başlığını ayarla
-  useEffect(() => {
-    document.title = t('survey.pageTitle', 'Ön Anket - Endülüs Travel');
-  }, [t]);
 
   // Anket sorularını yükle
   useEffect(() => {
@@ -171,6 +167,10 @@ const SurveyPage = () => {
 
   return (
     <div className="page-transition">
+      <Seo
+        title={t('survey.pageTitle', 'Ön Anket - Endülüs Travel')}
+        description={t('survey.metaDescription', 'Endülüs Travel ön anketini doldurun; grup yapınızı ve seyahat tercihlerinizi paylaşın, uzman ekibimiz size özel kişiselleştirilmiş bir tur planı hazırlasın. Yalnızca 2 dakika sürer.')}
+      />
       {/* Premium Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-primary)] via-blue-600 to-[color:var(--color-primary)]"></div>

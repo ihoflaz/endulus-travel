@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { trackLead, trackContact } from '../lib/analytics';
 import { getCampaign } from '../lib/utm';
 import { useContactData, useWhatsAppSettings } from '../hooks/useAppData';
+import Seo from '../components/Seo';
 
 // Builds a wa.me link with the active campaign appended as a ref, sourced from
 // settings (falls back to the production number). Mirrors WhatsAppButton so the
@@ -44,7 +45,6 @@ const ContactPage = () => {
 
   useEffect(() => {
     setIsVisible(true);
-    document.title = t('contactPage.documentTitle', 'İletişim - Endülüs Travel');
   }, []);
 
   const handleInputChange = (e) => {
@@ -127,6 +127,10 @@ const ContactPage = () => {
 
   return (
     <div className="page-transition">
+      <Seo
+        title={t('contactPage.documentTitle', 'İletişim - Endülüs Travel')}
+        description={t('contactPage.metaDescription', 'Endülüs Travel ile iletişime geçin. Telefon, WhatsApp, e-posta ve Kadıköy ofis adresimiz üzerinden ulaşın; size özel seyahat planları ve ücretsiz danışmanlık için bizimle bağlantı kurun.')}
+      />
       {/* Modern Hero Section with Dynamic Background */}
       <section className="relative overflow-hidden min-h-screen flex items-center">
         {/* Animated Background */}

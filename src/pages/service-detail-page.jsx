@@ -1,9 +1,9 @@
-import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { LocaleLink as Link } from '../components/LocaleLink';
 import { useLocaleNavigate } from '../hooks/useLocaleNavigate';
 import { useTranslation } from 'react-i18next';
 import { useServiceDetail } from '../hooks';
+import Seo from '../components/Seo';
 
 // Premium ServiceDetailPage bileşeni - Modern tasarım sistemi ile
 const ServiceDetailPage = () => {
@@ -11,13 +11,6 @@ const ServiceDetailPage = () => {
   const { id } = useParams();
   const navigate = useLocaleNavigate();
   const { service, serviceContent, isLoading, error, notFound } = useServiceDetail(id);
-
-  // Sayfa başlığını ayarla
-  useEffect(() => {
-    if (service) {
-      document.title = `${service.title} - Endülüs Travel`;
-    }
-  }, [service]);
 
   if (isLoading) {
     return (
@@ -65,6 +58,11 @@ const ServiceDetailPage = () => {
 
   return (
     <div className="page-transition">
+      <Seo
+        title={service?.title ? `${service.title} - Endülüs Travel` : t('serviceDetail.metaTitle', 'Hizmet Detayı - Endülüs Travel')}
+        description={service?.summary || service?.description || t('serviceDetail.metaDescription', 'Endülüs Travel hizmetleri hakkında detaylı bilgi alın. Profesyonel ekibimizle size özel, kişiselleştirilmiş seyahat ve organizasyon çözümleri sunuyoruz.')}
+        image={serviceContent?.image}
+      />
       {/* Premium Hero Section */}
       <div className="relative overflow-hidden">
         {/* Background Image */}

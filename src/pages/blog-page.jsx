@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { LocaleLink as Link } from '../components/LocaleLink';
+import Seo from '../components/Seo';
 import { useBlogPosts } from '../hooks';
 
 // Blog sayfası bileşeni - Tüm blog yazılarını listeler
@@ -9,6 +10,10 @@ const BlogPage = () => {
 
   return (
     <div className="page-transition">
+      <Seo
+        title={t('blog.metaTitle', 'Seyahat Blogu - Endülüs Travel')}
+        description={t('blog.metaDescription', 'Endülüs Travel blogunda destinasyon rehberleri, seyahat ipuçları ve ilham verici gezi hikayeleri sizi bekliyor. Bir sonraki tatiliniz için keşfedin.')}
+      />
       {/* Premium Hero Section */}
       <div className="relative overflow-hidden">
         {/* Background Image */}

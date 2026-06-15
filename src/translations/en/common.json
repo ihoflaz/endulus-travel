@@ -202,7 +202,9 @@
     "noPosts": "No blog posts yet",
     "noPostsDescription": "We will be back soon with great content!",
     "authorName": "Endülüs Travel",
-    "authorBio": "Travel enthusiast and content writer."
+    "authorBio": "Travel enthusiast and content writer.",
+    "metaTitle": "Travel Blog - Endülüs Travel",
+    "metaDescription": "Discover destination guides, travel tips and inspiring journey stories on the Endülüs Travel blog. Find everything you need to plan your next holiday."
   },
   "about": {
     "valuesTitle": "Our Values",
@@ -287,7 +289,8 @@
     "heroBadge": "Smart Route Suggestions",
     "statReadyRoutes": "Ready-Made Routes",
     "statDestinations": "Destinations",
-    "statHappyCustomers": "Happy Customers"
+    "statHappyCustomers": "Happy Customers",
+    "metaDescription": "Discover ideal tour routes tailored to your travel budget, duration, and group size. Filter, compare, and request an instant quote for the travel plan that suits you best."
   },
   "offer": {
     "pageTitle": "Request a Quote - Endülüs Travel",
@@ -353,7 +356,8 @@
       "responseTime": "Response Within Hours",
       "personalization": "Personalization",
       "offerFee": "Quote Fee"
-    }
+    },
+    "metaDescription": "Get a personalized tour quote from Endülüs Travel. Tell us your destination, travel dates and budget; our expert team will prepare your free, tailor-made price offer within 24 hours."
   },
   "survey": {
     "pageTitle": "Pre-Survey - Endülüs Travel",
@@ -413,7 +417,8 @@
       "fastDesc": "Takes just 2 minutes",
       "secureTitle": "Secure",
       "secureDesc": "Your data is protected"
-    }
+    },
+    "metaDescription": "Fill out the Endülüs Travel pre-trip survey: share your group type and travel preferences, and our expert team will craft a personalized tour plan just for you. Takes only 2 minutes."
   },
   "planning": {
     "pageTitle": "Tour Planning - Endülüs Travel",
@@ -434,7 +439,8 @@
   },
   "tourPlanning": {
     "title": "Tour Planning",
-    "description": "Follow our step-by-step guide to create your custom tour plan. Define your sensitivities and preferences to experience the tour of your dreams."
+    "description": "Follow our step-by-step guide to create your custom tour plan. Define your sensitivities and preferences to experience the tour of your dreams.",
+    "metaDescription": "Build your personalized travel route with our step-by-step tour planning wizard. Set your destination, duration, interests and budget to get a tailored quote that fits your preferences instantly."
   },
   "aboutPage": {
     "heroBadge": "The Endülüs Travel Story",
@@ -495,7 +501,9 @@
     "ctaFeaturePersonalTitle": "100% Personal",
     "ctaFeaturePersonalDesc": "Designed entirely around you",
     "ctaButtonQuote": "Get a Quote Now",
-    "ctaButtonSurvey": "Fill Out the Survey First"
+    "ctaButtonSurvey": "Fill Out the Survey First",
+    "metaTitle": "About Us - Endülüs Travel",
+    "metaDescription": "Founded in 2024, Endülüs Travel is your trusted travel partner offering all-inclusive domestic and international tours with prayer-time-friendly schedules and halal sensitivity."
   },
   "contactPage": {
     "waMsg": "Hello, I'd like to get information about travel plans.",
@@ -575,7 +583,8 @@
     "featurePersonalDesc": "Tour planning tailored to you",
     "ctaGetQuote": "Get a Free Quote",
     "ctaWhatsapp": "Message Us on WhatsApp",
-    "callPrompt": "If you'd like to call right away:"
+    "callPrompt": "If you'd like to call right away:",
+    "metaDescription": "Get in touch with Endülüs Travel. Reach us by phone, WhatsApp, email or visit our Kadıköy office; contact us for tailor-made travel plans and free consultation."
   },
   "tourDetail": {
     "galleryMainAlt": "{{title}} - Main photo",
@@ -642,7 +651,8 @@
     "featurePersonalTitle": "Personal Approach",
     "featurePersonalDesc": "Solutions tailored to you",
     "ctaGetOffer": "Get a Custom Quote",
-    "ctaContact": "Contact Us"
+    "ctaContact": "Contact Us",
+    "metaDescription": "Discover Endülüs Travel's professional services: private guidance, free consultation and tailor-made travel solutions. Explore the right service for your needs and get a personalized offer."
   },
   "tourDetailLegacy": {
     "mainPhotoAlt": "{{title}} - Main photo",
@@ -708,7 +718,9 @@
     "featurePersonalSolution": "Personalized Solution",
     "ctaGetOffer": "Get a Custom Offer",
     "ctaContactUs": "Contact Us",
-    "viewAllServices": "View All Services"
+    "viewAllServices": "View All Services",
+    "metaTitle": "Service Detail - Endülüs Travel",
+    "metaDescription": "Get detailed information about Endülüs Travel services. Our professional team offers tailored, personalized travel and organization solutions designed just for you."
   },
   "homeCta": {
     "badge": "Your Dreams Are Coming True",
@@ -756,10 +768,12 @@
     "ctaDescription": "Tell us which of Türkiye's beauties you would like to discover, and let's plan the perfect route together.",
     "ctaGetOffer": "Get a Custom Quote",
     "whatsappMessage": "I would like to get information about domestic tour packages.",
-    "whatsappButton": "Contact via WhatsApp"
+    "whatsappButton": "Contact via WhatsApp",
+    "metaDescription": "Discover Turkey's most beautiful routes. Tailor-made domestic tour packages to Cappadocia, Pamukkale, Antalya, Istanbul and more, all from Endülüs Travel."
   },
   "internationalTours": {
     "pageTitle": "International Tours - Endülüs Travel",
+    "metaDescription": "International tours to the world's most beautiful destinations. Discover unforgettable journeys with prayer-time-friendly, faith-conscious boutique tour packages.",
     "dataLoadError": "Unable to load data",
     "errorHeading": "Data Loading Error",
     "breadcrumbHome": "Home",
@@ -822,7 +836,8 @@
     "ctaDescription": "You dream it, we plan it - let's set off together",
     "ctaQuoteButton": "Get a Custom Quote",
     "whatsappMessage": "I would like to get information about custom tour packages.",
-    "whatsappButton": "Contact on WhatsApp"
+    "whatsappButton": "Contact on WhatsApp",
+    "metaDescription": "Discover Endülüs Travel's carefully planned small-group tour packages. Browse our culture, nature and city tours, and let us plan your dream trip together."
   },
   "homeServices": {
     "loadError": "Services could not be loaded",
@@ -849,5 +864,13 @@
   "trust": {
     "refundTitle": "Full Refund on Force Majeure",
     "refundDesc": "If a tour is cancelled due to force majeure, you receive a full refund."
+  },
+  "legal": {
+    "privacyMetaTitle": "Privacy Policy - Endülüs Travel",
+    "privacyMetaDescription": "Endülüs Travel privacy policy: learn how we collect, use and protect your personal data. Your data security is our priority.",
+    "termsMetaTitle": "Terms of Use - Endülüs Travel",
+    "termsMetaDescription": "Endülüs Travel terms of use: learn about the rules, rights and responsibilities that apply when using our website and services.",
+    "kvkkMetaTitle": "Data Protection Notice (KVKK) - Endülüs Travel",
+    "kvkkMetaDescription": "Endülüs Travel data protection (KVKK) notice: detailed information on the processing of your personal data, your rights and how to apply under Turkish Law No. 6698."
   }
 }

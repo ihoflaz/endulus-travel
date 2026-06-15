@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
 import { LocaleLink as Link } from '../components/LocaleLink';
+import Seo from '../components/Seo';
 import { WhatsAppButton } from '../components/ui';
 import { trackLead } from '../lib/analytics';
 import { getUtmPayload } from '../lib/utm';
@@ -26,11 +27,6 @@ const RequestOfferPage = () => {
   const [submitStatus, setSubmitStatus] = useState(null);
   const [formOptions, setFormOptions] = useState(null);
   const [loading, setLoading] = useState(true);
-
-  // Sayfa başlığını ayarla
-  useEffect(() => {
-    document.title = t('offer.pageTitle', 'Teklif Al - Endülüs Travel');
-  }, [t]);
 
   // URL parametrelerini işle
   useEffect(() => {
@@ -226,6 +222,10 @@ const RequestOfferPage = () => {
 
   return (
     <div className="page-transition">
+      <Seo
+        title={t('offer.pageTitle', 'Teklif Al - Endülüs Travel')}
+        description={t('offer.metaDescription', 'Endülüs Travel ile size özel tur teklifi alın. Gitmek istediğiniz destinasyonu, tarihleri ve bütçenizi belirtin; uzman ekibimiz 24 saat içinde ücretsiz, kişiye özel fiyat teklifinizi hazırlasın.')}
+      />
       {/* Premium Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-primary)] via-blue-600 to-[color:var(--color-primary)]"></div>

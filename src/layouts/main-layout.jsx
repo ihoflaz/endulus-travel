@@ -46,8 +46,9 @@ const MainLayout = () => {
 
   return (
     <div className="flex flex-col min-h-screen w-full font-['Roboto',sans-serif] bg-white overflow-x-hidden">
-      {/* Per-page canonical + hreflang alternates + og:locale (every page). */}
-      <Seo />
+      {/* Canonical + hreflang alternates + og:locale on every page (base only —
+          pages render their own <Seo> for title/description). */}
+      <Seo baseOnly />
 
       {/* Navbar Bileşeni */}
       <Navbar />

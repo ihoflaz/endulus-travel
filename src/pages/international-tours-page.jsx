@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LocaleLink as Link } from '../components/LocaleLink';
+import Seo from '../components/Seo';
 import { WhatsAppButton } from '../components/ui';
 import { formatTourPrice, getPriceLabel, getNumericPrice } from '../utils/priceUtils';
 
@@ -14,11 +15,6 @@ const InternationalToursPage = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [filteredTours, setFilteredTours] = useState([]);
-
-  // Sayfa başlığını ayarla
-  useEffect(() => {
-    document.title = t('internationalTours.pageTitle', 'Yurt Dışı Turlar - Endülüs Travel');
-  }, []);
 
   // Tur verilerini yükle
   useEffect(() => {
@@ -90,6 +86,10 @@ const InternationalToursPage = () => {
 
   return (
     <div className="page-transition">
+      <Seo
+        title={t('internationalTours.pageTitle', 'Yurt Dışı Turlar - Endülüs Travel')}
+        description={t('internationalTours.metaDescription', 'Dünyanın en güzel destinasyonlarına yurt dışı turlar. Namaz vakitlerine uygun, hassasiyetlerinizi gözeten butik tur paketleriyle unutulmaz seyahatler keşfedin.')}
+      />
       {/* Premium Hero Section */}
       <div className="relative overflow-hidden">
         {/* Background Image */}

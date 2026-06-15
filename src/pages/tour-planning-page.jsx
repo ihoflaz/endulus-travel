@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LocaleLink as Link } from '../components/LocaleLink';
 import { useLocaleNavigate } from '../hooks/useLocaleNavigate';
+import Seo from '../components/Seo';
 
 const TourPlanningPage = () => {
   const { t } = useTranslation();
@@ -20,11 +21,6 @@ const TourPlanningPage = () => {
     interests: [],
     budget: ''
   });
-
-  // Sayfa başlığını ayarla
-  useEffect(() => {
-    document.title = t('planning.pageTitle', 'Tur Planlama - Endülüs Travel');
-  }, [t]);
 
   // Wizard verilerini yükle
   useEffect(() => {
@@ -142,6 +138,10 @@ const TourPlanningPage = () => {
 
   return (
     <div className="page-transition">
+      <Seo
+        title={t('planning.pageTitle', 'Tur Planlama - Endülüs Travel')}
+        description={t('tourPlanning.metaDescription', 'Adım adım tur planlama sihirbazımızla size özel seyahat rotanızı oluşturun. Destinasyon, süre, ilgi alanları ve bütçenizi belirleyin, hassasiyetlerinize uygun teklifinizi anında alın.')}
+      />
       {/* Premium Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-primary)] via-blue-600 to-[color:var(--color-primary)]"></div>

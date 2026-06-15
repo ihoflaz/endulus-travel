@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 import { LocaleLink as Link } from '../components/LocaleLink';
+import Seo from '../components/Seo';
 import { useBlogPostDetail } from '../hooks';
 import { useEffect } from 'react';
 
@@ -13,11 +14,6 @@ const BlogDetailPage = () => {
   useEffect(() => {
     // Sayfa yüklendiğinde en üste scroll yapma
     window.scrollTo(0, 0);
-    
-    // Sayfa başlığı ayarla
-    if (blogPost) {
-      document.title = `${blogPost.title} - Endülüs Travel Blog`;
-    }
   }, [slug, blogPost]);
 
   if (isLoading) {
@@ -114,6 +110,12 @@ const BlogDetailPage = () => {
 
   return (
     <div className="page-transition">
+      <Seo
+        title={blogPost?.title ? `${blogPost.title} - Endülüs Travel` : t('blog.metaTitle', 'Seyahat Blogu - Endülüs Travel')}
+        description={blogPost?.summary || blogPost?.description || t('blog.metaDescription', 'Endülüs Travel seyahat blogu: tur rehberleri, gezi ipuçları ve ilham veren seyahat hikayeleriyle bir sonraki tatilinizi planlayın.')}
+        image={blogPost?.coverImage}
+        type="article"
+      />
       {/* Premium Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-primary)] via-blue-600 to-[color:var(--color-primary)]"></div>

@@ -67,39 +67,27 @@ const upsertJsonLd = (obj) => {
 //
 // IMPORTANT: callers passing `jsonLd` should memoize it (useMemo) — the effect
 // keys on a serialized form to avoid re-running on every parent render.
-const Seo = ({ title, description, image, type = 'website', noindex = false, jsonLd }) => {
+// `baseOnly` (used by the layout on every page) sets ONLY the location-derived,
+// language-derived tags — canonical, hreflang, og:url/locale, robots — and never
+// title/description/image, so it can't clobber the page-specific <Seo> values.
+const Seo = ({ title, description, image, type = 'website', noindex = false, jsonLd, baseOnly = false }) => {
   const { value: site } = useSiteSettings();
   const { i18n } = useTranslation();
   const lang = i18n.language === 'en' ? 'en' : 'tr';
   const jsonLdKey = jsonLd ? JSON.stringify(jsonLd) : '';
 
   useEffect(() => {
-    const resolvedTitle = title || site?.title;
-    const resolvedDesc = description || site?.description;
-    const resolvedImage = image || site?.ogImage;
     // Canonical / og:url WITHOUT query string (strips UTM → no duplicate-content)
     const cleanUrl = typeof window !== 'undefined'
       ? window.location.origin + window.location.pathname
       : null;
 
-    // Only override the document title when a page explicitly passes one — the
-    // layout renders a prop-less <Seo> for canonical/hreflang on every page, and
-    // it must not clobber titles that pages set themselves.
-    if (title) document.title = title;
-    upsertMeta('name', 'description', resolvedDesc);
-    upsertMeta('property', 'og:title', resolvedTitle);
-    upsertMeta('property', 'og:description', resolvedDesc);
-    upsertMeta('property', 'og:image', resolvedImage);
+    // Location/language tags — always set (both layout base + page instances).
     upsertMeta('property', 'og:url', cleanUrl);
-    upsertMeta('property', 'og:type', type);
     upsertMeta('property', 'og:locale', lang === 'en' ? 'en_US' : 'tr_TR');
     upsertMeta('property', 'og:locale:alternate', lang === 'en' ? 'tr_TR' : 'en_US');
-    upsertMeta('name', 'twitter:title', resolvedTitle);
-    upsertMeta('name', 'twitter:description', resolvedDesc);
-    upsertMeta('name', 'twitter:image', resolvedImage);
     upsertMeta('name', 'robots', noindex ? 'noindex, nofollow' : 'index, follow');
     upsertLink('canonical', cleanUrl);
-    // hreflang alternates so Google serves the right language version.
     if (typeof window !== 'undefined') {
       const alts = alternates(window.location.pathname);
       const origin = window.location.origin;
@@ -107,9 +95,24 @@ const Seo = ({ title, description, image, type = 'website', noindex = false, jso
       upsertAlternate('en', origin + alts.en);
       upsertAlternate('x-default', origin + alts.tr);
     }
-    upsertJsonLd(jsonLd);
+
+    if (!baseOnly) {
+      const resolvedTitle = title || site?.title;
+      const resolvedDesc = description || site?.description;
+      const resolvedImage = image || site?.ogImage;
+      if (resolvedTitle) document.title = resolvedTitle;
+      upsertMeta('name', 'description', resolvedDesc);
+      upsertMeta('property', 'og:title', resolvedTitle);
+      upsertMeta('property', 'og:description', resolvedDesc);
+      upsertMeta('property', 'og:image', resolvedImage);
+      upsertMeta('property', 'og:type', type);
+      upsertMeta('name', 'twitter:title', resolvedTitle);
+      upsertMeta('name', 'twitter:description', resolvedDesc);
+      upsertMeta('name', 'twitter:image', resolvedImage);
+      upsertJsonLd(jsonLd);
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title, description, image, type, noindex, jsonLdKey, site, lang]);
+  }, [title, description, image, type, noindex, jsonLdKey, site, lang, baseOnly]);
 
   return null;
 };

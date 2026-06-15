@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LocaleLink as Link } from '../components/LocaleLink';
 import { useLocaleNavigate } from '../hooks/useLocaleNavigate';
+import Seo from '../components/Seo';
 
 const BudgetRoutesPage = () => {
   const { t } = useTranslation();
@@ -17,11 +18,6 @@ const BudgetRoutesPage = () => {
     departure: ''
   });
   const [filteredRoutes, setFilteredRoutes] = useState([]);
-  
-  // Sayfa başlığını ayarla
-  useEffect(() => {
-    document.title = t('budgetRoutes.pageTitle', 'Bütçeye Göre Rotalar - Endülüs Travel');
-  }, [t]);
   
   // Rota verilerini yükle
   useEffect(() => {
@@ -140,6 +136,10 @@ const BudgetRoutesPage = () => {
 
   return (
     <div className="page-transition">
+      <Seo
+        title={t('budgetRoutes.pageTitle', 'Bütçeye Göre Rotalar - Endülüs Travel')}
+        description={t('budgetRoutes.metaDescription', 'Seyahat bütçenize, sürenize ve kişi sayınıza göre hazırlanmış ideal tur rotalarını keşfedin. Filtreleyin, karşılaştırın ve size en uygun seyahat planı için hemen teklif alın.')}
+      />
       {/* Premium Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-primary)] via-blue-600 to-[color:var(--color-primary)]"></div>

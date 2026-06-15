@@ -202,7 +202,9 @@
     "noPosts": "Henüz blog yazısı yok",
     "noPostsDescription": "Yakında harika içeriklerle karşınızda olacağız!",
     "authorName": "Endülüs Travel",
-    "authorBio": "Seyahat tutkunu ve içerik yazarı."
+    "authorBio": "Seyahat tutkunu ve içerik yazarı.",
+    "metaTitle": "Seyahat Blogu - Endülüs Travel",
+    "metaDescription": "Endülüs Travel blogunda destinasyon rehberleri, seyahat ipuçları ve ilham verici gezi hikayeleri sizi bekliyor. Bir sonraki tatiliniz için keşfedin."
   },
   "about": {
     "valuesTitle": "Değerlerimiz",
@@ -287,7 +289,8 @@
     "heroBadge": "Akıllı Rota Önerileri",
     "statReadyRoutes": "Hazır Rota",
     "statDestinations": "Destinasyon",
-    "statHappyCustomers": "Mutlu Müşteri"
+    "statHappyCustomers": "Mutlu Müşteri",
+    "metaDescription": "Seyahat bütçenize, sürenize ve kişi sayınıza göre hazırlanmış ideal tur rotalarını keşfedin. Filtreleyin, karşılaştırın ve size en uygun seyahat planı için hemen teklif alın."
   },
   "offer": {
     "pageTitle": "Teklif Al - Endülüs Travel",
@@ -353,7 +356,8 @@
       "responseTime": "Saat İçinde Yanıt",
       "personalization": "Kişiselleştirme",
       "offerFee": "Teklif Ücreti"
-    }
+    },
+    "metaDescription": "Endülüs Travel ile size özel tur teklifi alın. Gitmek istediğiniz destinasyonu, tarihleri ve bütçenizi belirtin; uzman ekibimiz 24 saat içinde ücretsiz, kişiye özel fiyat teklifinizi hazırlasın."
   },
   "survey": {
     "pageTitle": "Ön Anket - Endülüs Travel",
@@ -413,7 +417,8 @@
       "fastDesc": "2 dakika sürer",
       "secureTitle": "Güvenli",
       "secureDesc": "Verileriniz korunur"
-    }
+    },
+    "metaDescription": "Endülüs Travel ön anketini doldurun; grup yapınızı ve seyahat tercihlerinizi paylaşın, uzman ekibimiz size özel kişiselleştirilmiş bir tur planı hazırlasın. Yalnızca 2 dakika sürer."
   },
   "planning": {
     "pageTitle": "Tur Planlama - Endülüs Travel",
@@ -434,7 +439,8 @@
   },
   "tourPlanning": {
     "title": "Tur Planlama",
-    "description": "Size özel tur planınızı oluşturmak için adım adım rehberimizi takip edin. Hassasiyetlerinizi ve tercihlerinizi belirleyerek hayalinizdeki tur deneyimini yaşayın."
+    "description": "Size özel tur planınızı oluşturmak için adım adım rehberimizi takip edin. Hassasiyetlerinizi ve tercihlerinizi belirleyerek hayalinizdeki tur deneyimini yaşayın.",
+    "metaDescription": "Adım adım tur planlama sihirbazımızla size özel seyahat rotanızı oluşturun. Destinasyon, süre, ilgi alanları ve bütçenizi belirleyin, hassasiyetlerinize uygun teklifinizi anında alın."
   },
   "aboutPage": {
     "heroBadge": "Endülüs Travel Hikayesi",
@@ -495,7 +501,9 @@
     "ctaFeaturePersonalTitle": "%100 Kişisel",
     "ctaFeaturePersonalDesc": "Tamamen size özel tasarım",
     "ctaButtonQuote": "Hemen Teklif Alın",
-    "ctaButtonSurvey": "Önce Anket Doldurun"
+    "ctaButtonSurvey": "Önce Anket Doldurun",
+    "metaTitle": "Hakkımızda - Endülüs Travel",
+    "metaDescription": "2024 yılında kurulan Endülüs Travel; namaz vakitlerine uygun, helal hassasiyetli ve her şey dahil yurt içi & yurt dışı turlar sunan güvenilir seyahat ortağınızdır."
   },
   "contactPage": {
     "waMsg": "Merhaba, seyahat planları hakkında bilgi almak istiyorum.",
@@ -575,7 +583,8 @@
     "featurePersonalDesc": "Size özel tur planlaması",
     "ctaGetQuote": "Ücretsiz Teklif Alın",
     "ctaWhatsapp": "WhatsApp ile Yazın",
-    "callPrompt": "Hemen aramak isterseniz:"
+    "callPrompt": "Hemen aramak isterseniz:",
+    "metaDescription": "Endülüs Travel ile iletişime geçin. Telefon, WhatsApp, e-posta ve Kadıköy ofis adresimiz üzerinden ulaşın; size özel seyahat planları ve ücretsiz danışmanlık için bizimle bağlantı kurun."
   },
   "tourDetail": {
     "galleryMainAlt": "{{title}} - Ana fotoğraf",
@@ -642,7 +651,8 @@
     "featurePersonalTitle": "Kişisel Yaklaşım",
     "featurePersonalDesc": "Size özel çözümler",
     "ctaGetOffer": "Özel Teklif Al",
-    "ctaContact": "Bize Ulaşın"
+    "ctaContact": "Bize Ulaşın",
+    "metaDescription": "Endülüs Travel ile özel rehberlik, ücretsiz danışmanlık ve kişiye özel seyahat çözümleri. İhtiyacınıza uygun profesyonel hizmetleri keşfedin ve size özel teklif alın."
   },
   "tourDetailLegacy": {
     "mainPhotoAlt": "{{title}} - Ana fotoğraf",
@@ -708,7 +718,9 @@
     "featurePersonalSolution": "Kişisel Çözüm",
     "ctaGetOffer": "Özel Teklif Al",
     "ctaContactUs": "Bize Ulaşın",
-    "viewAllServices": "Tüm Hizmetleri Gör"
+    "viewAllServices": "Tüm Hizmetleri Gör",
+    "metaTitle": "Hizmet Detayı - Endülüs Travel",
+    "metaDescription": "Endülüs Travel hizmetleri hakkında detaylı bilgi alın. Profesyonel ekibimizle size özel, kişiselleştirilmiş seyahat ve organizasyon çözümleri sunuyoruz."
   },
   "homeCta": {
     "badge": "Hayalleriniz Gerçek Oluyor",
@@ -756,10 +768,12 @@
     "ctaDescription": "Türkiye'nin hangi güzelliklerini keşfetmek istediğinizi belirtin, gelin birlikte mükemmel rotayı planlayalım",
     "ctaGetOffer": "Özel Teklif Al",
     "whatsappMessage": "Yurt içi tur paketleri hakkında bilgi almak istiyorum.",
-    "whatsappButton": "WhatsApp İletişim"
+    "whatsappButton": "WhatsApp İletişim",
+    "metaDescription": "Türkiye'nin en güzel rotalarını keşfedin. Kapadokya, Pamukkale, Antalya, İstanbul ve daha fazlası için size özel yurt içi tur paketleri Endülüs Travel'da."
   },
   "internationalTours": {
     "pageTitle": "Yurt Dışı Turlar - Endülüs Travel",
+    "metaDescription": "Dünyanın en güzel destinasyonlarına yurt dışı turlar. Namaz vakitlerine uygun, hassasiyetlerinizi gözeten butik tur paketleriyle unutulmaz seyahatler keşfedin.",
     "dataLoadError": "Veriler yüklenemedi",
     "errorHeading": "Veri Yükleme Hatası",
     "breadcrumbHome": "Ana Sayfa",
@@ -822,7 +836,8 @@
     "ctaDescription": "Siz hayal edin biz planlayalım, gelin birlikte yola çıkalım",
     "ctaQuoteButton": "Özel Teklif Al",
     "whatsappMessage": "Size özel tur paketleri hakkında bilgi almak istiyorum.",
-    "whatsappButton": "WhatsApp İletişim"
+    "whatsappButton": "WhatsApp İletişim",
+    "metaDescription": "Endülüs Travel ile küçük gruplara özel, özenle planlanmış tur paketlerini keşfedin. Kültür, doğa ve şehir turlarını inceleyin, hayalinizdeki seyahati birlikte planlayalım."
   },
   "homeServices": {
     "loadError": "Hizmetler yüklenemedi",
@@ -849,5 +864,13 @@
   "trust": {
     "refundTitle": "Mücbir Sebepte Tam İade",
     "refundDesc": "Mücbir sebeplerle iptal edilen turlarda ödemenizin tamamı iade edilir."
+  },
+  "legal": {
+    "privacyMetaTitle": "Gizlilik Politikası - Endülüs Travel",
+    "privacyMetaDescription": "Endülüs Travel gizlilik politikası: Kişisel verilerinizi nasıl topladığımızı, kullandığımızı ve koruduğumuzu öğrenin. Verilerinizin güvenliği bizim için önceliklidir.",
+    "termsMetaTitle": "Kullanım Koşulları - Endülüs Travel",
+    "termsMetaDescription": "Endülüs Travel kullanım koşulları: Web sitemizi ve hizmetlerimizi kullanırken geçerli olan kurallar, hak ve sorumluluklar hakkında bilgi edinin.",
+    "kvkkMetaTitle": "KVKK Aydınlatma Metni - Endülüs Travel",
+    "kvkkMetaDescription": "Endülüs Travel KVKK aydınlatma metni: 6698 sayılı Kanun kapsamında kişisel verilerinizin işlenmesi, haklarınız ve başvuru yöntemleri hakkında ayrıntılı bilgi."
   }
 }

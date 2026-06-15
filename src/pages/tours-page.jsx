@@ -4,6 +4,7 @@ import { LocaleLink as Link } from '../components/LocaleLink';
 import { useSearchParams } from 'react-router-dom';
 import { WhatsAppButton } from '../components/ui';
 import { formatTourPrice, getPriceLabel, getNumericPrice } from '../utils/priceUtils';
+import Seo from '../components/Seo';
 
 // Premium ToursPage bileşeni - Modern tasarım sistemi ile
 const ToursPage = () => {
@@ -19,11 +20,6 @@ const ToursPage = () => {
   const [error, setError] = useState(null);
   const [filteredTours, setFilteredTours] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('all');
-
-  // Sayfa başlığını ayarla
-  useEffect(() => {
-    document.title = t('toursPage.documentTitle', 'Tur Paketlerimiz - Endülüs Travel');
-  }, []);
 
   // Tur verilerini ve kategorileri yükle
   useEffect(() => {
@@ -137,6 +133,10 @@ const ToursPage = () => {
 
   return (
     <div className="page-transition">
+      <Seo
+        title={t('toursPage.documentTitle', 'Tur Paketlerimiz - Endülüs Travel')}
+        description={t('toursPage.metaDescription', 'Endülüs Travel ile küçük gruplara özel, özenle planlanmış tur paketlerini keşfedin. Kültür, doğa ve şehir turlarını inceleyin, hayalinizdeki seyahati birlikte planlayalım.')}
+      />
       {/* Premium Hero Section */}
       <div className="relative overflow-hidden">
         {/* Background Image */}

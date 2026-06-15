@@ -1,4 +1,5 @@
 import { useTranslation } from 'react-i18next';
+import Seo from '../components/Seo';
 import { LocaleLink as Link } from '../components/LocaleLink';
 import { PhoneLink } from '../components/ui/phone-link';
 import { useContactData } from '../hooks/useAppData';
@@ -18,6 +19,10 @@ const AboutPage = () => {
 
     return (
     <div className="page-transition">
+      <Seo
+        title={t('aboutPage.metaTitle', 'Hakkımızda - Endülüs Travel')}
+        description={t('aboutPage.metaDescription', '2024 yılında kurulan Endülüs Travel; namaz vakitlerine uygun, helal hassasiyetli ve her şey dahil yurt içi & yurt dışı turlar sunan güvenilir seyahat ortağınızdır.')}
+      />
       {/* Premium Hero Section */}
       <div className="relative overflow-hidden">
         {/* Background Image */}

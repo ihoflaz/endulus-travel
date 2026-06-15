@@ -2,15 +2,15 @@ import { useState, useEffect } from 'react';
 import { LocaleLink as Link } from '../components/LocaleLink';
 import { useTranslation } from 'react-i18next';
 import { WhatsAppButton } from '../components/ui';
+import Seo from '../components/Seo';
 
 // Yurt İçi Turlar sayfası
 const DomesticToursPage = () => {
   const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
 
-  // Sayfa başlığını ayarla
+  // Sayfa hazır olduğunda yüklemeyi kapat
   useEffect(() => {
-    document.title = t('domesticTours.pageTitle', 'Yurt İçi Turlar - Endülüs Travel');
     setLoading(false);
   }, []);
 
@@ -32,6 +32,10 @@ const DomesticToursPage = () => {
 
   return (
     <div className="page-transition">
+      <Seo
+        title={t('domesticTours.pageTitle', 'Yurt İçi Turlar - Endülüs Travel')}
+        description={t('domesticTours.metaDescription', "Türkiye'nin en güzel rotalarını keşfedin. Kapadokya, Pamukkale, Antalya, İstanbul ve daha fazlası için size özel yurt içi tur paketleri Endülüs Travel'da.")}
+      />
       {/* Premium Hero Section */}
       <div className="relative overflow-hidden">
         {/* Background Image */}
