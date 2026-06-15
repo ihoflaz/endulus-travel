@@ -31,12 +31,50 @@ const xmlEsc = (s) => String(s).replace(/[&<>"']/g, (c) => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;',
 })[c]);
 
-const formatNode = ({ url, lastmod, priority }) =>
-  `  <url>
-    <loc>${xmlEsc(url)}</loc>
-    ${lastmod ? `<lastmod>${lastmod.toISOString().slice(0, 10)}</lastmod>` : ''}
+// Turkish first-segment -> { tr, en } localized segment (mirrors the frontend
+// ROUTE_SEGMENTS so sitemap URLs match the actual /tr and /en routes).
+const SEG = {
+  '': { tr: '', en: '' },
+  turlar: { tr: 'turlar', en: 'tours' },
+  'yurt-ici-turlar': { tr: 'yurt-ici-turlar', en: 'domestic-tours' },
+  'yurt-disi-turlar': { tr: 'yurt-disi-turlar', en: 'international-tours' },
+  'tur-planlama': { tr: 'tur-planlama', en: 'tour-planning' },
+  blog: { tr: 'blog', en: 'blog' },
+  hizmetler: { tr: 'hizmetler', en: 'services' },
+  hakkimizda: { tr: 'hakkimizda', en: 'about' },
+  iletisim: { tr: 'iletisim', en: 'contact' },
+  'on-anket': { tr: 'on-anket', en: 'survey' },
+  'teklif-al': { tr: 'teklif-al', en: 'request-offer' },
+  'butceye-gore-rota': { tr: 'butceye-gore-rota', en: 'budget-routes' },
+  gizlilik: { tr: 'gizlilik', en: 'privacy' },
+  'kullanim-kosullari': { tr: 'kullanim-kosullari', en: 'terms' },
+  kvkk: { tr: 'kvkk', en: 'kvkk' },
+};
+
+// Build the {tr,en} URL pair for a first segment + optional sub-path (slug/id).
+const pair = (firstSeg, sub = '') => {
+  const m = SEG[firstSeg] || { tr: firstSeg, en: firstSeg };
+  const tail = sub ? `/${sub}` : '';
+  const j = (s) => (s ? `/${s}` : '');
+  return {
+    tr: `${SITE_URL}/tr${j(m.tr)}${tail}`,
+    en: `${SITE_URL}/en${j(m.en)}${tail}`,
+  };
+};
+
+// Each logical page emits two <url> nodes (tr + en), each carrying the full
+// hreflang alternate set (tr, en, x-default=tr).
+const pageNodes = ({ tr, en, lastmod, priority }) => {
+  const alts = `    <xhtml:link rel="alternate" hreflang="tr" href="${xmlEsc(tr)}"/>
+    <xhtml:link rel="alternate" hreflang="en" href="${xmlEsc(en)}"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="${xmlEsc(tr)}"/>`;
+  const node = (loc) => `  <url>
+    <loc>${xmlEsc(loc)}</loc>${lastmod ? `\n    <lastmod>${lastmod.toISOString().slice(0, 10)}</lastmod>` : ''}
     <priority>${priority.toFixed(1)}</priority>
+${alts}
   </url>`;
+  return `${node(tr)}\n${node(en)}`;
+};
 
 router.get(
   '/sitemap.xml',
@@ -51,26 +89,17 @@ router.get(
         select: { slug: true, updatedAt: true },
       }),
     ]);
-    const urls = [
-      ...STATIC_PATHS.map((p) => ({
-        url: `${SITE_URL}${p.path}`,
-        lastmod: new Date(),
-        priority: p.priority,
-      })),
-      ...tours.map((t) => ({
-        url: `${SITE_URL}/turlar/${t.slug}`,
-        lastmod: t.updatedAt,
-        priority: 0.8,
-      })),
-      ...posts.map((p) => ({
-        url: `${SITE_URL}/blog/${p.slug}`,
-        lastmod: p.updatedAt,
-        priority: 0.6,
-      })),
+    const pages = [
+      ...STATIC_PATHS.map((p) => {
+        const firstSeg = p.path.replace(/^\//, '');
+        return { ...pair(firstSeg), lastmod: new Date(), priority: p.priority };
+      }),
+      ...tours.map((t) => ({ ...pair('turlar', t.slug), lastmod: t.updatedAt, priority: 0.8 })),
+      ...posts.map((p) => ({ ...pair('blog', p.slug), lastmod: p.updatedAt, priority: 0.6 })),
     ];
     const body = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-${urls.map(formatNode).join('\n')}
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+${pages.map(pageNodes).join('\n')}
 </urlset>`;
     res.setHeader('Content-Type', 'application/xml; charset=utf-8');
     res.setHeader('Cache-Control', 'public, max-age=3600, s-maxage=3600');

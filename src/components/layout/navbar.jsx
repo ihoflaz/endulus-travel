@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import { LocaleLink as Link } from '../LocaleLink';
+import { localizedPath, alternates } from '../../utils/locale-routes';
 
 // Premium Navbar bileşeni - Modern tasarım sistemi ile
 const Navbar = () => {
@@ -9,6 +11,7 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [toursDropdownOpen, setToursDropdownOpen] = useState(false);
   const location = useLocation();
+  const navigate = useNavigate();
 
   // Scroll efekti için
   useEffect(() => {
@@ -33,15 +36,17 @@ const Navbar = () => {
     };
   }, [mobileMenuOpen]);
 
-  // Mevcut dili değiştir
+  // Mevcut dili değiştir — aynı sayfanın diğer-dil URL'sine git (SEO + UX)
   const changeLanguage = (lng) => {
+    const target = alternates(location.pathname)[lng];
     i18n.changeLanguage(lng);
     localStorage.setItem('i18nextLng', lng);
+    navigate(target);
   };
 
-  // Aktif menü öğesini belirle
+  // Aktif menü öğesini belirle (locale-prefixed yollarla karşılaştır)
   const isActive = (path) => {
-    return location.pathname === path;
+    return location.pathname === localizedPath(path, i18n.language);
   };
 
   // Mobil menüyü aç/kapat

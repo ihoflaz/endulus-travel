@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useLocation } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+import { LocaleLink as Link } from '../components/LocaleLink';
 import { WhatsAppButton } from '../components/ui';
 import { trackLead } from '../lib/analytics';
 import { getUtmPayload } from '../lib/utm';

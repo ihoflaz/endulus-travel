@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { LocaleLink as Link } from '../components/LocaleLink';
 import { WhatsAppButton } from '../components/ui';
 import { formatTourPrice, getPriceLabel, getNumericPrice } from '../utils/priceUtils';
 

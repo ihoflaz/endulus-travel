@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useSiteSettings } from '../hooks/useAppData';
+import { alternates } from '../utils/locale-routes';
 
 // Upserts a <meta>/<link> with the given content. Last-writer-wins: we never
 // restore previous values on cleanup, because in an SPA two <Seo> instances
@@ -24,6 +26,19 @@ const upsertLink = (rel, href) => {
   if (!el) {
     el = document.createElement('link');
     el.rel = rel;
+    document.head.appendChild(el);
+  }
+  el.href = href;
+};
+
+// hreflang alternate <link>s — one managed tag per hreflang value.
+const upsertAlternate = (hreflang, href) => {
+  if (typeof document === 'undefined' || !href) return;
+  let el = document.head.querySelector(`link[rel="alternate"][hreflang="${hreflang}"]`);
+  if (!el) {
+    el = document.createElement('link');
+    el.rel = 'alternate';
+    el.setAttribute('hreflang', hreflang);
     document.head.appendChild(el);
   }
   el.href = href;
@@ -54,6 +69,8 @@ const upsertJsonLd = (obj) => {
 // keys on a serialized form to avoid re-running on every parent render.
 const Seo = ({ title, description, image, type = 'website', noindex = false, jsonLd }) => {
   const { value: site } = useSiteSettings();
+  const { i18n } = useTranslation();
+  const lang = i18n.language === 'en' ? 'en' : 'tr';
   const jsonLdKey = jsonLd ? JSON.stringify(jsonLd) : '';
 
   useEffect(() => {
@@ -72,14 +89,24 @@ const Seo = ({ title, description, image, type = 'website', noindex = false, jso
     upsertMeta('property', 'og:image', resolvedImage);
     upsertMeta('property', 'og:url', cleanUrl);
     upsertMeta('property', 'og:type', type);
+    upsertMeta('property', 'og:locale', lang === 'en' ? 'en_US' : 'tr_TR');
+    upsertMeta('property', 'og:locale:alternate', lang === 'en' ? 'tr_TR' : 'en_US');
     upsertMeta('name', 'twitter:title', resolvedTitle);
     upsertMeta('name', 'twitter:description', resolvedDesc);
     upsertMeta('name', 'twitter:image', resolvedImage);
     upsertMeta('name', 'robots', noindex ? 'noindex, nofollow' : 'index, follow');
     upsertLink('canonical', cleanUrl);
+    // hreflang alternates so Google serves the right language version.
+    if (typeof window !== 'undefined') {
+      const alts = alternates(window.location.pathname);
+      const origin = window.location.origin;
+      upsertAlternate('tr', origin + alts.tr);
+      upsertAlternate('en', origin + alts.en);
+      upsertAlternate('x-default', origin + alts.tr);
+    }
     upsertJsonLd(jsonLd);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [title, description, image, type, noindex, jsonLdKey, site]);
+  }, [title, description, image, type, noindex, jsonLdKey, site, lang]);
 
   return null;
 };

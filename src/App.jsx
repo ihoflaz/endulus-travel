@@ -1,8 +1,9 @@
 import './App.css';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
 
-import MainLayout from './layouts/main-layout';
+import LocaleLayout from './components/utils/LocaleLayout';
+import { LOCALES, ROUTE_SEGMENTS, localizedPath, stripLocale, detectLocale } from './utils/locale-routes';
 import HomePage from './pages/home-page';
 import ToursPage from './pages/tours-page';
 import DomesticToursPage from './pages/domestic-tours-page';
@@ -61,6 +62,60 @@ const AdminLayout = () => (
   </Suspense>
 );
 
+// Public page element per route key + the slug/id detail routes.
+const PAGE_EL = {
+  tours: <ToursPage />,
+  domestic: <DomesticToursPage />,
+  international: <InternationalToursPage />,
+  planning: <TourPlanningPage />,
+  blog: <BlogPage />,
+  about: <AboutPage />,
+  contact: <ContactPage />,
+  budget: <BudgetRoutesPage />,
+  survey: <SurveyPage />,
+  offer: <RequestOfferPage />,
+  services: <ServicesPage />,
+  privacy: <PrivacyPage />,
+  terms: <TermsPage />,
+  kvkk: <KvkkPage />,
+};
+const DETAIL_ROUTES = [
+  { key: 'tours', child: ':slug', element: <TourDetailPage /> },
+  { key: 'blog', child: ':slug', element: <BlogDetailPage /> },
+  { key: 'services', child: ':id', element: <ServiceDetailPage /> },
+];
+
+const NotFound = () => (
+  <div className="py-20 text-center">
+    <h1 className="text-4xl font-bold text-red-500 mb-4">404</h1>
+    <p className="text-xl">Sayfa Bulunamadı / Page Not Found</p>
+  </div>
+);
+
+// Child routes for one locale, with that locale's translated segments.
+const localeChildren = (lang) => {
+  const segOf = (key) => ROUTE_SEGMENTS.find((r) => r.key === key)[lang];
+  return [
+    <Route key="index" index element={<HomePage />} />,
+    ...ROUTE_SEGMENTS.map((r) => (
+      <Route key={r.key} path={r[lang]} element={PAGE_EL[r.key]} />
+    )),
+    ...DETAIL_ROUTES.map((d) => (
+      <Route key={`${d.key}-detail`} path={`${segOf(d.key)}/${d.child}`} element={d.element} />
+    )),
+    <Route key="nf" path="*" element={<NotFound />} />,
+  ];
+};
+
+// "/" -> detected locale home. Old unprefixed paths (/turlar, /tours) -> the
+// translated, locale-prefixed equivalent (301-style replace) so existing links,
+// bookmarks and indexed URLs keep working.
+const RootRedirect = () => <Navigate to={`/${detectLocale()}`} replace />;
+const LegacyRedirect = () => {
+  const { pathname, search } = useLocation();
+  return <Navigate to={localizedPath(stripLocale(pathname) || '/', detectLocale()) + search} replace />;
+};
+
 function App() {
   return (
     <BrowserRouter>
@@ -114,34 +169,15 @@ function App() {
             />
           </Route>
 
-          {/* --- Public --- */}
-          <Route path="/" element={<MainLayout />}>
-            <Route index element={<HomePage />} />
-            <Route path="/turlar" element={<ToursPage />} />
-            <Route path="/yurt-ici-turlar" element={<DomesticToursPage />} />
-            <Route path="/yurt-disi-turlar" element={<InternationalToursPage />} />
-            <Route path="/turlar/:slug" element={<TourDetailPage />} />
-            <Route path="/tur-planlama" element={<TourPlanningPage />} />
-            <Route path="/blog" element={<BlogPage />} />
-            <Route path="/blog/:slug" element={<BlogDetailPage />} />
-            <Route path="/hakkimizda" element={<AboutPage />} />
-            <Route path="/iletisim" element={<ContactPage />} />
-            <Route path="/butceye-gore-rota" element={<BudgetRoutesPage />} />
-            <Route path="/on-anket" element={<SurveyPage />} />
-            <Route path="/teklif-al" element={<RequestOfferPage />} />
-            <Route path="/hizmetler" element={<ServicesPage />} />
-            <Route path="/hizmetler/:id" element={<ServiceDetailPage />} />
-            <Route path="/gizlilik" element={<PrivacyPage />} />
-            <Route path="/kullanim-kosullari" element={<TermsPage />} />
-            <Route path="/kvkk" element={<KvkkPage />} />
-
-            <Route path="*" element={
-              <div className="py-20 text-center">
-                <h1 className="text-4xl font-bold text-red-500 mb-4">404</h1>
-                <p className="text-xl">Sayfa Bulunamadı</p>
-              </div>
-            } />
-          </Route>
+          {/* --- Public (locale-prefixed: /tr, /en) --- */}
+          <Route path="/" element={<RootRedirect />} />
+          {LOCALES.map((lang) => (
+            <Route key={lang} path={`/${lang}`} element={<LocaleLayout lang={lang} />}>
+              {localeChildren(lang)}
+            </Route>
+          ))}
+          {/* Old unprefixed URLs -> translated, locale-prefixed equivalents */}
+          <Route path="*" element={<LegacyRedirect />} />
         </Routes>
       </AuthProvider>
     </BrowserRouter>

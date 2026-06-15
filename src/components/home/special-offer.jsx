@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { LocaleLink as Link } from '../LocaleLink';
 import { useTours } from '../../hooks/useTours';
 import { formatTourPrice } from '../../utils/priceUtils';
 import { useWhatsAppSettings } from '../../hooks/useAppData';

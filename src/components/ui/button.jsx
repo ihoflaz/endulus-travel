@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+import { localizedPath } from '../../utils/locale-routes';
 
 // Button bileşeni - Uygulamada kullanılacak farklı buton çeşitleri için temel bileşen
 const Button = ({
@@ -16,6 +18,7 @@ const Button = ({
   iconPosition = 'left',
   ...props
 }) => {
+  const { i18n } = useTranslation();
   // CSS sınıflarını belirle
   let buttonClass = 'btn';
   
@@ -73,7 +76,7 @@ const Button = ({
   // Link olarak mı, Button olarak mı render edilecek?
   if (to) {
     return (
-      <Link to={to} className={buttonClass} {...props}>
+      <Link to={localizedPath(to, i18n.language)} className={buttonClass} {...props}>
         {content}
       </Link>
     );

@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { LocaleLink as Link } from '../components/LocaleLink';
 import { useState, useEffect } from 'react';
 import { trackLead, trackContact } from '../lib/analytics';
 import { getCampaign } from '../lib/utm';

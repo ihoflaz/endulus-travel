@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { LocaleLink as Link } from '../components/LocaleLink';
 import { useTranslation } from 'react-i18next';
 
 // Premium ServicesPage bileşeni - Modern tasarım sistemi ile

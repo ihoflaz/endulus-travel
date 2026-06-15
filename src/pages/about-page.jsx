@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { LocaleLink as Link } from '../components/LocaleLink';
 import { PhoneLink } from '../components/ui/phone-link';
 import { useContactData } from '../hooks/useAppData';
 

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { LocaleLink as Link } from '../LocaleLink';
 import { useTranslation } from 'react-i18next';
 import { useContactData, useFooterSettings, useWhatsAppSettings } from '../../hooks/useAppData';
 

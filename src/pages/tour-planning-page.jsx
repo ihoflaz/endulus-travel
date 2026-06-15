@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
-import { useNavigate, Link } from 'react-router-dom';
+import { LocaleLink as Link } from '../components/LocaleLink';
+import { useLocaleNavigate } from '../hooks/useLocaleNavigate';
 
 const TourPlanningPage = () => {
   const { t } = useTranslation();
-  const navigate = useNavigate();
+  const navigate = useLocaleNavigate();
 
   // Wizard adımları için state
   const [currentStep, setCurrentStep] = useState(0);

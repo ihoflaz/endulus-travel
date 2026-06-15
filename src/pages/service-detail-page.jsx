@@ -1,5 +1,7 @@
 import { useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { LocaleLink as Link } from '../components/LocaleLink';
+import { useLocaleNavigate } from '../hooks/useLocaleNavigate';
 import { useTranslation } from 'react-i18next';
 import { useServiceDetail } from '../hooks';
 
@@ -7,7 +9,7 @@ import { useServiceDetail } from '../hooks';
 const ServiceDetailPage = () => {
   const { t } = useTranslation();
   const { id } = useParams();
-  const navigate = useNavigate();
+  const navigate = useLocaleNavigate();
   const { service, serviceContent, isLoading, error, notFound } = useServiceDetail(id);
 
   // Sayfa başlığını ayarla

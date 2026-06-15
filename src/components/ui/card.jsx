@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { LocaleLink as Link } from '../LocaleLink';
 
 // Card bileşeni - Tur kartları, içerik kutuları ve bilgi gösterimi için kullanılacak
 const Card = ({

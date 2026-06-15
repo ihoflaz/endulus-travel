@@ -30,7 +30,10 @@ i18n
     // detector localStorage / ?lng / <html lang> sırasıyla belirler; eşleşme
     // yoksa fallbackLng (tr) kullanılır — yani yeni ziyaretçi yine Türkçe görür.
     detection: {
-      order: ['querystring', 'localStorage', 'htmlTag'],
+      // 'path' first: the URL prefix (/tr, /en) is the source of truth, so a
+      // deep load of /en/tours initializes in English before React mounts.
+      order: ['path', 'querystring', 'localStorage', 'htmlTag'],
+      lookupFromPathIndex: 0,
       lookupQuerystring: 'lng',
       lookupLocalStorage: 'i18nextLng',
       caches: ['localStorage'],

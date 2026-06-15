@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { LocaleLink as Link } from '../components/LocaleLink';
 import { useTranslation } from 'react-i18next';
 import { useTourDetail } from '../hooks';
 import { WhatsAppButton } from '../components/ui';

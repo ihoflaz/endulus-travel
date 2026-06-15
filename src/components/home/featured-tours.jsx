@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { LocaleLink as Link } from '../LocaleLink';
 import { useTranslation } from 'react-i18next';
 import { useTours } from '../../hooks/useTours';
 import { formatTourPrice } from '../../utils/priceUtils';
