@@ -64,7 +64,7 @@ const Navbar = () => {
             : 'shadow-lg border-b border-gray-100'
         }`}
         role="navigation"
-        aria-label="Ana navigasyon"
+        aria-label={t('navbar.ariaMainNav', 'Ana navigasyon')}
       >
         
         <div className="relative z-10 w-full px-4 sm:px-6 lg:px-8">
@@ -74,7 +74,7 @@ const Navbar = () => {
               <Link 
                 to="/" 
                 className="flex items-center space-x-3 group transform hover:scale-105 transition-all duration-300 ease-out"
-                aria-label="Ana sayfaya git"
+                aria-label={t('navbar.ariaGoHome', 'Ana sayfaya git')}
               >
                 {/* Simple Logo Container */}
                 <div className="relative">
@@ -177,8 +177,8 @@ const Navbar = () => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                         <div>
-                          <div className="font-medium">Yurt Dışı Turlar</div>
-                          <div className="text-sm text-gray-500">Dünya turları</div>
+                          <div className="font-medium">{t('navbar.internationalTours', 'Yurt Dışı Turlar')}</div>
+                          <div className="text-sm text-gray-500">{t('navbar.internationalToursDesc', 'Dünya turları')}</div>
                         </div>
                         <svg className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -193,8 +193,8 @@ const Navbar = () => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
                         <div>
-                          <div className="font-medium">Yurt İçi Turlar</div>
-                          <div className="text-sm text-gray-500">Türkiye turları</div>
+                          <div className="font-medium">{t('navbar.domesticTours', 'Yurt İçi Turlar')}</div>
+                          <div className="text-sm text-gray-500">{t('navbar.domesticToursDesc', 'Türkiye turları')}</div>
                         </div>
                         <svg className="w-4 h-4 ml-auto opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -240,7 +240,7 @@ const Navbar = () => {
                           ? 'bg-gradient-to-r from-[color:var(--color-primary)] to-blue-600 text-white shadow-lg' 
                           : 'text-gray-600 hover:text-[color:var(--color-primary)] hover:bg-white/80'
                       }`}
-                      aria-label="Türkçe dil seçeneği"
+                      aria-label={t('navbar.ariaTurkish', 'Türkçe dil seçeneği')}
               >
                 TR
               </button>
@@ -291,7 +291,7 @@ const Navbar = () => {
                   className="relative p-3 rounded-xl bg-white/60 backdrop-blur-sm border border-white/30 text-gray-700 hover:text-[color:var(--color-primary)] hover:bg-white/80 focus:outline-none focus:ring-2 focus:ring-[color:var(--color-primary)]/50 transition-all duration-300 ease-out hover:scale-105 hover:shadow-lg group"
                   aria-expanded={mobileMenuOpen}
                   aria-controls="mobile-menu"
-                  aria-label="Menüyü aç/kapat"
+                  aria-label={t('navbar.ariaToggleMenu', 'Menüyü aç/kapat')}
                 >
                   <svg 
                     xmlns="http://www.w3.org/2000/svg" 
@@ -360,7 +360,7 @@ const Navbar = () => {
 
                   {/* Mobile Turlar Section */}
                   <div className="px-6 py-2">
-                    <div className="text-sm font-semibold text-gray-500 mb-2">Turlar</div>
+                    <div className="text-sm font-semibold text-gray-500 mb-2">{t('navbar.toursHeading', 'Turlar')}</div>
                     <div className="ml-4 space-y-2">
                       <Link
                         to="/yurt-disi-turlar"
@@ -371,7 +371,7 @@ const Navbar = () => {
                           <svg className="w-4 h-4 mr-2 text-[color:var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                           </svg>
-                          Yurt Dışı Turlar
+                          {t('navbar.internationalTours', 'Yurt Dışı Turlar')}
                           <svg className="w-4 h-4 ml-auto group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
@@ -387,7 +387,7 @@ const Navbar = () => {
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                           </svg>
-                          Yurt İçi Turlar
+                          {t('navbar.domesticTours', 'Yurt İçi Turlar')}
                           <svg className="w-4 h-4 ml-auto group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>

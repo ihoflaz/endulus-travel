@@ -101,7 +101,7 @@ const TourFilter = ({ onFilter, initialFilters = {}, className = '' }) => {
           onChange={handleChange}
           options={[
             { value: '', label: t('filters.allCategories', 'Tüm Kategoriler') },
-            ...(categories.map(cat => ({ value: cat.key, label: cat.label })))
+            ...(categories.map(cat => ({ value: cat.key, label: t('categories.' + cat.key, cat.label) })))
           ]}
           placeholder={t('filters.selectCategory', 'Kategori Seçin')}
           disabled={loading}

@@ -166,7 +166,7 @@ const TourPlanningPage = () => {
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  Adım Adım Planlama
+                  {t('planning.stepByStepBadge', 'Adım Adım Planlama')}
                 </span>
         </div>
 
@@ -182,15 +182,15 @@ const TourPlanningPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">5</h3>
-                  <p className="text-white/90">Kolay Adım</p>
+                  <p className="text-white/90">{t('planning.statEasySteps', 'Kolay Adım')}</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">10</h3>
-                  <p className="text-white/90">Dakika Sürer</p>
+                  <p className="text-white/90">{t('planning.statMinutes', 'Dakika Sürer')}</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">%100</h3>
-                  <p className="text-white/90">Özelleştirme</p>
+                  <p className="text-white/90">{t('planning.statCustomization', 'Özelleştirme')}</p>
                 </div>
               </div>
             </div>

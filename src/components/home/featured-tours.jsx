@@ -1,9 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useTours } from '../../hooks/useTours';
 import { formatTourPrice } from '../../utils/priceUtils';
 
 const FeaturedTours = () => {
+  const { t } = useTranslation();
   const { tours, isLoading, error } = useTours();
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -51,9 +53,9 @@ const FeaturedTours = () => {
     return (
       <section className="py-16 bg-gradient-to-br from-blue-50 to-orange-50">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">Yaklaşan Turlarımız</h2>
+          <h2 className="text-4xl font-bold text-gray-800 mb-4">{t('featuredTours.heading', 'Yaklaşan Turlarımız')}</h2>
           <p className="text-lg text-gray-600">
-            Şu anda özel teklifli tur bulunmamaktadır.
+            {t('featuredTours.noOffers', 'Şu anda özel teklifli tur bulunmamaktadır.')}
           </p>
         </div>
       </section>
@@ -85,9 +87,9 @@ const FeaturedTours = () => {
     <section className="py-16 bg-gradient-to-br from-blue-50 to-orange-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-gray-800 mb-4">Yaklaşan Turlarımız</h2>
+          <h2 className="text-4xl font-bold text-gray-800 mb-4">{t('featuredTours.heading', 'Yaklaşan Turlarımız')}</h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Özel indirimli turlarımızı kaçırmayın! Sınırlı süre ve kontenjanla.
+            {t('featuredTours.subtitle', 'Özel indirimli turlarımızı kaçırmayın! Sınırlı süre ve kontenjanla.')}
           </p>
         </div>
 
@@ -96,14 +98,14 @@ const FeaturedTours = () => {
             <div className="relative h-96 overflow-hidden">
               <img
                 src={coverImage}
-                alt={currentTour.title || 'Tur'}
+                alt={currentTour.title || t('featuredTours.imageAlt', 'Tur')}
                 className="w-full h-full object-cover"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
               <div className="absolute top-4 left-4">
                 <span className="bg-red-600 text-white px-4 py-2 rounded-full text-sm font-bold shadow-lg">
-                  🔥 Özel Teklif
+                  🔥 {t('featuredTours.specialOfferBadge', 'Özel Teklif')}
                 </span>
               </div>
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
@@ -132,27 +134,27 @@ const FeaturedTours = () => {
                         {currentTour.originalPrice.toLocaleString('tr-TR')} {currencySymbol}
                       </span>
                       <span className="bg-red-100 text-red-700 px-2 py-1 rounded text-sm font-bold">
-                        %{discountPct} İndirim
+                        {t('featuredTours.discountBadge', '%{{pct}} İndirim', { pct: discountPct })}
                       </span>
                     </div>
                   )}
                   <div className="text-3xl font-bold text-blue-700">
                     {formatTourPrice(currentTour)}
                   </div>
-                  <div className="text-sm text-gray-500">Kişi başı</div>
+                  <div className="text-sm text-gray-500">{t('featuredTours.perPerson', 'Kişi başı')}</div>
                 </div>
 
                 <Link
                   to={`/turlar/${currentTour.slug}`}
                   className="bg-blue-700 hover:bg-blue-800 text-white px-8 py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all duration-200"
                 >
-                  Detayları Gör
+                  {t('featuredTours.viewDetails', 'Detayları Gör')}
                 </Link>
               </div>
 
               {currentTour.highlights?.length > 0 && (
                 <div className="border-t pt-4">
-                  <h4 className="font-semibold text-gray-800 mb-2">Öne Çıkanlar</h4>
+                  <h4 className="font-semibold text-gray-800 mb-2">{t('featuredTours.highlights', 'Öne Çıkanlar')}</h4>
                   <div className="grid grid-cols-2 gap-2 text-sm text-gray-600">
                     {currentTour.highlights.slice(0, 4).map((h, idx) => (
                       <div key={idx} className="flex items-center gap-1">
@@ -171,7 +173,7 @@ const FeaturedTours = () => {
               <button
                 onClick={prevSlide}
                 className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
-                aria-label="Önceki tur"
+                aria-label={t('featuredTours.prevTour', 'Önceki tur')}
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -180,7 +182,7 @@ const FeaturedTours = () => {
               <button
                 onClick={nextSlide}
                 className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-gray-800 p-3 rounded-full shadow-lg transition-all duration-200 hover:scale-110"
-                aria-label="Sonraki tur"
+                aria-label={t('featuredTours.nextTour', 'Sonraki tur')}
               >
                 <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -196,7 +198,7 @@ const FeaturedTours = () => {
                         ? 'bg-blue-700 scale-125'
                         : 'bg-gray-300 hover:bg-gray-400'
                     }`}
-                    aria-label={`${index + 1}. tura git`}
+                    aria-label={t('featuredTours.goToTour', '{{n}}. tura git', { n: index + 1 })}
                   />
                 ))}
               </div>
@@ -205,12 +207,12 @@ const FeaturedTours = () => {
         </div>
 
         <div className="text-center mt-8">
-          <p className="text-gray-600 mb-4">⏰ Sınırlı süre teklifleri - Acele edin!</p>
+          <p className="text-gray-600 mb-4">⏰ {t('featuredTours.limitedTime', 'Sınırlı süre teklifleri - Acele edin!')}</p>
           <Link
             to="/turlar"
             className="inline-flex items-center text-blue-700 hover:text-blue-800 font-semibold transition-colors"
           >
-            Tüm Turları Gör
+            {t('featuredTours.viewAllTours', 'Tüm Turları Gör')}
             <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
             </svg>

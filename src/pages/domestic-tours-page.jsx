@@ -1,14 +1,16 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { WhatsAppButton } from '../components/ui';
 
 // Yurt İçi Turlar sayfası
 const DomesticToursPage = () => {
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(true);
 
   // Sayfa başlığını ayarla
   useEffect(() => {
-    document.title = 'Yurt İçi Turlar - Endülüs Travel';
+    document.title = t('domesticTours.pageTitle', 'Yurt İçi Turlar - Endülüs Travel');
     setLoading(false);
   }, []);
 
@@ -49,10 +51,10 @@ const DomesticToursPage = () => {
             {/* Breadcrumb */}
             <div className="mb-6 animate-fade-in">
               <Link to="/" className="text-white/80 hover:text-white transition-colors">
-                Ana Sayfa
+                {t('domesticTours.breadcrumbHome', 'Ana Sayfa')}
               </Link>
               <span className="text-white/60 mx-2">&gt;</span>
-              <span className="text-[color:var(--color-secondary)]">Yurt İçi Turlar</span>
+              <span className="text-[color:var(--color-secondary)]">{t('domesticTours.breadcrumbCurrent', 'Yurt İçi Turlar')}</span>
             </div>
 
             {/* Hero Content */}
@@ -62,18 +64,18 @@ const DomesticToursPage = () => {
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M3 4a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  Türkiye'nin En Güzel Rotaları
+                  {t('domesticTours.heroBadge', "Türkiye'nin En Güzel Rotaları")}
                 </span>
               </div>
               
               <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-2xl animate-fade-in" style={{ animationDelay: '0.1s' }}>
-                Yurt İçi Turlar
+                {t('domesticTours.heroTitle', 'Yurt İçi Turlar')}
               </h1>
               
               <p className="text-xl md:text-2xl mb-10 opacity-90 leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                Her adımda bir keşif, her durakta bir anı...
+                {t('domesticTours.heroSubtitleLine1', 'Her adımda bir keşif, her durakta bir anı...')}
                 <br />
-                Türkiye'nin zengin mirasını ve doğal güzelliklerini keşfe çıkın.
+                {t('domesticTours.heroSubtitleLine2', "Türkiye'nin zengin mirasını ve doğal güzelliklerini keşfe çıkın.")}
               </p>
             </div>
           </div>
@@ -97,42 +99,42 @@ const DomesticToursPage = () => {
                 </svg>
               </div>
               <h2 className="text-3xl md:text-4xl font-bold text-[color:var(--color-text-dark)] mb-6">
-                Yurt İçi Turlarımız Yakında!
+                {t('domesticTours.comingSoonTitle', 'Yurt İçi Turlarımız Yakında!')}
               </h2>
               <p className="text-xl text-[color:var(--color-text-light)] mb-8 leading-relaxed">
-                Türkiye'nin en güzel destinasyonlarını kapsayan özel tur paketlerimizi hazırlıyoruz. Kapadokya'nın büyülü vadilerinden Pamukkale'nin beyaz teraslarına, İstanbul'un tarihi dokusundan Akdeniz'in masmavi kıyılarına kadar birbirinden güzel rotalar sizi bekliyor.
+                {t('domesticTours.comingSoonDescription', "Türkiye'nin en güzel destinasyonlarını kapsayan özel tur paketlerimizi hazırlıyoruz. Kapadokya'nın büyülü vadilerinden Pamukkale'nin beyaz teraslarına, İstanbul'un tarihi dokusundan Akdeniz'in masmavi kıyılarına kadar birbirinden güzel rotalar sizi bekliyor.")}
               </p>
               <div className="bg-gradient-to-r from-[color:var(--color-primary)]/10 to-blue-600/10 rounded-xl p-6 mb-8">
-                <h3 className="text-lg font-semibold text-[color:var(--color-primary)] mb-3">Planlanan Destinasyonlar:</h3>
+                <h3 className="text-lg font-semibold text-[color:var(--color-primary)] mb-3">{t('domesticTours.plannedDestinations', 'Planlanan Destinasyonlar:')}</h3>
                 <div className="grid grid-cols-2 gap-2 text-sm text-gray-600">
                   <div className="flex items-center">
                     <span className="w-2 h-2 bg-[color:var(--color-secondary)] rounded-full mr-2"></span>
-                    Kapadokya
+                    {t('domesticTours.destinationCappadocia', 'Kapadokya')}
                   </div>
                   <div className="flex items-center">
                     <span className="w-2 h-2 bg-[color:var(--color-secondary)] rounded-full mr-2"></span>
-                    Pamukkale
+                    {t('domesticTours.destinationPamukkale', 'Pamukkale')}
                   </div>
                   <div className="flex items-center">
                     <span className="w-2 h-2 bg-[color:var(--color-secondary)] rounded-full mr-2"></span>
-                    Antalya
+                    {t('domesticTours.destinationAntalya', 'Antalya')}
                   </div>
                   <div className="flex items-center">
                     <span className="w-2 h-2 bg-[color:var(--color-secondary)] rounded-full mr-2"></span>
-                    İstanbul
+                    {t('domesticTours.destinationIstanbul', 'İstanbul')}
                   </div>
                   <div className="flex items-center">
                     <span className="w-2 h-2 bg-[color:var(--color-secondary)] rounded-full mr-2"></span>
-                    Trabzon
+                    {t('domesticTours.destinationTrabzon', 'Trabzon')}
                   </div>
                   <div className="flex items-center">
                     <span className="w-2 h-2 bg-[color:var(--color-secondary)] rounded-full mr-2"></span>
-                    Rize
+                    {t('domesticTours.destinationRize', 'Rize')}
                   </div>
                 </div>
               </div>
               <p className="text-lg text-gray-600 mb-8">
-                Bizimle iletişime geçerek hangi destinasyonları tercih ettiğinizi öğrenebilir ve size özel tur planlaması yaptırabiliirsiniz.
+                {t('domesticTours.comingSoonContactNote', 'Bizimle iletişime geçerek hangi destinasyonları tercih ettiğinizi öğrenebilir ve size özel tur planlaması yaptırabiliirsiniz.')}
               </p>
             </div>
           </div>
@@ -143,17 +145,17 @@ const DomesticToursPage = () => {
               <div className="max-w-3xl mx-auto">
                 {/* Başlık */}
                 <h2 className="text-3xl md:text-4xl font-bold text-[color:var(--color-text-dark)] mb-4">
-                  Size Özel Yurt İçi Tur Planlaması
+                  {t('domesticTours.ctaTitle', 'Size Özel Yurt İçi Tur Planlaması')}
                 </h2>
                 
                 {/* Alt Başlık */}
                 <p className="text-xl text-[color:var(--color-text-light)] mb-6">
-                  İhtiyacınıza Özel Çözümler
+                  {t('domesticTours.ctaSubtitle', 'İhtiyacınıza Özel Çözümler')}
                 </p>
                 
                 {/* Açıklama */}
                 <p className="text-lg text-[color:var(--color-text-light)] mb-8 leading-relaxed">
-                  Türkiye'nin hangi güzelliklerini keşfetmek istediğinizi belirtin, gelin birlikte mükemmel rotayı planlayalım
+                  {t('domesticTours.ctaDescription', "Türkiye'nin hangi güzelliklerini keşfetmek istediğinizi belirtin, gelin birlikte mükemmel rotayı planlayalım")}
                 </p>
                 
                 {/* Butonlar */}
@@ -162,18 +164,18 @@ const DomesticToursPage = () => {
                     to="/teklif-al" 
                     className="group bg-white border-2 border-[color:var(--color-primary)] text-[color:var(--color-primary)] hover:bg-[color:var(--color-primary)] hover:text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center justify-center space-x-2"
                   >
-                    <span>Özel Teklif Al</span>
+                    <span>{t('domesticTours.ctaGetOffer', 'Özel Teklif Al')}</span>
                     <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </Link>
                   
                   <WhatsAppButton
-                    message="Yurt içi tur paketleri hakkında bilgi almak istiyorum."
+                    message={t('domesticTours.whatsappMessage', 'Yurt içi tur paketleri hakkında bilgi almak istiyorum.')}
                     size="lg"
                     className="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105"
                   >
-                    WhatsApp İletişim
+                    {t('domesticTours.whatsappButton', 'WhatsApp İletişim')}
                   </WhatsAppButton>
                 </div>
               </div>

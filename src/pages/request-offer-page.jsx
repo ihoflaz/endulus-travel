@@ -265,15 +265,15 @@ const RequestOfferPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">24</h3>
-                  <p className="text-white/90">Saat İçinde Yanıt</p>
+                  <p className="text-white/90">{t('offer.stats.responseTime', 'Saat İçinde Yanıt')}</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">%100</h3>
-                  <p className="text-white/90">Kişiselleştirme</p>
+                  <p className="text-white/90">{t('offer.stats.personalization', 'Kişiselleştirme')}</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">0₺</h3>
-                  <p className="text-white/90">Teklif Ücreti</p>
+                  <p className="text-white/90">{t('offer.stats.offerFee', 'Teklif Ücreti')}</p>
                 </div>
               </div>
             </div>
@@ -328,7 +328,7 @@ const RequestOfferPage = () => {
               </div>
               <WhatsAppButton
                 size="md"
-                message="Merhaba, tur paketi hakkında bilgi almak istiyorum."
+                message={t('offer.whatsapp.prefilled', 'Merhaba, tur paketi hakkında bilgi almak istiyorum.')}
               >
                 {t('offer.whatsapp.button', 'WhatsApp ile Teklif Al')}
               </WhatsAppButton>

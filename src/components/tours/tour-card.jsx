@@ -12,7 +12,7 @@ const TourCard = ({ tour, getCategoryLabel }) => {
       image={tour.image}
       imageAlt={tour.title}
       title={tour.title}
-      subtitle={getCategoryLabel ? getCategoryLabel(tour.category) : tour.category}
+      subtitle={tour.category ? t('categories.' + tour.category, getCategoryLabel ? getCategoryLabel(tour.category) : tour.category) : ''}
       hoverEffect={true}
     >
       <div className="p-4 pt-0 flex flex-col flex-grow">

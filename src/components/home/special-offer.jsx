@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { useTours } from '../../hooks/useTours';
 import { formatTourPrice } from '../../utils/priceUtils';
@@ -7,6 +8,7 @@ import { useWhatsAppSettings } from '../../hooks/useAppData';
 // Picks the first Tour with `specialOffer: true` from the API and renders it.
 // Falls back to nothing (renders empty container) when no special offers exist.
 const SpecialOffer = () => {
+  const { t } = useTranslation();
   const { tours, isLoading } = useTours();
   const { value: whatsapp } = useWhatsAppSettings();
   const featured = useMemo(
@@ -17,7 +19,7 @@ const SpecialOffer = () => {
   if (isLoading) {
     return (
       <section className="py-20 bg-gradient-to-br from-orange-50 to-amber-50">
-        <div className="container mx-auto px-4 text-center text-slate-400">Yükleniyor…</div>
+        <div className="container mx-auto px-4 text-center text-slate-400">{t('homeSpecialOffer.loading', 'Yükleniyor…')}</div>
       </section>
     );
   }
@@ -25,14 +27,14 @@ const SpecialOffer = () => {
 
   const waNumber = (whatsapp?.number || '905079384508').replace(/\D/g, '');
   const waText = featured.whatsappMessage ||
-    `Merhaba! ${featured.title} hakkında detaylı bilgi almak istiyorum.`;
+    t('homeSpecialOffer.whatsappMessage', 'Merhaba! {{title}} hakkında detaylı bilgi almak istiyorum.', { title: featured.title });
 
   return (
     <section className="py-20 bg-gradient-to-br from-orange-50 to-amber-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <span className="inline-flex items-center gap-2 rounded-full bg-amber-100 px-4 py-2 text-sm font-semibold text-amber-800 mb-4">
-            🔥 Özel Teklif
+            {t('homeSpecialOffer.badge', '🔥 Özel Teklif')}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-3">
             {featured.title}
@@ -69,7 +71,7 @@ const SpecialOffer = () => {
               <div className="text-3xl font-bold text-amber-600">
                 {formatTourPrice(featured)}
               </div>
-              <div className="text-sm text-gray-500">Kişi başı</div>
+              <div className="text-sm text-gray-500">{t('homeSpecialOffer.perPerson', 'Kişi başı')}</div>
             </div>
 
             {featured.highlights?.length > 0 && (
@@ -88,7 +90,7 @@ const SpecialOffer = () => {
                 to={`/turlar/${featured.slug}`}
                 className="bg-blue-700 hover:bg-blue-800 text-white px-6 py-3 rounded-lg font-semibold shadow-lg transition"
               >
-                Detayları Gör
+                {t('homeSpecialOffer.viewDetails', 'Detayları Gör')}
               </Link>
               <a
                 href={`https://wa.me/${waNumber}?text=${encodeURIComponent(waText)}`}
@@ -96,7 +98,7 @@ const SpecialOffer = () => {
                 rel="noopener noreferrer"
                 className="bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-lg font-semibold shadow-lg transition"
               >
-                WhatsApp ile İletişim
+                {t('homeSpecialOffer.contactWhatsapp', 'WhatsApp ile İletişim')}
               </a>
             </div>
           </div>

@@ -50,7 +50,7 @@ const AboutPage = () => {
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clipRule="evenodd" />
                   </svg>
-                  Endülüs Travel Hikayesi
+                  {t('aboutPage.heroBadge', 'Endülüs Travel Hikayesi')}
                 </span>
               </div>
               
@@ -66,15 +66,15 @@ const AboutPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">2024</h3>
-                  <p className="text-white/90">Kuruluş Yılı</p>
+                  <p className="text-white/90">{t('aboutPage.statFoundedLabel', 'Kuruluş Yılı')}</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">Güven</h3>
-                  <p className="text-white/90">Odaklı Hizmet</p>
+                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">{t('aboutPage.statTrustTitle', 'Güven')}</h3>
+                  <p className="text-white/90">{t('aboutPage.statTrustLabel', 'Odaklı Hizmet')}</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">Yenilik</h3>
-                  <p className="text-white/90">& İnovasyon</p>
+                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">{t('aboutPage.statInnovationTitle', 'Yenilik')}</h3>
+                  <p className="text-white/90">{t('aboutPage.statInnovationLabel', '& İnovasyon')}</p>
                 </div>
               </div>
             </div>
@@ -88,10 +88,10 @@ const AboutPage = () => {
         <section className="mb-16">
           <div className="bg-gradient-to-r from-blue-50 to-blue-100 rounded-xl p-8 md:p-12 hover-float animate-fade-in">
             <p className="text-lg text-[color:var(--color-text-dark)] leading-relaxed mb-6">
-              Endülüs Travel, <strong>2024 yılında kurulan genç ve dinamik bir turizm markasıdır.</strong> Klasik tur anlayışının ötesinde, <strong>kişiye ve gruba özel, hassasiyet odaklı seyahat deneyimleri</strong> sunan yenilikçi yaklaşımımızla sektörde fark yaratıyoruz.
+              {t('aboutPage.missionP1Pre', 'Endülüs Travel, ')}<strong>{t('aboutPage.missionP1Strong1', '2024 yılında kurulan genç ve dinamik bir turizm markasıdır.')}</strong>{t('aboutPage.missionP1Mid', ' Klasik tur anlayışının ötesinde, ')}<strong>{t('aboutPage.missionP1Strong2', 'kişiye ve gruba özel, hassasiyet odaklı seyahat deneyimleri')}</strong>{t('aboutPage.missionP1Post', ' sunan yenilikçi yaklaşımımızla sektörde fark yaratıyoruz.')}
             </p>
             <p className="text-lg text-[color:var(--color-text-dark)] leading-relaxed">
-              Yeni nesil seyahat anlayışıyla, modern teknoloji ve geleneksel değerleri harmanlayarak, <strong>her müşterimize eşsiz ve unutulmaz deneyimler</strong> yaşatmayı hedefliyoruz.
+              {t('aboutPage.missionP2Pre', 'Yeni nesil seyahat anlayışıyla, modern teknoloji ve geleneksel değerleri harmanlayarak, ')}<strong>{t('aboutPage.missionP2Strong', 'her müşterimize eşsiz ve unutulmaz deneyimler')}</strong>{t('aboutPage.missionP2Post', ' yaşatmayı hedefliyoruz.')}
             </p>
       </div>
       </section>
@@ -111,12 +111,12 @@ const AboutPage = () => {
                   <svg className="w-5 h-5 mr-2 text-[color:var(--color-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
                   </svg>
-                  <span className="text-[color:var(--color-primary)] font-semibold">Değerlerinizle Uyumlu Seyahat</span>
+                  <span className="text-[color:var(--color-primary)] font-semibold">{t('aboutPage.toursBadge', 'Değerlerinizle Uyumlu Seyahat')}</span>
                 </div>
                 
                 <h2 className="text-3xl md:text-5xl font-bold mb-6 text-[color:var(--color-text-dark)]">
-                  TURLARIMIZ 
-                  <span className="block text-[color:var(--color-primary)] mt-2">HAKKINDA</span>
+                  {t('aboutPage.toursHeadingLine1', 'TURLARIMIZ')}
+                  <span className="block text-[color:var(--color-primary)] mt-2">{t('aboutPage.toursHeadingLine2', 'HAKKINDA')}</span>
                 </h2>
                 
                 <div className="w-24 h-1 bg-gradient-to-r from-[color:var(--color-primary)] to-[color:var(--color-secondary)] mx-auto rounded-full"></div>
@@ -127,8 +127,8 @@ const AboutPage = () => {
                 {/* Giriş Metni */}
                 <div className="bg-white/60 backdrop-blur-sm rounded-xl p-8 mb-8 border border-white/40">
                   <p className="text-xl text-[color:var(--color-text-dark)] leading-relaxed text-center">
-                    Endülüs Travel olarak, seyahat etmeyi sadece gezmekten ibaret görmüyor; 
-                    <span className="text-[color:var(--color-primary)] font-semibold"> huzurla, inanç değerleriyle uyumlu, konforlu ve unutulmaz bir deneyime</span> dönüştürüyoruz.
+                    {t('aboutPage.toursIntroPre', 'Endülüs Travel olarak, seyahat etmeyi sadece gezmekten ibaret görmüyor; ')}
+                    <span className="text-[color:var(--color-primary)] font-semibold">{t('aboutPage.toursIntroStrong', ' huzurla, inanç değerleriyle uyumlu, konforlu ve unutulmaz bir deneyime')}</span>{t('aboutPage.toursIntroPost', ' dönüştürüyoruz.')}
                   </p>
                 </div>
                 
@@ -143,10 +143,10 @@ const AboutPage = () => {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold mb-2 text-[color:var(--color-text-dark)]">Hassasiyetlerinize Özel</h3>
+                        <h3 className="text-lg font-bold mb-2 text-[color:var(--color-text-dark)]">{t('aboutPage.featureSensitivityTitle', 'Hassasiyetlerinize Özel')}</h3>
                         <p className="text-[color:var(--color-text-light)] leading-relaxed">
-                          Muhafazakâr misafirlerimizin hassasiyetlerini ön planda tutarak, 
-                          <strong> namaz vakitlerine uygun programlar, helal yemek hassasiyeti ve mahremiyete önem veren özel grup turları</strong> sunuyoruz.
+                          {t('aboutPage.featureSensitivityPre', 'Muhafazakâr misafirlerimizin hassasiyetlerini ön planda tutarak, ')}
+                          <strong>{t('aboutPage.featureSensitivityStrong', ' namaz vakitlerine uygun programlar, helal yemek hassasiyeti ve mahremiyete önem veren özel grup turları')}</strong>{t('aboutPage.featureSensitivityPost', ' sunuyoruz.')}
                         </p>
                       </div>
                     </div>
@@ -161,10 +161,9 @@ const AboutPage = () => {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold mb-2 text-[color:var(--color-text-dark)]">Her Şey Dahil Anlayışı</h3>
+                        <h3 className="text-lg font-bold mb-2 text-[color:var(--color-text-dark)]">{t('aboutPage.featureAllInclusiveTitle', 'Her Şey Dahil Anlayışı')}</h3>
                         <p className="text-[color:var(--color-text-light)] leading-relaxed">
-                          Tüm turlarımızda <strong>her şey dahil</strong> anlayışıyla hareket ediyor, 
-                          ekstra ücret sürprizlerine yer vermiyoruz. Şeffaf fiyatlandırma garantisi.
+                          {t('aboutPage.featureAllInclusivePre', 'Tüm turlarımızda ')}<strong>{t('aboutPage.featureAllInclusiveStrong', 'her şey dahil')}</strong>{t('aboutPage.featureAllInclusivePost', ' anlayışıyla hareket ediyor, ekstra ücret sürprizlerine yer vermiyoruz. Şeffaf fiyatlandırma garantisi.')}
                         </p>
                       </div>
                     </div>
@@ -179,10 +178,10 @@ const AboutPage = () => {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold mb-2 text-[color:var(--color-text-dark)]">Her Bütçeye Uygun</h3>
+                        <h3 className="text-lg font-bold mb-2 text-[color:var(--color-text-dark)]">{t('aboutPage.featureBudgetTitle', 'Her Bütçeye Uygun')}</h3>
                         <p className="text-[color:var(--color-text-light)] leading-relaxed">
-                          Yurt içi ve yurt dışı turlarımızda hem <span className="text-[color:var(--color-primary)] font-semibold">uygun fiyatlı</span> 
-                          hem de isteğe bağlı <span className="text-[color:var(--color-secondary)] font-semibold">VIP seçenekler</span> sunuyoruz.
+                          {t('aboutPage.featureBudgetPre', 'Yurt içi ve yurt dışı turlarımızda hem ')}<span className="text-[color:var(--color-primary)] font-semibold">{t('aboutPage.featureBudgetStrong1', 'uygun fiyatlı')}</span>
+                          {t('aboutPage.featureBudgetMid', ' hem de isteğe bağlı ')}<span className="text-[color:var(--color-secondary)] font-semibold">{t('aboutPage.featureBudgetStrong2', 'VIP seçenekler')}</span>{t('aboutPage.featureBudgetPost', ' sunuyoruz.')}
                         </p>
                       </div>
                     </div>
@@ -197,10 +196,10 @@ const AboutPage = () => {
                         </svg>
                       </div>
                       <div>
-                        <h3 className="text-lg font-bold mb-2 text-[color:var(--color-text-dark)]">Kişisel Deneyim</h3>
+                        <h3 className="text-lg font-bold mb-2 text-[color:var(--color-text-dark)]">{t('aboutPage.featurePersonalTitle', 'Kişisel Deneyim')}</h3>
                         <p className="text-[color:var(--color-text-light)] leading-relaxed">
-                          Amacımız, seyahatinizi sizin değerlerinize uygun şekilde planlamak ve 
-                          <strong> her anının unutulmaz</strong> olmasını sağlamak.
+                          {t('aboutPage.featurePersonalPre', 'Amacımız, seyahatinizi sizin değerlerinize uygun şekilde planlamak ve ')}
+                          <strong>{t('aboutPage.featurePersonalStrong', ' her anının unutulmaz')}</strong>{t('aboutPage.featurePersonalPost', ' olmasını sağlamak.')}
                         </p>
                       </div>
                     </div>
@@ -220,9 +219,9 @@ const AboutPage = () => {
                         <path fillRule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <h3 className="text-2xl font-bold mb-4 text-white drop-shadow-lg">Bizim Vaadimiz</h3>
+                    <h3 className="text-2xl font-bold mb-4 text-white drop-shadow-lg">{t('aboutPage.promiseTitle', 'Bizim Vaadimiz')}</h3>
                     <p className="text-xl leading-relaxed text-white drop-shadow-lg">
-                      "Endülüs Travel ile güvenli, huzurlu ve değerlerinizle uyumlu bir yolculuğa çıkmaya hazır olun."
+                      {t('aboutPage.promiseText', '"Endülüs Travel ile güvenli, huzurlu ve değerlerinizle uyumlu bir yolculuğa çıkmaya hazır olun."')}
                     </p>
                   </div>
                 </div>
@@ -248,11 +247,11 @@ const AboutPage = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                   </svg>
-                  <span className="text-[color:var(--color-secondary)] font-semibold">İletişim & Lokasyon</span>
+                  <span className="text-[color:var(--color-secondary)] font-semibold">{t('aboutPage.contactBadge', 'İletişim & Lokasyon')}</span>
                 </div>
                 
                 <h2 className="text-3xl md:text-5xl font-bold mb-4">
-                  BİRLİKTE YOLA ÇIKALIM
+                  {t('aboutPage.contactHeading', 'BİRLİKTE YOLA ÇIKALIM')}
                 </h2>
                 <h3 className="text-2xl md:text-3xl font-semibold text-[color:var(--color-secondary)] mb-6">
                   ENDÜLÜS TRAVEL
@@ -265,7 +264,7 @@ const AboutPage = () => {
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                   {/* İletişim Detayları */}
                   <div className="space-y-6">
-                    <h4 className="text-xl font-bold mb-6 text-[color:var(--color-secondary)]">İletişim Bilgileri</h4>
+                    <h4 className="text-xl font-bold mb-6 text-[color:var(--color-secondary)]">{t('aboutPage.contactInfoTitle', 'İletişim Bilgileri')}</h4>
                     
                     <div className="space-y-4">
                       <div className="flex items-center space-x-4 bg-white/10 backdrop-blur-sm rounded-lg p-4 hover:bg-white/15 transition-all duration-300">
@@ -275,7 +274,7 @@ const AboutPage = () => {
                           </svg>
                         </div>
                         <div>
-                          <p className="font-semibold text-white">İletişim Numarası</p>
+                          <p className="font-semibold text-white">{t('aboutPage.contactPhoneLabel', 'İletişim Numarası')}</p>
                           <a href={phoneHref} className="text-[color:var(--color-secondary)] hover:text-yellow-200 transition-colors text-lg font-medium">
                             {phone}
                           </a>
@@ -289,7 +288,7 @@ const AboutPage = () => {
                           </svg>
                         </div>
                         <div>
-                          <p className="font-semibold text-white">Mail Adresi</p>
+                          <p className="font-semibold text-white">{t('aboutPage.contactEmailLabel', 'Mail Adresi')}</p>
                           <a href={`mailto:${email}`} className="text-[color:var(--color-secondary)] hover:text-yellow-200 transition-colors font-medium">
                             {email}
                           </a>
@@ -332,7 +331,7 @@ const AboutPage = () => {
                       <svg className="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-4m-5 0H3m2 0h4m0 0v-4a1 1 0 011-1h2a1 1 0 011 1v4M7 7h10M7 11h10m-5 4h2" />
                       </svg>
-                      ROTA ATLAS SEYAHAT ACENTASI
+                      {t('aboutPage.agencyName', 'ROTA ATLAS SEYAHAT ACENTASI')}
                     </h4>
                     
                     <div className="space-y-4">
@@ -345,7 +344,7 @@ const AboutPage = () => {
                         </div>
                         <div>
                           <p className="leading-relaxed text-white">
-                            <span className="font-semibold">Adres:</span><br />
+                            <span className="font-semibold">{t('aboutPage.addressLabel', 'Adres:')}</span><br />
                             {address}
                           </p>
                         </div>
@@ -357,7 +356,7 @@ const AboutPage = () => {
                           <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
                           </svg>
-                          <span className="text-sm">Kadıköy merkez konumunda</span>
+                          <span className="text-sm">{t('aboutPage.mapLocation', 'Kadıköy merkez konumunda')}</span>
                         </div>
                       </div>
                     </div>
@@ -380,13 +379,13 @@ const AboutPage = () => {
               <div className="max-w-4xl mx-auto">
                 {/* Ana Başlık */}
                 <h2 className="text-3xl md:text-5xl font-bold mb-6 animate-fade-in">
-                  Hayalinizdeki tatili
-                  <span className="block text-[color:var(--color-secondary)] mt-2">birlikte planlayalım!</span>
+                  {t('aboutPage.ctaHeadingLine1', 'Hayalinizdeki tatili')}
+                  <span className="block text-[color:var(--color-secondary)] mt-2">{t('aboutPage.ctaHeadingLine2', 'birlikte planlayalım!')}</span>
                 </h2>
-                
+
                 {/* Alt başlık */}
                 <p className="text-xl md:text-2xl mb-8 opacity-90 leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                  Size özel, unutulmaz seyahat deneyimleri için bugün adım atın.
+                  {t('aboutPage.ctaSubtitle', 'Size özel, unutulmaz seyahat deneyimleri için bugün adım atın.')}
                 </p>
                 
                 {/* Özellikler */}
@@ -397,8 +396,8 @@ const AboutPage = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
-                    <h3 className="font-semibold mb-2">Hızlı Yanıt</h3>
-                    <p className="text-sm opacity-80">24 saat içinde size dönüş</p>
+                    <h3 className="font-semibold mb-2">{t('aboutPage.ctaFeatureFastTitle', 'Hızlı Yanıt')}</h3>
+                    <p className="text-sm opacity-80">{t('aboutPage.ctaFeatureFastDesc', '24 saat içinde size dönüş')}</p>
                   </div>
                   
                   <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
@@ -407,8 +406,8 @@ const AboutPage = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                       </svg>
                     </div>
-                    <h3 className="font-semibold mb-2">Ücretsiz Planlama</h3>
-                    <p className="text-sm opacity-80">İlk görüşme tamamen ücretsiz</p>
+                    <h3 className="font-semibold mb-2">{t('aboutPage.ctaFeatureFreeTitle', 'Ücretsiz Planlama')}</h3>
+                    <p className="text-sm opacity-80">{t('aboutPage.ctaFeatureFreeDesc', 'İlk görüşme tamamen ücretsiz')}</p>
                   </div>
                   
                   <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
@@ -417,8 +416,8 @@ const AboutPage = () => {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                       </svg>
                     </div>
-                    <h3 className="font-semibold mb-2">%100 Kişisel</h3>
-                    <p className="text-sm opacity-80">Tamamen size özel tasarım</p>
+                    <h3 className="font-semibold mb-2">{t('aboutPage.ctaFeaturePersonalTitle', '%100 Kişisel')}</h3>
+                    <p className="text-sm opacity-80">{t('aboutPage.ctaFeaturePersonalDesc', 'Tamamen size özel tasarım')}</p>
                   </div>
                 </div>
                 
@@ -428,7 +427,7 @@ const AboutPage = () => {
                     to="/teklif-al" 
                     className="group bg-[color:var(--color-secondary)] hover:bg-yellow-500 text-[color:var(--color-primary)] font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center space-x-2"
                   >
-                    <span>Hemen Teklif Alın</span>
+                    <span>{t('aboutPage.ctaButtonQuote', 'Hemen Teklif Alın')}</span>
                     <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
@@ -438,7 +437,7 @@ const AboutPage = () => {
                     to="/on-anket" 
                     className="group bg-white/20 hover:bg-white/30 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 backdrop-blur-sm border border-white/30 inline-flex items-center space-x-2"
                   >
-                    <span>Önce Anket Doldurun</span>
+                    <span>{t('aboutPage.ctaButtonSurvey', 'Önce Anket Doldurun')}</span>
                     <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                     </svg>

@@ -1,15 +1,17 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 // Premium ServicesPage bileşeni - Modern tasarım sistemi ile
 const ServicesPage = () => {
+  const { t } = useTranslation();
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   // Sayfa başlığını ayarla
   useEffect(() => {
-    document.title = 'Hizmetlerimiz - Endülüs Travel';
+    document.title = t('servicesPage.documentTitle', 'Hizmetlerimiz - Endülüs Travel');
   }, []);
 
   // Hizmet verilerini yükle
@@ -59,7 +61,7 @@ const ServicesPage = () => {
         <section className="py-16 md:py-24">
           <div className="max-w-7xl mx-auto px-4 md:px-8 text-center">
             <div className="bg-red-50 p-8 rounded-2xl">
-              <p className="text-red-500 text-lg">Hizmetler yüklenemedi</p>
+              <p className="text-red-500 text-lg">{t('servicesPage.errorLoading', 'Hizmetler yüklenemedi')}</p>
             </div>
           </div>
         </section>
@@ -81,10 +83,10 @@ const ServicesPage = () => {
             {/* Breadcrumb */}
             <div className="mb-6 animate-fade-in">
               <Link to="/" className="text-white/80 hover:text-white transition-colors">
-                Ana Sayfa
+                {t('servicesPage.breadcrumbHome', 'Ana Sayfa')}
               </Link>
               <span className="text-white/60 mx-2">&gt;</span>
-              <span className="text-[color:var(--color-secondary)]">Hizmetlerimiz</span>
+              <span className="text-[color:var(--color-secondary)]">{t('servicesPage.breadcrumbServices', 'Hizmetlerimiz')}</span>
             </div>
 
             {/* Hero Content */}
@@ -94,31 +96,31 @@ const ServicesPage = () => {
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M3 4a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  Özel Hizmetler
+                  {t('servicesPage.heroBadge', 'Özel Hizmetler')}
                 </span>
               </div>
               
               <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-2xl animate-fade-in" style={{ animationDelay: '0.1s' }}>
-                Hizmetlerimiz
+                {t('servicesPage.heroTitle', 'Hizmetlerimiz')}
               </h1>
-              
+
               <p className="text-xl md:text-2xl mb-8 opacity-90 leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                Her seyahat planınız için hassasiyetlerinizi gözeten ve ihtiyaçlarınıza özel olarak tasarlanmış profesyonel hizmetler sunuyoruz.
+                {t('servicesPage.heroSubtitle', 'Her seyahat planınız için hassasiyetlerinizi gözeten ve ihtiyaçlarınıza özel olarak tasarlanmış profesyonel hizmetler sunuyoruz.')}
               </p>
 
               {/* Feature Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">10+</h3>
-                  <p className="text-white/90">Özel Hizmet</p>
+                  <p className="text-white/90">{t('servicesPage.statSpecialServices', 'Özel Hizmet')}</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">7/24</h3>
-                  <p className="text-white/90">Müşteri Desteği</p>
+                  <p className="text-white/90">{t('servicesPage.statSupport', 'Müşteri Desteği')}</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">%100</h3>
-                  <p className="text-white/90">Hassasiyet Odaklı</p>
+                  <p className="text-white/90">{t('servicesPage.statPrecision', 'Hassasiyet Odaklı')}</p>
                 </div>
               </div>
             </div>
@@ -170,7 +172,7 @@ const ServicesPage = () => {
                     to={`/hizmetler/${service.id}`}
                     className="group/btn inline-flex items-center px-8 py-4 bg-gradient-to-r from-[color:var(--color-primary)] to-blue-600 hover:from-blue-600 hover:to-[color:var(--color-primary)] text-white font-semibold rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg space-x-2"
                   >
-                    <span>Detayları Gör</span>
+                    <span>{t('servicesPage.viewDetails', 'Detayları Gör')}</span>
                     <svg className="w-5 h-5 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
@@ -193,19 +195,18 @@ const ServicesPage = () => {
                   {/* Badge */}
                   <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6">
                     <span className="text-[color:var(--color-secondary)] font-semibold mr-2">💫</span>
-                    <span className="text-sm font-medium">Size Özel Çözümler</span>
+                    <span className="text-sm font-medium">{t('servicesPage.ctaBadge', 'Size Özel Çözümler')}</span>
                   </div>
                   
                   {/* Heading */}
                   <h2 className="text-3xl md:text-4xl font-bold mb-6">
-                    İhtiyacınıza Uygun
-                    <span className="block text-[color:var(--color-secondary)] mt-2">Özel Teklif Alın</span>
+                    {t('servicesPage.ctaHeadingLine1', 'İhtiyacınıza Uygun')}
+                    <span className="block text-[color:var(--color-secondary)] mt-2">{t('servicesPage.ctaHeadingLine2', 'Özel Teklif Alın')}</span>
                   </h2>
                   
                   {/* Description */}
                   <p className="text-xl mb-8 opacity-90 leading-relaxed">
-                    Hangi hizmetimizle ilgilenirseniz ilgilenin, <strong>size özel bir teklif</strong> hazırlayalım. 
-                    Uzman ekibimiz en uygun çözümü bulacak.
+                    {t('servicesPage.ctaDescPart1', 'Hangi hizmetimizle ilgilenirseniz ilgilenin,')} <strong>{t('servicesPage.ctaDescStrong', 'size özel bir teklif')}</strong> {t('servicesPage.ctaDescPart2', 'hazırlayalım. Uzman ekibimiz en uygun çözümü bulacak.')}
                   </p>
                   
                   {/* Features */}
@@ -216,8 +217,8 @@ const ServicesPage = () => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
-                      <h3 className="font-semibold mb-2">Hızlı Yanıt</h3>
-                      <p className="text-sm opacity-80">24 saat içinde geri dönüş</p>
+                      <h3 className="font-semibold mb-2">{t('servicesPage.featureFastTitle', 'Hızlı Yanıt')}</h3>
+                      <p className="text-sm opacity-80">{t('servicesPage.featureFastDesc', '24 saat içinde geri dönüş')}</p>
                     </div>
                     
                     <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
@@ -226,8 +227,8 @@ const ServicesPage = () => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
-                      <h3 className="font-semibold mb-2">Ücretsiz Danışmanlık</h3>
-                      <p className="text-sm opacity-80">Profesyonel rehberlik</p>
+                      <h3 className="font-semibold mb-2">{t('servicesPage.featureFreeTitle', 'Ücretsiz Danışmanlık')}</h3>
+                      <p className="text-sm opacity-80">{t('servicesPage.featureFreeDesc', 'Profesyonel rehberlik')}</p>
                     </div>
                     
                     <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
@@ -236,8 +237,8 @@ const ServicesPage = () => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
                       </div>
-                      <h3 className="font-semibold mb-2">Kişisel Yaklaşım</h3>
-                      <p className="text-sm opacity-80">Size özel çözümler</p>
+                      <h3 className="font-semibold mb-2">{t('servicesPage.featurePersonalTitle', 'Kişisel Yaklaşım')}</h3>
+                      <p className="text-sm opacity-80">{t('servicesPage.featurePersonalDesc', 'Size özel çözümler')}</p>
                     </div>
                   </div>
                   
@@ -247,7 +248,7 @@ const ServicesPage = () => {
                       to="/teklif-al" 
                       className="group bg-[color:var(--color-secondary)] hover:bg-yellow-500 text-[color:var(--color-primary)] font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center space-x-2"
                     >
-                      <span>Özel Teklif Al</span>
+                      <span>{t('servicesPage.ctaGetOffer', 'Özel Teklif Al')}</span>
                       <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
@@ -257,7 +258,7 @@ const ServicesPage = () => {
                       to="/iletisim" 
                       className="group bg-white/20 hover:bg-white/30 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 backdrop-blur-sm border border-white/30 inline-flex items-center space-x-2"
                     >
-                      <span>Bize Ulaşın</span>
+                      <span>{t('servicesPage.ctaContact', 'Bize Ulaşın')}</span>
                       <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>

@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useServiceDetail } from '../hooks';
 
 // Premium ServiceDetailPage bileşeni - Modern tasarım sistemi ile
 const ServiceDetailPage = () => {
+  const { t } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
   const { service, serviceContent, isLoading, error, notFound } = useServiceDetail(id);
@@ -43,14 +45,14 @@ const ServiceDetailPage = () => {
           <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
             <div className="bg-red-50 p-8 rounded-2xl">
               <h1 className="text-2xl font-bold text-red-500 mb-4">
-                {error || 'Hizmet bulunamadı'}
+                {error || t('serviceDetail.notFound', 'Hizmet bulunamadı')}
               </h1>
-              <p className="text-gray-600 mb-8">Lütfen tekrar deneyiniz</p>
-              <button 
+              <p className="text-gray-600 mb-8">{t('serviceDetail.tryAgain', 'Lütfen tekrar deneyiniz')}</p>
+              <button
                 onClick={() => navigate('/hizmetler')}
                 className="bg-[color:var(--color-primary)] hover:bg-blue-600 text-white font-semibold py-3 px-8 rounded-xl transition-all duration-300 transform hover:scale-105"
               >
-                Hizmetlere Geri Dön
+                {t('serviceDetail.backToServices', 'Hizmetlere Geri Dön')}
               </button>
             </div>
           </div>
@@ -77,11 +79,11 @@ const ServiceDetailPage = () => {
           <div className="max-w-7xl mx-auto px-4 md:px-8">
             {/* Breadcrumb */}
             <div className="mb-6 animate-fade-in">
-              <Link to="/" className="text-white/80 hover:text-white transition-colors">Ana Sayfa</Link>
+              <Link to="/" className="text-white/80 hover:text-white transition-colors">{t('serviceDetail.breadcrumbHome', 'Ana Sayfa')}</Link>
               <span className="text-white/60 mx-2">&gt;</span>
-              <Link to="/hizmetler" className="text-white/80 hover:text-white transition-colors">Hizmetler</Link>
+              <Link to="/hizmetler" className="text-white/80 hover:text-white transition-colors">{t('serviceDetail.breadcrumbServices', 'Hizmetler')}</Link>
               <span className="text-white/60 mx-2">&gt;</span>
-              <span className="text-[color:var(--color-secondary)]">{service?.title || 'Hizmet Detayı'}</span>
+              <span className="text-[color:var(--color-secondary)]">{service?.title || t('serviceDetail.serviceDetailFallback', 'Hizmet Detayı')}</span>
             </div>
 
             {/* Hero Content */}
@@ -91,31 +93,31 @@ const ServiceDetailPage = () => {
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  Özel Hizmet Deneyimi
+                  {t('serviceDetail.heroBadge', 'Özel Hizmet Deneyimi')}
                 </span>
               </div>
               
               <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-2xl animate-fade-in" style={{ animationDelay: '0.1s' }}>
-                {service?.title || 'Hizmet Detayı'}
+                {service?.title || t('serviceDetail.serviceDetailFallback', 'Hizmet Detayı')}
               </h1>
               
               <p className="text-xl md:text-2xl mb-8 opacity-90 leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                {service?.description || 'Bu özel hizmet hakkında detaylı bilgiler ve özellikler.'}
+                {service?.description || t('serviceDetail.heroDescriptionFallback', 'Bu özel hizmet hakkında detaylı bilgiler ve özellikler.')}
               </p>
 
               {/* Feature Cards */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">%100</h3>
-                  <p className="text-white/90">Profesyonel</p>
+                  <p className="text-white/90">{t('serviceDetail.statProfessional', 'Profesyonel')}</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">24/7</h3>
-                  <p className="text-white/90">Destek</p>
+                  <p className="text-white/90">{t('serviceDetail.statSupport', 'Destek')}</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">Özel</h3>
-                  <p className="text-white/90">Yaklaşım</p>
+                  <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">{t('serviceDetail.statSpecialLabel', 'Özel')}</h3>
+                  <p className="text-white/90">{t('serviceDetail.statApproach', 'Yaklaşım')}</p>
                 </div>
               </div>
             </div>
@@ -142,7 +144,7 @@ const ServiceDetailPage = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                   </div>
-                  Hizmet Detayları
+                  {t('serviceDetail.serviceDetailsHeading', 'Hizmet Detayları')}
                 </h2>
                 <div className="prose max-w-none">
                   {serviceContent.fullDescription.split('\n').map((paragraph, index) => (
@@ -163,7 +165,7 @@ const ServiceDetailPage = () => {
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                     </svg>
                   </div>
-                  Özellikler
+                  {t('serviceDetail.featuresHeading', 'Özellikler')}
                 </h3>
                 <ul className="space-y-3">
                   {serviceContent.features.map((feature, index) => (
@@ -190,21 +192,20 @@ const ServiceDetailPage = () => {
                   {/* Badge */}
                   <div className="inline-flex items-center px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6">
                     <span className="text-[color:var(--color-secondary)] font-semibold mr-2">🚀</span>
-                    <span className="text-sm font-medium">Bu Hizmetten Yararlanın</span>
+                    <span className="text-sm font-medium">{t('serviceDetail.ctaBadge', 'Bu Hizmetten Yararlanın')}</span>
                   </div>
                   
                   {/* Heading */}
                   <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                    Bu Hizmetle İlgileniyorum
+                    {t('serviceDetail.ctaHeading', 'Bu Hizmetle İlgileniyorum')}
                   </h2>
                   <p className="text-[color:var(--color-secondary)] text-xl font-semibold mb-6">
-                    Size Özel Teklif Hazırlayalım
+                    {t('serviceDetail.ctaSubheading', 'Size Özel Teklif Hazırlayalım')}
                   </p>
                   
                   {/* Description */}
                   <p className="text-lg mb-8 opacity-90 leading-relaxed">
-                    Bu hizmetimizle ilgili <strong>özel bir teklif</strong> hazırlayalım. 
-                    İhtiyaçlarınıza göre kişiselleştirilmiş çözümler sunuyoruz.
+                    {t('serviceDetail.ctaDescriptionPart1', 'Bu hizmetimizle ilgili')} <strong>{t('serviceDetail.ctaDescriptionStrong', 'özel bir teklif')}</strong> {t('serviceDetail.ctaDescriptionPart2', 'hazırlayalım. İhtiyaçlarınıza göre kişiselleştirilmiş çözümler sunuyoruz.')}
                   </p>
                   
                   {/* Features Grid */}
@@ -215,7 +216,7 @@ const ServiceDetailPage = () => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
-                      <div className="text-sm font-semibold">Hızlı Yanıt</div>
+                      <div className="text-sm font-semibold">{t('serviceDetail.featureFastResponse', 'Hızlı Yanıt')}</div>
                     </div>
                     
                     <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
@@ -224,7 +225,7 @@ const ServiceDetailPage = () => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                         </svg>
                       </div>
-                      <div className="text-sm font-semibold">Ücretsiz Danışma</div>
+                      <div className="text-sm font-semibold">{t('serviceDetail.featureFreeConsultation', 'Ücretsiz Danışma')}</div>
                     </div>
                     
                     <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4">
@@ -233,7 +234,7 @@ const ServiceDetailPage = () => {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
                         </svg>
                       </div>
-                      <div className="text-sm font-semibold">Kişisel Çözüm</div>
+                      <div className="text-sm font-semibold">{t('serviceDetail.featurePersonalSolution', 'Kişisel Çözüm')}</div>
                     </div>
                   </div>
                   
@@ -243,7 +244,7 @@ const ServiceDetailPage = () => {
                       to={`/teklif-al?service=${service.id}`} 
                       className="group bg-[color:var(--color-secondary)] hover:bg-yellow-500 text-[color:var(--color-primary)] font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center space-x-2"
                     >
-                      <span>Özel Teklif Al</span>
+                      <span>{t('serviceDetail.ctaGetOffer', 'Özel Teklif Al')}</span>
                       <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                       </svg>
@@ -253,7 +254,7 @@ const ServiceDetailPage = () => {
                       to="/iletisim" 
                       className="group bg-white/20 hover:bg-white/30 text-white font-semibold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 backdrop-blur-sm border border-white/30 inline-flex items-center space-x-2"
                     >
-                      <span>Bize Ulaşın</span>
+                      <span>{t('serviceDetail.ctaContactUs', 'Bize Ulaşın')}</span>
                       <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
                       </svg>
@@ -273,7 +274,7 @@ const ServiceDetailPage = () => {
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
               </svg>
-              <span>Tüm Hizmetleri Gör</span>
+              <span>{t('serviceDetail.viewAllServices', 'Tüm Hizmetleri Gör')}</span>
             </Link>
           </div>
         </div>

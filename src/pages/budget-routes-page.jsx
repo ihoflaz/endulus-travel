@@ -164,7 +164,7 @@ const BudgetRoutesPage = () => {
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                   </svg>
-                  Akıllı Rota Önerileri
+                  {t('budgetRoutes.heroBadge', 'Akıllı Rota Önerileri')}
                 </span>
               </div>
               
@@ -179,15 +179,15 @@ const BudgetRoutesPage = () => {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12 animate-fade-in" style={{ animationDelay: '0.4s' }}>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">500+</h3>
-                  <p className="text-white/90">Hazır Rota</p>
+                  <p className="text-white/90">{t('budgetRoutes.statReadyRoutes', 'Hazır Rota')}</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">50+</h3>
-                  <p className="text-white/90">Destinasyon</p>
+                  <p className="text-white/90">{t('budgetRoutes.statDestinations', 'Destinasyon')}</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <h3 className="text-2xl font-bold text-[color:var(--color-secondary)] mb-2">1000+</h3>
-                  <p className="text-white/90">Mutlu Müşteri</p>
+                  <p className="text-white/90">{t('budgetRoutes.statHappyCustomers', 'Mutlu Müşteri')}</p>
                 </div>
               </div>
             </div>
@@ -354,7 +354,7 @@ const BudgetRoutesPage = () => {
                       {/* Days Badge */}
                       <div className="absolute top-4 left-4">
                         <span className="inline-flex items-center px-3 py-2 bg-black/50 backdrop-blur-sm text-white text-sm font-medium rounded-full">
-                          {route.days} Gün
+                          {t('budgetRoutes.card.daysCount', '{{count}} Gün', { count: route.days })}
                         </span>
                       </div>
                     </div>
@@ -374,7 +374,7 @@ const BudgetRoutesPage = () => {
                           <svg className="w-4 h-4 text-[color:var(--color-primary)] mr-2" fill="currentColor" viewBox="0 0 20 20">
                             <path d="M13 6a3 3 0 11-6 0 3 3 0 016 0zM18 8a2 2 0 11-4 0 2 2 0 014 0zM14 15a4 4 0 00-8 0v3h8v-3z" />
                           </svg>
-                          <span className="text-gray-700 text-sm font-medium">{route.persons} Kişi</span>
+                          <span className="text-gray-700 text-sm font-medium">{t('budgetRoutes.card.personsCount', '{{count}} Kişi', { count: route.persons })}</span>
                         </div>
                         <div className="flex items-center">
                           <svg className="w-4 h-4 text-[color:var(--color-primary)] mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -386,7 +386,7 @@ const BudgetRoutesPage = () => {
                           <svg className="w-4 h-4 text-[color:var(--color-primary)] mr-2" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clipRule="evenodd" />
                           </svg>
-                          <span className="text-gray-700 text-sm font-medium">Kişi başı: {route.price.toLocaleString('tr-TR')}₺</span>
+                          <span className="text-gray-700 text-sm font-medium">{t('budgetRoutes.card.perPerson', 'Kişi başı:')} {route.price.toLocaleString('tr-TR')}₺</span>
                         </div>
                       </div>
                       

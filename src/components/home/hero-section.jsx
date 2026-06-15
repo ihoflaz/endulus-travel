@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { useHeroData } from '../../hooks/useAppData';
 import TrustStrip from '../TrustStrip';
 
@@ -9,6 +10,7 @@ const FALLBACK_SLIDES = Array.from({ length: 22 }, (_, i) => ({
 }));
 
 const HeroSection = () => {
+  const { t } = useTranslation();
   const { heroData } = useHeroData();
   const slides = useMemo(() => {
     const fromApi = heroData?.slides;
@@ -70,7 +72,7 @@ const HeroSection = () => {
           <div className="inline-flex items-center px-3 py-2 md:px-4 md:py-2 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-4 md:mb-6 lg:mb-8 animate-fade-in">
             <span className="text-amber-400 font-semibold mr-2">✨</span>
             <span className="text-xs md:text-sm font-medium text-center">
-              Hassasiyetlerinizi gözeten özel tur deneyimleri
+              {t('homeHero.badge', 'Hassasiyetlerinizi gözeten özel tur deneyimleri')}
             </span>
           </div>
 
@@ -78,9 +80,9 @@ const HeroSection = () => {
             className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-3 md:mb-4 lg:mb-6 drop-shadow-2xl animate-fade-in px-2 sm:px-4 leading-tight"
             style={{ animationDelay: '0.2s' }}
           >
-            <span className="block">Bizimle çıktığınız hiçbir yolculuk</span>
-            <span className="block text-amber-400 mt-1 md:mt-2">&quot;herkes için aynı&quot;</span>
-            <span className="block mt-1 md:mt-2">değildir.</span>
+            <span className="block">{t('homeHero.titleLine1', 'Bizimle çıktığınız hiçbir yolculuk')}</span>
+            <span className="block text-amber-400 mt-1 md:mt-2">{t('homeHero.titleLine2', '"herkes için aynı"')}</span>
+            <span className="block mt-1 md:mt-2">{t('homeHero.titleLine3', 'değildir.')}</span>
           </h1>
 
           <p
@@ -92,10 +94,10 @@ const HeroSection = () => {
             ) : (
               <>
                 <span className="block mb-2">
-                  Çünkü biliyoruz ki, herkesin beklentisi, önceliği ve konfor alanı farklıdır.
+                  {t('homeHero.subtitleLine1', 'Çünkü biliyoruz ki, herkesin beklentisi, önceliği ve konfor alanı farklıdır.')}
                 </span>
                 <span className="hidden sm:block">
-                  Kişiye ve gruba özel, hassasiyet odaklı seyahat deneyimleri ile hayalinizdeki tatili gerçekleştiriyoruz.
+                  {t('homeHero.subtitleLine2', 'Kişiye ve gruba özel, hassasiyet odaklı seyahat deneyimleri ile hayalinizdeki tatili gerçekleştiriyoruz.')}
                 </span>
               </>
             )}

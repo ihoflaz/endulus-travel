@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { useServices } from '../../hooks/useServices';
 
 // Icon mapping for fallback rendering when a service doesn't bring its own icon
@@ -37,6 +38,7 @@ const ICON_BY_TITLE = {
 const DEFAULT_ICON = ICON_BY_TITLE['Kişiye Özel Turlar'];
 
 const ServicesSection = () => {
+  const { t } = useTranslation();
   const { services, isLoading, error } = useServices();
 
   if (isLoading) {
@@ -62,7 +64,7 @@ const ServicesSection = () => {
       <section className="py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 md:px-8 text-center">
           <div className="bg-red-50 p-8 rounded-2xl">
-            <p className="text-red-500 text-lg">Hizmetler yüklenemedi</p>
+            <p className="text-red-500 text-lg">{t('homeServices.loadError', 'Hizmetler yüklenemedi')}</p>
           </div>
         </div>
       </section>
@@ -73,9 +75,9 @@ const ServicesSection = () => {
     <section className="py-16 md:py-24 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-gray-900">Hizmetlerimiz</h2>
+          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-gray-900">{t('homeServices.heading', 'Hizmetlerimiz')}</h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Profesyonel yaklaşımımızla, her yolculuğa güvenle başla; her rota senin için özel.
+            {t('homeServices.subtitle', 'Profesyonel yaklaşımımızla, her yolculuğa güvenle başla; her rota senin için özel.')}
           </p>
         </div>
 
@@ -99,7 +101,7 @@ const ServicesSection = () => {
                 to={`/hizmetler/${service.id}`}
                 className="inline-flex items-center text-blue-600 font-semibold hover:text-blue-700 transition-colors duration-200 group-hover:translate-x-1 transform"
               >
-                <span>Detayları Gör</span>
+                <span>{t('homeServices.viewDetails', 'Detayları Gör')}</span>
                 <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>

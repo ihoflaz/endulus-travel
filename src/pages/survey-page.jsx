@@ -216,8 +216,8 @@ const SurveyPage = () => {
                       <path fillRule="evenodd" d="M3 3a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2">Kişiselleştirilmiş</h3>
-                  <p className="text-white/90 text-sm">Size özel tur planı</p>
+                  <h3 className="text-lg font-bold text-white mb-2">{t('survey.features.personalizedTitle', 'Kişiselleştirilmiş')}</h3>
+                  <p className="text-white/90 text-sm">{t('survey.features.personalizedDesc', 'Size özel tur planı')}</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <div className="w-12 h-12 bg-[color:var(--color-secondary)] rounded-full flex items-center justify-center mx-auto mb-4">
@@ -225,8 +225,8 @@ const SurveyPage = () => {
                       <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2">Hızlı İşlem</h3>
-                  <p className="text-white/90 text-sm">2 dakika sürer</p>
+                  <h3 className="text-lg font-bold text-white mb-2">{t('survey.features.fastTitle', 'Hızlı İşlem')}</h3>
+                  <p className="text-white/90 text-sm">{t('survey.features.fastDesc', '2 dakika sürer')}</p>
                 </div>
                 <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
                   <div className="w-12 h-12 bg-[color:var(--color-secondary)] rounded-full flex items-center justify-center mx-auto mb-4">
@@ -234,8 +234,8 @@ const SurveyPage = () => {
                       <path fillRule="evenodd" d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                     </svg>
                   </div>
-                  <h3 className="text-lg font-bold text-white mb-2">Güvenli</h3>
-                  <p className="text-white/90 text-sm">Verileriniz korunur</p>
+                  <h3 className="text-lg font-bold text-white mb-2">{t('survey.features.secureTitle', 'Güvenli')}</h3>
+                  <p className="text-white/90 text-sm">{t('survey.features.secureDesc', 'Verileriniz korunur')}</p>
                 </div>
               </div>
             </div>
@@ -298,7 +298,7 @@ const SurveyPage = () => {
                         <h2 className="text-2xl font-bold text-gray-800 mb-1">
                           {t('survey.sections.personalInfo', 'Kişisel Bilgileriniz')}
                         </h2>
-                        <p className="text-gray-600">Size ulaşabilmemiz için temel bilgileriniz</p>
+                        <p className="text-gray-600">{t('survey.sections.personalInfoSubtitle', 'Size ulaşabilmemiz için temel bilgileriniz')}</p>
                       </div>
                     </div>
                     
@@ -432,7 +432,7 @@ const SurveyPage = () => {
                         <h2 className="text-2xl font-bold text-gray-800 mb-1">
                           {t('survey.sections.preferences', 'Seyahat Tercihleriniz')}
                         </h2>
-                        <p className="text-gray-600">Size uygun tur planı oluşturmamıza yardımcı olun</p>
+                        <p className="text-gray-600">{t('survey.sections.preferencesSubtitle', 'Size uygun tur planı oluşturmamıza yardımcı olun')}</p>
                       </div>
                     </div>
                     
@@ -537,7 +537,7 @@ const SurveyPage = () => {
                         <h2 className="text-2xl font-bold text-gray-800 mb-1">
                           {t('survey.sections.specialRequests', 'Özel Talepler')}
                         </h2>
-                        <p className="text-gray-600">Eklemek istediğiniz özel notlar</p>
+                        <p className="text-gray-600">{t('survey.sections.specialRequestsSubtitle', 'Eklemek istediğiniz özel notlar')}</p>
                       </div>
                     </div>
                     

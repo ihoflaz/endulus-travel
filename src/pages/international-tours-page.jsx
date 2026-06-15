@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { WhatsAppButton } from '../components/ui';
 import { formatTourPrice, getPriceLabel, getNumericPrice } from '../utils/priceUtils';
 
 // Yurt Dışı Turlar sayfası
 const InternationalToursPage = () => {
+  const { t } = useTranslation();
   const [toursData, setToursData] = useState({
     tours: [],
     categories: []
@@ -15,7 +17,7 @@ const InternationalToursPage = () => {
 
   // Sayfa başlığını ayarla
   useEffect(() => {
-    document.title = 'Yurt Dışı Turlar - Endülüs Travel';
+    document.title = t('internationalTours.pageTitle', 'Yurt Dışı Turlar - Endülüs Travel');
   }, []);
 
   // Tur verilerini yükle
@@ -39,7 +41,7 @@ const InternationalToursPage = () => {
         setLoading(false);
       } catch (error) {
         console.error('Veri yüklenirken hata:', error);
-        setError('Veriler yüklenemedi');
+        setError(t('internationalTours.dataLoadError', 'Veriler yüklenemedi'));
         setLoading(false);
       }
     };
@@ -76,7 +78,7 @@ const InternationalToursPage = () => {
           <div className="max-w-7xl mx-auto px-4 md:px-8 text-center">
             <div className="bg-red-50 p-8 rounded-2xl">
               <h2 className="text-2xl text-red-600 font-semibold mb-4">
-                Veri Yükleme Hatası
+                {t('internationalTours.errorHeading', 'Veri Yükleme Hatası')}
               </h2>
               <p className="text-gray-700">{error}</p>
             </div>
@@ -107,10 +109,10 @@ const InternationalToursPage = () => {
             {/* Breadcrumb */}
             <div className="mb-6 animate-fade-in">
               <Link to="/" className="text-white/80 hover:text-white transition-colors">
-                Ana Sayfa
+                {t('internationalTours.breadcrumbHome', 'Ana Sayfa')}
               </Link>
               <span className="text-white/60 mx-2">&gt;</span>
-              <span className="text-[color:var(--color-secondary)]">Yurt Dışı Turlar</span>
+              <span className="text-[color:var(--color-secondary)]">{t('internationalTours.breadcrumbCurrent', 'Yurt Dışı Turlar')}</span>
             </div>
 
             {/* Hero Content */}
@@ -120,16 +122,16 @@ const InternationalToursPage = () => {
                   <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M3 4a1 1 0 000 2v8a2 2 0 002 2h2.586l-1.293 1.293a1 1 0 101.414 1.414L10 15.414l2.293 2.293a1 1 0 001.414-1.414L12.414 15H15a2 2 0 002-2V5a1 1 0 100-2H3zm11.707 4.707a1 1 0 00-1.414-1.414L10 9.586 8.707 8.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                   </svg>
-                  Dünya'nın En Güzel Destinasyonları
+                  {t('internationalTours.heroBadge', "Dünya'nın En Güzel Destinasyonları")}
                 </span>
               </div>
               
               <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-2xl animate-fade-in" style={{ animationDelay: '0.1s' }}>
-                Yurt Dışı Turlar
+                {t('internationalTours.heroTitle', 'Yurt Dışı Turlar')}
               </h1>
-              
+
               <p className="text-xl md:text-2xl mb-10 opacity-90 leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                Ufkunuzu genişletecek yolculuklara adım atın. Dünyanın renklerini, seslerini ve hikâyelerini yerinde keşfedin.
+                {t('internationalTours.heroSubtitle', 'Ufkunuzu genişletecek yolculuklara adım atın. Dünyanın renklerini, seslerini ve hikâyelerini yerinde keşfedin.')}
               </p>
             </div>
           </div>
@@ -152,8 +154,8 @@ const InternationalToursPage = () => {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                   </svg>
                 </div>
-                <h3 className="text-2xl font-bold text-gray-600 mb-4">Henüz tur bulunamadı</h3>
-                <p className="text-gray-500">Yakında yeni turlar eklenecek</p>
+                <h3 className="text-2xl font-bold text-gray-600 mb-4">{t('internationalTours.emptyTitle', 'Henüz tur bulunamadı')}</h3>
+                <p className="text-gray-500">{t('internationalTours.emptyDesc', 'Yakında yeni turlar eklenecek')}</p>
               </div>
             </div>
           ) : (
@@ -177,7 +179,7 @@ const InternationalToursPage = () => {
                     {/* Premium Category Badge */}
                     <div className="absolute top-4 left-4">
                       <div className="bg-white/20 backdrop-blur-sm text-white text-sm font-semibold px-3 py-1 rounded-full border border-white/30">
-                        {toursData.categories.find(cat => cat.key === tour.category)?.label || tour.category}
+                        {t('categories.' + tour.category, toursData.categories.find(cat => cat.key === tour.category)?.label || tour.category)}
                       </div>
                     </div>
           
@@ -221,7 +223,7 @@ const InternationalToursPage = () => {
                       to={`/turlar/${tour.slug}`} 
                       className="group/btn w-full bg-gradient-to-r from-[color:var(--color-primary)] to-blue-600 hover:from-blue-600 hover:to-[color:var(--color-primary)] text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg inline-flex items-center justify-center space-x-2"
                     >
-                      <span>Detayları Gör</span>
+                      <span>{t('internationalTours.viewDetails', 'Detayları Gör')}</span>
                       <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
                       </svg>
@@ -238,17 +240,17 @@ const InternationalToursPage = () => {
               <div className="max-w-3xl mx-auto">
                 {/* Başlık */}
                 <h2 className="text-3xl md:text-4xl font-bold text-[color:var(--color-text-dark)] mb-4">
-                  Size Özel Tur Paketleri Mi Arıyorsunuz?
+                  {t('internationalTours.ctaTitle', 'Size Özel Tur Paketleri Mi Arıyorsunuz?')}
                 </h2>
-                
+
                 {/* Alt Başlık */}
                 <p className="text-xl text-[color:var(--color-text-light)] mb-6">
-                  İhtiyacınıza Özel Çözümler
+                  {t('internationalTours.ctaSubtitle', 'İhtiyacınıza Özel Çözümler')}
                 </p>
-                
+
                 {/* Açıklama */}
                 <p className="text-lg text-[color:var(--color-text-light)] mb-8 leading-relaxed">
-                  Siz hayal edin biz planlayalım, gelin birlikte yola çıkalım
+                  {t('internationalTours.ctaDesc', 'Siz hayal edin biz planlayalım, gelin birlikte yola çıkalım')}
                 </p>
                 
                 {/* Butonlar */}
@@ -257,18 +259,18 @@ const InternationalToursPage = () => {
                     to="/teklif-al" 
                     className="group bg-white border-2 border-[color:var(--color-primary)] text-[color:var(--color-primary)] hover:bg-[color:var(--color-primary)] hover:text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center justify-center space-x-2"
                   >
-                    <span>Özel Teklif Al</span>
+                    <span>{t('internationalTours.ctaCustomQuote', 'Özel Teklif Al')}</span>
                     <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </Link>
                   
                   <WhatsAppButton
-                    message="Size özel tur paketleri hakkında bilgi almak istiyorum."
+                    message={t('internationalTours.whatsappMessage', 'Size özel tur paketleri hakkında bilgi almak istiyorum.')}
                     size="lg"
                     className="bg-green-500 hover:bg-green-600 text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105"
                   >
-                    WhatsApp İletişim
+                    {t('internationalTours.whatsappContact', 'WhatsApp İletişim')}
                   </WhatsAppButton>
                 </div>
               </div>
