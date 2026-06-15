@@ -149,7 +149,10 @@
     "allCategories": "All",
     "noToursFound": "No tours found in this category.",
     "customTourTitle": "Looking for a Custom Tour?",
-    "customTourDescription": "Contact us for a personalized travel experience. We can create custom tour packages according to your needs and preferences."
+    "customTourDescription": "Contact us for a personalized travel experience. We can create custom tour packages according to your needs and preferences.",
+    "people": "people",
+    "filterTitle": "Filter Tours",
+    "tryDifferentFilters": "Please try different filters or view all tours."
   },
   "categories": {
     "women": "Women's Groups",
@@ -179,7 +182,19 @@
     "readMore": "Read More",
     "backToBlog": "Back to Blog",
     "relatedPosts": "Related Posts",
-    "postNotFound": "The blog post you are looking for could not be found"
+    "postNotFound": "The blog post you are looking for could not be found",
+    "defaultCategory": "Travel",
+    "tags": "Tags",
+    "cta": {
+      "moreStories": "More Stories",
+      "exploreMore": "Visit our blog to explore our travel experiences and guides.",
+      "viewAllPosts": "View All Posts"
+    },
+    "badge": "Travel Inspiration & Guidance",
+    "noPosts": "No blog posts yet",
+    "noPostsDescription": "We will be back soon with great content!",
+    "authorName": "Endülüs Travel",
+    "authorBio": "Travel enthusiast and content writer."
   },
   "about": {
     "valuesTitle": "Our Values",
@@ -188,7 +203,9 @@
     "teamPosition": "Position {{id}}",
     "teamBio": "Experienced tourism expert, specialized in personalized tour planning.",
     "ctaMessage": "Let's plan your custom tour experience together",
-    "ctaButton": "Get a Quote"
+    "ctaButton": "Get a Quote",
+    "title": "About Us",
+    "subtitle": "Your trusted travel partner, personalizing your journeys around your sensitivities."
   },
   "buttons": {
     "fillSurvey": "Fill Survey",
@@ -197,7 +214,9 @@
     "allServices": "All Our Services",
     "allTours": "View All Tours",
     "getOffer": "Get Quote",
-    "backToServices": "Back to Services"
+    "backToServices": "Back to Services",
+    "applyFilters": "Apply Filters",
+    "reset": "Reset"
   },
   "common": {
     "backToTours": "Back to All Tours",
@@ -211,5 +230,174 @@
   "call-to-action": {
     "title": "Get one step closer to your dream vacation",
     "description": "Fill out the preliminary survey or get a quote right away for your custom vacation plan. Let us find the best for you."
+  },
+  "filters": {
+    "anyDuration": "Any duration",
+    "days": "days",
+    "anyGroupSize": "Any group size",
+    "people": "people",
+    "category": "Category",
+    "allCategories": "All Categories",
+    "selectCategory": "Select Category",
+    "minPrice": "Min. Price",
+    "maxPrice": "Max. Price",
+    "duration": "Duration",
+    "groupSize": "Group Size"
+  },
+  "budgetRoutes": {
+    "pageTitle": "Routes by Budget - Endülüs Travel",
+    "title": "Routes by Budget",
+    "description": "Discover ideal routes based on your travel budget, duration, and group size. Use the filters to find the travel plan that suits you best.",
+    "filters": {
+      "title": "Filter Routes",
+      "maxBudget": "Maximum Budget (₺)",
+      "any": "All",
+      "minPersons": "Minimum Number of People",
+      "maxDays": "Maximum Duration (Days)",
+      "departure": "Departure",
+      "enterDeparture": "Enter departure city",
+      "reset": "Reset Filters"
+    },
+    "noResults": "No routes match your criteria",
+    "resultCount": "{{count}} matching routes",
+    "card": {
+      "highlights": "Highlights",
+      "more": "more",
+      "requestOffer": "Request Offer"
+    },
+    "noRoutes": "No routes match your criteria",
+    "noRoutesDescription": "Please adjust your filters or contact us for a custom offer.",
+    "contact": {
+      "title": "Get a Custom Tour Offer",
+      "description": "Could not find a route matching your criteria? Get in touch and we will prepare a custom offer for you.",
+      "requestButton": "Request Offer",
+      "contactButton": "Contact Us"
+    }
+  },
+  "offer": {
+    "pageTitle": "Request a Quote - Endülüs Travel",
+    "errors": {
+      "nameRequired": "Full name is required",
+      "contactRequired": "At least one of email or phone is required",
+      "emailInvalid": "Please enter a valid email address",
+      "phoneInvalid": "Please enter a valid phone number",
+      "destinationRequired": "Destination is required",
+      "numberOfPeopleRequired": "Number of people is required",
+      "numberOfPeopleInvalid": "Please enter a valid number of people",
+      "budgetInvalid": "Please enter a valid budget"
+    },
+    "title": "Get a Custom Offer",
+    "badge": "Personalized Offer",
+    "description": "Fill out the form below for a tour plan tailored to you. Our experienced team will prepare your best offer within 24 hours.",
+    "success": {
+      "title": "Your Request Has Been Received",
+      "message": "Your quote request has been sent successfully. Our expert team will review it and get in touch with a custom price offer as soon as possible.",
+      "newForm": "Request Another Offer"
+    },
+    "whatsapp": {
+      "title": "Want a Quick Offer?",
+      "description": "Instead of filling out the form, you can also reach us on WhatsApp and get a quote quickly.",
+      "button": "Get an Offer via WhatsApp"
+    },
+    "sections": {
+      "personalInfo": "Your Personal Information",
+      "travelInfo": "Travel Details",
+      "preferences": "Preferences & Additional Info"
+    },
+    "fields": {
+      "fullName": "Your Full Name",
+      "email": "Your Email Address",
+      "phone": "Your Phone Number",
+      "destination": "Destination / Country",
+      "numberOfPeople": "Number of People",
+      "travelDate": "Estimated Departure Date",
+      "returnDate": "Estimated Return Date",
+      "budget": "Budget per Person (₺)",
+      "preferences": "Your Special Preferences",
+      "additionalInfo": "Additional Information or Requests"
+    },
+    "placeholders": {
+      "fullName": "Your first and last name",
+      "email": "example@email.com",
+      "phone": "0555 123 4567",
+      "destination": "Select a destination",
+      "numberOfPeople": "How many people will join?",
+      "budget": "Your budget per person",
+      "additionalInfo": "Write here if you would like to share any extra details..."
+    },
+    "notes": {
+      "contactRequired": "You must provide at least one of email or phone",
+      "privacy": "By submitting this form, you consent to Endülüs Travel storing your information and contacting you. Your data will not be shared with third parties."
+    },
+    "buttons": {
+      "sending": "Sending...",
+      "submit": "Request Offer"
+    }
+  },
+  "survey": {
+    "pageTitle": "Pre-Survey - Endülüs Travel",
+    "errors": {
+      "nameRequired": "Name is required",
+      "contactRequired": "At least one of email or phone is required",
+      "emailInvalid": "Please enter a valid email address",
+      "phoneInvalid": "Please enter a valid phone number",
+      "groupTypeRequired": "Please select a group type"
+    },
+    "badge": "Personalized Travel",
+    "title": "Pre-Survey Form",
+    "description": "Please fill out the form below so we can craft the most suitable tour experience for you. This information will be used to plan a personalized trip based on your needs and expectations.",
+    "success": {
+      "title": "Your Request Has Been Received",
+      "message": "Your survey responses have been saved successfully. Our expert team will contact you shortly with information about your personalized travel plan.",
+      "newForm": "Fill Out a New Form"
+    },
+    "sections": {
+      "personalInfo": "Your Personal Information",
+      "preferences": "Your Travel Preferences",
+      "specialRequests": "Special Requests"
+    },
+    "fields": {
+      "fullName": "Your Full Name",
+      "email": "Your Email Address",
+      "phone": "Your Phone Number",
+      "groupType": "Your Group Type",
+      "specialRequests": "Any other special requests you would like to share:"
+    },
+    "placeholders": {
+      "fullName": "Your first and last name",
+      "email": "example@email.com",
+      "phone": "0555 123 4567",
+      "groupType": "Select your group type",
+      "specialRequests": "Write here if you would like to share any extra details..."
+    },
+    "notes": {
+      "contactRequired": "You must provide at least one of email or phone",
+      "privacy": "By submitting this form, you consent to your information being stored and to being contacted. Your data will not be shared with third parties."
+    },
+    "questions": {
+      "travelPreferences": "What are your priorities when traveling?",
+      "otherPreferences": "Your other preferences / sensitivities:"
+    },
+    "buttons": {
+      "sending": "Sending...",
+      "submit": "Submit Survey"
+    }
+  },
+  "planning": {
+    "pageTitle": "Tour Planning - Endülüs Travel",
+    "errors": {
+      "selectInterests": "Please select at least one interest",
+      "makeSelection": "Please make a selection"
+    },
+    "multiSelectInfo": "You can select more than one",
+    "buttons": {
+      "previous": "Previous",
+      "next": "Next",
+      "finish": "Finish"
+    }
+  },
+  "tourPlanning": {
+    "title": "Tour Planning",
+    "description": "Follow our step-by-step guide to create your custom tour plan. Define your sensitivities and preferences to experience the tour of your dreams."
   }
-} 
+}

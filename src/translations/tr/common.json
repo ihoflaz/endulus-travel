@@ -149,7 +149,10 @@
     "allCategories": "Tümü",
     "noToursFound": "Bu kategoride tur bulunamadı.",
     "customTourTitle": "Size Özel Tur mu Arıyorsunuz?",
-    "customTourDescription": "Kişiselleştirilmiş bir seyahat deneyimi için bizimle iletişime geçin. İhtiyaçlarınıza ve tercihlerinize göre özel tur paketleri hazırlayabiliriz."
+    "customTourDescription": "Kişiselleştirilmiş bir seyahat deneyimi için bizimle iletişime geçin. İhtiyaçlarınıza ve tercihlerinize göre özel tur paketleri hazırlayabiliriz.",
+    "people": "kişi",
+    "filterTitle": "Turları Filtrele",
+    "tryDifferentFilters": "Lütfen farklı filtreler deneyin veya tüm turları görüntüleyin."
   },
   "categories": {
     "women": "Kadın Grupları",
@@ -179,7 +182,19 @@
     "readMore": "Devamını Oku",
     "backToBlog": "Blog'a Dön",
     "relatedPosts": "İlgili Yazılar",
-    "postNotFound": "Aradığınız blog yazısı bulunamadı"
+    "postNotFound": "Aradığınız blog yazısı bulunamadı",
+    "defaultCategory": "Seyahat",
+    "tags": "Etiketler",
+    "cta": {
+      "moreStories": "Daha Fazla Hikaye",
+      "exploreMore": "Seyahat deneyimlerimizi ve rehberlerimizi keşfetmek için blog sayfamızı ziyaret edin.",
+      "viewAllPosts": "Tüm Yazıları Görüntüle"
+    },
+    "badge": "Seyahat İlhamı ve Rehberlik",
+    "noPosts": "Henüz blog yazısı yok",
+    "noPostsDescription": "Yakında harika içeriklerle karşınızda olacağız!",
+    "authorName": "Endülüs Travel",
+    "authorBio": "Seyahat tutkunu ve içerik yazarı."
   },
   "about": {
     "valuesTitle": "Değerlerimiz",
@@ -188,7 +203,9 @@
     "teamPosition": "Pozisyon {{id}}",
     "teamBio": "Deneyimli turizm uzmanı, kişiselleştirilmiş tur planlaması konusunda uzman.",
     "ctaMessage": "Özel tur deneyiminizi birlikte planlayalım",
-    "ctaButton": "Teklif Alın"
+    "ctaButton": "Teklif Alın",
+    "title": "Hakkımızda",
+    "subtitle": "Seyahatlerinizi hassasiyetlerinize göre kişiselleştiren, güvenilir seyahat deneyimi ortağınız."
   },
   "buttons": {
     "fillSurvey": "Ön Anketi Doldur",
@@ -197,7 +214,9 @@
     "allServices": "Tüm Hizmetlerimiz",
     "allTours": "Tüm Turları Gör",
     "getOffer": "Teklif Al",
-    "backToServices": "Hizmetlere Dön"
+    "backToServices": "Hizmetlere Dön",
+    "applyFilters": "Filtreleri Uygula",
+    "reset": "Sıfırla"
   },
   "common": {
     "backToTours": "Tüm Turlara Dön",
@@ -211,5 +230,174 @@
   "call-to-action": {
     "title": "Hayalinizdeki tatile bir adım daha yaklaşın",
     "description": "Size özel tatil planınız için ön anketi doldurun veya hemen teklif alın. Sizin için en iyisini bulalım."
+  },
+  "filters": {
+    "anyDuration": "Herhangi bir süre",
+    "days": "gün",
+    "anyGroupSize": "Herhangi bir grup boyutu",
+    "people": "kişi",
+    "category": "Kategori",
+    "allCategories": "Tüm Kategoriler",
+    "selectCategory": "Kategori Seçin",
+    "minPrice": "Min. Fiyat",
+    "maxPrice": "Max. Fiyat",
+    "duration": "Tur Süresi",
+    "groupSize": "Grup Boyutu"
+  },
+  "budgetRoutes": {
+    "pageTitle": "Bütçeye Göre Rotalar - Endülüs Travel",
+    "title": "Bütçeye Göre Rotalar",
+    "description": "Seyahat bütçenize, sürenize ve kişi sayınıza göre sizin için ideal rotaları keşfedin. Filtreleri kullanarak sizin için en uygun seyahat planını bulun.",
+    "filters": {
+      "title": "Rotaları Filtrele",
+      "maxBudget": "Maksimum Bütçe (₺)",
+      "any": "Tümü",
+      "minPersons": "Minimum Kişi Sayısı",
+      "maxDays": "Maksimum Süre (Gün)",
+      "departure": "Kalkış Yeri",
+      "enterDeparture": "Kalkış şehri yazın",
+      "reset": "Filtreleri Sıfırla"
+    },
+    "noResults": "Kriterlere uygun rota bulunamadı",
+    "resultCount": "Toplam {{count}} uygun rota",
+    "card": {
+      "highlights": "Öne Çıkan Yerler",
+      "more": "daha",
+      "requestOffer": "Teklif Al"
+    },
+    "noRoutes": "Kriterlere uygun rota bulunamadı",
+    "noRoutesDescription": "Lütfen filtrelerinizi değiştirin veya özel bir teklif için bizimle iletişime geçin.",
+    "contact": {
+      "title": "Özel Tur Teklifi Alın",
+      "description": "İstediğiniz kriterlere uygun bir rota bulamadınız mı? Bizimle iletişime geçin, size özel bir teklif hazırlayalım.",
+      "requestButton": "Teklif İste",
+      "contactButton": "İletişime Geç"
+    }
+  },
+  "offer": {
+    "pageTitle": "Teklif Al - Endülüs Travel",
+    "errors": {
+      "nameRequired": "Ad Soyad zorunludur",
+      "contactRequired": "E-posta veya telefon numarasından en az biri zorunludur",
+      "emailInvalid": "Geçerli bir e-posta adresi giriniz",
+      "phoneInvalid": "Geçerli bir telefon numarası giriniz",
+      "destinationRequired": "Gidilecek yer zorunludur",
+      "numberOfPeopleRequired": "Kişi sayısı zorunludur",
+      "numberOfPeopleInvalid": "Geçerli bir kişi sayısı giriniz",
+      "budgetInvalid": "Geçerli bir bütçe giriniz"
+    },
+    "title": "Özel Teklif Alın",
+    "badge": "Kişiselleştirilmiş Teklif",
+    "description": "Size özel hazırlanacak tur planı için aşağıdaki formu doldurun. Deneyimli ekibimiz en uygun teklifinizi 24 saat içinde hazırlayacak.",
+    "success": {
+      "title": "Talebiniz Alındı",
+      "message": "Teklif formunuz başarıyla gönderildi. Uzman ekibimiz, talebinizi inceleyerek en kısa sürede size özel fiyat teklifi ile iletişime geçecektir.",
+      "newForm": "Yeni Teklif İste"
+    },
+    "whatsapp": {
+      "title": "Hızlı Teklif İster misiniz?",
+      "description": "Formu doldurmak yerine WhatsApp üzerinden de bizimle iletişime geçebilir ve hızlıca teklif alabilirsiniz.",
+      "button": "WhatsApp ile Teklif Al"
+    },
+    "sections": {
+      "personalInfo": "Kişisel Bilgileriniz",
+      "travelInfo": "Seyahat Bilgileri",
+      "preferences": "Tercihler ve Ek Bilgiler"
+    },
+    "fields": {
+      "fullName": "Adınız Soyadınız",
+      "email": "E-posta Adresiniz",
+      "phone": "Telefon Numaranız",
+      "destination": "Gidilecek Yer/Ülke",
+      "numberOfPeople": "Kişi Sayısı",
+      "travelDate": "Tahmini Gidiş Tarihi",
+      "returnDate": "Tahmini Dönüş Tarihi",
+      "budget": "Kişi Başı Bütçe (₺)",
+      "preferences": "Özel Tercihleriniz",
+      "additionalInfo": "Ek Bilgiler veya Talepler"
+    },
+    "placeholders": {
+      "fullName": "Adınız ve soyadınız",
+      "email": "ornek@email.com",
+      "phone": "0555 123 4567",
+      "destination": "Gidilecek yeri seçin",
+      "numberOfPeople": "Kaç kişi katılacak?",
+      "budget": "Kişi başı bütçeniz",
+      "additionalInfo": "Ekstra bilgi vermek isterseniz buraya yazabilirsiniz..."
+    },
+    "notes": {
+      "contactRequired": "E-posta veya telefon numarasından en az birini belirtmelisiniz",
+      "privacy": "Bu formu doldurarak Endülüs Travel ile bilgilerinizin kaydedilmesine ve sizinle iletişime geçilmesine izin vermiş oluyorsunuz. Verileriniz üçüncü kişilerle paylaşılmayacaktır."
+    },
+    "buttons": {
+      "sending": "Gönderiliyor...",
+      "submit": "Teklif İste"
+    }
+  },
+  "survey": {
+    "pageTitle": "Ön Anket - Endülüs Travel",
+    "errors": {
+      "nameRequired": "İsim zorunludur",
+      "contactRequired": "E-posta veya telefon numarasından en az biri zorunludur",
+      "emailInvalid": "Geçerli bir e-posta adresi giriniz",
+      "phoneInvalid": "Geçerli bir telefon numarası giriniz",
+      "groupTypeRequired": "Lütfen bir grup türü seçin"
+    },
+    "badge": "Kişiselleştirilmiş Seyahat",
+    "title": "Ön Anket Formu",
+    "description": "Sizin için en uygun tur deneyimini oluşturabilmemiz için lütfen aşağıdaki formu doldurunuz. Bu bilgiler, ihtiyaçlarınıza ve beklentilerinize göre kişiselleştirilmiş bir seyahat planlamak için kullanılacaktır.",
+    "success": {
+      "title": "Talebiniz Alındı",
+      "message": "Anket yanıtlarınız başarıyla kaydedildi. Uzman ekibimiz en kısa sürede sizinle iletişime geçecek ve size özel seyahat planı hakkında bilgi verecektir.",
+      "newForm": "Yeni Form Doldur"
+    },
+    "sections": {
+      "personalInfo": "Kişisel Bilgileriniz",
+      "preferences": "Seyahat Tercihleriniz",
+      "specialRequests": "Özel Talepler"
+    },
+    "fields": {
+      "fullName": "Adınız Soyadınız",
+      "email": "E-posta Adresiniz",
+      "phone": "Telefon Numaranız",
+      "groupType": "Grup Yapınız",
+      "specialRequests": "Belirtmek istediğiniz diğer özel talepleriniz:"
+    },
+    "placeholders": {
+      "fullName": "Adınız ve soyadınız",
+      "email": "ornek@email.com",
+      "phone": "0555 123 4567",
+      "groupType": "Grup türünüzü seçin",
+      "specialRequests": "Ekstra bilgi vermek isterseniz buraya yazabilirsiniz..."
+    },
+    "notes": {
+      "contactRequired": "E-posta veya telefon numarasından en az birini belirtmelisiniz",
+      "privacy": "Bu formu doldurarak bilgilerinizin kaydedilmesine ve sizinle iletişime geçilmesine izin vermiş oluyorsunuz. Verileriniz üçüncü kişilerle paylaşılmayacaktır."
+    },
+    "questions": {
+      "travelPreferences": "Seyahatlerinizde öncelikli tercihleriniz nelerdir?",
+      "otherPreferences": "Diğer tercihleriniz/hassasiyetleriniz:"
+    },
+    "buttons": {
+      "sending": "Gönderiliyor...",
+      "submit": "Anketi Gönder"
+    }
+  },
+  "planning": {
+    "pageTitle": "Tur Planlama - Endülüs Travel",
+    "errors": {
+      "selectInterests": "Lütfen en az bir ilgi alanı seçin",
+      "makeSelection": "Lütfen bir seçim yapın"
+    },
+    "multiSelectInfo": "Birden fazla seçim yapabilirsiniz",
+    "buttons": {
+      "previous": "Önceki",
+      "next": "Sonraki",
+      "finish": "Tamamla"
+    }
+  },
+  "tourPlanning": {
+    "title": "Tur Planlama",
+    "description": "Size özel tur planınızı oluşturmak için adım adım rehberimizi takip edin. Hassasiyetlerinizi ve tercihlerinizi belirleyerek hayalinizdeki tur deneyimini yaşayın."
   }
-} 
+}
