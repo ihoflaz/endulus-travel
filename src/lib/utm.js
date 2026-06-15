@@ -36,27 +36,42 @@ const readQuery = () => {
   return out;
 };
 
-// Writes the Meta `_fbc` cookie from an ad-click `fbclid` in Meta's documented
-// format `fb.1.<unix_ms>.<fbclid>`, once, if not already present. Persisting it
-// (vs synthesizing per call) means a cold-load CAPI POST — which fires before
-// fbevents.js loads — already carries _fbc, and every event in the session
-// reports the SAME value. Pixel manages the cookie once it loads.
-const persistFbc = (fbclid) => {
-  if (!fbclid || typeof document === 'undefined' || typeof window === 'undefined') return;
-  if (readCookie('_fbc')) return;
+// Writes a Meta identifier cookie (90-day, on the registrable domain) so a
+// cold-load CAPI POST — which can fire before fbevents.js loads — already
+// carries it. Mirrors how the Pixel scopes _fbp/_fbc.
+const setMetaCookie = (name, value) => {
+  if (typeof document === 'undefined' || typeof window === 'undefined') return;
   const labels = window.location.hostname.split('.');
-  // registrable domain (eTLD+1 heuristic) so it matches the cookie Pixel sets;
-  // skipped on single-label hosts like `localhost`.
+  // registrable domain (eTLD+1 heuristic); skipped on single-label hosts (localhost).
   const domain = labels.length >= 2 ? `; domain=.${labels.slice(-2).join('.')}` : '';
   const secure = window.location.protocol === 'https:' ? '; Secure' : '';
-  document.cookie = `_fbc=fb.1.${Date.now()}.${fbclid}; path=/; max-age=7776000; SameSite=Lax${domain}${secure}`;
+  document.cookie = `${name}=${value}; path=/; max-age=7776000; SameSite=Lax${domain}${secure}`;
+};
+
+// _fbp: the browser id the Pixel normally sets. We seed it on first visit if the
+// Pixel hasn't yet, so cold-load CAPI events carry it; the Pixel reuses an
+// existing valid _fbp, keeping browser + server identical. Format fb.1.<ms>.<rand>.
+const persistFbp = () => {
+  if (typeof document === 'undefined' || readCookie('_fbp')) return;
+  const rand = `${Math.floor(Math.random() * 1e9)}${Math.floor(Math.random() * 1e9)}`.slice(0, 10);
+  setMetaCookie('_fbp', `fb.1.${Date.now()}.${rand}`);
+};
+
+// _fbc: from an ad-click `fbclid`, in Meta's format `fb.1.<ms>.<fbclid>`, once.
+// Persisting (vs synthesizing per call) gives every event in the session the
+// SAME value; the Pixel manages it once loaded.
+const persistFbc = (fbclid) => {
+  if (!fbclid || typeof document === 'undefined' || readCookie('_fbc')) return;
+  setMetaCookie('_fbc', `fb.1.${Date.now()}.${fbclid}`);
 };
 
 // Captures the current URL's UTMs into localStorage. Safe to call on every
 // route change — only updates `last` when there's something new in the URL.
 export const captureUtm = () => {
   const params = readQuery();
-  // Persist _fbc from an ad-click fbclid ASAP (before the Pixel script loads).
+  // Seed Meta browser ids ASAP (before the Pixel script loads) so cold-load
+  // CAPI events carry _fbp + _fbc.
+  persistFbp();
   if (params.fbclid) persistFbc(params.fbclid);
   if (Object.keys(params).length === 0) return;
   const stamp = {
