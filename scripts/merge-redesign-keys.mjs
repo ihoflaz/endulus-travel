@@ -73,6 +73,12 @@ const ENTRIES = [
   // --- Contact (Istanbul) hero ---
   ['contactPage.heroEyebrow', 'İstanbul · Boğaz', 'Istanbul · The Bosphorus'],
   ['contactPage.heroTitleFull', 'Size ulaşalım', 'Let us reach you'],
+
+  // --- Survey (Marrakech) hero ---
+  ['survey.heroEyebrow', 'Fas · Marakeş', 'Morocco · Marrakech'],
+
+  // --- Budget Routes (Desert) hero ---
+  ['budgetRoutes.heroEyebrow', 'Çöl Kervanı · Değerli Rotalar', 'Desert Caravan · Value Journeys'],
 ];
 
 function setDeepOnlyAdd(obj, dotted, value) {

@@ -88,9 +88,10 @@ const DETAIL_ROUTES = [
 ];
 
 const NotFound = () => (
-  <div className="py-20 text-center">
-    <h1 className="text-4xl font-bold text-red-500 mb-4">404</h1>
-    <p className="text-xl">Sayfa Bulunamadı / Page Not Found</p>
+  <div className="ds-dark min-h-[70vh] flex flex-col items-center justify-center text-center px-6" style={{ background: 'var(--ds-bg)' }}>
+    <span className="ds-display ds-gold-text" style={{ fontSize: 'clamp(4rem,14vw,9rem)', lineHeight: 1 }}>404</span>
+    <p className="ds-lead mt-4">Sayfa bulunamadı · Page not found</p>
+    <a href="/" className="ds-btn mt-8">Ana Sayfa · Home</a>
   </div>
 );
 

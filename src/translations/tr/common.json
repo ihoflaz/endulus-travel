@@ -320,7 +320,8 @@
     "statReadyRoutes": "Hazır Rota",
     "statDestinations": "Destinasyon",
     "statHappyCustomers": "Mutlu Müşteri",
-    "metaDescription": "Seyahat bütçenize, sürenize ve kişi sayınıza göre hazırlanmış ideal tur rotalarını keşfedin. Filtreleyin, karşılaştırın ve size en uygun seyahat planı için hemen teklif alın."
+    "metaDescription": "Seyahat bütçenize, sürenize ve kişi sayınıza göre hazırlanmış ideal tur rotalarını keşfedin. Filtreleyin, karşılaştırın ve size en uygun seyahat planı için hemen teklif alın.",
+    "heroEyebrow": "Çöl Kervanı · Değerli Rotalar"
   },
   "offer": {
     "pageTitle": "Teklif Al - Endülüs Travel",
@@ -473,7 +474,8 @@
       "secureTitle": "Güvenli",
       "secureDesc": "Verileriniz korunur"
     },
-    "metaDescription": "Endülüs Travel ön anketini doldurun; grup yapınızı ve seyahat tercihlerinizi paylaşın, uzman ekibimiz size özel kişiselleştirilmiş bir tur planı hazırlasın. Yalnızca 2 dakika sürer."
+    "metaDescription": "Endülüs Travel ön anketini doldurun; grup yapınızı ve seyahat tercihlerinizi paylaşın, uzman ekibimiz size özel kişiselleştirilmiş bir tur planı hazırlasın. Yalnızca 2 dakika sürer.",
+    "heroEyebrow": "Fas · Marakeş"
   },
   "planning": {
     "pageTitle": "Tur Planlama - Endülüs Travel",
