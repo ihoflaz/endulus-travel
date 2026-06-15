@@ -172,10 +172,12 @@
 @keyframes ds-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
 @keyframes ds-spin-slow { to { transform: rotate(360deg); } }
 @keyframes ds-scrollcue { 0% { transform: translateY(-100%); } 50% { transform: translateY(0); } 100% { transform: translateY(100%); } }
+@keyframes wa-halo { 0% { transform: scale(1); opacity: 0.5; } 70% { transform: scale(1.85); opacity: 0; } 100% { transform: scale(1.85); opacity: 0; } }
 
 @layer utilities {
   .ds-container { width: 100%; max-width: var(--ds-maxw); margin-inline: auto; padding-inline: var(--ds-gutter); }
   .ds-float { animation: ds-float 6s var(--ds-ease) infinite; }
+  .wa-halo { animation: wa-halo 2.6s var(--ds-ease) infinite; }
   .ds-spin-slow { animation: ds-spin-slow 40s linear infinite; }
   .ds-clip-text { overflow: hidden; }            /* parent for line-mask reveals */
   .text-balance { text-wrap: balance; }

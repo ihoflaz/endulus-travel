@@ -975,5 +975,9 @@
   },
   "nav": {
     "getOffer": "Get a Quote"
+  },
+  "whatsapp": {
+    "aria": "Contact us on WhatsApp",
+    "fixedLabel": "Message us"
   }
 }

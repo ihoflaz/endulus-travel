@@ -975,5 +975,9 @@
   },
   "nav": {
     "getOffer": "Teklif Al"
+  },
+  "whatsapp": {
+    "aria": "WhatsApp ile iletişime geç",
+    "fixedLabel": "Bize yazın"
   }
 }

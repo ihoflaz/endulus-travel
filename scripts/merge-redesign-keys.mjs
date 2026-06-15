@@ -79,6 +79,10 @@ const ENTRIES = [
 
   // --- Budget Routes (Desert) hero ---
   ['budgetRoutes.heroEyebrow', 'Çöl Kervanı · Değerli Rotalar', 'Desert Caravan · Value Journeys'],
+
+  // --- WhatsApp floating button ---
+  ['whatsapp.aria', 'WhatsApp ile iletişime geç', 'Contact us on WhatsApp'],
+  ['whatsapp.fixedLabel', 'Bize yazın', 'Message us'],
 ];
 
 function setDeepOnlyAdd(obj, dotted, value) {
