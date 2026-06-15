@@ -19,6 +19,22 @@ let pixelLoaded = false;
 let gtmLoaded = false;
 let ga4Loaded = false;
 
+// Pixel events fired before fbevents.js finished executing (common on a cold /
+// deep-link load, e.g. ViewContent on a tour page) are buffered here and
+// replayed once the script's load event fires. The bare fbq stub queue proved
+// unreliable for events fired during that load window.
+let fbevLoaded = false;
+const pendingPixel = [];
+
+const flushPixel = () => {
+  fbevLoaded = true;
+  if (typeof window === 'undefined' || !window.fbq) return;
+  while (pendingPixel.length) {
+    const [n, p, id] = pendingPixel.shift();
+    window.fbq('track', n, p, { eventID: id });
+  }
+};
+
 // ---------------------------------------------------------------------------
 // Loader: inject script tags lazily on first call. Idempotent.
 // ---------------------------------------------------------------------------
@@ -34,6 +50,7 @@ const loadPixel = () => {
     };
     if (!f._fbq) f._fbq = n; n.push = n; n.loaded = !0; n.version = '2.0';
     n.queue = []; t = b.createElement(e); t.async = !0; t.src = v;
+    t.addEventListener('load', flushPixel);
     s = b.getElementsByTagName(e)[0]; s.parentNode.insertBefore(t, s);
   }(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
   /* eslint-enable */
@@ -87,16 +104,24 @@ const pushDataLayer = (payload) => {
   window.dataLayer.push(payload);
 };
 
+const pixelReady = () =>
+  fbevLoaded || (typeof window !== 'undefined' && !!window.fbq && !!window.fbq.callMethod);
+
 const pixelTrack = (name, params, eventId) => {
   if (!PIXEL_ID || typeof window === 'undefined') return;
-  // Cold-load hardening: a deep-link can fire an event (e.g. ViewContent on a
-  // tour page) before the root PageViewTracker effect ran loadPixel(). Ensure
-  // the fbq stub is installed first — loadPixel is idempotent and the stub
-  // queues the call until fbevents.js finishes loading, so the beacon is never
-  // silently dropped on a full-page load.
+  // Ensure the pixel is loading (idempotent) so a deep-linked event installs
+  // the fbq stub + injects fbevents.js.
   if (!window.fbq) loadPixel();
   if (!window.fbq) return;
-  window.fbq('track', name, params, { eventID: eventId });
+  // On a cold load fbevents.js arrives async; firing before it's ready dropped
+  // the browser beacon (e.g. ViewContent on a direct tour entry). Buffer until
+  // the script's load event flushes the queue to the real fbq. CAPI mirrors the
+  // event server-side regardless, and eventID dedup prevents double counting.
+  if (pixelReady()) {
+    window.fbq('track', name, params, { eventID: eventId });
+  } else {
+    pendingPixel.push([name, params, eventId]);
+  }
 };
 
 // Server-side mirror. Best-effort — failures must not break UX.
