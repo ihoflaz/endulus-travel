@@ -213,6 +213,9 @@ const AboutPage = () => {
                 <p className="ds-display text-[var(--ds-text)] text-balance" style={{ fontSize: 'clamp(1.4rem,3vw,2.2rem)' }}>
                   {t('aboutPage.promiseText', '"Endülüs Travel ile güvenli, huzurlu ve değerlerinizle uyumlu bir yolculuğa çıkmaya hazır olun."')}
                 </p>
+                <p className="mt-6 text-[var(--ds-text-soft)] text-sm" style={{ letterSpacing: '0.28em', textTransform: 'uppercase' }}>
+                  {t('aboutPage.promiseAttribution', '— İki Kız Kardeş · Endülüs Travel')}
+                </p>
               </div>
             </div>
           </Reveal>

@@ -135,6 +135,13 @@ const M = {
 
   // --- Services group-tour size fix ---
   'services.groupToursTitle': { tr: `Grup Turları (15-20 Kişi)`, en: `Group Tours (15-20 People)` },
+
+  // --- Founders signature on About + boutique size on Tours hero ---
+  'aboutPage.promiseAttribution': { tr: `— İki Kız Kardeş · Endülüs Travel`, en: `— Two Sisters · Endülüs Travel` },
+  'toursPage.heroSubtitle': {
+    tr: `Size ve grubunuza özel, özenle planlanmış; namaz vakitlerine ve helal mutfağa uygun, 15-20 kişilik butik tur deneyimleri.`,
+    en: `Boutique tours of 15-20 guests, carefully planned for you and your group — prayer-time friendly and halal-cuisine.`,
+  },
 };
 
 function setDeep(obj, dotted, value) {
