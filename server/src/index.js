@@ -35,7 +35,8 @@ import sitemapRoutes from './routes/sitemap.js';
 export const buildApp = () => {
   const app = express();
 
-  // trust proxy: numeric hop count. Behind Cloudflare (1) + nginx (1) = 2.
+  // trust proxy: numeric hop count. Edge is Traefik only (1 hop); Cloudflare is
+  // DNS-only (grey cloud), so req.ip resolves to the real client IP from XFF.
   const trust = /^\d+$/.test(env.TRUST_PROXY)
     ? Number(env.TRUST_PROXY)
     : env.TRUST_PROXY;

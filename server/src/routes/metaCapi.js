@@ -18,6 +18,15 @@ const ACCESS_TOKEN = process.env.META_CAPI_ACCESS_TOKEN || '';
 const DATASET_ID = process.env.META_DATASET_ID || '';
 const TEST_EVENT_CODE = process.env.META_TEST_EVENT_CODE || '';
 const ENABLED = !!ACCESS_TOKEN && !!DATASET_ID;
+// Opt-in, PII-free diagnostics for verifying Event Match Quality inputs.
+// Logs only WHICH match keys are present + the client IP class + Meta's reply.
+const DEBUG = process.env.META_CAPI_DEBUG === 'true';
+const ipKind = (ip) => {
+  if (!ip) return 'none';
+  if (ip === '127.0.0.1' || ip === '::1') return 'loopback';
+  if (/^(10\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.|169\.254\.|::ffff:(10|192\.168|172)\.|f[cde])/i.test(ip)) return 'private';
+  return 'public';
+};
 
 const sha256 = (v) => crypto.createHash('sha256').update(String(v)).digest('hex');
 
@@ -94,6 +103,12 @@ router.post(
       }],
       ...(TEST_EVENT_CODE ? { test_event_code: TEST_EVENT_CODE } : {}),
     };
+    if (DEBUG) {
+      const ud = payload.data[0].user_data || {};
+      const keys = ['fbp', 'fbc', 'em', 'ph', 'client_ip_address', 'client_user_agent', 'external_id']
+        .filter((k) => ud[k] != null && ud[k] !== '');
+      console.log(`[capi:debug] ${event_name} match_keys=[${keys.join(',')}] ip_kind=${ipKind(ud.client_ip_address)}`);
+    }
     try {
       const resp = await fetch(
         `https://graph.facebook.com/v20.0/${DATASET_ID}/events?access_token=${encodeURIComponent(ACCESS_TOKEN)}`,
@@ -108,7 +123,11 @@ router.post(
         console.error('[capi] Meta error', resp.status, text);
         return res.status(502).json({ ok: false, error: 'Meta API error' });
       }
-      res.json({ ok: true, meta: text ? JSON.parse(text) : null });
+      const meta = text ? JSON.parse(text) : null;
+      if (DEBUG) {
+        console.log(`[capi:debug] ${event_name} meta_status=${resp.status} events_received=${meta?.events_received ?? '?'} messages=${JSON.stringify(meta?.messages ?? [])} fbtrace=${meta?.fbtrace_id ?? ''}`);
+      }
+      res.json({ ok: true, meta });
     } catch (e) {
       console.error('[capi] forwarding failed:', e?.message);
       res.status(502).json({ ok: false, error: 'CAPI forwarding failed' });

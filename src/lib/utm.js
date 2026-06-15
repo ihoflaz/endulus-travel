@@ -36,10 +36,28 @@ const readQuery = () => {
   return out;
 };
 
+// Writes the Meta `_fbc` cookie from an ad-click `fbclid` in Meta's documented
+// format `fb.1.<unix_ms>.<fbclid>`, once, if not already present. Persisting it
+// (vs synthesizing per call) means a cold-load CAPI POST — which fires before
+// fbevents.js loads — already carries _fbc, and every event in the session
+// reports the SAME value. Pixel manages the cookie once it loads.
+const persistFbc = (fbclid) => {
+  if (!fbclid || typeof document === 'undefined' || typeof window === 'undefined') return;
+  if (readCookie('_fbc')) return;
+  const labels = window.location.hostname.split('.');
+  // registrable domain (eTLD+1 heuristic) so it matches the cookie Pixel sets;
+  // skipped on single-label hosts like `localhost`.
+  const domain = labels.length >= 2 ? `; domain=.${labels.slice(-2).join('.')}` : '';
+  const secure = window.location.protocol === 'https:' ? '; Secure' : '';
+  document.cookie = `_fbc=fb.1.${Date.now()}.${fbclid}; path=/; max-age=7776000; SameSite=Lax${domain}${secure}`;
+};
+
 // Captures the current URL's UTMs into localStorage. Safe to call on every
 // route change — only updates `last` when there's something new in the URL.
 export const captureUtm = () => {
   const params = readQuery();
+  // Persist _fbc from an ad-click fbclid ASAP (before the Pixel script loads).
+  if (params.fbclid) persistFbc(params.fbclid);
   if (Object.keys(params).length === 0) return;
   const stamp = {
     ...params,
