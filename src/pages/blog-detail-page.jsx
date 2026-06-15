@@ -4,6 +4,10 @@ import { LocaleLink as Link } from '../components/LocaleLink';
 import Seo from '../components/Seo';
 import { useBlogPostDetail } from '../hooks';
 import { useEffect } from 'react';
+import PageHero from '../components/redesign/PageHero';
+import { Reveal, Magnetic } from '../components/motion';
+
+const FALLBACK_IMG = '/uploads/media/desert.jpg';
 
 // Blog detay sayfası bileşeni - Belirli bir blog yazısının detaylarını gösterir
 const BlogDetailPage = () => {
@@ -18,10 +22,10 @@ const BlogDetailPage = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center min-h-[60vh]">
+      <div className="ds-dark min-h-screen grid place-items-center pt-24" style={{ background: 'var(--ds-bg)' }}>
         <div className="relative">
-          <div className="w-16 h-16 border-4 border-[color:var(--color-primary)]/30 border-t-[color:var(--color-primary)] rounded-full animate-spin"></div>
-          <div className="absolute inset-0 w-16 h-16 border-4 border-transparent border-t-[color:var(--color-secondary)] rounded-full animate-ping"></div>
+          <div className="w-16 h-16 border-2 border-[var(--ds-line)] border-t-[var(--ds-gold)] rounded-full animate-spin"></div>
+          <div className="absolute inset-0 w-16 h-16 border-2 border-transparent border-t-[var(--ds-gold-bright)] rounded-full animate-ping opacity-40"></div>
         </div>
       </div>
     );
@@ -29,24 +33,19 @@ const BlogDetailPage = () => {
 
   if (error) {
     return (
-      <div className="page-transition">
-        <div className="py-16 bg-gradient-to-b from-gray-50 to-white min-h-screen">
-          <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
-            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-red-500 to-red-600 p-8 text-white animate-shake">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-8 -translate-y-8"></div>
-              <div className="relative z-10">
-                <h1 className="text-3xl font-bold mb-4">{error}</h1>
-                <Link 
-                  to="/blog" 
-                  className="group bg-white/20 hover:bg-white/30 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-300 backdrop-blur-sm border border-white/30 inline-flex items-center space-x-2"
-                >
-                  <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                  </svg>
-                  <span>{t('blog.backToBlog')}</span>
-                </Link>
-              </div>
-            </div>
+      <div className="ds-dark min-h-screen grid place-items-center pt-24" style={{ background: 'var(--ds-bg)' }}>
+        <div className="ds-container text-center max-w-2xl">
+          <div className="ds-glass rounded-3xl p-10 md:p-14">
+            <span className="ds-eyebrow">{t('blog.eyebrow', 'Çöl Günlükleri')}</span>
+            <h1 className="ds-display text-2xl md:text-3xl text-[var(--ds-text)] mt-4 mb-8">{error}</h1>
+            <Magnetic>
+              <Link to="/blog" className="ds-btn-ghost">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+                <span>{t('blog.backToBlog')}</span>
+              </Link>
+            </Magnetic>
           </div>
         </div>
       </div>
@@ -55,30 +54,24 @@ const BlogDetailPage = () => {
 
   if (notFound) {
     return (
-      <div className="page-transition">
-        <div className="py-16 bg-gradient-to-b from-gray-50 to-white min-h-screen">
-          <div className="max-w-4xl mx-auto px-4 md:px-8 text-center">
-            <div className="relative overflow-hidden rounded-2xl bg-white shadow-2xl border border-gray-100 p-12 animate-fade-in">
-              <div className="absolute top-0 right-0 w-64 h-32 bg-gradient-to-bl from-blue-100/50 to-transparent"></div>
-              <div className="relative z-10">
-                <div className="w-24 h-24 bg-gradient-to-br from-gray-100 to-gray-200 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <svg className="w-12 h-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.47.881-6.08 2.33l-.528-.002L5 15.299a8.962 8.962 0 01-1.81-5.31V8.53A3.984 3.984 0 013 8c0-.552.448-1 1-1s1 .448 1 1a2 2 0 104 0c0-.552.448-1 1-1s1 .448 1 1a2 2 0 104 0c0-.552.448-1 1-1s1 .448 1 1a3.984 3.984 0 01-.19 1.532V10c0 .852-.129 1.675-.369 2.45z" />
-                  </svg>
-                </div>
-                <h1 className="text-3xl font-bold text-gray-800 mb-4">{t('error.404')}</h1>
-                <p className="text-gray-600 mb-8 text-lg">{t('blog.postNotFound')}</p>
-                <Link 
-                  to="/blog" 
-                  className="group bg-gradient-to-r from-[color:var(--color-primary)] to-blue-600 hover:from-blue-600 hover:to-[color:var(--color-primary)] text-white font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center space-x-2"
-                >
-                  <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                  </svg>
-                  <span>{t('blog.backToBlog')}</span>
-                </Link>
-              </div>
+      <div className="ds-dark min-h-screen grid place-items-center pt-24" style={{ background: 'var(--ds-bg)' }}>
+        <div className="ds-container text-center max-w-2xl">
+          <div className="ds-glass rounded-3xl p-10 md:p-14">
+            <div className="w-20 h-20 rounded-full grid place-items-center mx-auto mb-7 border border-[var(--ds-line-strong)]">
+              <svg className="w-10 h-10 text-[var(--ds-gold)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.47.881-6.08 2.33l-.528-.002L5 15.299a8.962 8.962 0 01-1.81-5.31V8.53A3.984 3.984 0 013 8c0-.552.448-1 1-1s1 .448 1 1a2 2 0 104 0c0-.552.448-1 1-1s1 .448 1 1a2 2 0 104 0c0-.552.448-1 1-1s1 .448 1 1a3.984 3.984 0 01-.19 1.532V10c0 .852-.129 1.675-.369 2.45z" />
+              </svg>
             </div>
+            <span className="ds-eyebrow">{t('error.404')}</span>
+            <p className="ds-lead mt-4 mb-8">{t('blog.postNotFound')}</p>
+            <Magnetic>
+              <Link to="/blog" className="ds-btn">
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+                <span>{t('blog.backToBlog')}</span>
+              </Link>
+            </Magnetic>
           </div>
         </div>
       </div>
@@ -88,275 +81,222 @@ const BlogDetailPage = () => {
   // Örnek içerik (gerçek bir API'den gelecek)
   const dummyContent = `
     <div class="space-y-6">
-      <p class="text-lg leading-relaxed text-gray-700">
+      <p class="ds-prose-p">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
       </p>
-      <p class="text-lg leading-relaxed text-gray-700">
+      <p class="ds-prose-p">
         Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </p>
-      <h2 class="text-3xl font-bold text-gray-800 mt-8 mb-4">Alt Başlık 1</h2>
-      <p class="text-lg leading-relaxed text-gray-700">
+      <h2 class="ds-prose-h2">Alt Başlık 1</h2>
+      <p class="ds-prose-p">
         Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
       </p>
-      <p class="text-lg leading-relaxed text-gray-700">
+      <p class="ds-prose-p">
         Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt.
       </p>
-      <h2 class="text-3xl font-bold text-gray-800 mt-8 mb-4">Alt Başlık 2</h2>
-      <p class="text-lg leading-relaxed text-gray-700">
+      <h2 class="ds-prose-h2">Alt Başlık 2</h2>
+      <p class="ds-prose-p">
         Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
       </p>
     </div>
   `;
 
   return (
-    <div className="page-transition">
+    <div className="ds-dark" style={{ background: 'var(--ds-bg)' }}>
       <Seo
         title={blogPost?.title ? `${blogPost.title} - Endülüs Travel` : t('blog.metaTitle', 'Seyahat Blogu - Endülüs Travel')}
         description={blogPost?.summary || blogPost?.description || t('blog.metaDescription', 'Endülüs Travel seyahat blogu: tur rehberleri, gezi ipuçları ve ilham veren seyahat hikayeleriyle bir sonraki tatilinizi planlayın.')}
         image={blogPost?.coverImage}
         type="article"
       />
-      {/* Premium Hero Section */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-primary)] via-blue-600 to-[color:var(--color-primary)]"></div>
-        <div className="absolute inset-0 bg-black/20"></div>
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-32 -translate-y-32"></div>
-        <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-[color:var(--color-secondary)]/20 to-transparent rounded-full transform -translate-x-16 translate-y-16"></div>
-        
-        <div className="relative z-10 py-16 md:py-24">
-          <div className="max-w-7xl mx-auto px-4 md:px-8">
-            {/* Breadcrumb */}
-            <div className="mb-6 animate-fade-in">
-              <Link to="/" className="text-white/80 hover:text-white transition-colors">
-                {t('navigation.home')}
-              </Link>
-              <span className="text-white/60 mx-2">&gt;</span>
-              <Link to="/blog" className="text-white/80 hover:text-white transition-colors">
-                {t('navigation.blog')}
-              </Link>
-              <span className="text-white/60 mx-2">&gt;</span>
-              <span className="text-[color:var(--color-secondary)]">{blogPost.title}</span>
-            </div>
 
-            {/* Hero Content */}
-            <div className="text-center text-white max-w-4xl mx-auto">
-              <div className="mb-6 animate-fade-in">
-                <span className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm text-[color:var(--color-secondary)] text-sm font-semibold rounded-full border border-white/30">
-                  {blogPost.category || t('blog.defaultCategory', 'Seyahat')}
-                </span>
-              </div>
-              
-              <h1 className="text-4xl md:text-6xl font-bold mb-6 drop-shadow-2xl animate-fade-in" style={{ animationDelay: '0.1s' }}>
-                {blogPost.title}
-              </h1>
-              
-              <p className="text-xl md:text-2xl mb-8 opacity-90 leading-relaxed animate-fade-in" style={{ animationDelay: '0.2s' }}>
-                {blogPost.summary}
-              </p>
+      {/* Scoped dark prose styles for the (dummy) HTML content */}
+      <style>{`
+        .ds-prose .ds-prose-p { font-size: 1.125rem; line-height: 1.85; color: var(--ds-text-soft); }
+        .ds-prose .ds-prose-h2 {
+          font-family: var(--ds-font-display); font-weight: 300; letter-spacing: -0.01em;
+          font-size: clamp(1.6rem, 3vw, 2.1rem); color: var(--ds-text);
+          margin-top: 2.5rem; margin-bottom: 1rem;
+        }
+      `}</style>
 
-              {/* Meta Info */}
-              <div className="flex items-center justify-center space-x-6 text-white/80 animate-fade-in" style={{ animationDelay: '0.3s' }}>
-                <div className="flex items-center">
-                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+      {/* ===== Cinematic Hero (post cover image, desert fallback) ===== */}
+      <PageHero
+        image={blogPost?.coverImage || FALLBACK_IMG}
+        poster={blogPost?.coverImage || FALLBACK_IMG}
+        eyebrow={blogPost.category || t('blog.eyebrow', 'Çöl Günlükleri')}
+        title={blogPost.title}
+        subtitle={blogPost.summary}
+        breadcrumb={[
+          { to: '/', label: t('navigation.home') },
+          { to: '/blog', label: t('navigation.blog') },
+          { label: blogPost.title },
+        ]}
+      />
+
+      {/* ===== Article body ===== */}
+      <div className="ds-container py-16 md:py-24">
+        <div className="max-w-3xl mx-auto">
+
+          {/* Meta + back row */}
+          <Reveal>
+            <div className="flex flex-wrap items-center justify-between gap-4 mb-10">
+              <div className="flex flex-wrap items-center gap-x-6 gap-y-2 text-sm text-[var(--ds-text-muted)]">
+                <span className="inline-flex items-center gap-2">
+                  <svg className="w-4 h-4 text-[var(--ds-gold)]" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
                   </svg>
-                  <span>{blogPost.date}</span>
-                </div>
-                <div className="flex items-center">
-                  <svg className="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  {blogPost.date}
+                </span>
+                <span className="inline-flex items-center gap-2">
+                  <svg className="w-4 h-4 text-[var(--ds-gold)]" fill="currentColor" viewBox="0 0 20 20">
                     <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
                   </svg>
-                  <span>{blogPost.author || t('blog.authorName')}</span>
-                </div>
+                  {blogPost.author || t('blog.authorName')}
+                </span>
               </div>
+              <Link
+                to="/blog"
+                className="group inline-flex items-center gap-2 text-sm text-[var(--ds-text-soft)] hover:text-[var(--ds-gold)] transition-colors"
+              >
+                <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+                </svg>
+                <span>{t('blog.backToBlog')}</span>
+              </Link>
             </div>
-          </div>
-        </div>
-      </div>
+          </Reveal>
 
-      {/* Premium Content Section */}
-      <div className="py-16 bg-gradient-to-b from-gray-50 to-white">
-        <div className="max-w-4xl mx-auto px-4 md:px-8">
-          
-          {/* Back Link */}
-          <Link 
-            to="/blog" 
-            className="group inline-flex items-center space-x-2 text-[color:var(--color-primary)] hover:text-blue-600 font-medium mb-8 transition-colors animate-fade-in"
-          >
-            <svg className="w-5 h-5 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-            <span>{t('blog.backToBlog')}</span>
-          </Link>
-          
-          {/* Premium Cover Image */}
-          <div className="relative overflow-hidden rounded-2xl mb-12 shadow-2xl animate-fade-in" style={{ animationDelay: '0.2s' }}>
-            <div className="aspect-[16/9] overflow-hidden">
-              <img 
-                src={blogPost.coverImage} 
-                alt={blogPost.title} 
-                className="w-full h-full object-cover transition-all duration-500 hover:scale-105"
-              />
-            </div>
-            <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
-          </div>
-
-          {/* Premium Content Container */}
-          <div className="relative overflow-hidden rounded-2xl bg-white shadow-xl border border-gray-100 animate-fade-in" style={{ animationDelay: '0.4s' }}>
-            <div className="absolute top-0 right-0 w-64 h-32 bg-gradient-to-bl from-blue-100/30 to-transparent"></div>
-            <div className="relative z-10 p-8 md:p-12">
-              
-              {/* Blog Content */}
-              <div className="prose prose-lg max-w-none">
+          {/* Editorial prose card */}
+          <Reveal delay={0.05}>
+            <article className="ds-glass rounded-3xl p-7 md:p-12">
+              <div className="ds-prose max-w-none">
                 <div dangerouslySetInnerHTML={{ __html: dummyContent }} />
               </div>
 
-              {/* Tags Section */}
-              <div className="mt-12 pt-8 border-t border-gray-200">
-                <h3 className="text-lg font-semibold text-gray-800 mb-4">{t('blog.tags', 'Etiketler')}</h3>
+              {/* Tags */}
+              <div className="mt-12 pt-8 border-t border-[var(--ds-line)]">
+                <h3 className="ds-eyebrow mb-4">{t('blog.tags', 'Etiketler')}</h3>
                 <div className="flex flex-wrap gap-2">
                   {['Seyahat', 'Tur', 'Tatil', 'Keşif', 'Kültür'].map((tag) => (
-                    <span 
+                    <span
                       key={tag}
-                      className="inline-flex items-center px-3 py-1 bg-gradient-to-r from-[color:var(--color-primary)]/10 to-blue-600/10 text-[color:var(--color-primary)] text-sm font-medium rounded-full hover:from-[color:var(--color-primary)]/20 hover:to-blue-600/20 transition-colors cursor-pointer"
+                      className="inline-flex items-center px-3 py-1 rounded-full text-sm text-[var(--ds-text-soft)] border border-[var(--ds-line-strong)] hover:border-[var(--ds-gold)] hover:text-[var(--ds-gold-bright)] transition-colors cursor-pointer"
                     >
                       #{tag}
                     </span>
                   ))}
                 </div>
               </div>
-            </div>
-          </div>
+            </article>
+          </Reveal>
 
-          {/* Premium Author Card */}
-          <div className="mt-12 animate-fade-in" style={{ animationDelay: '0.6s' }}>
-            <div className="relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-sm border border-white/50 shadow-xl p-8">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl from-blue-100/30 to-transparent rounded-full transform translate-x-8 -translate-y-8"></div>
-              <div className="relative z-10 flex items-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-[color:var(--color-primary)] to-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mr-6 flex-shrink-0">
-                  {blogPost.author ? blogPost.author.charAt(0) : 'A'}
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-800 mb-1">
-                    {blogPost.author || t('blog.authorName')}
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {t('blog.authorBio')}
-                  </p>
-                </div>
+          {/* Author card */}
+          <Reveal delay={0.1}>
+            <div className="mt-10 ds-glass rounded-3xl p-7 md:p-8 flex items-center gap-6">
+              <div className="w-16 h-16 rounded-full grid place-items-center text-2xl font-semibold flex-shrink-0 text-[var(--ds-on-gold)]" style={{ background: 'var(--ds-grad-gold)' }}>
+                {blogPost.author ? blogPost.author.charAt(0) : 'A'}
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-[var(--ds-text)] mb-1">
+                  {blogPost.author || t('blog.authorName')}
+                </h3>
+                <p className="text-[var(--ds-text-soft)] leading-relaxed">
+                  {t('blog.authorBio')}
+                </p>
               </div>
             </div>
-          </div>
+          </Reveal>
+        </div>
 
-          {/* Premium Related Posts */}
-          {relatedPosts && relatedPosts.length > 0 && (
-            <div className="mt-16 animate-fade-in" style={{ animationDelay: '0.8s' }}>
-              
-              {/* Section Header */}
+        {/* Related posts */}
+        {relatedPosts && relatedPosts.length > 0 && (
+          <div className="max-w-5xl mx-auto mt-20">
+            <Reveal>
               <div className="text-center mb-12">
-                <h2 className="text-3xl font-bold text-gray-800 mb-4">
+                <span className="ds-eyebrow">{t('blog.eyebrow', 'Çöl Günlükleri')}</span>
+                <h2 className="ds-display text-2xl md:text-4xl text-[var(--ds-text)] mt-4">
                   {t('blog.relatedPosts')}
                 </h2>
-                <div className="w-20 h-1 bg-gradient-to-r from-[color:var(--color-primary)] to-blue-600 rounded-full mx-auto"></div>
+                <div className="ds-hairline w-24 mx-auto mt-6"></div>
               </div>
+            </Reveal>
 
-              {/* Related Posts Grid */}
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {relatedPosts.map((post, index) => (
-                  <Link 
-                    to={`/blog/${post.slug}`} 
-                    key={post.slug} 
-                    className="group"
-                    style={{ animationDelay: `${0.9 + (index * 0.1)}s` }}
-                  >
-                    {/* Premium Related Post Card */}
-                    <div className="relative overflow-hidden rounded-2xl bg-white/80 backdrop-blur-sm border border-white/50 shadow-xl hover:shadow-2xl transition-all duration-300 ease-out hover:scale-105 hover:-translate-y-2 animate-fade-in h-full">
-                      
-                      {/* Background Effects */}
-                      <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-bl from-blue-100/30 to-transparent rounded-full transform translate-x-6 -translate-y-6"></div>
-                      
-                      {/* Image */}
-                      <div className="relative overflow-hidden h-48">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+              {relatedPosts.map((post, index) => (
+                <Reveal key={post.slug} delay={index * 0.08}>
+                  <Link to={`/blog/${post.slug}`} className="group block h-full">
+                    <div className="ds-glass rounded-3xl overflow-hidden h-full transition-transform duration-500 group-hover:-translate-y-1.5">
+                      <div className="relative overflow-hidden h-52">
                         <img
                           src={post.coverImage}
                           alt={post.title}
-                          className="w-full h-full object-cover transition-all duration-500 group-hover:scale-110"
+                          className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          onError={(e) => { e.currentTarget.src = FALLBACK_IMG; }}
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                        
-                        {/* Category Badge */}
-                        <div className="absolute top-3 left-3">
-                          <span className="inline-flex items-center px-2 py-1 bg-white/90 backdrop-blur-sm text-[color:var(--color-primary)] text-xs font-semibold rounded-full">
+                        <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(7,10,18,0) 40%, rgba(7,10,18,0.85) 100%)' }}></div>
+                        {post.category && (
+                          <span className="absolute top-3 left-3 ds-glass text-[var(--ds-gold-bright)] text-xs font-medium rounded-full px-3 py-1">
                             {post.category}
                           </span>
-                        </div>
+                        )}
                       </div>
 
-                      {/* Content */}
-                      <div className="relative z-10 p-6">
-                        <div className="flex items-center mb-3 text-sm text-gray-500">
-                          <svg className="w-4 h-4 mr-1" fill="currentColor" viewBox="0 0 20 20">
+                      <div className="p-6">
+                        <div className="flex items-center gap-2 mb-3 text-xs text-[var(--ds-text-muted)]">
+                          <svg className="w-4 h-4 text-[var(--ds-gold)]" fill="currentColor" viewBox="0 0 20 20">
                             <path fillRule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clipRule="evenodd" />
                           </svg>
                           <span>{post.date}</span>
                         </div>
-                        
-                        <h3 className="text-xl font-bold text-gray-800 mb-3 group-hover:text-[color:var(--color-primary)] transition-colors duration-300 line-clamp-2">
+
+                        <h3 className="text-xl ds-display text-[var(--ds-text)] mb-3 group-hover:text-[var(--ds-gold-bright)] transition-colors line-clamp-2">
                           {post.title}
                         </h3>
-                        
-                        <p className="text-gray-600 text-sm line-clamp-3 leading-relaxed mb-4">
+
+                        <p className="text-[var(--ds-text-soft)] text-sm line-clamp-3 leading-relaxed mb-4">
                           {post.summary}
                         </p>
 
-                        {/* Read More */}
-                        <div className="flex items-center text-[color:var(--color-primary)] font-semibold group-hover:text-blue-600 transition-colors">
-                          <span className="text-sm">{t('blog.readMore')}</span>
-                          <svg className="w-4 h-4 ml-1 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <div className="inline-flex items-center gap-1.5 text-[var(--ds-gold)] font-medium text-sm">
+                          <span>{t('blog.readMore')}</span>
+                          <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                           </svg>
                         </div>
                       </div>
-
-                      {/* Hover Effect Overlay */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-[color:var(--color-primary)]/5 to-blue-600/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                   </Link>
-                ))}
-              </div>
+                </Reveal>
+              ))}
             </div>
-          )}
+          </div>
+        )}
 
-          {/* Premium CTA Section */}
-          <div className="mt-16 animate-fade-in" style={{ animationDelay: '1s' }}>
-            <div className="relative overflow-hidden rounded-2xl bg-gradient-to-r from-gray-900 to-blue-900">
-              <div className="absolute inset-0 bg-black/20"></div>
-              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-white/10 to-transparent rounded-full transform translate-x-16 -translate-y-16"></div>
-              <div className="absolute bottom-0 left-0 w-48 h-48 bg-gradient-to-tr from-[color:var(--color-secondary)]/20 to-transparent rounded-full transform -translate-x-12 translate-y-12"></div>
-              
-              <div className="relative z-10 p-8 md:p-12 text-center">
-                <h3 className="text-2xl md:text-3xl font-bold text-white mb-4">
-                  {t('blog.cta.moreStories', 'Daha Fazla Hikaye')}
-                </h3>
-                <p className="text-white/90 mb-6 max-w-2xl mx-auto">
-                  {t('blog.cta.exploreMore', 'Seyahat deneyimlerimizi ve rehberlerimizi keşfetmek için blog sayfamızı ziyaret edin.')}
-                </p>
-                <Link 
-                  to="/blog"
-                  className="group bg-[color:var(--color-secondary)] hover:bg-yellow-500 text-[color:var(--color-primary)] font-bold py-4 px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-2xl inline-flex items-center space-x-2"
-                >
+        {/* CTA */}
+        <div className="max-w-5xl mx-auto mt-20">
+          <Reveal>
+            <div className="relative overflow-hidden rounded-3xl ds-grain text-center px-6 py-14 md:py-20" style={{ background: 'var(--ds-grad-night)', border: '1px solid var(--ds-line)' }}>
+              <h3 className="ds-display text-2xl md:text-4xl text-[var(--ds-text)] mb-4">
+                {t('blog.cta.moreStories', 'Daha Fazla Hikaye')}
+              </h3>
+              <p className="ds-lead max-w-2xl mx-auto mb-8">
+                {t('blog.cta.exploreMore', 'Seyahat deneyimlerimizi ve rehberlerimizi keşfetmek için blog sayfamızı ziyaret edin.')}
+              </p>
+              <Magnetic>
+                <Link to="/blog" className="ds-btn">
                   <span>{t('blog.cta.viewAllPosts', 'Tüm Yazıları Görüntüle')}</span>
-                  <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                   </svg>
                 </Link>
-              </div>
+              </Magnetic>
             </div>
-          </div>
+          </Reveal>
         </div>
       </div>
     </div>
   );
 };
 
-export default BlogDetailPage; 
+export default BlogDetailPage;

@@ -233,7 +233,8 @@
     "authorName": "Endülüs Travel",
     "authorBio": "Seyahat tutkunu ve içerik yazarı.",
     "metaTitle": "Seyahat Blogu - Endülüs Travel",
-    "metaDescription": "Endülüs Travel blogunda destinasyon rehberleri, seyahat ipuçları ve ilham verici gezi hikayeleri sizi bekliyor. Bir sonraki tatiliniz için keşfedin."
+    "metaDescription": "Endülüs Travel blogunda destinasyon rehberleri, seyahat ipuçları ve ilham verici gezi hikayeleri sizi bekliyor. Bir sonraki tatiliniz için keşfedin.",
+    "eyebrow": "Çöl Günlükleri"
   },
   "about": {
     "valuesTitle": "Değerlerimiz",
@@ -386,7 +387,32 @@
       "personalization": "Kişiselleştirme",
       "offerFee": "Teklif Ücreti"
     },
-    "metaDescription": "Endülüs Travel ile size özel tur teklifi alın. Gitmek istediğiniz destinasyonu, tarihleri ve bütçenizi belirtin; uzman ekibimiz 24 saat içinde ücretsiz, kişiye özel fiyat teklifinizi hazırlasın."
+    "metaDescription": "Endülüs Travel ile size özel tur teklifi alın. Gitmek istediğiniz destinasyonu, tarihleri ve bütçenizi belirtin; uzman ekibimiz 24 saat içinde ücretsiz, kişiye özel fiyat teklifinizi hazırlasın.",
+    "heroEyebrow": "Rota Pusulası",
+    "heroTitle": "Hayalindeki rotayı tasarla",
+    "heroSubtitle": "Birkaç adımda yolculuğunu anlat; uzman ekibimiz 24 saat içinde sana özel, ücretsiz teklifini hazırlasın.",
+    "stepWhere": "Nereye",
+    "stepWhen": "Ne Zaman",
+    "stepHow": "Nasıl",
+    "stepContact": "İletişim",
+    "qWhere": "Nereye gitmek istersiniz?",
+    "qWhen": "Ne zaman ve hangi bütçeyle?",
+    "qHow": "Nasıl bir deneyim hayal ediyorsunuz?",
+    "qContact": "Size nasıl ulaşalım?",
+    "prefCulture": "Kültür & Tarih",
+    "prefNature": "Doğa",
+    "prefFood": "Gastronomi",
+    "prefShopping": "Alışveriş",
+    "prefRelax": "Dinlenme",
+    "prefFamily": "Aile Dostu",
+    "next": "Devam",
+    "back": "Geri",
+    "submitError": "Gönderim başarısız oldu, lütfen tekrar deneyin.",
+    "trust24h": "24 saat içinde dönüş",
+    "trustFree": "Ücretsiz & yükümlülüksüz",
+    "trustCustom": "Size özel hazırlanır",
+    "successTours": "Turları Keşfet",
+    "successHome": "Ana Sayfa"
   },
   "survey": {
     "pageTitle": "Ön Anket - Endülüs Travel",
@@ -464,7 +490,10 @@
     "stepByStepBadge": "Adım Adım Planlama",
     "statEasySteps": "Kolay Adım",
     "statMinutes": "Dakika Sürer",
-    "statCustomization": "Özelleştirme"
+    "statCustomization": "Özelleştirme",
+    "progressStep": "Adım",
+    "errorTitle": "Planlama sihirbazı yüklenemedi",
+    "errorDesc": "Bir sorun oluştu. Lütfen daha sonra tekrar deneyin veya bizimle iletişime geçin."
   },
   "tourPlanning": {
     "title": "Tur Planlama",
@@ -613,7 +642,9 @@
     "ctaGetQuote": "Ücretsiz Teklif Alın",
     "ctaWhatsapp": "WhatsApp ile Yazın",
     "callPrompt": "Hemen aramak isterseniz:",
-    "metaDescription": "Endülüs Travel ile iletişime geçin. Telefon, WhatsApp, e-posta ve Kadıköy ofis adresimiz üzerinden ulaşın; size özel seyahat planları ve ücretsiz danışmanlık için bizimle bağlantı kurun."
+    "metaDescription": "Endülüs Travel ile iletişime geçin. Telefon, WhatsApp, e-posta ve Kadıköy ofis adresimiz üzerinden ulaşın; size özel seyahat planları ve ücretsiz danışmanlık için bizimle bağlantı kurun.",
+    "heroEyebrow": "İstanbul · Boğaz",
+    "heroTitleFull": "Size ulaşalım"
   },
   "tourDetail": {
     "galleryMainAlt": "{{title}} - Ana fotoğraf",
@@ -693,7 +724,9 @@
     "featurePersonalDesc": "Size özel çözümler",
     "ctaGetOffer": "Özel Teklif Al",
     "ctaContact": "Bize Ulaşın",
-    "metaDescription": "Endülüs Travel ile özel rehberlik, ücretsiz danışmanlık ve kişiye özel seyahat çözümleri. İhtiyacınıza uygun profesyonel hizmetleri keşfedin ve size özel teklif alın."
+    "metaDescription": "Endülüs Travel ile özel rehberlik, ücretsiz danışmanlık ve kişiye özel seyahat çözümleri. İhtiyacınıza uygun profesyonel hizmetleri keşfedin ve size özel teklif alın.",
+    "heroEyebrow": "Fas · Marakeş & Çöl",
+    "gridHeading": "Size uygun çözümü seçin"
   },
   "tourDetailLegacy": {
     "mainPhotoAlt": "{{title}} - Ana fotoğraf",
@@ -761,7 +794,9 @@
     "ctaContactUs": "Bize Ulaşın",
     "viewAllServices": "Tüm Hizmetleri Gör",
     "metaTitle": "Hizmet Detayı - Endülüs Travel",
-    "metaDescription": "Endülüs Travel hizmetleri hakkında detaylı bilgi alın. Profesyonel ekibimizle size özel, kişiselleştirilmiş seyahat ve organizasyon çözümleri sunuyoruz."
+    "metaDescription": "Endülüs Travel hizmetleri hakkında detaylı bilgi alın. Profesyonel ekibimizle size özel, kişiselleştirilmiş seyahat ve organizasyon çözümleri sunuyoruz.",
+    "errorEyebrow": "Bir sorun oluştu",
+    "sectionEyebrow": "Detaylar"
   },
   "homeCta": {
     "badge": "Hayalleriniz Gerçek Oluyor",
@@ -926,7 +961,15 @@
     "termsMetaTitle": "Kullanım Koşulları - Endülüs Travel",
     "termsMetaDescription": "Endülüs Travel kullanım koşulları: Web sitemizi ve hizmetlerimizi kullanırken geçerli olan kurallar, hak ve sorumluluklar hakkında bilgi edinin.",
     "kvkkMetaTitle": "KVKK Aydınlatma Metni - Endülüs Travel",
-    "kvkkMetaDescription": "Endülüs Travel KVKK aydınlatma metni: 6698 sayılı Kanun kapsamında kişisel verilerinizin işlenmesi, haklarınız ve başvuru yöntemleri hakkında ayrıntılı bilgi."
+    "kvkkMetaDescription": "Endülüs Travel KVKK aydınlatma metni: 6698 sayılı Kanun kapsamında kişisel verilerinizin işlenmesi, haklarınız ve başvuru yöntemleri hakkında ayrıntılı bilgi.",
+    "loading": "Yükleniyor…",
+    "emptyBody": "İçerik henüz hazırlanmadı.",
+    "privacyEyebrow": "Kurtuba · Mezquita",
+    "privacyCrumb": "Gizlilik",
+    "termsEyebrow": "Gırnata · Elhamra",
+    "termsCrumb": "Kullanım Koşulları",
+    "kvkkEyebrow": "İstanbul · Süleymaniye",
+    "kvkkCrumb": "KVKK"
   },
   "nav": {
     "getOffer": "Teklif Al"

@@ -233,7 +233,8 @@
     "authorName": "Endülüs Travel",
     "authorBio": "Travel enthusiast and content writer.",
     "metaTitle": "Travel Blog - Endülüs Travel",
-    "metaDescription": "Discover destination guides, travel tips and inspiring journey stories on the Endülüs Travel blog. Find everything you need to plan your next holiday."
+    "metaDescription": "Discover destination guides, travel tips and inspiring journey stories on the Endülüs Travel blog. Find everything you need to plan your next holiday.",
+    "eyebrow": "Desert Journals"
   },
   "about": {
     "valuesTitle": "Our Values",
@@ -386,7 +387,32 @@
       "personalization": "Personalization",
       "offerFee": "Quote Fee"
     },
-    "metaDescription": "Get a personalized tour quote from Endülüs Travel. Tell us your destination, travel dates and budget; our expert team will prepare your free, tailor-made price offer within 24 hours."
+    "metaDescription": "Get a personalized tour quote from Endülüs Travel. Tell us your destination, travel dates and budget; our expert team will prepare your free, tailor-made price offer within 24 hours.",
+    "heroEyebrow": "Route Compass",
+    "heroTitle": "Design your dream route",
+    "heroSubtitle": "Tell us about your journey in a few steps and our experts will craft your free, personalized offer within 24 hours.",
+    "stepWhere": "Where",
+    "stepWhen": "When",
+    "stepHow": "How",
+    "stepContact": "Contact",
+    "qWhere": "Where would you like to go?",
+    "qWhen": "When and with what budget?",
+    "qHow": "What kind of experience do you imagine?",
+    "qContact": "How can we reach you?",
+    "prefCulture": "Culture & History",
+    "prefNature": "Nature",
+    "prefFood": "Gastronomy",
+    "prefShopping": "Shopping",
+    "prefRelax": "Relaxation",
+    "prefFamily": "Family Friendly",
+    "next": "Continue",
+    "back": "Back",
+    "submitError": "Submission failed, please try again.",
+    "trust24h": "Reply within 24 hours",
+    "trustFree": "Free & no obligation",
+    "trustCustom": "Tailored to you",
+    "successTours": "Explore Tours",
+    "successHome": "Home"
   },
   "survey": {
     "pageTitle": "Pre-Survey - Endülüs Travel",
@@ -464,7 +490,10 @@
     "stepByStepBadge": "Step-by-Step Planning",
     "statEasySteps": "Easy Steps",
     "statMinutes": "Minutes to Complete",
-    "statCustomization": "Customization"
+    "statCustomization": "Customization",
+    "progressStep": "Step",
+    "errorTitle": "Planning wizard could not be loaded",
+    "errorDesc": "Something went wrong. Please try again later or get in touch with us."
   },
   "tourPlanning": {
     "title": "Tour Planning",
@@ -613,7 +642,9 @@
     "ctaGetQuote": "Get a Free Quote",
     "ctaWhatsapp": "Message Us on WhatsApp",
     "callPrompt": "If you'd like to call right away:",
-    "metaDescription": "Get in touch with Endülüs Travel. Reach us by phone, WhatsApp, email or visit our Kadıköy office; contact us for tailor-made travel plans and free consultation."
+    "metaDescription": "Get in touch with Endülüs Travel. Reach us by phone, WhatsApp, email or visit our Kadıköy office; contact us for tailor-made travel plans and free consultation.",
+    "heroEyebrow": "Istanbul · The Bosphorus",
+    "heroTitleFull": "Let us reach you"
   },
   "tourDetail": {
     "galleryMainAlt": "{{title}} - Main photo",
@@ -693,7 +724,9 @@
     "featurePersonalDesc": "Solutions tailored to you",
     "ctaGetOffer": "Get a Custom Quote",
     "ctaContact": "Contact Us",
-    "metaDescription": "Discover Endülüs Travel's professional services: private guidance, free consultation and tailor-made travel solutions. Explore the right service for your needs and get a personalized offer."
+    "metaDescription": "Discover Endülüs Travel's professional services: private guidance, free consultation and tailor-made travel solutions. Explore the right service for your needs and get a personalized offer.",
+    "heroEyebrow": "Morocco · Marrakech & Desert",
+    "gridHeading": "Choose the right solution for you"
   },
   "tourDetailLegacy": {
     "mainPhotoAlt": "{{title}} - Main photo",
@@ -761,7 +794,9 @@
     "ctaContactUs": "Contact Us",
     "viewAllServices": "View All Services",
     "metaTitle": "Service Detail - Endülüs Travel",
-    "metaDescription": "Get detailed information about Endülüs Travel services. Our professional team offers tailored, personalized travel and organization solutions designed just for you."
+    "metaDescription": "Get detailed information about Endülüs Travel services. Our professional team offers tailored, personalized travel and organization solutions designed just for you.",
+    "errorEyebrow": "Something went wrong",
+    "sectionEyebrow": "Details"
   },
   "homeCta": {
     "badge": "Your Dreams Are Coming True",
@@ -926,7 +961,15 @@
     "termsMetaTitle": "Terms of Use - Endülüs Travel",
     "termsMetaDescription": "Endülüs Travel terms of use: learn about the rules, rights and responsibilities that apply when using our website and services.",
     "kvkkMetaTitle": "Data Protection Notice (KVKK) - Endülüs Travel",
-    "kvkkMetaDescription": "Endülüs Travel data protection (KVKK) notice: detailed information on the processing of your personal data, your rights and how to apply under Turkish Law No. 6698."
+    "kvkkMetaDescription": "Endülüs Travel data protection (KVKK) notice: detailed information on the processing of your personal data, your rights and how to apply under Turkish Law No. 6698.",
+    "loading": "Loading…",
+    "emptyBody": "This content has not been prepared yet.",
+    "privacyEyebrow": "Córdoba · Mezquita",
+    "privacyCrumb": "Privacy",
+    "termsEyebrow": "Granada · Alhambra",
+    "termsCrumb": "Terms of Use",
+    "kvkkEyebrow": "Istanbul · Süleymaniye",
+    "kvkkCrumb": "KVKK"
   },
   "nav": {
     "getOffer": "Get a Quote"

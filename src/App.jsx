@@ -23,6 +23,7 @@ import { PrivacyPage, TermsPage, KvkkPage } from './pages/legal-page';
 import ScrollToTop from './components/utils/scroll-to-top';
 import PageViewTracker from './components/utils/PageViewTracker';
 import SmoothScroll from './components/motion/SmoothScroll';
+import { IntroLoader, RouteTransition } from './components/motion/RouteFx';
 
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute } from './components/admin/ProtectedRoute';
@@ -122,6 +123,8 @@ function App() {
     <BrowserRouter>
       <AuthProvider>
         <SmoothScroll>
+        <IntroLoader />
+        <RouteTransition />
         <ScrollToTop />
         <PageViewTracker />
         <Routes>
