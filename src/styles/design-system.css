@@ -1,0 +1,172 @@
+/* ============================================================================
+   Endülüs Travel — Cinematic Design System (2026 redesign)
+   Concept: "The Traveler's Journey through the Islamic World".
+   Deep midnight navy + desert gold + warm bone. Jewel-tone, luxury, immersive.
+   New tokens live alongside the legacy --color-* tokens so pages can migrate
+   one at a time without breaking.
+   ============================================================================ */
+
+@layer theme {
+  :root {
+    /* Surfaces (dark, cinematic) */
+    --ds-bg: #0a0e1a;          /* near-black midnight navy — page base */
+    --ds-bg-soft: #0f1525;
+    --ds-surface: #141b2e;
+    --ds-surface-2: #1b2438;
+    --ds-overlay: rgba(7, 10, 18, 0.62);
+
+    /* Brand metals & warmth */
+    --ds-gold: #d9b25a;        /* primary gold */
+    --ds-gold-bright: #f0cf8b; /* highlight gold */
+    --ds-gold-deep: #a6822f;
+    --ds-emerald: #2f8f73;     /* subtle Islamic green */
+    --ds-sand: #cbb791;        /* desert sand */
+    --ds-terracotta: #c1623f;  /* warm accent */
+
+    /* Text */
+    --ds-text: #f6efe1;        /* warm bone */
+    --ds-text-soft: #cdc7b8;
+    --ds-text-muted: #8d8775;
+    --ds-on-gold: #1a1206;
+
+    /* Lines / glass */
+    --ds-line: rgba(217, 178, 90, 0.16);
+    --ds-line-strong: rgba(217, 178, 90, 0.34);
+    --ds-glass: rgba(255, 255, 255, 0.06);
+    --ds-glass-border: rgba(255, 255, 255, 0.12);
+
+    /* Gradients */
+    --ds-grad-gold: linear-gradient(105deg, #f0cf8b 0%, #d9b25a 45%, #a6822f 100%);
+    --ds-grad-night: radial-gradient(120% 120% at 50% 0%, #16203a 0%, #0a0e1a 60%);
+
+    /* Motion */
+    --ds-ease: cubic-bezier(0.22, 1, 0.36, 1);          /* smooth out-expo-ish */
+    --ds-ease-inout: cubic-bezier(0.83, 0, 0.17, 1);
+    --ds-dur: 0.8s;
+
+    /* Type families (loaded in index.html) */
+    --ds-font-display: 'Fraunces', 'Georgia', serif;
+    --ds-font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+
+    /* Layout */
+    --ds-maxw: 1280px;
+    --ds-gutter: clamp(1rem, 4vw, 3rem);
+  }
+}
+
+@layer base {
+  /* Lenis owns scrolling — disable native smooth-scroll to avoid fighting it. */
+  html.lenis,
+  html.lenis body { height: auto; }
+  html.lenis { scroll-behavior: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-stopped { overflow: hidden; }
+
+  /* Fluid display type helpers */
+  .ds-dark { background: var(--ds-bg); color: var(--ds-text); }
+}
+
+@layer components {
+  /* ---- Typography ------------------------------------------------------- */
+  .ds-display {
+    font-family: var(--ds-font-display);
+    font-weight: 300;
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    font-optical-sizing: auto;
+  }
+  .ds-eyebrow {
+    font-family: var(--ds-font-sans);
+    text-transform: uppercase;
+    letter-spacing: 0.42em;
+    font-size: 0.72rem;
+    font-weight: 500;
+    color: var(--ds-gold);
+  }
+  .ds-gold-text {
+    background: var(--ds-grad-gold);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .ds-h1 { font-size: clamp(2.6rem, 7vw, 6.5rem); }
+  .ds-h2 { font-size: clamp(2rem, 4.6vw, 4rem); }
+  .ds-lead { font-size: clamp(1.05rem, 1.5vw, 1.35rem); color: var(--ds-text-soft); line-height: 1.6; }
+
+  /* ---- Glass card ------------------------------------------------------- */
+  .ds-glass {
+    background: var(--ds-glass);
+    border: 1px solid var(--ds-glass-border);
+    backdrop-filter: blur(14px) saturate(120%);
+    -webkit-backdrop-filter: blur(14px) saturate(120%);
+  }
+
+  /* ---- Buttons ---------------------------------------------------------- */
+  .ds-btn {
+    --bg: var(--ds-grad-gold);
+    position: relative;
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.95rem 1.8rem;
+    border-radius: 999px;
+    font-family: var(--ds-font-sans);
+    font-weight: 600; font-size: 0.95rem; letter-spacing: 0.01em;
+    color: var(--ds-on-gold);
+    background: var(--bg);
+    overflow: hidden; isolation: isolate;
+    transition: transform 0.4s var(--ds-ease), box-shadow 0.4s var(--ds-ease);
+    box-shadow: 0 10px 30px -10px rgba(217, 178, 90, 0.5);
+  }
+  .ds-btn:hover { transform: translateY(-2px); box-shadow: 0 18px 44px -12px rgba(217, 178, 90, 0.6); }
+  .ds-btn::after { /* sheen sweep */
+    content: ''; position: absolute; inset: 0; z-index: -1;
+    background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.55) 50%, transparent 70%);
+    transform: translateX(-120%); transition: transform 0.7s var(--ds-ease);
+  }
+  .ds-btn:hover::after { transform: translateX(120%); }
+
+  .ds-btn-ghost {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    padding: 0.9rem 1.7rem; border-radius: 999px;
+    font-family: var(--ds-font-sans); font-weight: 500; font-size: 0.95rem;
+    color: var(--ds-text);
+    border: 1px solid var(--ds-line-strong);
+    background: transparent;
+    transition: background 0.4s var(--ds-ease), border-color 0.4s var(--ds-ease), color 0.4s var(--ds-ease);
+  }
+  .ds-btn-ghost:hover { background: var(--ds-glass); border-color: var(--ds-gold); color: var(--ds-gold-bright); }
+
+  /* ---- Decorative ------------------------------------------------------- */
+  .ds-hairline { height: 1px; background: linear-gradient(90deg, transparent, var(--ds-line-strong), transparent); }
+  .ds-grain::before {
+    content: ''; position: absolute; inset: 0; pointer-events: none; z-index: 2; opacity: 0.05;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+  /* subtle vignette for video heroes */
+  .ds-vignette::after {
+    content: ''; position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(120% 90% at 50% 30%, transparent 40%, rgba(5,7,13,0.55) 100%);
+  }
+}
+
+@keyframes ds-marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes ds-shimmer { 0% { background-position: -150% 0; } 100% { background-position: 250% 0; } }
+@keyframes ds-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-8px); } }
+@keyframes ds-spin-slow { to { transform: rotate(360deg); } }
+
+@layer utilities {
+  .ds-container { width: 100%; max-width: var(--ds-maxw); margin-inline: auto; padding-inline: var(--ds-gutter); }
+  .ds-float { animation: ds-float 6s var(--ds-ease) infinite; }
+  .ds-spin-slow { animation: ds-spin-slow 40s linear infinite; }
+  .ds-clip-text { overflow: hidden; }            /* parent for line-mask reveals */
+  .text-balance { text-wrap: balance; }
+
+  /* Respect reduced motion — kill heavy transforms/animations */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.001ms !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}

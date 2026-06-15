@@ -22,6 +22,7 @@ import ServiceDetailPage from './pages/service-detail-page';
 import { PrivacyPage, TermsPage, KvkkPage } from './pages/legal-page';
 import ScrollToTop from './components/utils/scroll-to-top';
 import PageViewTracker from './components/utils/PageViewTracker';
+import SmoothScroll from './components/motion/SmoothScroll';
 
 import { AuthProvider } from './context/AuthContext';
 import { ProtectedRoute } from './components/admin/ProtectedRoute';
@@ -120,6 +121,7 @@ function App() {
   return (
     <BrowserRouter>
       <AuthProvider>
+        <SmoothScroll>
         <ScrollToTop />
         <PageViewTracker />
         <Routes>
@@ -179,6 +181,7 @@ function App() {
           {/* Old unprefixed URLs -> translated, locale-prefixed equivalents */}
           <Route path="*" element={<LegacyRedirect />} />
         </Routes>
+        </SmoothScroll>
       </AuthProvider>
     </BrowserRouter>
   );
