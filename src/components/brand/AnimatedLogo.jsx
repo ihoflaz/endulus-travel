@@ -25,13 +25,21 @@ const STROKE = {
 // Animated brand mark. `withWordmark` adds the ENDÜLÜS · TRAVEL lockup.
 // `animate` runs the assemble draw on mount; hovering always replays it
 // (unless the user prefers reduced motion).
-const AnimatedLogo = ({ size = 40, variant = 'gold', withWordmark = true, className = '', animate = true }) => {
+const AnimatedLogo = ({
+  size = 40,
+  variant = 'gold',
+  withWordmark = true,
+  className = '',
+  animate = true,
+  loop = false,
+  loopEvery = 8000,
+}) => {
   const fill = FILL[variant] || FILL.gold;
   const stroke = STROKE[variant] || STROKE.gold;
   const textColor = variant === 'navy' ? '#1a365d' : 'var(--ds-text, #f6efe1)';
 
   const reduce = useReducedMotion();
-  const doDraw = animate && !reduce;
+  const doDraw = (animate || loop) && !reduce;
 
   const [playing, setPlaying] = useState(false);
   const [run, setRun] = useState(0);
@@ -41,18 +49,28 @@ const AnimatedLogo = ({ size = 40, variant = 'gold', withWordmark = true, classN
     setRun((r) => r + 1);
     setPlaying(true);
     clearTimeout(timer.current);
-    timer.current = setTimeout(() => setPlaying(false), 1900);
+    timer.current = setTimeout(() => setPlaying(false), 2300);
   };
 
+  // play on mount
   useEffect(() => {
     if (doDraw) play();
     return () => clearTimeout(timer.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [doDraw]);
 
+  // gentle periodic self-assemble (visible without interaction)
+  useEffect(() => {
+    if (!loop || reduce) return undefined;
+    const id = setInterval(() => play(), loopEvery);
+    return () => clearInterval(id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loop, reduce, loopEvery]);
+
   const onEnter = () => { if (!reduce) play(); };
 
-  const strokeW = Math.max(4, 1024 / size * 0.4); // visually steady hairline across sizes
+  const strokeW = Math.max(5, (1024 / size) * 0.5); // visually steady, slightly bolder
+  const glow = variant === 'gold' ? 'drop-shadow(0 0 4px rgba(240,207,139,0.75))' : 'none';
 
   return (
     <span
@@ -103,7 +121,7 @@ const AnimatedLogo = ({ size = 40, variant = 'gold', withWordmark = true, classN
 
         {/* assemble overlay — transient stroked pieces that write then dissolve */}
         {playing && (
-          <g key={run}>
+          <g key={run} style={{ filter: glow }}>
             {SUBPATHS.map((d, i) => (
               <motion.path
                 key={i}
@@ -116,8 +134,8 @@ const AnimatedLogo = ({ size = 40, variant = 'gold', withWordmark = true, classN
                 initial={{ pathLength: 0, opacity: 0 }}
                 animate={{ pathLength: 1, opacity: [0, 1, 1, 0] }}
                 transition={{
-                  pathLength: { duration: 0.85, delay: 0.04 + i * 0.045, ease: [0.22, 1, 0.36, 1] },
-                  opacity: { duration: 1.05, delay: 0.04 + i * 0.045, times: [0, 0.2, 0.7, 1] },
+                  pathLength: { duration: 1.0, delay: 0.05 + i * 0.06, ease: [0.22, 1, 0.36, 1] },
+                  opacity: { duration: 1.35, delay: 0.05 + i * 0.06, times: [0, 0.15, 0.78, 1] },
                 }}
               />
             ))}

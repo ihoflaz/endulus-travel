@@ -87,7 +87,7 @@ const Navbar = () => {
           <div className={`flex items-center justify-between transition-all duration-500 ${scrolled ? 'h-16' : 'h-20'}`}>
             {/* Logo */}
             <Link to="/" aria-label={t('navbar.ariaGoHome', 'Ana sayfaya git')} className="shrink-0">
-              <AnimatedLogo size={scrolled ? 34 : 40} variant="gold" withWordmark animate={false} className="[&_*]:transition-all" />
+              <AnimatedLogo size={scrolled ? 34 : 40} variant="gold" withWordmark loop loopEvery={8000} className="[&_*]:transition-all" />
             </Link>
 
             {/* Desktop links */}
