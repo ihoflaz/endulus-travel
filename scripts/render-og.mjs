@@ -1,0 +1,16 @@
+import puppeteer from 'puppeteer-core';
+import path from 'path';
+import fs from 'fs';
+const CHROME = 'C:/Program Files/Google/Chrome/Application/chrome.exe';
+const HTML = 'file:///' + path.resolve('scripts/og-card.html').replace(/\\/g, '/');
+const OUT = path.resolve('scripts/_shots');
+fs.mkdirSync(OUT, { recursive: true });
+const b = await puppeteer.launch({ executablePath: CHROME, headless: 'new', args: ['--no-sandbox'] });
+const p = await b.newPage();
+await p.setViewport({ width: 1200, height: 630, deviceScaleFactor: 1 });
+await p.goto(HTML, { waitUntil: 'networkidle0', timeout: 30000 });
+await p.waitForFunction('window.__ogready === true', { timeout: 15000 });
+await new Promise((r) => setTimeout(r, 300));
+await p.screenshot({ path: `${OUT}/og-default.png`, clip: { x: 0, y: 0, width: 1200, height: 630 } });
+await b.close();
+console.log('og-default.png rendered');

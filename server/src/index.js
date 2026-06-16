@@ -32,6 +32,7 @@ import auditRoutes from './routes/audit.js';
 import metaCapiRoutes from './routes/metaCapi.js';
 import reviewRoutes from './routes/reviews.js';
 import sitemapRoutes from './routes/sitemap.js';
+import ogRoutes from './routes/og.js';
 
 export const buildApp = () => {
   const app = express();
@@ -168,6 +169,10 @@ export const buildApp = () => {
 
   // SEO surfaces — sitemap + robots served at site root through the edge.
   app.use('/', sitemapRoutes);
+
+  // Open Graph cards for social crawlers. nginx routes crawler user-agents for
+  // public page paths here; this returns per-page OG meta (humans get the SPA).
+  app.use('/', ogRoutes);
 
   // CORS errors → 403 (before the catch-all 500 handler).
   app.use(corsErrorHandler);

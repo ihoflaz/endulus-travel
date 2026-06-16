@@ -51,6 +51,7 @@ const faq = [
   { question: `Uçuş bilgileri nelerdir?`, answer: `Gidiş: 26 Haziran 23:55 Sabiha Gökçen → Kahire (AJET VF247). Dönüş: 3 Temmuz 04:45 Şarm el-Şeyh → Sabiha Gökçen (AJET VF256). 20 kg bagaj hakkı fiyata dahildir.` },
   { question: `Vize gerekiyor mu, ek resmi ücretler var mı?`, answer: `Mısır kapı vizesi 30 USD'dir ve fiyata dahil değildir. Yurt dışı çıkış harcı (1250 TL) havalimanında ödenir. Bu resmi ücretler ile tüm şahsi harcamalar misafire aittir.` },
   { question: `Konaklama nerede?`, answer: `Kahire'de 3 gece kahvaltı dahil 4 yıldızlı Azal Pyramids Hotel; Şarm el-Şeyh'de 3 gece her şey dahil 5 yıldızlı Dreams Beach Resort.` },
+  { question: `Pasaport için bir şart var mı?`, answer: `Pasaportunuzun, gezi bitiş tarihi itibarıyla en az 6 ay geçerli olması gerekmektedir.` },
 ];
 
 const itinJson = JSON.stringify(itinerary);
