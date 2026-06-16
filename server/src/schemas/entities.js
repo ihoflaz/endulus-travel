@@ -2,6 +2,16 @@
 // factory consume these — keeping them in one place avoids drift.
 import { z } from 'zod';
 
+// Accepts "" / null / "YYYY-MM-DD" / full ISO; yields a Date or null.
+const dateField = z
+  .union([z.string(), z.null()])
+  .optional()
+  .transform((v) => {
+    if (!v) return null;
+    const d = new Date(v);
+    return Number.isNaN(d.getTime()) ? null : d;
+  });
+
 export const tourSchema = z.object({
   slug: z.string().min(1),
   title: z.string().min(1),
@@ -50,6 +60,10 @@ export const tourSchema = z.object({
   // falls back to the base (Turkish) columns for any missing field/locale.
   translations: z.record(z.any()).nullable().optional(),
   whatsappMessage: z.string().nullable().optional(),
+  startDate: dateField,
+  endDate: dateField,
+  instagramUrl: z.string().nullable().optional(),
+  instagramData: z.any().nullable().optional(),
   active: z.boolean().optional().default(true),
   featured: z.boolean().optional().default(false),
   order: z.number().int().optional().default(0),

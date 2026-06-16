@@ -90,7 +90,13 @@ async function seedTours() {
         included: Array.isArray(t.included) ? t.included : [],
         notIncluded: Array.isArray(t.notIncluded) ? t.notIncluded : [],
         itinerary: t.itinerary ?? null,
+        faq: t.faq ?? null,
+        translations: t.translations ?? null,
+        startDate: t.startDate ? new Date(t.startDate) : null,
+        endDate: t.endDate ? new Date(t.endDate) : null,
+        instagramUrl: t.instagramUrl ?? null,
         whatsappMessage: t.whatsappMessage ?? null,
+        featured: !!t.featured,
         order: i,
       },
     });

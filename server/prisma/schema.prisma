@@ -85,6 +85,15 @@ model Tour {
   // itinerary[], faq[] } }. Base columns stay Turkish; missing locale -> base.
   translations    Json?
   whatsappMessage String?
+  // Structured departure window — drives automatic past/upcoming state and
+  // chronological sorting. Free-text `dates` stays for display.
+  startDate       DateTime?
+  endDate         DateTime?
+  // Instagram recap reel for completed tours; instagramData caches the oEmbed
+  // payload (thumbnail_url, author_name, html) so the page renders without a
+  // live token on every request.
+  instagramUrl    String?
+  instagramData   Json?
   active          Boolean  @default(true)
   featured        Boolean  @default(false)
   order           Int      @default(0)
@@ -94,6 +103,7 @@ model Tour {
   @@index([slug])
   @@index([type])
   @@index([category])
+  @@index([startDate])
 }
 
 model Review {

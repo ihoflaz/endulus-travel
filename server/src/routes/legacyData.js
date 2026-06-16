@@ -49,6 +49,10 @@ router.get(
       faq: t.faq,
       translations: t.translations,
       whatsappMessage: t.whatsappMessage,
+      startDate: t.startDate,
+      endDate: t.endDate,
+      instagramUrl: t.instagramUrl,
+      instagramData: t.instagramData,
     }));
     res.json({ featured });
   })

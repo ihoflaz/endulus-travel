@@ -12,12 +12,15 @@ const emptyTour = {
   pricePerPerson: '', originalPrice: '', campaignPrice: '', currency: '',
   priceStatus: '', priceNote: '',
   groupSize: '', duration: '', dates: '',
+  startDate: '', endDate: '', instagramUrl: '',
   image: '', gallery: [],
   highlights: [], included: [], notIncluded: [], itinerary: [], faq: [],
   specialOffer: false, whatsappMessage: '',
   active: true, featured: false, order: 0,
   translations: {},
 };
+
+const dateInput = (v) => (v ? String(v).slice(0, 10) : '');
 
 const ItineraryEditor = ({ value = [], onChange }) => {
   const update = (i, patch) => {
@@ -206,10 +209,17 @@ const ToursAdminPage = () => {
           </div>
 
           <div className="grid gap-3 sm:grid-cols-3">
-            <Input label="Grup Boyu" value={editing.groupSize || ''} onChange={(e) => setEditing({ ...editing, groupSize: e.target.value })} placeholder="10-15 kişi" />
+            <Input label="Grup Boyu" value={editing.groupSize || ''} onChange={(e) => setEditing({ ...editing, groupSize: e.target.value })} placeholder="15-20 kişi" />
             <Input label="Süre" value={editing.duration || ''} onChange={(e) => setEditing({ ...editing, duration: e.target.value })} placeholder="7 gün / 6 gece" />
-            <Input label="Tarihler" value={editing.dates || ''} onChange={(e) => setEditing({ ...editing, dates: e.target.value })} placeholder="29 Ağustos - 5 Eylül" />
+            <Input label="Tarihler (görünen metin)" value={editing.dates || ''} onChange={(e) => setEditing({ ...editing, dates: e.target.value })} placeholder="29 Ağustos - 5 Eylül" />
           </div>
+
+          <div className="grid gap-3 sm:grid-cols-3">
+            <Input label="Başlangıç Tarihi" type="date" value={dateInput(editing.startDate)} onChange={(e) => setEditing({ ...editing, startDate: e.target.value })} />
+            <Input label="Bitiş Tarihi" type="date" value={dateInput(editing.endDate)} onChange={(e) => setEditing({ ...editing, endDate: e.target.value })} />
+            <Input label="Instagram Reel Linki" value={editing.instagramUrl || ''} onChange={(e) => setEditing({ ...editing, instagramUrl: e.target.value })} placeholder="https://www.instagram.com/reel/..." />
+          </div>
+          <p className="-mt-1 text-xs text-slate-500">Bitiş tarihi bugünden önce olan turlar otomatik olarak "Geçmiş Turlar" bölümünde gösterilir; gelecek tarihli turlar rezervasyona/teklife açık kalır. Instagram reel linki eklenirse tur detay sayfasında özet video gösterilir.</p>
 
           <ImagePicker label="Kapak görseli" value={editing.image} onChange={(p) => setEditing({ ...editing, image: p })} />
 
