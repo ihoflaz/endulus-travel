@@ -9,7 +9,7 @@ import { Reveal } from '../components/motion';
 import { trackLead } from '../lib/analytics';
 import { getUtmPayload } from '../lib/utm';
 import { useTours } from '../hooks';
-import { partitionTours } from '../utils/tour-status';
+import { partitionTours, upcomingDepartures } from '../utils/tour-status';
 import { formatTourPrice } from '../utils/priceUtils';
 
 const MEDIA = '/uploads/media';
@@ -24,28 +24,55 @@ const RequestOfferPage = () => {
 
   const [formData, setFormData] = useState({
     fullName: '', email: '', phone: '', destination: '', travelDate: '',
-    tourSlug: '', tourTitle: '', numberOfPeople: '', preferences: [], additionalInfo: '',
+    tourSlug: '', tourTitle: '', dateKey: '', numberOfPeople: '', preferences: [], additionalInfo: '',
   });
   const [errors, setErrors] = useState({});
   const [submitStatus, setSubmitStatus] = useState(null);
   const [formOptions, setFormOptions] = useState(null);
   const [step, setStep] = useState(0);
 
-  // Only upcoming, dated departures — grouped by destination (one card per place).
+  // Only upcoming tours — those with a single dated window OR a departure
+  // calendar — grouped by destination (one card per place).
   const destGroups = useMemo(() => {
     const { upcoming } = partitionTours(Array.isArray(tours) ? tours : []);
-    const dated = upcoming.filter((x) => x.startDate);
+    const dated = upcoming.filter((x) => x.startDate || (Array.isArray(x.departures) && x.departures.length));
     const map = new Map();
     for (const tr of dated) {
       const key = tr.destination || tr.title;
       if (!map.has(key)) map.set(key, { destination: key, image: tr.image, description: tr.description, tours: [] });
       map.get(key).tours.push(tr);
     }
+    // Per-group count of selectable date options (departures expand to many).
+    for (const g of map.values()) {
+      g.dateCount = g.tours.reduce((n, tr) => {
+        const deps = upcomingDepartures(tr);
+        return n + (deps.length || (tr.startDate || tr.dates ? 1 : 0));
+      }, 0);
+    }
     return [...map.values()];
   }, [tours]);
 
   const hasTours = destGroups.length > 0;
   const selectedGroup = useMemo(() => destGroups.find((g) => g.destination === formData.destination) || null, [destGroups, formData.destination]);
+
+  // Expand the selected destination's tours into one card per departure date.
+  const dateOptions = useMemo(() => {
+    if (!selectedGroup) return [];
+    const opts = [];
+    for (const tr of selectedGroup.tours) {
+      const deps = upcomingDepartures(tr);
+      if (deps.length) {
+        deps.forEach((d, i) => opts.push({
+          key: `${tr.slug}#${i}`,
+          label: d.label || [d.startDate, d.endDate].filter(Boolean).join(' - '),
+          tour: tr,
+        }));
+      } else if (tr.startDate || tr.dates) {
+        opts.push({ key: tr.slug, label: tr.dates || tr.title, tour: tr });
+      }
+    }
+    return opts;
+  }, [selectedGroup]);
 
   // Prefill from URL (?destination, persons, days, interests). Match a group if possible.
   useEffect(() => {
@@ -94,8 +121,8 @@ const RequestOfferPage = () => {
     setFormData((p) => ({ ...p, [name]: value }));
     if (errors[name]) setErrors((p) => ({ ...p, [name]: null }));
   };
-  const pickDestination = (key) => setFormData((p) => ({ ...p, destination: key, travelDate: '', tourSlug: '', tourTitle: '' }));
-  const pickDate = (tr) => setFormData((p) => ({ ...p, travelDate: tr.dates || tr.title, tourSlug: tr.slug, tourTitle: tr.title }));
+  const pickDestination = (key) => setFormData((p) => ({ ...p, destination: key, travelDate: '', tourSlug: '', tourTitle: '', dateKey: '' }));
+  const pickDate = (opt) => setFormData((p) => ({ ...p, travelDate: opt.label, tourSlug: opt.tour.slug, tourTitle: opt.tour.title, dateKey: opt.key }));
   const togglePref = (value) => setFormData((p) => ({
     ...p, preferences: p.preferences.includes(value) ? p.preferences.filter((x) => x !== value) : [...p.preferences, value],
   }));
@@ -114,7 +141,7 @@ const RequestOfferPage = () => {
       if (!formData.numberOfPeople.trim()) e.numberOfPeople = t('offer.errors.numberOfPeopleRequired', 'Kişi sayısı zorunludur');
       else if (isNaN(formData.numberOfPeople) || parseInt(formData.numberOfPeople, 10) < 1) e.numberOfPeople = t('offer.errors.numberOfPeopleInvalid', 'Geçerli bir kişi sayısı giriniz');
     }
-    if (s === 1 && selectedGroup && selectedGroup.tours.length && !formData.travelDate) {
+    if (s === 1 && dateOptions.length && !formData.travelDate) {
       e.travelDate = t('offer.errors.dateRequired', 'Lütfen bir tarih seçin');
     }
     if (s === 3) {
@@ -232,7 +259,7 @@ const RequestOfferPage = () => {
                                   </div>
                                   <div className="p-4 pt-3">
                                     <p className="text-sm text-[var(--ds-text-muted)] leading-relaxed">{clip(g.description, 100)}</p>
-                                    <span className="mt-2 inline-block text-xs text-[var(--ds-gold-bright)]">{g.tours.length > 1 ? `${g.tours.length} tarih seçeneği` : t('offer.oneDeparture', '1 tarih seçeneği')}</span>
+                                    <span className="mt-2 inline-block text-xs text-[var(--ds-gold-bright)]">{g.dateCount > 1 ? t('offer.nDepartures', '{{count}} tarih seçeneği', { count: g.dateCount }) : t('offer.oneDeparture', '1 tarih seçeneği')}</span>
                                   </div>
                                 </button>
                               );
@@ -259,17 +286,18 @@ const RequestOfferPage = () => {
                   {step === 1 && (
                     <div className="space-y-8">
                       <h3 className="ds-display text-2xl text-[var(--ds-text)]">{t('offer.qWhen', 'Hangi tarihte gitmek istersiniz?')}</h3>
-                      {selectedGroup && selectedGroup.tours.length ? (
+                      {selectedGroup && dateOptions.length ? (
                         <div>
                           <p className="text-[var(--ds-text-soft)] -mt-2">{t('offer.dateLead', '{{dest}} için planlanan tarihler:', { dest: selectedGroup.destination })}</p>
                           <div className="space-y-3 mt-2">
-                            {selectedGroup.tours.map((tr) => {
-                              const on = formData.tourSlug === tr.slug;
+                            {dateOptions.map((opt) => {
+                              const tr = opt.tour;
+                              const on = formData.dateKey === opt.key;
                               return (
-                                <button key={tr.slug} type="button" onClick={() => pickDate(tr)}
+                                <button key={opt.key} type="button" onClick={() => pickDate(opt)}
                                   className={`w-full text-left rounded-2xl p-5 ds-glass flex items-center justify-between gap-4 transition-all ${on ? 'ring-2 ring-[var(--ds-gold)]' : 'hover:border-[var(--ds-line-strong)]'}`}>
                                   <div className="min-w-0">
-                                    <div className="ds-display text-lg text-[var(--ds-text)]">{tr.dates || tr.title}</div>
+                                    <div className="ds-display text-lg text-[var(--ds-text)]">{opt.label}</div>
                                     <div className="text-sm text-[var(--ds-text-muted)] mt-1">
                                       {[tr.duration, tr.groupSize].filter(Boolean).join(' · ')}
                                     </div>

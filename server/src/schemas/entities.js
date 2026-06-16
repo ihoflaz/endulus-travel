@@ -62,6 +62,18 @@ export const tourSchema = z.object({
   whatsappMessage: z.string().nullable().optional(),
   startDate: dateField,
   endDate: dateField,
+  // Departure calendar — multiple dates for one tour. Dates kept as plain
+  // strings (YYYY-MM-DD) inside the JSON column; the frontend parses them.
+  departures: z
+    .array(
+      z.object({
+        label: z.string().nullable().optional(),
+        startDate: z.string().nullable().optional(),
+        endDate: z.string().nullable().optional(),
+      })
+    )
+    .nullable()
+    .optional(),
   instagramUrl: z.string().nullable().optional(),
   instagramData: z.any().nullable().optional(),
   active: z.boolean().optional().default(true),

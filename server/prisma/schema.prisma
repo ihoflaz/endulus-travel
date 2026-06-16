@@ -94,6 +94,9 @@ model Tour {
   // live token on every request.
   instagramUrl    String?
   instagramData   Json?
+  // Departure calendar — multiple dates for one tour: [{ label, startDate, endDate }].
+  // When present, drives the upcoming/past state and the offer form's date list.
+  departures      Json?
   active          Boolean  @default(true)
   featured        Boolean  @default(false)
   order           Int      @default(0)

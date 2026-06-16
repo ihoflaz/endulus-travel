@@ -51,6 +51,7 @@ router.get(
       whatsappMessage: t.whatsappMessage,
       startDate: t.startDate,
       endDate: t.endDate,
+      departures: t.departures,
       instagramUrl: t.instagramUrl,
       instagramData: t.instagramData,
     }));

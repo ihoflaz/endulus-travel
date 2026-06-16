@@ -8,7 +8,7 @@ import { formatTourPrice, getPriceLabel, formatTourPriceWithDiscount } from '../
 import Seo from '../components/Seo';
 import { trackViewTour } from '../lib/analytics';
 import { localizeTour } from '../utils/localizeTour';
-import { isPastTour } from '../utils/tour-status';
+import { isPastTour, upcomingDepartures } from '../utils/tour-status';
 import { Accordion, AccordionItem } from '../components/ui/accordion';
 import IncludedIcons from '../components/tours/included-icons';
 import RefundGuarantee from '../components/tours/refund-guarantee';
@@ -100,6 +100,7 @@ const TourDetailPage = () => {
   const { tour: rawTour, relatedTours, isLoading, error, notFound } = useTourDetail(slug);
   const tour = useMemo(() => localizeTour(rawTour, i18n.language), [rawTour, i18n.language]);
   const past = useMemo(() => isPastTour(tour), [tour]);
+  const departures = useMemo(() => upcomingDepartures(tour), [tour]);
 
   const viewTrackedRef = useRef(null);
   useEffect(() => {
@@ -191,7 +192,7 @@ const TourDetailPage = () => {
           <div className="mt-7 flex flex-wrap items-center gap-x-8 gap-y-3 text-[var(--ds-text-soft)]">
             {tour.duration && <Fact label={t('tourDetail.factDuration', 'Süre')} value={tour.duration} />}
             {tour.groupSize && <Fact label={t('tourDetail.factGroup', 'Grup')} value={tour.groupSize} />}
-            {tour.dates && <Fact label={t('tourDetail.factDates', 'Tarih')} value={tour.dates} />}
+            {(tour.dates || departures[0]) && <Fact label={t('tourDetail.factDates', 'Tarih')} value={tour.dates || departures[0].label} />}
             <Fact label={t('tourDetail.factPrice', 'Fiyat')} value={formatTourPrice(tour)} gold />
           </div>
           <div className="mt-9 flex flex-wrap items-center gap-4">
@@ -256,6 +257,26 @@ const TourDetailPage = () => {
                 </ul>
               </div>
             </Reveal>
+
+            {/* Departure calendar — multiple dates for this tour */}
+            {departures.length > 0 && (
+              <Reveal delay={0.15}>
+                <div className="mt-8">
+                  <span className="ds-eyebrow">{t('tourDetail.departuresTitle', 'Planlanan Tarihler')}</span>
+                  <div className="mt-4 grid sm:grid-cols-2 gap-3">
+                    {departures.map((d, i) => (
+                      <div key={i} className="flex items-center gap-3 ds-glass rounded-xl p-4">
+                        <svg className="w-5 h-5 text-[var(--ds-gold)] shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3M4 11h16M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                        <span className="text-[var(--ds-text)]">{d.label || [d.startDate, d.endDate].filter(Boolean).join(' - ')}</span>
+                      </div>
+                    ))}
+                  </div>
+                  {!past && (
+                    <Link to="/teklif-al" className="ds-btn mt-5 inline-flex">{t('tourDetail.departuresCta', 'Tarih Seçip Rezervasyon Yap')}</Link>
+                  )}
+                </div>
+              </Reveal>
+            )}
           </section>
 
           {tour.instagramUrl && (
@@ -370,7 +391,7 @@ const TourDetailPage = () => {
             <div className="ds-glass rounded-3xl p-7 space-y-3 text-sm">
               {tour.groupSize && <InfoRow label={t('tourDetail.factGroup', 'Grup')} value={tour.groupSize} />}
               {tour.duration && <InfoRow label={t('tourDetail.factDuration', 'Süre')} value={tour.duration} />}
-              {tour.dates && <InfoRow label={t('tourDetail.factDates', 'Tarih')} value={tour.dates} />}
+              {(tour.dates || departures[0]) && <InfoRow label={t('tourDetail.factDates', 'Tarih')} value={tour.dates || departures[0].label} />}
               {tour.category && <InfoRow label={t('tourDetail.categoryLabel', 'Kategori')} value={t('categories.' + tour.category, tour.destination || tour.category)} />}
             </div>
           </div>

@@ -13,6 +13,7 @@ const emptyTour = {
   priceStatus: '', priceNote: '',
   groupSize: '', duration: '', dates: '',
   startDate: '', endDate: '', instagramUrl: '',
+  departures: [],
   image: '', gallery: [],
   highlights: [], included: [], notIncluded: [], itinerary: [], faq: [],
   specialOffer: false, whatsappMessage: '',
@@ -97,6 +98,65 @@ const FaqEditor = ({ value = [], onChange }) => {
         </div>
       ))}
       <Button variant="secondary" onClick={add}>+ Soru ekle</Button>
+    </div>
+  );
+};
+
+// Departure calendar editor — multiple dates for one tour. Auto-builds a
+// human label ("24 - 31 Temmuz 2026") from the start/end dates if left blank.
+const TR_MONTHS = ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'];
+const autoLabel = (start, end) => {
+  if (!start) return '';
+  const s = new Date(start);
+  if (Number.isNaN(s.getTime())) return '';
+  const e = end ? new Date(end) : null;
+  const eOk = e && !Number.isNaN(e.getTime());
+  if (eOk && s.getMonth() === e.getMonth() && s.getFullYear() === e.getFullYear()) {
+    return `${s.getDate()} - ${e.getDate()} ${TR_MONTHS[s.getMonth()]} ${s.getFullYear()}`;
+  }
+  const fmt = (d) => `${d.getDate()} ${TR_MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+  return eOk ? `${fmt(s)} - ${fmt(e)}` : fmt(s);
+};
+
+const DeparturesEditor = ({ value = [], onChange }) => {
+  const update = (i, patch) => {
+    const next = [...value];
+    next[i] = { ...next[i], ...patch };
+    // Refresh auto label unless the user has typed a custom one.
+    if (('startDate' in patch || 'endDate' in patch) && (!next[i].label || next[i].label === autoLabel(value[i]?.startDate, value[i]?.endDate))) {
+      next[i].label = autoLabel(next[i].startDate, next[i].endDate);
+    }
+    onChange(next);
+  };
+  const add = () => onChange([...(value || []), { label: '', startDate: '', endDate: '' }]);
+  const remove = (i) => onChange(value.filter((_, idx) => idx !== i));
+  const move = (i, d) => {
+    const next = [...value];
+    const j = i + d;
+    if (j < 0 || j >= next.length) return;
+    [next[i], next[j]] = [next[j], next[i]];
+    onChange(next);
+  };
+  return (
+    <div className="space-y-3">
+      {value.map((dep, i) => (
+        <div key={i} className="rounded-lg border border-slate-200 bg-slate-50 p-3">
+          <div className="mb-2 flex items-center justify-between text-xs text-slate-500">
+            <span>Tarih {i + 1}</span>
+            <div className="flex gap-1">
+              <button type="button" onClick={() => move(i, -1)} className="rounded px-1.5 hover:bg-white" disabled={i === 0}>↑</button>
+              <button type="button" onClick={() => move(i, 1)} className="rounded px-1.5 hover:bg-white" disabled={i === value.length - 1}>↓</button>
+              <button type="button" onClick={() => remove(i)} className="rounded px-1.5 text-red-600 hover:bg-white">Sil</button>
+            </div>
+          </div>
+          <div className="grid gap-2 sm:grid-cols-2">
+            <Input label="Başlangıç" type="date" value={dateInput(dep.startDate)} onChange={(e) => update(i, { startDate: e.target.value })} />
+            <Input label="Bitiş" type="date" value={dateInput(dep.endDate)} onChange={(e) => update(i, { endDate: e.target.value })} />
+          </div>
+          <Input label="Görünen metin (boşsa otomatik)" value={dep.label || ''} onChange={(e) => update(i, { label: e.target.value })} className="mt-2" placeholder={autoLabel(dep.startDate, dep.endDate) || '24 - 31 Temmuz 2026'} />
+        </div>
+      ))}
+      <Button variant="secondary" onClick={add}>+ Tarih ekle</Button>
     </div>
   );
 };
@@ -220,6 +280,12 @@ const ToursAdminPage = () => {
             <Input label="Instagram Reel Linki" value={editing.instagramUrl || ''} onChange={(e) => setEditing({ ...editing, instagramUrl: e.target.value })} placeholder="https://www.instagram.com/reel/..." />
           </div>
           <p className="-mt-1 text-xs text-slate-500">Bitiş tarihi bugünden önce olan turlar otomatik olarak "Geçmiş Turlar" bölümünde gösterilir; gelecek tarihli turlar rezervasyona/teklife açık kalır. Instagram reel linki eklenirse tur detay sayfasında özet video gösterilir.</p>
+
+          <div>
+            <label className="mb-1 block text-sm font-medium text-slate-700">Kalkış Tarihleri (Tur Takvimi)</label>
+            <p className="mb-2 text-xs text-slate-500">Bir tur için birden fazla kalkış tarihi ekleyin. Bu tarihler tur detay sayfasında "Planlanan Tarihler" olarak ve teklif/rezervasyon formunda tarih seçeneği olarak listelenir. Hepsi geçmişte kalırsa tur otomatik "Geçmiş Turlar"a düşer.</p>
+            <DeparturesEditor value={editing.departures || []} onChange={(departures) => setEditing({ ...editing, departures })} />
+          </div>
 
           <ImagePicker label="Kapak görseli" value={editing.image} onChange={(p) => setEditing({ ...editing, image: p })} />
 

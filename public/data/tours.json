@@ -171,7 +171,34 @@
       ],
       "startDate": "2026-06-26",
       "endDate": "2026-07-03",
-      "destination": "Mısır (Kahire & Şarm el Şeyh)"
+      "destination": "Mısır (Kahire & Şarm el Şeyh)",
+      "departures": [
+        {
+          "label": "26 Haziran - 3 Temmuz 2026",
+          "startDate": "2026-06-26",
+          "endDate": "2026-07-03"
+        },
+        {
+          "label": "24 - 31 Temmuz 2026",
+          "startDate": "2026-07-24",
+          "endDate": "2026-07-31"
+        },
+        {
+          "label": "21 - 28 Ağustos 2026",
+          "startDate": "2026-08-21",
+          "endDate": "2026-08-28"
+        },
+        {
+          "label": "18 - 25 Eylül 2026",
+          "startDate": "2026-09-18",
+          "endDate": "2026-09-25"
+        },
+        {
+          "label": "9 - 16 Ekim 2026",
+          "startDate": "2026-10-09",
+          "endDate": "2026-10-16"
+        }
+      ]
     },
     {
       "id": "fas-turu",

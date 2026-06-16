@@ -94,6 +94,7 @@ async function seedTours() {
         translations: t.translations ?? null,
         startDate: t.startDate ? new Date(t.startDate) : null,
         endDate: t.endDate ? new Date(t.endDate) : null,
+        departures: Array.isArray(t.departures) ? t.departures : null,
         instagramUrl: t.instagramUrl ?? null,
         whatsappMessage: t.whatsappMessage ?? null,
         featured: !!t.featured,
