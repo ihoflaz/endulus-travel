@@ -59,6 +59,9 @@ const safeSend = async (opts) => {
 
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
+// Human-facing label for the message kind (DB enum stays CONTACT/OFFER/SURVEY).
+const KIND_LABEL = { CONTACT: 'İletişim', OFFER: 'Rezervasyon', SURVEY: 'Ön Anket' };
+
 // Brand palette
 const BG = '#06080f';
 const CARD = '#0f1422';
@@ -103,6 +106,7 @@ const shell = ({ preheader = '', heading, intro, bodyHtml = '', cta }) => `<!doc
 // ---- Exported HTML builders (also used by the dev preview script) ----
 export const buildOpsHtml = ({ kind, name, email, phone, subject, message, meta } = {}) => {
   const k = kind || 'CONTACT';
+  const kl = KIND_LABEL[k] || k;
   const row = (label, value) => value
     ? `<tr><td style="padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-family:Arial,sans-serif;font-size:12px;letter-spacing:0.06em;text-transform:uppercase;color:${MUTED};width:120px;vertical-align:top;">${esc(label)}</td>
        <td style="padding:9px 0;border-bottom:1px solid rgba(255,255,255,0.06);font-family:Arial,sans-serif;font-size:14px;color:${TEXT};">${value}</td></tr>`
@@ -113,7 +117,7 @@ export const buildOpsHtml = ({ kind, name, email, phone, subject, message, meta 
     : '';
   const bodyHtml = `
     <table role="presentation" width="100%" cellpadding="0" cellspacing="0">
-      ${row('Tür', `<strong style="color:${GOLD_BR};">${esc(k)}</strong>`)}
+      ${row('Tür', `<strong style="color:${GOLD_BR};">${esc(kl)}</strong>`)}
       ${row('Gönderen', esc(name || '—'))}
       ${row('E-posta', email ? `<a href="mailto:${esc(email)}" style="color:${GOLD};text-decoration:none;">${esc(email)}</a>` : '—')}
       ${row('Telefon', phone ? `<a href="tel:${esc(phone)}" style="color:${GOLD};text-decoration:none;">${esc(phone)}</a>` : '')}
@@ -123,9 +127,9 @@ export const buildOpsHtml = ({ kind, name, email, phone, subject, message, meta 
     ${metaHtml}`;
 
   return shell({
-    preheader: `Yeni ${k} mesajı: ${name || email || ''}`,
+    preheader: `Yeni ${kl} talebi: ${name || email || ''}`,
     heading: 'Yeni Form Bildirimi',
-    intro: `Sitenizden yeni bir <strong style="color:${GOLD_BR};">${esc(k)}</strong> mesajı geldi.`,
+    intro: `Sitenizden yeni bir <strong style="color:${GOLD_BR};">${esc(kl)}</strong> talebi geldi.`,
     bodyHtml,
     cta: email ? { href: `mailto:${email}`, label: 'Yanıtla' } : null,
   });
@@ -136,8 +140,9 @@ export const sendOpsNotification = async (data = {}) => {
   if (!OPS_EMAIL) return false;
   const { kind, name, email, phone, subject, message, meta } = data;
   const k = kind || 'CONTACT';
+  const kl = KIND_LABEL[k] || k;
   const summary = [
-    `Tür: ${k}`,
+    `Tür: ${kl}`,
     `Gönderen: ${name || '—'} <${email}>`,
     phone ? `Telefon: ${phone}` : null,
     subject ? `Konu: ${subject}` : null,
@@ -149,13 +154,13 @@ export const sendOpsNotification = async (data = {}) => {
     from: MAIL_FROM,
     to: OPS_EMAIL,
     replyTo: email || undefined,
-    subject: `[Endülüs ${k}] ${subject || name || 'Yeni mesaj'}`,
+    subject: `[Endülüs ${kl}] ${subject || name || 'Yeni mesaj'}`,
     text: summary,
     html: buildOpsHtml(data),
   });
 };
 
-const ACK_LABELS = { CONTACT: 'mesajınızı', OFFER: 'teklif talebinizi', SURVEY: 'ön anketinizi' };
+const ACK_LABELS = { CONTACT: 'mesajınızı', OFFER: 'rezervasyon talebinizi', SURVEY: 'ön anketinizi' };
 
 export const buildAckHtml = ({ kind, name } = {}) => {
   const what = ACK_LABELS[kind] || 'mesajınızı';

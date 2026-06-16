@@ -90,8 +90,8 @@ const PAGES = {
     en: { t: 'Pre-Survey — Endülüs Travel', d: 'Share your preferences and we’ll craft a personalized tour plan for you.' },
   },
   offer: {
-    tr: { t: 'Teklif Al — Endülüs Travel', d: 'Rota Pusulası ile yolculuğunuzu anlatın; 24 saat içinde ücretsiz, kişiye özel teklif.' },
-    en: { t: 'Get an Offer — Endülüs Travel', d: 'Tell us your journey with the Route Compass; a free tailored offer within 24 hours.' },
+    tr: { t: 'Rezervasyon & Bilgi — Endülüs Travel', d: 'Yaklaşan turlarımıza katılın: turu ve tarihi seçin, ekibimiz 24 saat içinde rezervasyon için size dönsün.' },
+    en: { t: 'Reservation & Info — Endülüs Travel', d: 'Join our upcoming tours: pick a tour and date and our team will reach out within 24 hours.' },
   },
   budget: {
     tr: { t: 'Bütçeye Göre Rota — Endülüs Travel', d: 'Bütçenize uygun, değerli rota seçenekleri.' },
