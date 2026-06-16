@@ -112,10 +112,10 @@ const TourDetailPage = () => {
     if (!tour) return [];
     const s = [{ id: 'genel', label: t('tourDetail.navOverview', 'Genel') }];
     if (tour.instagramUrl) s.push({ id: 'ozet', label: t('tourDetail.navRecap', 'Tur Özeti') });
-    if (Array.isArray(tour.gallery) && tour.gallery.length) s.push({ id: 'galeri', label: t('tourDetail.gallery', 'Galeri') });
     if (Array.isArray(tour.itinerary) && tour.itinerary.length) s.push({ id: 'program', label: t('tourDetail.navItinerary', 'Program') });
     if ((tour.included && tour.included.length) || (tour.notIncluded && tour.notIncluded.length)) s.push({ id: 'dahil', label: t('tourDetail.navIncluded', 'Dahil / Hariç') });
     if (Array.isArray(tour.faq) && tour.faq.length) s.push({ id: 'sss', label: t('tourDetail.navFaq', 'SSS') });
+    if (Array.isArray(tour.gallery) && tour.gallery.length) s.push({ id: 'galeri', label: t('tourDetail.gallery', 'Galeri') });
     return s;
   }, [tour, t]);
 
@@ -230,6 +230,31 @@ const TourDetailPage = () => {
                 <p className="ds-lead mt-5 whitespace-pre-line">{tour.description}</p>
               </Reveal>
             )}
+
+            {/* Group participation policy — shown on every tour */}
+            <Reveal delay={0.1}>
+              <div className="mt-8 rounded-2xl p-6 md:p-7" style={{ borderLeft: '3px solid var(--ds-terracotta)', background: 'rgba(193,98,63,0.10)', border: '1px solid rgba(193,98,63,0.28)', borderLeftWidth: '3px' }}>
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="w-9 h-9 rounded-full grid place-items-center shrink-0" style={{ background: 'rgba(193,98,63,0.20)' }}>
+                    <svg className="w-5 h-5" style={{ color: 'var(--ds-terracotta)' }} fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 9v4m0 4h.01M10.29 3.86 1.82 18a2 2 0 001.71 3h16.94a2 2 0 001.71-3L13.71 3.86a2 2 0 00-3.42 0z" /></svg>
+                  </span>
+                  <h3 className="ds-display text-lg" style={{ color: 'var(--ds-terracotta)' }}>{t('tourDetail.policyTitle', 'Grup Katılım Politikası')}</h3>
+                </div>
+                <p className="text-[var(--ds-text-soft)] mb-4">{t('tourDetail.policyLead', 'Grup uyumunu ve tüm misafirlerimizin konforunu koruyabilmek adına:')}</p>
+                <ul className="space-y-3">
+                  {[
+                    t('tourDetail.policyItem1', 'Turlarımızda bireysel katılım sağlayan erkek misafirleri ne yazık ki ağırlayamıyoruz.'),
+                    t('tourDetail.policyItem2', 'Erkek misafirlerimizi aile katılımı şeklinde gruplarımıza dâhil edebiliyoruz.'),
+                    t('tourDetail.policyItem3', 'Bu yaklaşım, tamamen grup dengesi ve yol arkadaşlığı konforunu sürdürülebilir kılma amacını taşır.'),
+                  ].map((it, i) => (
+                    <li key={i} className="flex items-start gap-3 text-[var(--ds-text)]">
+                      <span className="mt-2 w-1.5 h-1.5 rounded-full shrink-0" style={{ background: 'var(--ds-terracotta)' }} />
+                      <span className="leading-relaxed">{it}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
           </section>
 
           {tour.instagramUrl && (
@@ -238,15 +263,6 @@ const TourDetailPage = () => {
                 <span className="ds-eyebrow">{t('tourDetail.navRecap', 'Tur Özeti')}</span>
                 <h2 className="ds-display text-2xl text-[var(--ds-text)] mt-3 mb-6">{t('tourDetail.recapTitle', 'Bu turdan kareler')}</h2>
                 <InstagramEmbed url={tour.instagramUrl} />
-              </Reveal>
-            </section>
-          )}
-
-          {Array.isArray(tour.gallery) && tour.gallery.length > 0 && (
-            <section id="galeri" className={sectionCls}>
-              <Reveal>
-                <h2 className="ds-display text-2xl text-[var(--ds-text)] mb-6">{t('tourDetail.gallery', 'Galeri')}</h2>
-                <PhotoGallery images={tour.gallery} title={tour.title} />
               </Reveal>
             </section>
           )}
@@ -298,6 +314,15 @@ const TourDetailPage = () => {
           {Array.isArray(tour.faq) && tour.faq.length > 0 && (
             <section id="sss" className={sectionCls}>
               <FaqSection faq={tour.faq} />
+            </section>
+          )}
+
+          {Array.isArray(tour.gallery) && tour.gallery.length > 0 && (
+            <section id="galeri" className={sectionCls}>
+              <Reveal>
+                <h2 className="ds-display text-2xl text-[var(--ds-text)] mb-6">{t('tourDetail.gallery', 'Galeri')}</h2>
+                <PhotoGallery images={tour.gallery} title={tour.title} />
+              </Reveal>
             </section>
           )}
         </div>

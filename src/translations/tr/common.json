@@ -638,7 +638,12 @@
     "completedNote": "Bu tur gerçekleştirildi ve tamamlandı. Benzer bir rota için bize yazabilir veya gelecek turlarımıza göz atabilirsiniz.",
     "pastCta": "Benzer Tur İçin Teklif Al",
     "watchRecap": "Tur Özetini İzle",
-    "recapTitle": "Bu turdan kareler"
+    "recapTitle": "Bu turdan kareler",
+    "policyTitle": "Grup Katılım Politikası",
+    "policyLead": "Grup uyumunu ve tüm misafirlerimizin konforunu koruyabilmek adına:",
+    "policyItem1": "Turlarımızda bireysel katılım sağlayan erkek misafirleri ne yazık ki ağırlayamıyoruz.",
+    "policyItem2": "Erkek misafirlerimizi aile katılımı şeklinde gruplarımıza dâhil edebiliyoruz.",
+    "policyItem3": "Bu yaklaşım, tamamen grup dengesi ve yol arkadaşlığı konforunu sürdürülebilir kılma amacını taşır."
   },
   "servicesPage": {
     "documentTitle": "Hizmetlerimiz - Endülüs Travel",

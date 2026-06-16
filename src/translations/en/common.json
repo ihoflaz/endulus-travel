@@ -638,7 +638,12 @@
     "completedNote": "This tour has taken place. Message us for a similar route or browse our upcoming tours.",
     "pastCta": "Request a Similar Tour",
     "watchRecap": "Watch the Recap",
-    "recapTitle": "Moments from this tour"
+    "recapTitle": "Moments from this tour",
+    "policyTitle": "Group Participation Policy",
+    "policyLead": "To preserve group harmony and the comfort of all our guests:",
+    "policyItem1": "We are unfortunately unable to host individual (solo) male guests on our tours.",
+    "policyItem2": "Male guests are welcome to join our groups as part of a family.",
+    "policyItem3": "This approach exists solely to keep group balance and travel-companion comfort sustainable."
   },
   "servicesPage": {
     "documentTitle": "Our Services - Endülüs Travel",
