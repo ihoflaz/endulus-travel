@@ -262,7 +262,8 @@
       "destinationRequired": "Gidilecek yer zorunludur",
       "numberOfPeopleRequired": "Kişi sayısı zorunludur",
       "numberOfPeopleInvalid": "Geçerli bir kişi sayısı giriniz",
-      "budgetInvalid": "Geçerli bir bütçe giriniz"
+      "budgetInvalid": "Geçerli bir bütçe giriniz",
+      "dateRequired": "Lütfen bir tarih seçin"
     },
     "title": "Özel Teklif Alın",
     "badge": "Kişiselleştirilmiş Teklif",
@@ -326,7 +327,7 @@
     "stepHow": "Nasıl",
     "stepContact": "İletişim",
     "qWhere": "Nereye gitmek istersiniz?",
-    "qWhen": "Ne zaman ve hangi bütçeyle?",
+    "qWhen": "Hangi tarihte gitmek istersiniz?",
     "qHow": "Nasıl bir deneyim hayal ediyorsunuz?",
     "qContact": "Size nasıl ulaşalım?",
     "prefCulture": "Kültür & Tarih",
@@ -342,7 +343,11 @@
     "trustFree": "Ücretsiz & yükümlülüksüz",
     "trustCustom": "Size özel hazırlanır",
     "successTours": "Turları Keşfet",
-    "successHome": "Ana Sayfa"
+    "successHome": "Ana Sayfa",
+    "oneDeparture": "1 tarih seçeneği",
+    "notListed": "Aradığınız rota listede yok mu?",
+    "contactUs": "Bize yazın",
+    "dateLead": "{{dest}} için planlanan tarihler:"
   },
   "survey": {
     "pageTitle": "Ön Anket - Endülüs Travel",

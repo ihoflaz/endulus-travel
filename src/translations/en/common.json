@@ -262,7 +262,8 @@
       "destinationRequired": "Destination is required",
       "numberOfPeopleRequired": "Number of people is required",
       "numberOfPeopleInvalid": "Please enter a valid number of people",
-      "budgetInvalid": "Please enter a valid budget"
+      "budgetInvalid": "Please enter a valid budget",
+      "dateRequired": "Please select a date"
     },
     "title": "Get a Custom Offer",
     "badge": "Personalized Offer",
@@ -326,7 +327,7 @@
     "stepHow": "How",
     "stepContact": "Contact",
     "qWhere": "Where would you like to go?",
-    "qWhen": "When and with what budget?",
+    "qWhen": "Which date would you like to travel?",
     "qHow": "What kind of experience do you imagine?",
     "qContact": "How can we reach you?",
     "prefCulture": "Culture & History",
@@ -342,7 +343,11 @@
     "trustFree": "Free & no obligation",
     "trustCustom": "Tailored to you",
     "successTours": "Explore Tours",
-    "successHome": "Home"
+    "successHome": "Home",
+    "oneDeparture": "1 date option",
+    "notListed": "Can't find the route you're looking for?",
+    "contactUs": "Contact us",
+    "dateLead": "Planned dates for {{dest}}:"
   },
   "survey": {
     "pageTitle": "Pre-Survey - Endülüs Travel",
