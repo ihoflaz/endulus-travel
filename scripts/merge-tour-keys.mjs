@@ -22,6 +22,7 @@ const ENTRIES = [
   ['home.pastTitle', 'Birlikte yaşadığımız yolculuklar', 'Journeys we have shared'],
   ['home.pastAll', 'Tüm Geçmiş Turlar', 'All Past Tours'],
   ['tourDetail.policyTitle', 'Grup Katılım Politikası', 'Group Participation Policy'],
+  ['tourDetail.policyItem0', 'Turlarımız aile, çocuk ve hanımların katılımına uygundur.', 'Our tours are open to families, children and women.'],
   ['tourDetail.policyLead', 'Grup uyumunu ve tüm misafirlerimizin konforunu koruyabilmek adına:', 'To preserve group harmony and the comfort of all our guests:'],
   ['tourDetail.policyItem1', 'Turlarımızda bireysel katılım sağlayan erkek misafirleri ne yazık ki ağırlayamıyoruz.', 'We are unfortunately unable to host individual (solo) male guests on our tours.'],
   ['tourDetail.policyItem2', 'Erkek misafirlerimizi aile katılımı şeklinde gruplarımıza dâhil edebiliyoruz.', 'Male guests are welcome to join our groups as part of a family.'],

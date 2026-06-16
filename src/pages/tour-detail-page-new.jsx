@@ -243,6 +243,7 @@ const TourDetailPage = () => {
                 <p className="text-[var(--ds-text-soft)] mb-4">{t('tourDetail.policyLead', 'Grup uyumunu ve tüm misafirlerimizin konforunu koruyabilmek adına:')}</p>
                 <ul className="space-y-3">
                   {[
+                    t('tourDetail.policyItem0', 'Turlarımız aile, çocuk ve hanımların katılımına uygundur.'),
                     t('tourDetail.policyItem1', 'Turlarımızda bireysel katılım sağlayan erkek misafirleri ne yazık ki ağırlayamıyoruz.'),
                     t('tourDetail.policyItem2', 'Erkek misafirlerimizi aile katılımı şeklinde gruplarımıza dâhil edebiliyoruz.'),
                     t('tourDetail.policyItem3', 'Bu yaklaşım, tamamen grup dengesi ve yol arkadaşlığı konforunu sürdürülebilir kılma amacını taşır.'),
