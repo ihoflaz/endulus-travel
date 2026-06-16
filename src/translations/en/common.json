@@ -74,7 +74,10 @@
     "servicesEyebrow": "Our Services",
     "ctaEyebrow": "The journey begins with you",
     "ctaBody": "We'll get back to you within 24 hours with a tailor-made offer.",
-    "ctaButton": "Start the Route Compass"
+    "ctaButton": "Start the Route Compass",
+    "pastEyebrow": "Our Past Tours",
+    "pastTitle": "Journeys we have shared",
+    "pastAll": "All Past Tours"
   },
   "services": {
     "pageTitle": "Our Services - Endülüs Travel",
@@ -625,7 +628,17 @@
     "sidebarOffer": "Get a Custom Offer",
     "related": "Similar Tours",
     "notFound": "Tour Not Found",
-    "defaultWa": "Hello, I would like information about the {{title}} tour."
+    "defaultWa": "Hello, I would like information about the {{title}} tour.",
+    "navOverview": "Overview",
+    "navRecap": "Recap",
+    "navItinerary": "Itinerary",
+    "navIncluded": "Included",
+    "navFaq": "FAQ",
+    "completed": "This tour has ended",
+    "completedNote": "This tour has taken place. Message us for a similar route or browse our upcoming tours.",
+    "pastCta": "Request a Similar Tour",
+    "watchRecap": "Watch the Recap",
+    "recapTitle": "Moments from this tour"
   },
   "servicesPage": {
     "documentTitle": "Our Services - Endülüs Travel",
@@ -856,7 +869,9 @@
     "ctaEyebrow": "Can’t find what you’re looking for?",
     "ctaBody": "Tell us about your dream trip and we’ll prepare a personalized offer within 24 hours.",
     "ctaButton": "Get a Quote",
-    "ctaPlan": "Plan a Tour"
+    "ctaPlan": "Plan a Tour",
+    "tabUpcoming": "Upcoming Tours",
+    "tabPast": "Past Tours"
   },
   "homeServices": {
     "loadError": "Services could not be loaded",
@@ -906,5 +921,8 @@
   "whatsapp": {
     "aria": "Contact us on WhatsApp",
     "fixedLabel": "Message us"
+  },
+  "tourCard": {
+    "completed": "Completed"
   }
 }

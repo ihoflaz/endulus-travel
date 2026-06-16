@@ -5,9 +5,11 @@ import Seo from '../components/Seo';
 import CinematicHero from '../components/home/CinematicHero';
 import { Reveal, TextReveal, Parallax, Counter, Magnetic } from '../components/motion';
 import ReviewsSection from '../components/tours/reviews-section';
+import TourCardX from '../components/tours/TourCardX';
 import { useTours, useServices } from '../hooks';
 import { useContactData, useSiteSettings } from '../hooks/useAppData';
 import { formatTourPrice, getPriceLabel } from '../utils/priceUtils';
+import { partitionTours } from '../utils/tour-status';
 
 const SITE_URL = 'https://endulustravel.com';
 const MEDIA = '/uploads/media';
@@ -26,11 +28,11 @@ const HomePage = () => {
   const { tours } = useTours();
   const { services } = useServices();
 
+  const { past: pastTours, upcoming } = useMemo(() => partitionTours(Array.isArray(tours) ? tours : []), [tours]);
   const featured = useMemo(() => {
-    const list = Array.isArray(tours) ? tours : [];
-    const f = list.filter((x) => x.featured);
-    return (f.length ? f : list).slice(0, 3);
-  }, [tours]);
+    const f = upcoming.filter((x) => x.featured);
+    return (f.length ? f : upcoming).slice(0, 3);
+  }, [upcoming]);
 
   const orgJsonLd = useMemo(() => {
     const ig = contactData?.social?.instagram;
@@ -133,6 +135,26 @@ const HomePage = () => {
                     </div>
                   </Link>
                 </Reveal>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {/* ===== Geçmiş turlardan vitrin (admin/DB-driven, auto by date) ===== */}
+      {pastTours.length > 0 && (
+        <section className="ds-dark py-24 md:py-28" style={{ background: 'var(--ds-grad-night)' }}>
+          <div className="ds-container">
+            <div className="flex flex-wrap items-end justify-between gap-6 mb-12">
+              <div>
+                <Reveal><span className="ds-eyebrow">{t('home.pastEyebrow', 'Geçmiş Turlarımız')}</span></Reveal>
+                <h2 className="ds-display ds-h2 mt-5 text-[var(--ds-text)]"><TextReveal text={t('home.pastTitle', 'Birlikte yaşadığımız yolculuklar')} /></h2>
+              </div>
+              <Reveal><Link to="/turlar" className="ds-btn-ghost">{t('home.pastAll', 'Tüm Geçmiş Turlar')}</Link></Reveal>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {pastTours.slice(0, 4).map((tour, i) => (
+                <TourCardX key={tour.slug} tour={tour} delay={(i % 4) * 0.08} past />
               ))}
             </div>
           </div>

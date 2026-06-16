@@ -8,15 +8,59 @@ import { formatTourPrice, getPriceLabel, formatTourPriceWithDiscount } from '../
 import Seo from '../components/Seo';
 import { trackViewTour } from '../lib/analytics';
 import { localizeTour } from '../utils/localizeTour';
+import { isPastTour } from '../utils/tour-status';
 import { Accordion, AccordionItem } from '../components/ui/accordion';
 import IncludedIcons from '../components/tours/included-icons';
 import RefundGuarantee from '../components/tours/refund-guarantee';
 import FaqSection from '../components/tours/faq-section';
 import ReviewsSection from '../components/tours/reviews-section';
 import TourCardX from '../components/tours/TourCardX';
+import InstagramEmbed from '../components/tours/InstagramEmbed';
 import { Reveal, TextReveal } from '../components/motion';
+import { getLenis } from '../components/motion/SmoothScroll';
 
 const FALLBACK_IMG = '/uploads/media/egypt.jpg';
+
+const scrollToId = (id) => (e) => {
+  if (e) e.preventDefault();
+  const el = document.getElementById(id);
+  if (!el) return;
+  const lenis = getLenis();
+  if (lenis) lenis.scrollTo(el, { offset: -96 });
+  else el.scrollIntoView({ behavior: 'smooth' });
+};
+
+// Sticky in-page section nav — keeps the long detail page easy to navigate.
+const SectionNav = ({ sections }) => {
+  const [active, setActive] = useState(sections[0]?.id);
+  useEffect(() => {
+    const obs = new IntersectionObserver(
+      (entries) => entries.forEach((en) => { if (en.isIntersecting) setActive(en.target.id); }),
+      { rootMargin: '-25% 0px -65% 0px' },
+    );
+    sections.forEach((s) => { const el = document.getElementById(s.id); if (el) obs.observe(el); });
+    return () => obs.disconnect();
+  }, [sections]);
+  return (
+    <div className="sticky top-16 z-30 border-y border-[var(--ds-line)]" style={{ background: 'rgba(10,14,26,0.82)', backdropFilter: 'blur(12px)' }}>
+      <div className="ds-container">
+        <nav className="flex gap-1 overflow-x-auto py-3 no-scrollbar">
+          {sections.map((s) => (
+            <a
+              key={s.id}
+              href={`#${s.id}`}
+              onClick={scrollToId(s.id)}
+              className={`whitespace-nowrap px-4 py-2 rounded-full text-sm transition-colors ${active === s.id ? 'text-[var(--ds-on-gold)]' : 'text-[var(--ds-text-soft)] hover:text-[var(--ds-gold-bright)]'}`}
+              style={active === s.id ? { background: 'var(--ds-grad-gold)' } : undefined}
+            >
+              {s.label}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </div>
+  );
+};
 
 // Lightbox-free cinematic gallery (main + thumbs).
 const PhotoGallery = ({ images, title }) => {
@@ -55,6 +99,7 @@ const TourDetailPage = () => {
   const { slug } = useParams();
   const { tour: rawTour, relatedTours, isLoading, error, notFound } = useTourDetail(slug);
   const tour = useMemo(() => localizeTour(rawTour, i18n.language), [rawTour, i18n.language]);
+  const past = useMemo(() => isPastTour(tour), [tour]);
 
   const viewTrackedRef = useRef(null);
   useEffect(() => {
@@ -62,6 +107,17 @@ const TourDetailPage = () => {
     viewTrackedRef.current = tour.slug;
     trackViewTour(tour);
   }, [tour]);
+
+  const sections = useMemo(() => {
+    if (!tour) return [];
+    const s = [{ id: 'genel', label: t('tourDetail.navOverview', 'Genel') }];
+    if (tour.instagramUrl) s.push({ id: 'ozet', label: t('tourDetail.navRecap', 'Tur Özeti') });
+    if (Array.isArray(tour.gallery) && tour.gallery.length) s.push({ id: 'galeri', label: t('tourDetail.gallery', 'Galeri') });
+    if (Array.isArray(tour.itinerary) && tour.itinerary.length) s.push({ id: 'program', label: t('tourDetail.navItinerary', 'Program') });
+    if ((tour.included && tour.included.length) || (tour.notIncluded && tour.notIncluded.length)) s.push({ id: 'dahil', label: t('tourDetail.navIncluded', 'Dahil / Hariç') });
+    if (Array.isArray(tour.faq) && tour.faq.length) s.push({ id: 'sss', label: t('tourDetail.navFaq', 'SSS') });
+    return s;
+  }, [tour, t]);
 
   const tourJsonLd = useMemo(() => {
     if (!tour) return null;
@@ -73,10 +129,10 @@ const TourDetailPage = () => {
       itinerary: Array.isArray(tour.itinerary)
         ? tour.itinerary.map((d, i) => ({ '@type': 'TouristAttraction', name: d.title || `${i + 1}. Gün`, description: d.description }))
         : undefined,
-      offers: tour.pricePerPerson ? { '@type': 'Offer', price: tour.pricePerPerson, priceCurrency: tour.currency || 'TRY', availability: 'https://schema.org/InStock' } : undefined,
+      offers: tour.pricePerPerson ? { '@type': 'Offer', price: tour.pricePerPerson, priceCurrency: tour.currency || 'TRY', availability: past ? 'https://schema.org/SoldOut' : 'https://schema.org/InStock' } : undefined,
       provider: { '@type': 'TravelAgency', name: 'Endülüs Travel', identifier: 'TURSAB-6739' },
     };
-  }, [tour]);
+  }, [tour, past]);
 
   if (isLoading) {
     return (
@@ -103,23 +159,32 @@ const TourDetailPage = () => {
 
   const heroImg = tour.image || tour.gallery?.[0] || FALLBACK_IMG;
   const priceInfo = formatTourPriceWithDiscount(tour);
-  const waMessage = tour.whatsappMessage || t('tourDetail.defaultWa', 'Merhaba, {{title}} turu hakkında bilgi almak istiyorum.', { title: tour.title });
+
+  const sectionCls = 'scroll-mt-28';
 
   return (
     <div className="ds-dark" style={{ background: 'var(--ds-bg)' }}>
       <Seo title={`${tour.title} — Endülüs Travel`} description={tour.description} image={heroImg} type="product" jsonLd={tourJsonLd} />
 
       {/* ===== Hero (per-tour image) ===== */}
-      <section className="relative w-full overflow-hidden ds-vignette ds-grain" style={{ minHeight: '82svh' }}>
+      <section className="relative w-full overflow-hidden ds-vignette ds-grain" style={{ minHeight: '80svh' }}>
         <img src={heroImg} alt={tour.title} className="absolute inset-0 w-full h-full object-cover" onError={(e) => { e.currentTarget.src = FALLBACK_IMG; }} />
         <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, rgba(7,10,18,0.6) 0%, rgba(7,10,18,0.2) 40%, rgba(7,10,18,0.95) 100%)' }} />
-        <div className="relative z-10 ds-container flex flex-col justify-end" style={{ minHeight: '82svh', paddingTop: '8rem', paddingBottom: 'clamp(3rem,7vh,5rem)' }}>
+        <div className="relative z-10 ds-container flex flex-col justify-end" style={{ minHeight: '80svh', paddingTop: '8rem', paddingBottom: 'clamp(3rem,7vh,5rem)' }}>
           <nav className="mb-5 flex items-center gap-2 text-sm text-[var(--ds-text-muted)]">
             <Link to="/" className="hover:text-[var(--ds-gold)]">{t('navigation.home', 'Ana Sayfa')}</Link>
             <span className="opacity-40">/</span>
             <Link to="/turlar" className="hover:text-[var(--ds-gold)]">{t('navigation.tours', 'Turlar')}</Link>
           </nav>
-          {tour.category && <span className="ds-eyebrow mb-4">{t('categories.' + tour.category, tour.destination || '')}</span>}
+          <div className="flex flex-wrap items-center gap-3 mb-4">
+            {tour.category && <span className="ds-eyebrow">{t('categories.' + tour.category, tour.destination || '')}</span>}
+            {past && (
+              <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] px-3 py-1 rounded-full ds-glass text-[var(--ds-text-soft)]">
+                <span className="w-1.5 h-1.5 rounded-full bg-[var(--ds-text-muted)]" />
+                {t('tourDetail.completed', 'Bu tur tamamlandı')}
+              </span>
+            )}
+          </div>
           <h1 className="ds-display text-[var(--ds-text)] text-balance" style={{ fontSize: 'clamp(2.4rem,6vw,5rem)', maxWidth: '20ch' }}>
             <TextReveal text={tour.title} delay={0.3} />
           </h1>
@@ -130,29 +195,60 @@ const TourDetailPage = () => {
             <Fact label={t('tourDetail.factPrice', 'Fiyat')} value={formatTourPrice(tour)} gold />
           </div>
           <div className="mt-9 flex flex-wrap items-center gap-4">
-            <WhatsAppButton tour={tour} size="lg">{t('tourDetail.heroWhatsapp', 'WhatsApp ile Rezervasyon')}</WhatsAppButton>
-            <Link to="/teklif-al" className="ds-btn-ghost">{t('tourDetail.heroOffer', 'Özel Teklif Al')}</Link>
+            {past ? (
+              <>
+                <Link to="/teklif-al" className="ds-btn">{t('tourDetail.pastCta', 'Benzer Tur İçin Teklif Al')}</Link>
+                {tour.instagramUrl && <a href="#ozet" onClick={scrollToId('ozet')} className="ds-btn-ghost">{t('tourDetail.watchRecap', 'Tur Özetini İzle')}</a>}
+              </>
+            ) : (
+              <>
+                <WhatsAppButton tour={tour} size="lg">{t('tourDetail.heroWhatsapp', 'WhatsApp ile Rezervasyon')}</WhatsAppButton>
+                <Link to="/teklif-al" className="ds-btn-ghost">{t('tourDetail.heroOffer', 'Özel Teklif Al')}</Link>
+              </>
+            )}
           </div>
-          <div className="mt-6"><RefundGuarantee variant="inline" /></div>
+          {!past && <div className="mt-6"><RefundGuarantee variant="inline" /></div>}
         </div>
       </section>
+
+      {sections.length > 1 && <SectionNav sections={sections} />}
 
       {/* ===== Body ===== */}
       <div className="ds-container py-16 md:py-24 grid lg:grid-cols-12 gap-12">
         {/* main column */}
         <div className="lg:col-span-8 space-y-16">
-          {tour.description && (
-            <Reveal>
-              <span className="ds-eyebrow">{t('tourDetail.aboutTour', 'Tur Hakkında')}</span>
-              <p className="ds-lead mt-5 whitespace-pre-line">{tour.description}</p>
-            </Reveal>
+          <section id="genel" className={sectionCls}>
+            {past && (
+              <div className="ds-glass rounded-2xl p-5 mb-8 flex items-start gap-3">
+                <svg className="w-5 h-5 text-[var(--ds-gold)] mt-0.5 shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" /></svg>
+                <p className="text-sm text-[var(--ds-text-soft)]">{t('tourDetail.completedNote', 'Bu tur gerçekleştirildi ve tamamlandı. Benzer bir rota için bize yazabilir veya gelecek turlarımıza göz atabilirsiniz.')}</p>
+              </div>
+            )}
+            {tour.description && (
+              <Reveal>
+                <span className="ds-eyebrow">{t('tourDetail.aboutTour', 'Tur Hakkında')}</span>
+                <p className="ds-lead mt-5 whitespace-pre-line">{tour.description}</p>
+              </Reveal>
+            )}
+          </section>
+
+          {tour.instagramUrl && (
+            <section id="ozet" className={sectionCls}>
+              <Reveal>
+                <span className="ds-eyebrow">{t('tourDetail.navRecap', 'Tur Özeti')}</span>
+                <h2 className="ds-display text-2xl text-[var(--ds-text)] mt-3 mb-6">{t('tourDetail.recapTitle', 'Bu turdan kareler')}</h2>
+                <InstagramEmbed url={tour.instagramUrl} />
+              </Reveal>
+            </section>
           )}
 
           {Array.isArray(tour.gallery) && tour.gallery.length > 0 && (
-            <Reveal>
-              <h2 className="ds-display text-2xl text-[var(--ds-text)] mb-6">{t('tourDetail.gallery', 'Galeri')}</h2>
-              <PhotoGallery images={tour.gallery} title={tour.title} />
-            </Reveal>
+            <section id="galeri" className={sectionCls}>
+              <Reveal>
+                <h2 className="ds-display text-2xl text-[var(--ds-text)] mb-6">{t('tourDetail.gallery', 'Galeri')}</h2>
+                <PhotoGallery images={tour.gallery} title={tour.title} />
+              </Reveal>
+            </section>
           )}
 
           {Array.isArray(tour.highlights) && tour.highlights.length > 0 && (
@@ -170,52 +266,81 @@ const TourDetailPage = () => {
           )}
 
           {Array.isArray(tour.itinerary) && tour.itinerary.length > 0 && (
-            <Reveal>
-              <h2 className="ds-display text-2xl text-[var(--ds-text)] mb-6">{t('tourDetail.itineraryTitle', 'Gün Gün Program')}</h2>
-              <Accordion>
-                {tour.itinerary.map((d, i) => (
-                  <AccordionItem key={i} title={[d.day, d.title].filter(Boolean).join(' — ')} subtitle={d.date} defaultOpen={i === 0}>
-                    {d.description && <p className="mb-3">{d.description}</p>}
-                    {Array.isArray(d.activities) && d.activities.length > 0 && (
-                      <ul className="space-y-1.5">
-                        {d.activities.map((a, j) => (
-                          <li key={j} className="flex items-start gap-2"><span className="text-[var(--ds-gold)] mt-1">•</span><span>{a}</span></li>
-                        ))}
-                      </ul>
-                    )}
-                  </AccordionItem>
-                ))}
-              </Accordion>
-            </Reveal>
+            <section id="program" className={sectionCls}>
+              <Reveal>
+                <h2 className="ds-display text-2xl text-[var(--ds-text)] mb-6">{t('tourDetail.itineraryTitle', 'Gün Gün Program')}</h2>
+                <Accordion>
+                  {tour.itinerary.map((d, i) => (
+                    <AccordionItem key={i} title={[d.day, d.title].filter(Boolean).join(' — ')} subtitle={d.date} defaultOpen={i === 0}>
+                      {d.description && <p className="mb-3">{d.description}</p>}
+                      {Array.isArray(d.activities) && d.activities.length > 0 && (
+                        <ul className="space-y-1.5">
+                          {d.activities.map((a, j) => (
+                            <li key={j} className="flex items-start gap-2"><span className="text-[var(--ds-gold)] mt-1">•</span><span>{a}</span></li>
+                          ))}
+                        </ul>
+                      )}
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </Reveal>
+            </section>
           )}
 
           {((tour.included && tour.included.length) || (tour.notIncluded && tour.notIncluded.length)) ? (
-            <Reveal><IncludedIcons included={tour.included || []} notIncluded={tour.notIncluded || []} /></Reveal>
+            <section id="dahil" className={sectionCls}>
+              <Reveal><IncludedIcons included={tour.included || []} notIncluded={tour.notIncluded || []} /></Reveal>
+            </section>
           ) : null}
 
-          <RefundGuarantee variant="banner" />
+          {!past && <RefundGuarantee variant="banner" />}
 
-          <FaqSection faq={tour.faq} />
+          {Array.isArray(tour.faq) && tour.faq.length > 0 && (
+            <section id="sss" className={sectionCls}>
+              <FaqSection faq={tour.faq} />
+            </section>
+          )}
         </div>
 
         {/* sticky sidebar */}
         <aside className="lg:col-span-4">
           <div className="lg:sticky lg:top-28 space-y-5">
             <div className="ds-glass rounded-3xl p-7">
-              <div className="flex items-end gap-3">
-                <span className="ds-display text-3xl ds-gold-text">{formatTourPrice(tour)}</span>
-                {priceInfo?.hasDiscount && priceInfo.originalPrice && (
-                  <span className="text-[var(--ds-text-muted)] line-through mb-1">{priceInfo.originalPrice}</span>
-                )}
-              </div>
-              <div className="text-xs text-[var(--ds-text-muted)] mt-1">{getPriceLabel(tour)}</div>
-              {tour.priceNote && <p className="text-xs text-[var(--ds-text-muted)] mt-3 leading-relaxed">{tour.priceNote}</p>}
-              <div className="mt-6 space-y-3">
-                <WhatsAppButton tour={tour} size="md" className="w-full">{t('tourDetail.sidebarWhatsapp', 'WhatsApp ile İletişim')}</WhatsAppButton>
-                <Link to="/teklif-al" className="ds-btn w-full justify-center">{t('tourDetail.sidebarOffer', 'Özel Teklif Al')}</Link>
-              </div>
+              {past ? (
+                <>
+                  <span className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-[var(--ds-text-muted)] mb-3">
+                    <span className="w-1.5 h-1.5 rounded-full bg-[var(--ds-text-muted)]" />
+                    {t('tourDetail.completed', 'Bu tur tamamlandı')}
+                  </span>
+                  {tour.dates && <div className="ds-display text-2xl text-[var(--ds-text)]">{tour.dates}</div>}
+                  <div className="flex items-end gap-3 mt-3">
+                    <span className="ds-display text-2xl ds-gold-text">{formatTourPrice(tour)}</span>
+                    <span className="text-xs text-[var(--ds-text-muted)] mb-1">{getPriceLabel(tour)}</span>
+                  </div>
+                  {tour.priceNote && <p className="text-xs text-[var(--ds-text-muted)] mt-3 leading-relaxed">{tour.priceNote}</p>}
+                  <div className="mt-6 space-y-3">
+                    <Link to="/teklif-al" className="ds-btn w-full justify-center">{t('tourDetail.pastCta', 'Benzer Tur İçin Teklif Al')}</Link>
+                    {tour.instagramUrl && <a href="#ozet" onClick={scrollToId('ozet')} className="ds-btn-ghost w-full justify-center">{t('tourDetail.watchRecap', 'Tur Özetini İzle')}</a>}
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="flex items-end gap-3">
+                    <span className="ds-display text-3xl ds-gold-text">{formatTourPrice(tour)}</span>
+                    {priceInfo?.hasDiscount && priceInfo.originalPrice && (
+                      <span className="text-[var(--ds-text-muted)] line-through mb-1">{priceInfo.originalPrice}</span>
+                    )}
+                  </div>
+                  <div className="text-xs text-[var(--ds-text-muted)] mt-1">{getPriceLabel(tour)}</div>
+                  {tour.priceNote && <p className="text-xs text-[var(--ds-text-muted)] mt-3 leading-relaxed">{tour.priceNote}</p>}
+                  <div className="mt-6 space-y-3">
+                    <WhatsAppButton tour={tour} size="md" className="w-full">{t('tourDetail.sidebarWhatsapp', 'WhatsApp ile İletişim')}</WhatsAppButton>
+                    <Link to="/teklif-al" className="ds-btn w-full justify-center">{t('tourDetail.sidebarOffer', 'Özel Teklif Al')}</Link>
+                  </div>
+                </>
+              )}
             </div>
-            <RefundGuarantee variant="card" />
+            {!past && <RefundGuarantee variant="card" />}
             <div className="ds-glass rounded-3xl p-7 space-y-3 text-sm">
               {tour.groupSize && <InfoRow label={t('tourDetail.factGroup', 'Grup')} value={tour.groupSize} />}
               {tour.duration && <InfoRow label={t('tourDetail.factDuration', 'Süre')} value={tour.duration} />}
@@ -237,7 +362,7 @@ const TourDetailPage = () => {
           <div className="ds-container">
             <h2 className="ds-display text-2xl md:text-3xl text-[var(--ds-text)] mb-10">{t('tourDetail.related', 'Benzer Turlar')}</h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {relatedTours.slice(0, 3).map((rt, i) => <TourCardX key={rt.slug} tour={rt} delay={i * 0.08} />)}
+              {relatedTours.slice(0, 3).map((rt, i) => <TourCardX key={rt.slug} tour={rt} delay={i * 0.08} past={isPastTour(rt)} />)}
             </div>
           </div>
         </section>

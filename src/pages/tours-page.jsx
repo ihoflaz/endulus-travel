@@ -7,6 +7,7 @@ import PageHero from '../components/redesign/PageHero';
 import TourCardX from '../components/tours/TourCardX';
 import { Reveal, TextReveal, Magnetic } from '../components/motion';
 import { useTours, useCategories } from '../hooks';
+import { partitionTours } from '../utils/tour-status';
 
 const MEDIA = '/uploads/media';
 
@@ -16,19 +17,25 @@ const ToursPage = () => {
   const { tours, isLoading } = useTours();
   const { categories } = useCategories();
   const [active, setActive] = useState(searchParams.get('category') || 'all');
+  const [tab, setTab] = useState('upcoming');
 
   const cats = Array.isArray(categories) ? categories : [];
   const list = Array.isArray(tours) ? tours : [];
+  const { past, upcoming } = useMemo(() => partitionTours(list), [list]);
+  const baseList = tab === 'past' ? past : upcoming;
+  const isPast = tab === 'past';
 
-  // categories present among the actual tours (so we don't show empty filters)
+  const switchTab = (next) => { setTab(next); setActive('all'); };
+
+  // categories present in the active tab (so we don't show empty filters)
   const usedCats = useMemo(() => {
-    const set = new Set(list.map((x) => x.category).filter(Boolean));
+    const set = new Set(baseList.map((x) => x.category).filter(Boolean));
     return cats.filter((c) => set.has(c.key));
-  }, [list, cats]);
+  }, [baseList, cats]);
 
   const filtered = useMemo(
-    () => (active === 'all' ? list : list.filter((x) => x.category === active)),
-    [list, active],
+    () => (active === 'all' ? baseList : baseList.filter((x) => x.category === active)),
+    [baseList, active],
   );
 
   return (
@@ -46,6 +53,28 @@ const ToursPage = () => {
 
       <section className="py-16 md:py-24">
         <div className="ds-container">
+          {/* Upcoming / Past tabs */}
+          {past.length > 0 && (
+            <Reveal className="mb-8">
+              <div className="inline-flex items-center gap-1 p-1 rounded-full ds-glass">
+                <button
+                  onClick={() => switchTab('upcoming')}
+                  className={`px-5 py-2 rounded-full text-sm transition-all ${!isPast ? 'text-[var(--ds-on-gold)]' : 'text-[var(--ds-text-soft)] hover:text-[var(--ds-gold-bright)]'}`}
+                  style={!isPast ? { background: 'var(--ds-grad-gold)' } : undefined}
+                >
+                  {t('toursPage.tabUpcoming', 'Yaklaşan Turlar')}
+                </button>
+                <button
+                  onClick={() => switchTab('past')}
+                  className={`px-5 py-2 rounded-full text-sm transition-all ${isPast ? 'text-[var(--ds-on-gold)]' : 'text-[var(--ds-text-soft)] hover:text-[var(--ds-gold-bright)]'}`}
+                  style={isPast ? { background: 'var(--ds-grad-gold)' } : undefined}
+                >
+                  {t('toursPage.tabPast', 'Geçmiş Turlar')} <span className="opacity-70">({past.length})</span>
+                </button>
+              </div>
+            </Reveal>
+          )}
+
           {/* Filters */}
           {usedCats.length > 0 && (
             <Reveal className="mb-12">
@@ -84,7 +113,7 @@ const ToursPage = () => {
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {filtered.map((tour, i) => (
-                <TourCardX key={tour.slug} tour={tour} delay={(i % 3) * 0.08} />
+                <TourCardX key={tour.slug} tour={tour} delay={(i % 3) * 0.08} past={isPast} />
               ))}
             </div>
           )}

@@ -74,7 +74,10 @@
     "servicesEyebrow": "Hizmetlerimiz",
     "ctaEyebrow": "Yolculuk seninle başlar",
     "ctaBody": "24 saat içinde, sana özel hazırlanmış bir teklifle dönüş yapalım.",
-    "ctaButton": "Rota Pusulasını Başlat"
+    "ctaButton": "Rota Pusulasını Başlat",
+    "pastEyebrow": "Geçmiş Turlarımız",
+    "pastTitle": "Birlikte yaşadığımız yolculuklar",
+    "pastAll": "Tüm Geçmiş Turlar"
   },
   "services": {
     "pageTitle": "Hizmetlerimiz - Endülüs Travel",
@@ -625,7 +628,17 @@
     "sidebarOffer": "Özel Teklif Al",
     "related": "Benzer Turlar",
     "notFound": "Tur Bulunamadı",
-    "defaultWa": "Merhaba, {{title}} turu hakkında bilgi almak istiyorum."
+    "defaultWa": "Merhaba, {{title}} turu hakkında bilgi almak istiyorum.",
+    "navOverview": "Genel",
+    "navRecap": "Tur Özeti",
+    "navItinerary": "Program",
+    "navIncluded": "Dahil / Hariç",
+    "navFaq": "SSS",
+    "completed": "Bu tur tamamlandı",
+    "completedNote": "Bu tur gerçekleştirildi ve tamamlandı. Benzer bir rota için bize yazabilir veya gelecek turlarımıza göz atabilirsiniz.",
+    "pastCta": "Benzer Tur İçin Teklif Al",
+    "watchRecap": "Tur Özetini İzle",
+    "recapTitle": "Bu turdan kareler"
   },
   "servicesPage": {
     "documentTitle": "Hizmetlerimiz - Endülüs Travel",
@@ -856,7 +869,9 @@
     "ctaEyebrow": "Aradığını bulamadın mı?",
     "ctaBody": "Hayalinizdeki tatili anlatın, 24 saat içinde kişiye özel teklifinizi hazırlayalım.",
     "ctaButton": "Teklif Al",
-    "ctaPlan": "Tur Planla"
+    "ctaPlan": "Tur Planla",
+    "tabUpcoming": "Yaklaşan Turlar",
+    "tabPast": "Geçmiş Turlar"
   },
   "homeServices": {
     "loadError": "Hizmetler yüklenemedi",
@@ -906,5 +921,8 @@
   "whatsapp": {
     "aria": "WhatsApp ile iletişime geç",
     "fixedLabel": "Bize yazın"
+  },
+  "tourCard": {
+    "completed": "Tamamlandı"
   }
 }

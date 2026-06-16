@@ -7,7 +7,7 @@ const FALLBACK_IMG = '/uploads/media/egypt.jpg';
 
 // Cinematic tour card — used across Tours / Domestic / International / Home.
 // Pure presentation over an admin/DB tour object (already localized upstream).
-const TourCardX = ({ tour, delay = 0, categoryLabel }) => {
+const TourCardX = ({ tour, delay = 0, categoryLabel, past = false }) => {
   const { t } = useTranslation();
   const cat = categoryLabel || t('categories.' + tour.category, tour.destination || '');
   return (
@@ -23,7 +23,11 @@ const TourCardX = ({ tour, delay = 0, categoryLabel }) => {
           />
           <div className="absolute inset-0" style={{ background: 'linear-gradient(180deg, transparent 38%, rgba(7,10,18,0.94))' }} />
 
-          {tour.specialOffer && (
+          {past ? (
+            <span className="absolute top-4 right-4 text-[0.65rem] uppercase tracking-[0.2em] px-3 py-1 rounded-full ds-glass text-[var(--ds-text-soft)]">
+              {t('tourCard.completed', 'Tamamlandı')}
+            </span>
+          ) : tour.specialOffer && (
             <span className="absolute top-4 right-4 text-[0.65rem] uppercase tracking-[0.2em] px-3 py-1 rounded-full font-semibold" style={{ background: 'var(--ds-grad-gold)', color: 'var(--ds-on-gold)' }}>
               {t('toursPage.specialOffer', 'Özel Fırsat')}
             </span>
