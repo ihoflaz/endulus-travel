@@ -3,8 +3,9 @@
  * Fills only keys whose body is missing/empty so later admin edits are never
  * clobbered; pass --force to overwrite existing bodies too.
  *
- *   node scripts/seed-legal.js          # fill empty/missing only
- *   node scripts/seed-legal.js --force  # overwrite everything
+ *   node scripts/seed-legal.js                              # fill empty/missing only
+ *   node scripts/seed-legal.js --force                      # overwrite everything
+ *   node scripts/seed-legal.js --force --only legal.refund  # overwrite one key
  *
  * The percentages in the refund schedule are business defaults consistent with
  * the Paket Tur Sözleşmeleri Yönetmeliği structure — review/adjust them from
@@ -14,6 +15,8 @@ import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 const FORCE = process.argv.includes('--force');
+const onlyIdx = process.argv.indexOf('--only');
+const ONLY = onlyIdx !== -1 ? process.argv[onlyIdx + 1] : null;
 
 const S = {
   brand: 'Endülüs Travel',
@@ -225,10 +228,18 @@ ${sellerTable}
   },
 
   'legal.refund': {
-    title: 'İptal ve İade Koşulları',
+    title: 'Teslimat, İptal ve İade Şartları',
     body: `
 ${updatedLine}
-<p>Bu sayfa, ${S.brand} (${S.legalName} — TÜRSAB No: ${S.tursab}) tarafından satışı yapılan paket turlarda geçerli iptal, değişiklik ve iade koşullarını açıklar. Bu koşullar, <a href="/mesafeli-satis-sozlesmesi">Mesafeli Satış Sözleşmesi</a>'nin ayrılmaz parçasıdır ve 6502 sayılı Kanun ile Paket Tur Sözleşmeleri Yönetmeliği'ne uygun olarak uygulanır.</p>
+<p>Bu sayfa, ${S.brand} (${S.legalName} — TÜRSAB No: ${S.tursab}) tarafından satışı yapılan paket turlarda geçerli teslimat (hizmetin ifası), iptal, değişiklik ve iade koşullarını açıklar. Bu koşullar, <a href="/mesafeli-satis-sozlesmesi">Mesafeli Satış Sözleşmesi</a>'nin ayrılmaz parçasıdır ve 6502 sayılı Kanun ile Paket Tur Sözleşmeleri Yönetmeliği'ne uygun olarak uygulanır.</p>
+
+<h2>Teslimat (Hizmetin İfası)</h2>
+<p>Satışa konu hizmet fiziksel bir ürün değil, <strong>paket tur hizmetidir</strong>; bu nedenle kargo ile teslimat söz konusu değildir.</p>
+<ul>
+  <li>Ödemenin (kapora veya tamamı) alınmasının ardından rezervasyon teyidi, e-posta ve/veya WhatsApp üzerinden <strong>aynı gün içinde</strong> iletilir.</li>
+  <li>Uçak bileti, otel konfirmesi ve tur programı gibi belgeler hazır oldukça, tur başlangıcından önce aynı kanallardan elektronik olarak teslim edilir.</li>
+  <li>Hizmetin kendisi, rezervasyon teyidinde belirtilen tur tarihlerinde, programda açıklanan kapsamda ifa edilir.</li>
+</ul>
 
 <h2>Katılımcının İptal Talebi</h2>
 <p>İptal talepleri yazılı olarak (e-posta veya WhatsApp) iletilmelidir. Tur başlangıç tarihine kalan süreye göre aşağıdaki iade çizelgesi uygulanır:</p>
@@ -272,6 +283,7 @@ ${updatedLine}
 
 const run = async () => {
   for (const [key, value] of Object.entries(DOCS)) {
+    if (ONLY && key !== ONLY) continue;
     const existing = await prisma.setting.findUnique({ where: { key } });
     const hasBody = Boolean(existing?.value?.body?.trim?.());
     if (hasBody && !FORCE) {

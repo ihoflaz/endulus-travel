@@ -7,7 +7,7 @@ const LEGAL = [
   { key: 'legal.terms', title: 'Kullanım Koşulları', path: '/kullanim-kosullari' },
   { key: 'legal.kvkk', title: 'KVKK', path: '/kvkk' },
   { key: 'legal.distanceSales', title: 'Mesafeli Satış Sözleşmesi', path: '/mesafeli-satis-sozlesmesi' },
-  { key: 'legal.refund', title: 'İptal ve İade Koşulları', path: '/iptal-ve-iade-kosullari' },
+  { key: 'legal.refund', title: 'Teslimat, İptal ve İade Şartları', path: '/iptal-ve-iade-kosullari' },
 ];
 
 const LegalBlock = ({ entry, show }) => {

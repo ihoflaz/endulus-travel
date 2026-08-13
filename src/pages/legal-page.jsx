@@ -185,13 +185,13 @@ export const RefundPage = () => {
   return (
     <LegalPage
       settingKey="legal.refund"
-      fallbackTitle="İptal ve İade Koşulları"
+      fallbackTitle="Teslimat, İptal ve İade Şartları"
       eyebrow={t('legal.refundEyebrow', 'Fes · Karaviyyin')}
-      crumbLabel={t('legal.refundCrumb', 'İptal & İade')}
-      metaTitle={t('legal.refundMetaTitle', 'İptal ve İade Koşulları - Endülüs Travel')}
+      crumbLabel={t('legal.refundCrumb', 'Teslimat & İade')}
+      metaTitle={t('legal.refundMetaTitle', 'Teslimat, İptal ve İade Şartları - Endülüs Travel')}
       metaDescription={t(
         'legal.refundMetaDescription',
-        'Endülüs Travel iptal ve iade koşulları: tur rezervasyonlarında iptal, değişiklik ve ücret iadesi süreçleri hakkında bilgi.'
+        'Endülüs Travel teslimat, iptal ve iade şartları: tur hizmetinin ifası, rezervasyon iptali, değişiklik ve ücret iadesi süreçleri hakkında bilgi.'
       )}
     />
   );

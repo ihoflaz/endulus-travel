@@ -92,6 +92,16 @@ const Footer = () => {
 
         <div className="ds-hairline" />
 
+        {/* Payment methods (iyzico ile Öde + kart logoları) */}
+        <div className="pt-8 flex justify-center">
+          <img
+            src="/images/payment/iyzico-band-white.svg"
+            alt="iyzico ile Öde — Mastercard, Visa, American Express, Troy"
+            className="w-full max-w-[26rem] h-auto opacity-80 px-2"
+            loading="lazy"
+          />
+        </div>
+
         {/* Bottom bar */}
         <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-[var(--ds-text-muted)]">
           <div className="flex flex-col md:flex-row items-center gap-x-4 gap-y-1 text-center md:text-left">
@@ -107,7 +117,7 @@ const Footer = () => {
               { to: '/kullanim-kosullari', text: t('footer.termsOfUse', 'Kullanım Koşulları') },
               { to: '/kvkk', text: t('footer.kvkk', 'KVKK') },
               { to: '/mesafeli-satis-sozlesmesi', text: t('footer.distanceSales', 'Mesafeli Satış Sözleşmesi') },
-              { to: '/iptal-ve-iade-kosullari', text: t('footer.refundPolicy', 'İptal & İade Koşulları') },
+              { to: '/iptal-ve-iade-kosullari', text: t('footer.refundPolicy', 'Teslimat & İade Şartları') },
             ].map((p) => (
               <Link key={p.to} to={p.to} className="hover:text-[var(--ds-gold-bright)] transition-colors">{p.text}</Link>
             ))}

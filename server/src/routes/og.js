@@ -103,7 +103,7 @@ const PAGES = {
   terms: { tr: { t: 'Kullanım Koşulları — Endülüs Travel', d: 'Hizmetlerimizi kullanım koşulları.' }, en: { t: 'Terms of Use — Endülüs Travel', d: 'Terms for using our services.' } },
   kvkk: { tr: { t: 'KVKK Aydınlatma Metni — Endülüs Travel', d: '6698 sayılı Kanun kapsamında haklarınız.' }, en: { t: 'KVKK Notice — Endülüs Travel', d: 'Your rights under Turkish data law.' } },
   distance: { tr: { t: 'Mesafeli Satış Sözleşmesi — Endülüs Travel', d: 'Tur satışlarında geçerli mesafeli satış sözleşmesi ve ön bilgilendirme.' }, en: { t: 'Distance Sales Agreement — Endülüs Travel', d: 'Distance sales agreement and pre-information for tour purchases.' } },
-  refund: { tr: { t: 'İptal ve İade Koşulları — Endülüs Travel', d: 'Tur rezervasyonlarında iptal, değişiklik ve iade koşulları.' }, en: { t: 'Cancellation & Refund Policy — Endülüs Travel', d: 'Cancellation, change and refund terms for tour reservations.' } },
+  refund: { tr: { t: 'Teslimat, İptal ve İade Şartları — Endülüs Travel', d: 'Tur hizmetinin ifası, iptal, değişiklik ve iade koşulları.' }, en: { t: 'Delivery, Cancellation & Refund — Endülüs Travel', d: 'Service delivery, cancellation, change and refund terms for tour reservations.' } },
 };
 
 const localize = (entity, lang, field) => {
