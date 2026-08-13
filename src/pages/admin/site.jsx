@@ -91,12 +91,15 @@ const SiteAdminPage = () => {
         <SettingsBlock
           title="Footer"
           settingKey="footer"
-          defaults={{ aboutText: '', legalName: '', licenseNumber: '', copyright: '' }}
+          defaults={{ aboutText: '', legalName: '', licenseNumber: '', copyright: '', taxOffice: '', taxNumber: '', mersisNumber: '' }}
           fields={[
             { key: 'aboutText', label: 'Banner metni', type: 'textarea', rows: 2 },
             { key: 'legalName', label: 'Yasal ünvan' },
             { key: 'licenseNumber', label: 'TURSAB / belge no' },
             { key: 'copyright', label: 'Telif satırı' },
+            { key: 'taxOffice', label: 'Vergi dairesi', hint: 'Doldurulursa footer\'da görünür (ödeme kuruluşu başvuruları için önerilir)' },
+            { key: 'taxNumber', label: 'Vergi no / TCKN' },
+            { key: 'mersisNumber', label: 'MERSİS no', hint: 'Şahıs işletmelerinde boş bırakılabilir' },
           ]}
         />
       </div>

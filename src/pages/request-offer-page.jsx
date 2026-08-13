@@ -356,7 +356,12 @@ const RequestOfferPage = () => {
                         <div><input type="email" className={field} placeholder={t('offer.fields.email', 'E-posta')} value={formData.email} onChange={(e) => set('email', e.target.value)} />{errors.email && <p className="text-[var(--ds-terracotta)] text-sm mt-2">{errors.email}</p>}</div>
                         <div><input type="tel" className={field} placeholder={t('offer.fields.phone', 'Telefon')} value={formData.phone} onChange={(e) => set('phone', e.target.value)} />{errors.phone && <p className="text-[var(--ds-terracotta)] text-sm mt-2">{errors.phone}</p>}</div>
                       </div>
-                      <p className="text-xs text-[var(--ds-text-muted)] leading-relaxed">{t('offer.notes.privacy', 'Bu formu doldurarak bilgilerinizin kaydedilmesine ve sizinle iletişime geçilmesine izin vermiş olursunuz.')}</p>
+                      <p className="text-xs text-[var(--ds-text-muted)] leading-relaxed">
+                        {t('offer.notes.privacy', 'Bu formu doldurarak bilgilerinizin kaydedilmesine ve sizinle iletişime geçilmesine izin vermiş olursunuz.')}{' '}
+                        <Link to="/kvkk" className="underline underline-offset-2 hover:text-[var(--ds-gold-bright)] transition-colors">
+                          {t('offer.notes.kvkkLink', 'KVKK Aydınlatma Metni')}
+                        </Link>
+                      </p>
                       {submitStatus === 'error' && <p className="text-[var(--ds-terracotta)] text-sm">{t('offer.submitError', 'Gönderim başarısız oldu, lütfen tekrar deneyin.')}</p>}
                     </div>
                   )}

@@ -45,6 +45,8 @@ const SEG_KIND = {
   gizlilik: 'privacy', privacy: 'privacy',
   'kullanim-kosullari': 'terms', terms: 'terms',
   kvkk: 'kvkk',
+  'mesafeli-satis-sozlesmesi': 'distance', 'distance-sales-agreement': 'distance',
+  'iptal-ve-iade-kosullari': 'refund', 'cancellation-refund': 'refund',
 };
 
 // Static page meta (bilingual). Detail pages override from the DB entity.
@@ -100,6 +102,8 @@ const PAGES = {
   privacy: { tr: { t: 'Gizlilik Politikası — Endülüs Travel', d: 'Kişisel verilerinizi nasıl koruduğumuz.' }, en: { t: 'Privacy Policy — Endülüs Travel', d: 'How we protect your personal data.' } },
   terms: { tr: { t: 'Kullanım Koşulları — Endülüs Travel', d: 'Hizmetlerimizi kullanım koşulları.' }, en: { t: 'Terms of Use — Endülüs Travel', d: 'Terms for using our services.' } },
   kvkk: { tr: { t: 'KVKK Aydınlatma Metni — Endülüs Travel', d: '6698 sayılı Kanun kapsamında haklarınız.' }, en: { t: 'KVKK Notice — Endülüs Travel', d: 'Your rights under Turkish data law.' } },
+  distance: { tr: { t: 'Mesafeli Satış Sözleşmesi — Endülüs Travel', d: 'Tur satışlarında geçerli mesafeli satış sözleşmesi ve ön bilgilendirme.' }, en: { t: 'Distance Sales Agreement — Endülüs Travel', d: 'Distance sales agreement and pre-information for tour purchases.' } },
+  refund: { tr: { t: 'İptal ve İade Koşulları — Endülüs Travel', d: 'Tur rezervasyonlarında iptal, değişiklik ve iade koşulları.' }, en: { t: 'Cancellation & Refund Policy — Endülüs Travel', d: 'Cancellation, change and refund terms for tour reservations.' } },
 };
 
 const localize = (entity, lang, field) => {

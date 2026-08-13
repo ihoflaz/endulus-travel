@@ -25,6 +25,8 @@ const STATIC_PATHS = [
   { path: '/gizlilik', priority: 0.3 },
   { path: '/kullanim-kosullari', priority: 0.3 },
   { path: '/kvkk', priority: 0.3 },
+  { path: '/mesafeli-satis-sozlesmesi', priority: 0.3 },
+  { path: '/iptal-ve-iade-kosullari', priority: 0.3 },
 ];
 
 const xmlEsc = (s) => String(s).replace(/[&<>"']/g, (c) => ({
@@ -49,6 +51,8 @@ const SEG = {
   gizlilik: { tr: 'gizlilik', en: 'privacy' },
   'kullanim-kosullari': { tr: 'kullanim-kosullari', en: 'terms' },
   kvkk: { tr: 'kvkk', en: 'kvkk' },
+  'mesafeli-satis-sozlesmesi': { tr: 'mesafeli-satis-sozlesmesi', en: 'distance-sales-agreement' },
+  'iptal-ve-iade-kosullari': { tr: 'iptal-ve-iade-kosullari', en: 'cancellation-refund' },
 };
 
 // Build the {tr,en} URL pair for a first segment + optional sub-path (slug/id).

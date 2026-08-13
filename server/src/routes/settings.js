@@ -36,6 +36,15 @@ const e164ish = z
   .max(32)
   .regex(/^[+\d\s()-]*$/, 'Phone may only contain digits, spaces, +, -, ( and )');
 
+// Shared shape for the free-form legal pages (title + HTML body, no <script>).
+const legalDoc = () => z.object({
+  title: z.string().max(200).optional(),
+  body: z.string().max(50_000).refine(
+    (v) => !v || !/<script\b/i.test(v),
+    '<script> tags are not allowed'
+  ).optional(),
+}).strict();
+
 // Registry of allowed setting keys and their value schemas. Anything not in
 // this map is rejected, so EDITORs can't write arbitrary JSON under any key.
 export const SETTING_SCHEMAS = {
@@ -75,6 +84,11 @@ export const SETTING_SCHEMAS = {
     legalName: z.string().max(200).optional(),
     licenseNumber: z.string().max(100).optional(),
     copyright: z.string().max(200).optional(),
+    // Ticari bilgiler (6563 bilgi verme yükümlülüğü + ödeme kuruluşu
+    // başvuruları için). Boş bırakılabilir; doluysa footer'da gösterilir.
+    taxOffice: z.string().max(120).optional(),
+    taxNumber: z.string().max(40).optional(),
+    mersisNumber: z.string().max(40).optional(),
   }).strict(),
   // Channel-specific contact methods
   whatsapp: z.object({
@@ -82,27 +96,11 @@ export const SETTING_SCHEMAS = {
     defaultMessage: z.string().max(500).optional(),
   }).strict(),
   // Free-form legal pages (HTML allowed but stripped of <script> via Zod)
-  'legal.privacy': z.object({
-    title: z.string().max(200).optional(),
-    body: z.string().max(50_000).refine(
-      (v) => !v || !/<script\b/i.test(v),
-      '<script> tags are not allowed'
-    ).optional(),
-  }).strict(),
-  'legal.terms': z.object({
-    title: z.string().max(200).optional(),
-    body: z.string().max(50_000).refine(
-      (v) => !v || !/<script\b/i.test(v),
-      '<script> tags are not allowed'
-    ).optional(),
-  }).strict(),
-  'legal.kvkk': z.object({
-    title: z.string().max(200).optional(),
-    body: z.string().max(50_000).refine(
-      (v) => !v || !/<script\b/i.test(v),
-      '<script> tags are not allowed'
-    ).optional(),
-  }).strict(),
+  'legal.privacy': legalDoc(),
+  'legal.terms': legalDoc(),
+  'legal.kvkk': legalDoc(),
+  'legal.distanceSales': legalDoc(),
+  'legal.refund': legalDoc(),
 };
 
 export const ALLOWED_SETTING_KEYS = new Set(Object.keys(SETTING_SCHEMAS));

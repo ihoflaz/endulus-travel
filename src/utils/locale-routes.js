@@ -24,6 +24,8 @@ export const ROUTE_SEGMENTS = [
   { key: 'privacy',       tr: 'gizlilik',           en: 'privacy' },
   { key: 'terms',         tr: 'kullanim-kosullari', en: 'terms' },
   { key: 'kvkk',          tr: 'kvkk',               en: 'kvkk' },
+  { key: 'distance',      tr: 'mesafeli-satis-sozlesmesi',  en: 'distance-sales-agreement' },
+  { key: 'refund',        tr: 'iptal-ve-iade-kosullari',    en: 'cancellation-refund' },
 ];
 
 // Map any first segment (tr OR en spelling) -> the spelling for `lang`.

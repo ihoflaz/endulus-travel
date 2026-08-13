@@ -211,6 +211,12 @@ const ContactPage = () => {
                   <textarea id="message" name="message" value={formData.message} onChange={handleInputChange} rows={5} className={`${fieldCls(errors.message)} mt-2 resize-none`} placeholder={t('contactPage.placeholderMessage', 'Hangi destinasyonlara ilgi duyuyorsunuz? Seyahat tarihleriniz ve grup büyüklüğünüz nedir?')} />
                   {errors.message && <p className="mt-2 text-sm text-[var(--ds-terracotta)]">{errors.message}</p>}
                 </div>
+                <p className="text-xs text-[var(--ds-text-muted)] leading-relaxed">
+                  {t('contactPage.kvkkNote', 'Bu formu göndererek kişisel verilerinizin talebinizin yanıtlanması amacıyla işlenmesini kabul etmiş olursunuz.')}{' '}
+                  <Link to="/kvkk" className="underline underline-offset-2 hover:text-[var(--ds-gold-bright)] transition-colors">
+                    {t('contactPage.kvkkLink', 'KVKK Aydınlatma Metni')}
+                  </Link>
+                </p>
                 <button type="submit" disabled={submitStatus === 'submitting'} className={`ds-btn w-full justify-center ${submitStatus === 'submitting' ? 'opacity-70 cursor-not-allowed' : ''}`}>
                   {submitStatus === 'submitting' ? t('contactPage.submitting', 'Gönderiliyor...') : t('contactPage.submit', 'Mesajı Gönder')}
                 </button>

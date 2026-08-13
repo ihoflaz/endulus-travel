@@ -162,3 +162,37 @@ export const KvkkPage = () => {
     />
   );
 };
+
+export const DistanceSalesPage = () => {
+  const { t } = useTranslation();
+  return (
+    <LegalPage
+      settingKey="legal.distanceSales"
+      fallbackTitle="Mesafeli Satış Sözleşmesi"
+      eyebrow={t('legal.distanceEyebrow', 'Sevilla · Giralda')}
+      crumbLabel={t('legal.distanceCrumb', 'Mesafeli Satış')}
+      metaTitle={t('legal.distanceMetaTitle', 'Mesafeli Satış Sözleşmesi - Endülüs Travel')}
+      metaDescription={t(
+        'legal.distanceMetaDescription',
+        'Endülüs Travel mesafeli satış sözleşmesi ve ön bilgilendirme: tur satışlarında taraflar, ödeme, ifa ve cayma hakkına ilişkin koşullar.'
+      )}
+    />
+  );
+};
+
+export const RefundPage = () => {
+  const { t } = useTranslation();
+  return (
+    <LegalPage
+      settingKey="legal.refund"
+      fallbackTitle="İptal ve İade Koşulları"
+      eyebrow={t('legal.refundEyebrow', 'Fes · Karaviyyin')}
+      crumbLabel={t('legal.refundCrumb', 'İptal & İade')}
+      metaTitle={t('legal.refundMetaTitle', 'İptal ve İade Koşulları - Endülüs Travel')}
+      metaDescription={t(
+        'legal.refundMetaDescription',
+        'Endülüs Travel iptal ve iade koşulları: tur rezervasyonlarında iptal, değişiklik ve ücret iadesi süreçleri hakkında bilgi.'
+      )}
+    />
+  );
+};

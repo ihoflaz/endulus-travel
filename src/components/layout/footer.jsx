@@ -98,12 +98,16 @@ const Footer = () => {
             <span>© {currentYear} {f.copyright}</span>
             {f.licenseNumber && <span className="text-[var(--ds-gold)]">{f.licenseNumber}</span>}
             {f.legalName && <span className="opacity-70">{f.legalName}</span>}
+            {f.taxOffice && f.taxNumber && <span className="opacity-70">{f.taxOffice} V.D. {f.taxNumber}</span>}
+            {f.mersisNumber && <span className="opacity-70">MERSİS: {f.mersisNumber}</span>}
           </div>
           <div className="flex flex-wrap justify-center gap-5">
             {[
               { to: '/gizlilik', text: t('footer.privacyPolicy', 'Gizlilik Politikası') },
               { to: '/kullanim-kosullari', text: t('footer.termsOfUse', 'Kullanım Koşulları') },
               { to: '/kvkk', text: t('footer.kvkk', 'KVKK') },
+              { to: '/mesafeli-satis-sozlesmesi', text: t('footer.distanceSales', 'Mesafeli Satış Sözleşmesi') },
+              { to: '/iptal-ve-iade-kosullari', text: t('footer.refundPolicy', 'İptal & İade Koşulları') },
             ].map((p) => (
               <Link key={p.to} to={p.to} className="hover:text-[var(--ds-gold-bright)] transition-colors">{p.text}</Link>
             ))}

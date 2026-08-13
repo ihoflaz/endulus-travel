@@ -19,7 +19,7 @@ import BlogDetailPage from './pages/blog-detail-page';
 import AboutPage from './pages/about-page';
 import ServicesPage from './pages/services-page';
 import ServiceDetailPage from './pages/service-detail-page';
-import { PrivacyPage, TermsPage, KvkkPage } from './pages/legal-page';
+import { PrivacyPage, TermsPage, KvkkPage, DistanceSalesPage, RefundPage } from './pages/legal-page';
 import ScrollToTop from './components/utils/scroll-to-top';
 import PageViewTracker from './components/utils/PageViewTracker';
 import SmoothScroll from './components/motion/SmoothScroll';
@@ -80,6 +80,8 @@ const PAGE_EL = {
   privacy: <PrivacyPage />,
   terms: <TermsPage />,
   kvkk: <KvkkPage />,
+  distance: <DistanceSalesPage />,
+  refund: <RefundPage />,
 };
 const DETAIL_ROUTES = [
   { key: 'tours', child: ':slug', element: <TourDetailPage /> },

@@ -6,6 +6,8 @@ const LEGAL = [
   { key: 'legal.privacy', title: 'Gizlilik Politikası', path: '/gizlilik' },
   { key: 'legal.terms', title: 'Kullanım Koşulları', path: '/kullanim-kosullari' },
   { key: 'legal.kvkk', title: 'KVKK', path: '/kvkk' },
+  { key: 'legal.distanceSales', title: 'Mesafeli Satış Sözleşmesi', path: '/mesafeli-satis-sozlesmesi' },
+  { key: 'legal.refund', title: 'İptal ve İade Koşulları', path: '/iptal-ve-iade-kosullari' },
 ];
 
 const LegalBlock = ({ entry, show }) => {
@@ -62,7 +64,7 @@ const LegalAdminPage = () => {
   const { items: toastItems, show, dismiss } = useToast();
   return (
     <div>
-      <PageHeader title="Yasal Sayfalar" description="Gizlilik, kullanım koşulları, KVKK metinleri" />
+      <PageHeader title="Yasal Sayfalar" description="Gizlilik, kullanım koşulları, KVKK, mesafeli satış ve iptal/iade metinleri" />
       <div className="grid gap-4 lg:grid-cols-2">
         {LEGAL.map((entry) => <LegalBlock key={entry.key} entry={entry} show={show} />)}
       </div>
