@@ -19,7 +19,7 @@ const AboutPage = () => {
   const igUrl = contactData?.social?.instagram || 'https://www.instagram.com/endulustravell/';
   const igHandle = '@' + (igUrl.replace(/\/+$/, '').split('/').pop() || 'endulustravell');
   const address = contactData?.address
-    || 'Osmanağa Mah. Çilek Sok. Akel İşhanı No:1 Kat:2 İç Kapı No:42, Kadıköy / İstanbul';
+    || 'Aziz Mahmud Hüdai Mah. Hakimiyeti Milliye Cad. No:88/15, Üsküdar / İstanbul';
 
   // Brand-story features (icons kept inline so the section reads as a journey).
   const features = [
@@ -324,7 +324,7 @@ const AboutPage = () => {
                     <svg className="w-5 h-5 text-[var(--ds-gold)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
                     </svg>
-                    <span className="text-sm">{t('aboutPage.mapLocation', 'Kadıköy merkez konumunda')}</span>
+                    <span className="text-sm">{t('aboutPage.mapLocation', 'Üsküdar merkez konumunda')}</span>
                   </div>
                 </div>
               </div>

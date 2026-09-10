@@ -84,8 +84,8 @@ const PAGES = {
     en: { t: 'Who We Are — Endülüs Travel', d: 'A companionship born from the shared passion of two sisters — an engineer and a dietitian.' },
   },
   contact: {
-    tr: { t: 'İletişim — Endülüs Travel', d: 'Telefon, WhatsApp, e-posta ve Kadıköy ofisimizle bize ulaşın.' },
-    en: { t: 'Contact — Endülüs Travel', d: 'Reach us by phone, WhatsApp, email and our Kadıköy office.' },
+    tr: { t: 'İletişim — Endülüs Travel', d: 'Telefon, WhatsApp, e-posta ve Üsküdar ofisimizle bize ulaşın.' },
+    en: { t: 'Contact — Endülüs Travel', d: 'Reach us by phone, WhatsApp, email and our Üsküdar office.' },
   },
   survey: {
     tr: { t: 'Ön Anket — Endülüs Travel', d: 'Tercihlerinizi paylaşın, size özel kişiselleştirilmiş bir tur planı hazırlayalım.' },

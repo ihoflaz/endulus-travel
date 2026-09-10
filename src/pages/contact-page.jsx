@@ -36,7 +36,7 @@ const ContactPage = () => {
   const igHandle = '@' + (igUrl.replace(/\/+$/, '').split('/').pop() || 'endulustravell');
   const agencyName = contactData?.agencyName || 'ROTA ATLAS SEYAHAT ACENTASI';
   const address = contactData?.address
-    || t('contactPage.addressFallback', 'Osmanağa Mah. Çilek Sok. Akel İşhanı No:1 Kat:2 İç Kapı No:42, Kadıköy / İstanbul');
+    || t('contactPage.addressFallback', 'Aziz Mahmud Hüdai Mah. Hakimiyeti Milliye Cad. No:88/15, Üsküdar / İstanbul');
 
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', subject: '', message: '' });
   const [errors, setErrors] = useState({});
@@ -90,7 +90,7 @@ const ContactPage = () => {
     <div className="ds-dark" style={{ background: 'var(--ds-bg)' }}>
       <Seo
         title={t('contactPage.documentTitle', 'İletişim - Endülüs Travel')}
-        description={t('contactPage.metaDescription', 'Endülüs Travel ile iletişime geçin. Telefon, WhatsApp, e-posta ve Kadıköy ofis adresimiz üzerinden ulaşın; size özel seyahat planları ve ücretsiz danışmanlık için bizimle bağlantı kurun.')}
+        description={t('contactPage.metaDescription', 'Endülüs Travel ile iletişime geçin. Telefon, WhatsApp, e-posta ve Üsküdar ofis adresimiz üzerinden ulaşın; size özel seyahat planları ve ücretsiz danışmanlık için bizimle bağlantı kurun.')}
       />
 
       <PageHero

@@ -22,11 +22,11 @@ const S = {
   brand: 'Endülüs Travel',
   legalName: 'ROTA ATLAS TURİZM SEYAHAT ACENTASI',
   tursab: '6739',
-  address: 'Osmanağa Mah. Çilek Sok. Akel İşhanı No:1 Kat:2 İç Kapı No:42, Kadıköy / İstanbul',
+  address: 'Aziz Mahmud Hüdai Mah. Hakimiyeti Milliye Cad. No:88/15, Üsküdar / İstanbul',
   phone: '+90 507 938 45 08',
   email: 'info@endulustravel.com',
   site: 'www.endulustravel.com',
-  updated: '13 Ağustos 2026',
+  updated: '10 Eylül 2026',
 };
 
 const sellerTable = `

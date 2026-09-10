@@ -7,7 +7,7 @@ import { Reveal } from '../motion';
 // Fully admin-driven (contact / footer / whatsapp settings); hardcoded copy is
 // only a fallback before the backend is seeded.
 const FALLBACK_CONTACT = {
-  address: 'Osmanağa Mah. Çilek Sok. Akel İşhanı No:1 Kat:2 İç Kapı No:42, Kadıköy / İstanbul',
+  address: 'Aziz Mahmud Hüdai Mah. Hakimiyeti Milliye Cad. No:88/15, Üsküdar / İstanbul',
   phone: '+90 507 938 45 08',
   email: 'info@endulustravel.com',
 };
